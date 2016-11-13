@@ -2,24 +2,31 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2016-11-13 15:36:38 +0900
-categories: jekyll update
+categories: jekyll
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+またサイトを作りなおした。もう何回目かわからない。
 
-Jekyll also offers powerful support for code snippets:
+今回はGitHub PagesのJekyllをつかったもの。もうなんかめんどくさいのでテーマもデフォルトのもの。
+前回は静的サイトジェネレータを自分のマシン上で動かさなければならなかったため、ちょっと面倒くさかった。
+頻繁にOSをクリーンインストールしていたため、記事を書くたびに環境を再構築している感じだった。
+今度のはHTMLの生成はGitHubの方でやってくれるので、やろうと思えばスマホからでも記事が投稿できる。
+ファイル名がちょっとめんどくさいが、さすがにそれくらいで記事を書くのを諦めるほどめんどくさがりでないと自分を信じたい。
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+しかし自分で作ったサイトとか作品とかは後で見返すと恥ずかしいものだ。
+サイトを作りなおす過程で過去の記事は全て消えたし、投稿していた動画とかもいくらか非公開にした。
+非公開にしただけで削除しないあたりに未練を感じる。
+Twitterのツイートも似たようなもののような気がするが、それは別に消してはいない。
+なぜだろうか?
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+おそらく恥ずかしくなるかどうかには参照のしやすさが関係している気がする。
+ブログの記事や動画はそんなに数がないので、サイトにアクセスすればものの数分ですべてをチェックできる。
+一方Twitterのつぶやきはほぼ毎日してしまっているので、過去のツイートはどんどん流れていって、
+例えば1年前のツイートを見ようと思っても比較的大変である。
+そもそも直視する機会が少ない上に、他人がみる確率もかなり少ないのでそんなに恥ずかしくないのであろう。
+かなり少ないとはいっても、たとえば自分が炎上したりすれば過去のツイートはすべて掘り返されるのだろう。
+それを危惧して一定以上経過したツイートをすべて消してしまうような人もいるが、じぶんは労力を払ってまでそうしない。
+過去のツイートを消しても過去の行いがなかったことになるわけではないし、
+大抵過去の悪行というのは自分が覚えていないところから発掘されるので、制御することができないと諦めているからだ。
+自分は記憶力がないので、過去に何か変なツイートをしたことも一切覚えていない。
+炎上して過去のツイートが掘り返されたらものすごいびっくりするだろう。

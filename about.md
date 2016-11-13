@@ -1,15 +1,10 @@
 ---
 layout: page
-title: About
+title: About me
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+どうも、自分の名前はKotet。  
+名前の読み方は自分でも決めていないので、いま上の文章を頭の中で読み上げた時の発音で読んでくれればいい。  
+![Kotet]({{ site.url }}/assets/kotet.jpg)
+これはアイコン。たしか数年前に適当に書いたなにか。
