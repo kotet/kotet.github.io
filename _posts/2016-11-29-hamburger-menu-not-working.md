@@ -15,3 +15,12 @@ categories: jekyll
 [fix hamburger menu for iOs by melaniewalsh · Pull Request #85 · jekyll/minima](https://github.com/jekyll/minima/pull/85)
 
 とりあえず修正できないか頑張る。
+
+PRの内容通り8行目のspanにダミーハンドラ`onclick="void(0)"`を追加してみる。これによってiOSのブラウザはその要素をクリック可能なものとして認識するようだ。
+
+```diff
+-      <span class="menu-icon">
++      <span class="menu-icon" onclick="void(0)">
+```
+
+これで無事に動いた。めでたし。
