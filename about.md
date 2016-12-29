@@ -9,7 +9,7 @@ permalink: /about/
 ![Kotet]({{ site.url }}/assets/kotet.jpg)  
 これはアイコン。たしか数年前に適当に書いたなにか。  
 学生。主にD言語をやってるがすごいレベルには全く達していない。  
-Twitter : [@kotetttt](twitter.com/kotetttt)  
-GitHub : [@kotet](github.com/kotet)
-Qiita : [@kotet](qiita.com/kotet)
-Niconico : [@kotet](www.nicovideo.jp/user/46839326)
+Twitter : [@kotetttt](https://twitter.com/kotetttt)  
+GitHub : [@kotet](https://github.com/kotet)
+Qiita : [@kotet](https://qiita.com/kotet)
+Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
