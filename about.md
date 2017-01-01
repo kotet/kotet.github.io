@@ -20,5 +20,5 @@ Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
 ---
 
 Twitterで共有した制作物はこちら
-<a class="twitter-moment" href="https://twitter.com/i/moments/804899900559233025">つくったもの</a>
+<a class="twitter-moment" href="https://twitter.com/i/moments/815371267549208576">つくったもの</a>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
