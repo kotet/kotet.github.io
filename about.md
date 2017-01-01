@@ -10,7 +10,15 @@ permalink: /about/
 これはアイコン。たしか数年前に適当に書いたなにか。  
 学生。主にD言語をやってるがすごいレベルには全く達していない。  
 
+---
+
 Twitter : [@kotetttt](https://twitter.com/kotetttt)  
 GitHub : [@kotet](https://github.com/kotet)  
 Qiita : [@kotet](https://qiita.com/kotet)  
-Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)  
+Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
+
+---
+
+Twitterで共有した制作物はこちら
+<a class="twitter-moment" href="https://twitter.com/i/moments/804899900559233025">つくったもの</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
