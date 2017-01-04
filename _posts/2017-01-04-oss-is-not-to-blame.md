@@ -5,7 +5,7 @@ date:   2017-01-04 10:51:38 +0900
 categories: diary
 ---
 
-このような記事があり、多くの反応を読んでいた。
+このような記事があり、多くの反応を呼んでいた。
 
 [自作ライブラリを削除しました(記事は削除されてリンクは無効)](http://www.coppermine.jp/docs/promised/2017/01/closed-some-libraries.html)
 
