@@ -14,4 +14,6 @@ GitHubアカウントを持っていない場合、TwitterでリプライかDM�
 
 [Kotet-Twitter](https://twitter.com/kotetttt)
 
-今のところ完全に匿名で何かを送る方法はない。そのうち考えようと思う。
+あとは下のフォームから意見を受け付けている。
+
+{% include feedback-form.html %}
