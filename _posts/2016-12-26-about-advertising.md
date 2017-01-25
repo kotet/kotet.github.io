@@ -2,7 +2,7 @@
 layout: post
 title:  "Anonymous Adsについて"
 date:   2016-12-26 12:53:38 +0900
-categories: diary
+tags: diary
 ---
 
 前から悩んでいたことだったのだが、自分はブログを更新しなさすぎる。

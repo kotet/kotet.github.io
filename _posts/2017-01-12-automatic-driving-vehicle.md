@@ -2,7 +2,7 @@
 layout: post
 title:  "自動運転車を信頼できる人とできない人の違いについて"
 date:   2017-01-12 19:30:00 +0900
-categories: diary
+tags: diary
 ---
 
 以前何人かの人に「自動運転車に乗りたいか」と聞いた。

@@ -2,7 +2,7 @@
 layout: post
 title:  "よしなしごと 1/10"
 date:   2017-01-10 15:10:00 +0900
-categories: diary
+tags: diary
 ---
 
 今日は体調が悪く何もできないでいる。
