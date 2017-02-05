@@ -8,7 +8,7 @@ permalink: /tags/
 {% endcapture %}
 {% assign all_tags = all_tags | split: ' ' | sort %}
 
-{% for tag in all_tags %}/ [{{ tag }}](#{{ tag | downcase }}) {% endfor %}
+{% for tag in all_tags %}{% include tag.html tag=tag %} {% endfor %}
 
 {% for tag in all_tags %}
 ## {{ tag }}
