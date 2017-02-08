@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dlang:コンパイル時にファイルから文字列を読み込む"
-tags: tech
+tags: dlang tech
 ---
 
 長い文字列を埋め込むために
