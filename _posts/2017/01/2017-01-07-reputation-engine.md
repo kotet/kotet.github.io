@@ -2,7 +2,7 @@
 layout: post
 title:  "読書記録:ブランドの暗殺、悪意あるデマ"
 date:   2017-01-07 18:53:00 +0900
-tags: diary
+tags: essay
 ---
 
 今自分は「勝手に選別される世界」(原題:The Reputation Economy)という本を読んでいる。

@@ -2,7 +2,7 @@
 layout: post
 title:  "よしなしごと 1/3"
 date:   2017-01-03 10:51:38 +0900
-tags: diary
+tags: trivial-things
 ---
 
 特に書きたいこともないのに何かを書きたくなった。
