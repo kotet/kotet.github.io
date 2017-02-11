@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dlang:コンパイル時にファイルから文字列を読み込む"
+title: "コンパイル時にファイルから文字列を読み込む"
 tags: dlang tech
 ---
 
