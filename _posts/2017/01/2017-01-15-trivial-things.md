@@ -2,7 +2,7 @@
 layout: post
 title:  "よしなしごと 1/15"
 date:   2017-01-15 22:00:00 +0900
-tags: diary
+tags: trivial-things
 ---
 
 contribution calendarが途切れそうなので何か書く。

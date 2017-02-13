@@ -2,7 +2,7 @@
 layout: post
 title: "サイトの内容をGitHubのリポジトリと同期するメリット3つ"
 date: 2017-01-29 11:00:00 +0900
-tags: diary tech
+tags: essay tech
 ---
 
 このようなツイートを見た。
