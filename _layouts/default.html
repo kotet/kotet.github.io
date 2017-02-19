@@ -10,7 +10,7 @@
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         {{ content }}
-        {% include share-widget.html %}
+        {% if page.noindex != true %}{% include share-widget.html %}{% endif %}
       </div>
     </main>
 
