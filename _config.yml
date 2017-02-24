@@ -31,5 +31,7 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - ...
+  - vendor
 
 google_analytics: UA-88180620-1
