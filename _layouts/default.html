@@ -11,6 +11,7 @@
       <div class="wrapper">
         {{ content }}
         {% if page.noindex != true %}{% include share-widget.html %}{% endif %}
+        <p><a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }}">Improve this content</a></p>
       </div>
     </main>
 
