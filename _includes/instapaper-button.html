@@ -1,4 +1,5 @@
+{% capture title %}{% if page.tags %}{{ page.tags[0] }}:{% endif %}{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}{% endcapture %}
 <iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
  style="z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="https://www.instapaper.com/e2?url={{ page.url | absolute_url }}"
+ src="https://www.instapaper.com/e2?url={{ page.url | absolute_url }}&title={{ title }}"
 ></iframe>
