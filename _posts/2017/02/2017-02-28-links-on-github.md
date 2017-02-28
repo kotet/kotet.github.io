@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "コミットメッセージ等でPR/Issue/Commit/他のリポジトリを参照する"
+title: "コミットメッセージ上で他のリポジトリの特定のコミットを参照する等"
 date: 2017-02-28 18:00:00 +0900
 tags: github tech
 image: "2017/02/28/twitter.png"
