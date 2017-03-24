@@ -3,18 +3,11 @@ layout: page
 title: Tags
 permalink: /tags/
 ---
-{% capture all_tags %}
-{% for tag in site.tags %}{{ tag[0] }} {% endfor %}
-{% endcapture %}
-{% assign all_tags = all_tags | split: ' ' | sort %}
+{% for tag in site.tags %}{% assign tagname = tag[0] %}{% include tag.html tag=tagname %} {% endfor %}
 
-{% for tag in all_tags %}{% include tag.html tag=tag %} {% endfor %}
-
-{% for tag in all_tags %}
-## {{ tag }}
-  {% for post in site.posts %}
-  {% if post.tags contains tag %}
+{% for tag in site.tags %}
+### {{ tag[0] }} ({{ tag[1] | size }})
+  {% for post in tag[1] %}
  - [{{ post.title }}]({{ post.url }})
-  {% endif %}
   {% endfor %}
 {% endfor %}
