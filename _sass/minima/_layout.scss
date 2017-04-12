@@ -210,6 +210,7 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
+  line-height: 2em;
 
   h2 {
     font-size: 32px;
@@ -233,5 +234,8 @@
     @include media-query($on-laptop) {
       font-size: 18px;
     }
+  }
+  .highlight {
+    line-height: $base-line-height;
   }
 }
