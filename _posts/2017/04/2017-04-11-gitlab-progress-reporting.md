@@ -25,11 +25,10 @@ for i in $( seq 0 $(($len - 1)) ); do
     item=$(echo $json | jq ".[$i]")
     title=$(echo $item | jq ".title")
     description=$(echo $item | jq ".description")
-    incomplete=$(echo -e $description | grep -c " \- \[ \]")
+    all=$(echo -e $description | grep -c " \- \[.\]")
     complete=$(echo -e $description | grep -c "[x]")
 
-    if [ ! $incomplete = "0" ] && [ ! $complete = "0" ]; then
-        all=$(expr $incomplete + $complete)
+    if [ ! $all = "0" ]; then
         ratio=$(echo "scale=2; $complete/$all" | bc | tail -c 3)
 
         echo "<h3>" $(echo $title | tr -d '"') "</h3>"
@@ -40,3 +39,8 @@ done
 
 echo "</body>"
 ```
+
+ - 追記
+    完了率が100%のときにうまく動かない不具合があったため修正。
+    上のコードは修正後のもの。
+    まあ自分用に書いたものなので別に直してもここを更新しなくてもいいのだが……
