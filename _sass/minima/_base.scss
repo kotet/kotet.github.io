@@ -200,3 +200,24 @@ pre {
 hr {
   margin-bottom: 1em;
 }
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+  td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+  }
+}
