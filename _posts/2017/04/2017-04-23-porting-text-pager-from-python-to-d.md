@@ -18,7 +18,7 @@ tags: dlang tech translation
 ---
 
 <big>
- $ tp file.txt</br>
+ $ tp file.txt  
  $ dir /s | tp
 </big>
 
