@@ -124,3 +124,7 @@ sqrt( 2 ) == 1.41421
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/kotetttt">@kotetttt</a> <a href="https://t.co/2CWXBfFs2k">https://t.co/2CWXBfFs2k</a><br>なんかちょっと解説みたいなの書いてみるか〜とかしたら怪文書になってしまいました。。蛇足はほんとに蛇足なので読まないでもぜんぜんいいやつです。</p>&mdash; ありがとうけものフレンズ (@shitsyndrome) <a href="https://twitter.com/shitsyndrome/status/859101734173458433">2017年5月1日</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+[次回:OpenSSLを使う]({{ site.url }}/2017/05/03/use-c-sha256-in-d.html)
