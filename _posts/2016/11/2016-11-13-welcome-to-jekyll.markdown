@@ -2,7 +2,7 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2016-11-13 15:36:38 +0900
-tags: diary jekyll
+tags: log jekyll
 ---
 
 またサイトを作りなおした。もう何回目かわからない。
