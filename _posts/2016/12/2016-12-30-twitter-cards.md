@@ -2,7 +2,7 @@
 layout: post
 title:  "Twitterカードを設定した"
 date:   2016-12-30 12:51:38 +0900
-tags: diary
+tags: log
 ---
 
 Twitter cardsを設定してみた。

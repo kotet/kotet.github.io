@@ -2,7 +2,7 @@
 layout: post
 title: "オリンピック懐炉"
 date: 2017-02-18 11:00:00 +0900
-tags: diary
+tags: log
 image: "2017/02/18/pocket-warmer.jpg"
 ---
 使い捨て懐炉と合わせて燃料式の懐炉を使っている。

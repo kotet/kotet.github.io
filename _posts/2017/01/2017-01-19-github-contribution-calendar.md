@@ -2,7 +2,7 @@
 layout: post
 title:  "53日間GitHubで草を生やし続けて気づいたnつのこと"
 date:   2017-01-19 22:00:00 +0900
-tags: diary
+tags: log
 ---
 
 最近体調不良が続いた結果、contributionのない日ができてしまった。
