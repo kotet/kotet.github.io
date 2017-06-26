@@ -107,7 +107,7 @@ void main() {
 
 このとき、コンパイラを通すことはできません。
 
-```d
+```console
 Error: @nogc function 'D main' cannot call non-@nogc function 'std.stdio.writeln!string.writeln'
 ```
 
@@ -127,7 +127,7 @@ void main() {
 
 コンパイラはこれも見逃しません。
 
-```d
+```console
 Error: cannot use 'new' in @nogc function 'D main'
 ```
 
@@ -214,7 +214,7 @@ void main() {
 
 コンパイルしGCプロファイルスイッチ付きで実行します:
 
-```d
+```console
 dmd gcstat.d
 gcstat --DRT-gcopt=profile:1
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
@@ -265,7 +265,7 @@ void main() {
 この特殊なケースで、デリゲートは親スコープの変数を使います。
 こちらが`-vgc`でコンパイルした時の出力です:
 
-```d
+```console
 dmd -vgc inner.d
 inner.d(11): vgc: operator ~= may cause GC allocation
 inner.d(7): vgc: using closure causes GC allocation
