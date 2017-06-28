@@ -93,3 +93,5 @@ this is test
 
 とても便利。
 たとえば[D言語くんのAAを使う時](https://github.com/kotet/progress/commit/3fc0faa3effcf1efe722b77414cfe22827d9ea5a)とかに使える。
+
+続き: [importでコンパイル時にファイルを埋め込む]({{ site.baseurl }}{% post_url 2017/06/2017-06-28-import-any-binary %})
