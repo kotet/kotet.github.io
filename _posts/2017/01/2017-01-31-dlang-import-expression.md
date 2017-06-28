@@ -5,7 +5,7 @@ tags: dlang tech
 ---
 
 長い文字列を埋め込むために
-[いろいろ迷走した]({{ site.url }}/2016/12/06/170d11cc6b82592a8404.html)
+[いろいろ迷走した]({{ site.baseurl }}{% post_url 2016/12/2016-12-06-170d11cc6b82592a8404 %})
 が、コンパイル時にファイルから文字列を読み込む方法があることに気づいたので詳しく調べる。
 
 [Import Expression](https://dlang.org/spec/expression.html#ImportExpression)
