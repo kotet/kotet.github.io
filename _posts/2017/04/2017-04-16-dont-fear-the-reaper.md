@@ -2,7 +2,7 @@
 layout: post
 title: "死神を恐れないで - GCについて知る【翻訳】"
 date: 2017-04-16 19:00:00 +0900
-tags: dlang tech translation
+tags: dlang tech translation dlang-gc-series
 ---
 
 この記事は
