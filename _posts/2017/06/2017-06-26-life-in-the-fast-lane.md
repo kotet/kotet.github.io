@@ -2,7 +2,7 @@
 layout: post
 title: "駆け足の人生:GCを減らすための工夫【翻訳】"
 date: 2017-06-26 8:00:00 +0900
-tags: dlang tech translation
+tags: dlang tech translation dlang-gc-series
 ---
 
 この記事は、
