@@ -16,7 +16,7 @@
 title: Kotet
 email:
 description: > # this means to ignore newlines until "baseurl:"
-    My blog
+    ‪Kotetのblog。主にD言語についてのTipsを書いたりD言語に関する記事を翻訳したりしている。‬
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kotet.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: kotetttt
