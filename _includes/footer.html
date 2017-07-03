@@ -6,6 +6,7 @@
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
+        {% include anonymous-ad.html %}
         <ul class="contact-list">
           <li>
             {% if site.email %}
@@ -20,9 +21,7 @@
           <li>
             {% include icon-github.html username=site.github_username %}
           </li>
-          {% endif %}
-
-          {% if site.twitter_username %}
+          {% endif %} {% if site.twitter_username %}
           <li>
             {% include icon-twitter.html username=site.twitter_username %}
           </li>
@@ -32,7 +31,6 @@
       <div class="footer-col footer-col-3">
         <p>{{ site.description | escape }}</p>
       </div>
-      {% include anonymous-ad.html %}
     </div>
 
   </div>
