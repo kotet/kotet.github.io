@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "binary.h in D"
-tags: jekyll tech
+tags: dlang tech
 excerpt: "C言語にはなぜか二進数リテラルがないため、そういうことをしたい場合自分で何とかする必要がある。
         D言語には普通に二進数リテラルがあるが、同じことをするコードを書いてTemplate Mixinの練習をすることにした。"
 image: 2017/07/05/twitter.png
