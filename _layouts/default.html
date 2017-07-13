@@ -4,19 +4,17 @@
   {% include head.html %}
 
   <body>
-    {% include fb-root.html %}
     {% include header.html %}
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         {{ content }}
-        {% if page.noindex != true %}{% include share-widget.html %}{% endif %}
+        {% if page.noindex != true %}{% include share-widget/share-widget.html %}{% endif %}
         {% include improve.html %}
       </div>
     </main>
 
     {% include footer.html %}
-    {% include hatena-star-head.html %}
   </body>
 
 </html>
