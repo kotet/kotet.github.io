@@ -7,6 +7,7 @@ tags: dlang tech translation dlang-gc-series
 この記事は、
 
 [Go Your Own Way (Part One: The Stack) – The D Blog](http://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/)[^1]
+
 [^1]: 編集環境が貧弱すぎるのであとでかく
 
 を自分用に翻訳したものを
@@ -195,7 +196,9 @@ GCを避けるために関数にアノテートする必要はないので、こ
 一般的に、Dでカスタム型を実装するときには、
 それを使用する意図によって`struct`と`class`のどちらを選ぶか決めます。
 POD[^2]型は明らかに`struct`が候補になるのに対して、
+
 [^2]: Plain old data structure - Cの構造体と互換性をもつデータ構造
+
 GUIシステム等の、継承ヒエラルキーやランタイムインタフェースが極めて役に立つ場面では、
 `class`がより適した選択になります。
 これらの明らかなケース以外にも、そのトピックのために別の記事が書けるようなたくさんの考慮事項があります。
