@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MathJaxのCDNが警告を発しつつも使えてしまっていた"
-tags: jekyll tech
+tags: jekyll tech github
 excerpt: "どうも数式表示のために読み込ませていたMathJaxのCDNである
 `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。
 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。"
