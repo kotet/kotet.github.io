@@ -2,7 +2,7 @@
 layout: post
 title: "automem: DのハンズフリーRAII【翻訳】"
 date: 2017-06-18 6:00:00 +0900
-tags: dlang tech translation dlang-gc-series
+tags: dlang tech translation
 ---
 
 この記事は、
