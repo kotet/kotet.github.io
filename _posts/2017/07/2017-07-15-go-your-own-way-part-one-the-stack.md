@@ -8,7 +8,8 @@ tags: dlang tech translation dlang-gc-series
 
 [Go Your Own Way (Part One: The Stack) – The D Blog](http://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/)[^1]
 
-[^1]: 編集環境が貧弱すぎるのであとでかく
+[^1]: おそらく[フリートウッド・マック](https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%82%A6%E3%83%83%E3%83%89%E3%83%BB%E3%83%9E%E3%83%83%E3%82%AF)
+    の同名の曲が題の元ネタと思われる
 
 を自分用に翻訳したものを
 [許可を得て](http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631)
