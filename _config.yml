@@ -38,5 +38,5 @@ exclude:
 
 google_analytics: UA-88180620-1
 
-disqus:
-    shortname: kotet
+#disqus:
+#    shortname: kotet
