@@ -18,7 +18,7 @@ layout: default
         </span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">{{ post.title | escape }}</a>
+          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">{{ post.title | escape }}</a>
         </h2>
       </li>
     {% endfor %}
