@@ -11,7 +11,7 @@
         {{ content }}
         {% if page.noindex != true %}{% include share-widget/share-widget.html %}{% endif %}
         {% include improve.html %}
-        {% include anonymous-ad.html %}
+        {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
       </div>
     </main>
 
