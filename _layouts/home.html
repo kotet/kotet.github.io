@@ -10,15 +10,16 @@ layout: default
 
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}
-          {% for tag in post.tags %}
+      <li itemscope itemtype="http://schema.org/BlogPosting">
+        <meta itemprop="url" content="{{ post.url | relative_url }}"/>
+        <span class="post-meta"><span itemprop="dateCreated">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <span itemprop="keywords">{% for tag in post.tags %}
           {% include tag.html tag=tag %}
-          {% endfor %}
+          {% endfor %}</span>
         </span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">{{ post.title | escape }}</a>
+          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}" itemprop="headline">{{ post.title | escape }}</a>
         </h2>
       </li>
     {% endfor %}
