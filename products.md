@@ -2,6 +2,7 @@
 layout: page
 title: Products
 permalink: /products/
+excerpt: "非プログラマ向けリンク集。"
 ---
 
 非プログラマ向けリンク集。
