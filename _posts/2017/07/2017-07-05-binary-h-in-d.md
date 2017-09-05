@@ -40,3 +40,5 @@ mixin template binary(T)
 上のように`mixin`を`foreach`で回したいところだが、それをするための`static foreach`はまだ
 [Preliminary Review Round 1](https://github.com/dlang/DIPs/blob/d2dc77802c74378cf4545069eced21f85fbf893f/DIPs/DIP1010.md)
 なのでのんびり待とう。
+
+**追記：** [`static foreach`が使えるようになった!]({{ site.url }}{% post_url 2017/09/2017-09-03-dmd-2-076-0-released %})
