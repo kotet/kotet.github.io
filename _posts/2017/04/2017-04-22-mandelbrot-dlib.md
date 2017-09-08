@@ -4,6 +4,7 @@ title: "dlibでマンデルブロ集合を描く"
 date: 2017-04-22 06:30:00 +0900
 tags: dlang tech
 image: 2017/04/22/mandel.png
+excerpt: "前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"
 ---
 
 ![描いたマンデルブロ集合]({{ site.url }}/assets/2017/04/22/mandel.png)
