@@ -392,7 +392,7 @@ Test merge.v2.sort:
 
 ##### [sort/v3.d at e165ee036421132e17760a9c264c260a2cf93dc9 · kotet/sort](https://github.com/kotet/sort/blob/e165ee036421132e17760a9c264c260a2cf93dc9/source/merge/v3.d)
 
-```
+```d
 module merge.v3;
 
 import test;
