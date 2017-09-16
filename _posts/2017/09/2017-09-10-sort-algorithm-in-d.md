@@ -713,3 +713,5 @@ Test heap.v2.sort:
     N = 10^^5 avg: 28.6215 msecs (sample: 3)
     N = 10^^6 avg: 351.185 msecs (sample: 1)
 ```
+
+[つづく]({% post_url 2017/09/2017-09-16-sort-algorithm-in-d-2 %})
