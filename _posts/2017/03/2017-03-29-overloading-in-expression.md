@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "In式のオーバーロード2種"
-date: 2017-03-29 12:00:00 +0900
 tags: dlang tech
 ---
 

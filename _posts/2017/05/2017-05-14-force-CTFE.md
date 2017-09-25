@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "CTFEを強制するテンプレート"
-date: 2017-05-14 15:00:00 +0900
 tags: dlang tech
 ---
 

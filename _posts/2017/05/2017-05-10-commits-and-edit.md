@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "記事の編集履歴、PR作成、その他Qiitaにあるような3つの機能の代替"
-date: 2017-05-10 07:00:00 +0900
 tags: jekyll tech
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  'ネイティブも知らない"newbility"、その意味と成り立ち'
-date:   2017-04-03 10:00:00 +0900
 tags: english
 image: 
 ---

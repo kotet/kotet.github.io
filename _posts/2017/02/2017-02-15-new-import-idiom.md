@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Lazyな新しいimportについての議論"
-date: 2017-02-15 14:00:00 +0900
 tags: dlang tech
 ---
 最近は英語のD言語情報を読めるようになってきて楽しい。

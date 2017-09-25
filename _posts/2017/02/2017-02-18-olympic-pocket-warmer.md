@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "オリンピック懐炉"
-date: 2017-02-18 11:00:00 +0900
 tags: log
 image: "2017/02/18/pocket-warmer.jpg"
 ---

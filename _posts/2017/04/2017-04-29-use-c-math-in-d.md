@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "dubで自力でCのsqrt()を呼び出す"
-date: 2017-04-29 19:00:00 +0900
 tags: dlang tech
 ---
 

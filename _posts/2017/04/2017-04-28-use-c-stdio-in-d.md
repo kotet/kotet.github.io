@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "dubで自力でCの標準ライブラリを呼び出す"
-date: 2017-04-28 06:00:00 +0900
 tags: dlang tech
 ---
 

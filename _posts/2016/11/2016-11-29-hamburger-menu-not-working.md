@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  'Jekyllのtheme"minima"のハンバーガーメニューがiOSで動作しないバグ'
-date:   2016-11-29 12:03:00 +0900
 tags: jekyll tech
 ---
 

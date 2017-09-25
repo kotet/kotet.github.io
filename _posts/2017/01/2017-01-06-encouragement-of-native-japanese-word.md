@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "和語のすゝめ"
-date:   2017-01-06 18:38:00 +0900
 tags: essay
 ---
 

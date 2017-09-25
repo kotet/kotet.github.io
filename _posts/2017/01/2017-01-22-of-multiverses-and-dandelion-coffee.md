@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "多元宇宙とたんぽぽのコーヒーについて(制作記)"
-date:   2017-01-22 17:00:00 +0900
 tags: log
 image: "2017/01/22/twitter-card.png"
 ---

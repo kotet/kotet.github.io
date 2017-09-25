@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "テキストページャをPythonからDに移植する【翻訳】"
-date: 2017-04-23 9:00:00 +0900
 tags: dlang tech translation
 ---
 
