@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "dubで自力でCの構造体を使う"
-date: 2017-05-04 10:00:00 +0900
 tags: dlang tech
 ---
 

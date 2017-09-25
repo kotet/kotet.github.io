@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Google ストリートビュー神話 第1章"
-date: 2017-03-25 22:00:00 +0900
 tags: tale log
 ---
 

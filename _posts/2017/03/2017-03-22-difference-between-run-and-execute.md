@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Run と Execute の違いは何か"
-date: 2017-03-22 14:00:00 +0900
 tags: english translation
 image: "2017/03/22/twitter.png"
 excerpt: "要約: 2つに意味の違いはほぼない。ただし、executeはより専門用語的なニュアンスがあり、知識のない人にはrunを使う。 いきさつ: 今日も日課のDlang Tourの翻訳をしていた。 いつものようにRunを「実行」と訳し、Executeも「実行」と訳していたところ……"

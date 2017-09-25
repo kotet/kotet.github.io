@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "よしなしごと 1/24"
-date: 2017-01-24 22:00:00 +0900
 tags: trivial-things
 ---
 

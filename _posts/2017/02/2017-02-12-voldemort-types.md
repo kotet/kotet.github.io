@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "名前を言ってはいけないあの型 - Voldemort Types"
-date: 2017-02-12 07:00:00 +0900
 tags: dlang tech
 ---
 

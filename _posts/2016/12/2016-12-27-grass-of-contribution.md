@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "GitHubで草を生やす話"
-date:   2016-12-27 18:44:38 +0900
 tags: log
 ---
 

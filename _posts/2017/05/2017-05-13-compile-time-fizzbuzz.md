@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "コンパイル時fizzbuzzと謎のaliasSeqOf"
-date: 2017-05-13 11:00:00 +0900
 tags: dlang tech
 ---
 

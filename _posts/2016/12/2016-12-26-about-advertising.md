@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Anonymous Adsについて"
-date:   2016-12-26 12:53:38 +0900
 tags: log
 ---
 

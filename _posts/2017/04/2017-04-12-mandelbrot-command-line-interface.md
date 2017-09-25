@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Dでマンデルブロ集合を書く"
-date: 2017-04-12 11:00:00 +0900
 tags: dlang tech
 image: 2017/04/12/twitter.png
 mathjax: on

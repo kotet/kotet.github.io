@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Gitlabのissueのタスクの進捗をまとめるシェルスクリプト"
-date: 2017-04-11 7:00:00 +0900
 tags: tech
 image: 
 ---
