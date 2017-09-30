@@ -12,7 +12,8 @@ tags: dlang tech translation dlang-gc-series
 [許可を得て](http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631)
 公開するものである。
 
-今回からソース中にコメントの形で原文を載せるようにしたので、誤字や誤訳などを見つけたら今すぐ
+今回からソース中にコメントの形で原文を残している。
+誤字や誤訳などを見つけたら今すぐ
 [Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})だ!
 
 ---
@@ -26,9 +27,11 @@ discusses stack allocation. Here, we’ll look at allocating memory from the non
 この投稿はD プログラミング言語のガベージコレクションについての
 [進行中のシリーズ](https://dlang.org/blog/the-gc-series/)の一部であり、
 GCの外のメモリのアロケーションに関する2番目の投稿です。
-[パート1](https://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/)
+[パート1]({% post_url 2017/07/2017-07-15-go-your-own-way-part-one-the-stack %})[^1]
 ではスタックアロケーションについて論じました。
 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。
+
+[^1]:原文:[Go Your Own Way (Part One: The Stack) – The D Blog](https://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/)
 
 <!-- Although this is only my fourth post in the series,
 it’s the third in which I talk about ways to _avoid_ the GC.
@@ -53,11 +56,13 @@ Fewer GC allocations means fewer opportunities for a collection to trigger.
 Less total memory allocated from the GC heap means less total memory to scan. -->
 
 何度でも力説しますが、効率的なガベージコレクションにはGCへのストレスを減らすことが必要です。
-[最初](https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/)からこのシリーズで続けて強調しているように、
+[最初]({% post_url 2017/04/2017-04-16-dont-fear-the-reaper %})[^2]からこのシリーズで続けて強調しているように、
 それは必ずしもGCを完全に回避することを意味しません。
 どれくらいの頻度で、どれくらいの量のGCメモリをアロケートするかについて考えるということです。
 GCアロケーションの回数を減らす事はコレクションが発生する可能性を減らす事を意味します。
 GCヒープからアロケートする量を減らす事はスキャンするメモリの量を減らす事を意味します。
+
+[^2]:原文:[Don’t Fear the Reaper – The D Blog](https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/)
 
 <!-- It’s impossible to make any accurate,
 generalized statement about what sort of applications may or may not feel an impact from the GC;
@@ -114,7 +119,7 @@ void main()
 import core.stdc.stdio : puts;
 void main() 
 {
-    puts(“Hello C standard library.”);
+    puts("Hello C standard library.");
 }
 ```
 
@@ -130,7 +135,8 @@ In the snippet above,
 is in the `core.stdc.stdio` module, and that’s all we need to call it. -->
 
 Dに慣れていない人の中には、Cの関数を呼ぶ時は`extern(C)`アノテーションをつけたり、
-Walter Brightの最新の‘[D as a Better C](https://dlang.org/blog/2017/08/23/d-as-a-better-c/)’記事のように、コマンドラインから`-betterC`でコンパイルする必要があるという誤解により無駄な労力を払っている人がいます。
+Walter Brightの最新の‘[D as a Better C](https://dlang.org/blog/2017/08/23/d-as-a-better-c/)’記事のように、
+コマンドラインから`-betterC`でコンパイルする必要があるという誤解により無駄な労力を払っている人がいます。
 そのどちらも正しくありません。
 通常のDの関数は呼ばれる関数の`extern(C)`宣言以外何ら特殊な努力なしにCの関数を呼ぶことができます。
 上記のスニペットでは、
@@ -406,7 +412,7 @@ import std.stdio : writeln;
 void main()
 {
     int[] ints = (cast(int*)malloc(int.sizeof * 10))[0 .. 10];
-    writeln(“Capacity: “, ints.capacity);
+    writeln("Capacity: ", ints.capacity);
 
     // 比較のため配列ポインタを保存します
     int* ptr = ints.ptr;
@@ -446,8 +452,10 @@ so it _must_ allocate on the next append
 GCヒープからアロケートされた配列は通常要求されたよりも多い追加要素のためのスペースを持ち、追加は新しいアロケーションを伴わず起きることがあります。
 これは配列そのものよりもその背後のメモリの性質に似ています。
 GCからアロケートされたメモリは、メモリブロックがいくつの要素を保持できるかを追跡するために内部で計算と記録を行うため、新しくアロケーションが必要かどうかをいつでも知ることができます。
-ここで、`ints`のメモリはGCからアロケートされたものでは無いため、実行時に存在するメモリブロックには計算が行われておらず、次の追加ではアロケートを**しなければなりません**(より詳しい情報はSteven Schveighofferの[D Slices](https://dlang.org/d-array-article.html)の記事を見てください)。
+ここで、`ints`のメモリはGCからアロケートされたものでは無いため、実行時に存在するメモリブロックには計算が行われておらず、
+次の追加ではアロケートを**しなければなりません**(より詳しい情報はSteven Schveighofferの[D言語のスライス機能](http://www.kmonos.net/alang/d/d-array-article.html)[^3]の記事を見てください)。
 
+[^3]:原文:[D Slices - D Programming Language](https://dlang.org/d-array-article.html)
 
 <!-- This isn’t necessarily a bad thing when it’s the desired behavior,
 but anyone who’s not prepared for it can easily run into ballooning memory usage thanks to leaks
@@ -604,7 +612,8 @@ can take either a pointer to typed memory or an untyped `void[]`, along with an 
 and return a pointer to a single, fully initialized and constructed instance of that type.
 This example shows how to do so using both `malloc` and the `allocate` function template from above: -->
 
-[`std.conv.emplace`](https://dlang.org/phobos/std_conv.html#emplace)は型付けされたメモリへのポインタ、または型のない`void[]`を任意の長さの引数とともにとり、その型の完全に初期化、構築されたインスタンスへのポインタを返します。
+[`std.conv.emplace`](https://dlang.org/phobos/std_conv.html#emplace)は型付けされたメモリへのポインタ、
+または型のない`void[]`を任意の長さの引数とともにとり、その型の完全に初期化、構築されたインスタンスへのポインタを返します。
 これは`malloc`と上記の`allocate`関数テンプレートの使用例です:
 
 <!--
@@ -788,7 +797,8 @@ See the [emsi-containers library](https://github.com/economicmodeling/containers
 [Design by Introspection](https://www.youtube.com/watch?v=es6U7WAlKpQ)
 とともに使い、配列や型インスタンスのアロケート、初期化、および構築方法を知っているさまざまなタイプのアロケータのアセンブリを容易にする高レベルのAPIです。
 [`Mallocator`](https://dlang.org/phobos/std_experimental_allocator_mallocator.html)や
-[`GCAllocator`](https://dlang.org/phobos/std_experimental_allocator_gc_allocator.html)のようなアロケータは特殊な振る舞いのために直接メモリのまとまりを取得したり、他の[ビルディングブロック](https://dlang.org/phobos/std_experimental_allocator_building_blocks.html)とまとめたりできます。
+[`GCAllocator`](https://dlang.org/phobos/std_experimental_allocator_gc_allocator.html)のようなアロケータは特殊な振る舞いのために直接メモリのまとまりを取得したり、
+他の[ビルディングブロック](https://dlang.org/phobos/std_experimental_allocator_building_blocks.html)とまとめたりできます。
 実例は[emsi-containers ライブラリ](https://github.com/economicmodeling/containers)をご覧ください。
 
 <!-- ### Keeping the GC informed -->
