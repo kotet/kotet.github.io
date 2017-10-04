@@ -27,7 +27,7 @@ image: 2017/10/04/wraparound.png
 
 <!-- ![](https://demofox2.files.wordpress.com/2017/09/wraparound.png?w=800) -->
 
-![]({{ site.url }}/assets/2017/10/04/wraparound.png)
+![https://demofox2.files.wordpress.com/2017/09/wraparound.png?w=800]({{ site.url }}/assets/2017/10/04/wraparound.png)
 
 <!-- This universe is actually shaped like a toroid, also known as a doughnut. If you imagine yourself being on the inside surface of a hollow doughnut, it would behave exactly this way. If you go “down” you end up where you previously considered “up”. If you go far enough “left” you end up where you previously considered “right”. -->
 
@@ -46,7 +46,7 @@ image: 2017/10/04/wraparound.png
 
 <!-- ![](https://demofox2.files.wordpress.com/2017/09/wraparound2.png?w=800) -->
 
-![]({{ site.url }}/assets/2017/10/04/wraparound2.png)
+![https://demofox2.files.wordpress.com/2017/09/wraparound2.png?w=800]({{ site.url }}/assets/2017/10/04/wraparound2.png)
 
 <!-- One way to do this would be to pick one of the points (I’m picking red in this case) and clone it 8 times to surround the cell like the below. You’d calculate the distance from the green point to each of the 9 red points, and whatever distance was smallest would be the answer. -->
 
@@ -55,7 +55,7 @@ image: 2017/10/04/wraparound.png
 
 <!-- ![](https://demofox2.files.wordpress.com/2017/10/wraparound3.png?w=800) -->
 
-![]({{ site.url }}/assets/2017/10/04/wraparound3.png)
+![https://demofox2.files.wordpress.com/2017/10/wraparound3.png?w=800]({{ site.url }}/assets/2017/10/04/wraparound3.png)
 
 <!-- Something not so desirable about this is that it takes 9 distance calculations to find the minimum distance. You can work with squared distances instead of regular distances to avoid a square root on each of these distance calculations, but that’s still a bit of calculation to do. -->
 
@@ -192,7 +192,7 @@ float ToroidalDistance (float x1, float y1, float x2, float y2)
 
 <!-- ![](https://demofox2.files.wordpress.com/2017/10/single2.png?w=800) -->
 
-![]({{ site.url }}/assets/2017/10/04/single2.png)
+![https://demofox2.files.wordpress.com/2017/10/single2.png?w=800]({{ site.url }}/assets/2017/10/04/single2.png)
 
 <!-- Here is the image tiled:   -->
 
@@ -200,4 +200,4 @@ float ToroidalDistance (float x1, float y1, float x2, float y2)
 
 <!-- ![](https://demofox2.files.wordpress.com/2017/10/tiled2.png?w=800) -->
 
-![]({{ site.url }}/assets/2017/10/04/tiled2.png)
+![https://demofox2.files.wordpress.com/2017/10/tiled2.png?w=800]({{ site.url }}/assets/2017/10/04/tiled2.png)
