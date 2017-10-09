@@ -2,6 +2,7 @@
 layout: post
 title: "テキストページャをPythonからDに移植する【翻訳】"
 tags: dlang tech translation
+excerpt: "数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。"
 ---
 
 この記事は、
