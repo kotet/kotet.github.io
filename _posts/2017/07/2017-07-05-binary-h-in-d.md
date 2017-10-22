@@ -22,7 +22,7 @@ D言語には普通に二進数リテラルがあるが、同じことをする�
 $ dmd binary.d -unittest -main -vcg-ast
 ```
 
-![binary.d.cg]({{ site.url }}/assets/2017/07/05/binary.png)
+![binary.d.cg]({% include relative %}/assets/2017/07/05/binary.png)
 
 全体は[こちら](https://gist.github.com/kotet/d06125b1d3b14f101742b1411d83c46f#file-binary-d-cg)。
 `ubyte`で表現できるすべての値の8文字以下の二進数表現を網羅している。
@@ -41,4 +41,4 @@ mixin template binary(T)
 [Preliminary Review Round 1](https://github.com/dlang/DIPs/blob/d2dc77802c74378cf4545069eced21f85fbf893f/DIPs/DIP1010.md)
 なのでのんびり待とう。
 
-**追記：** [`static foreach`が使えるようになった!]({{ site.url }}{% post_url 2017/09/2017-09-03-dmd-2-076-0-released %})
+**追記：** [`static foreach`が使えるようになった!]({% include relative %}{% post_url 2017/09/2017-09-03-dmd-2-076-0-released %})

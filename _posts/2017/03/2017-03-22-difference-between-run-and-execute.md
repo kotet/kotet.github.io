@@ -26,7 +26,7 @@ excerpt: "要約: 2つに意味の違いはほぼない。ただし、executeは
 例文を探してみたところやはり両方共「実行」としているところが多い。
 ちなみにGoogle翻訳にかけてみるとこうなる。
 
-![スクショ]({{ site.url }}/assets/2017/03/22/g-trans.png)
+![スクショ]({% include relative %}/assets/2017/03/22/g-trans.png)
 
 さすがGoogle先生!
 

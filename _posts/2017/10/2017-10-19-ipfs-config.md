@@ -18,7 +18,7 @@ excerpt: "今回はWebUI上で設定を確認する。 最初から最後まで�
 WebUI上ではさまざまな情報を見ることができる。
 どうやらconfigファイルの編集もできるようなので今回はこれを使うが、もちろん好きなエディタで`~/.ipfs/config`を直接編集してもいいと思う。
 
-![webui]({{ site.url }}/assets/2017/10/19/webui.png)
+![webui]({% include relative %}/assets/2017/10/19/webui.png)
 
 configはjson形式になっている。
 ひょっとしたらjsonじゃないかもしれない、なんて考えて一応ドキュメントを見て確認してみる手間を省くためにも拡張子が付いているとありがたいのだが……

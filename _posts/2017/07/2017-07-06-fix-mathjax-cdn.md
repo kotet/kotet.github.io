@@ -10,7 +10,7 @@ image: 2017/07/06/twitter.png
 
 生成されているHTMLを確認しようとChrome DevToolsを開いたところ、なにかWarningが出ていた。
 
-![warning]({{ site.url }}/assets/2017/07/06/warning.png)
+![warning]({% include relative %}/assets/2017/07/06/warning.png)
 
 どうも数式表示のために読み込ませていたMathJaxのCDNである
 `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。
@@ -90,7 +90,7 @@ MathJaxそのものよりもサイズが減って負荷軽減になっている�
 
 とにかく気づいたのでURLを別のCDNプロバイダのものに変更して対処。
 
-![diff]({{ site.url }}/assets/2017/07/06/diff.png)
+![diff]({% include relative %}/assets/2017/07/06/diff.png)
 
 [Fix MathJax CDN · kotet/kotet.github.io@200f850](https://github.com/kotet/kotet.github.io/commit/200f8505a938263e4b3f38cf47f85c66751f4587)
 

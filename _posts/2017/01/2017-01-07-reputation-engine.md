@@ -21,11 +21,11 @@ tags: essay
 
 2012年、石油エネルギー企業shellがとんでもない広告を出した。
 
-![広告]({{ site.url }}/assets/2017-01-07-01.jpg)
+![広告]({% include relative %}/assets/2017-01-07-01.jpg)
 
  > 凍った荒地に見える人もいるかもしれないが、我々は可能性の海と見る。Let's go.
 
-![広告]({{ site.url }}/assets/2017-01-07-02.jpg)
+![広告]({% include relative %}/assets/2017-01-07-02.jpg)
 
  > カタストロフィだと言う人もいるが、我々は可能性と呼ぶ。Let's go.
 

@@ -25,7 +25,7 @@ Atila NevesはC++とDの両方をプロとして使っていました。
 
 ---
 
-![RAM]({{ site.url }}/assets/2017/06/stamps-RAM-300px.jpg)
+![RAM]({% include relative %}/assets/2017/06/stamps-RAM-300px.jpg)
 
 ガベージコレクトをする言語はフレーム問題に苦しむ傾向があり、Dもその例外ではありません。
 マーク・アンド・スイープ・ガベージコレクタを取り入れることは簡単かつ便利な安全メモリ管理を実現しますが、

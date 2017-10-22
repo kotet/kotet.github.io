@@ -98,4 +98,4 @@ hello
 
 ### 追記
 
-[次回:sqrtを使う]({{ site.url }}/2017/04/29/use-c-math-in-d.html)
+[次回:sqrtを使う]({% include relative %}/2017/04/29/use-c-math-in-d.html)

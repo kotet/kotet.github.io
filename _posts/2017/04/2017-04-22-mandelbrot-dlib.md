@@ -6,9 +6,9 @@ image: 2017/04/22/mandel.png
 excerpt: "前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"
 ---
 
-![描いたマンデルブロ集合]({{ site.url }}/assets/2017/04/22/mandel.png)
+![描いたマンデルブロ集合]({% include relative %}/assets/2017/04/22/mandel.png)
 
-[前回に続いて、]({{ site.url }}/2017/04/12/mandelbrot-command-line-interface.html)マンデルブロ集合の画像をD言語で描くことができた。
+[前回に続いて、]({% include relative %}/2017/04/12/mandelbrot-command-line-interface.html)マンデルブロ集合の画像をD言語で描くことができた。
 pngの取り扱いはdlibを使った。
 
 ## dlib != Dlib

@@ -21,7 +21,7 @@ excerpt: "この記事は、Life in the Fast Lane – The D Blogを自分用に�
 
 私が書いた[GCシリーズ](https://dlang.org/blog/category/gc/)
 の[最初の投稿](https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/)
-(訳注:[翻訳版]({{ site.url }}/2017/04/16/dont-fear-the-reaper.html))
+(訳注:[翻訳版]({% include relative %}/2017/04/16/dont-fear-the-reaper.html))
 では、Dのガベージコレクタとそれを使う言語機能について紹介しました。
 記事で取り上げた2つのキーポイントは:
 

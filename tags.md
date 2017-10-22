@@ -13,6 +13,6 @@ excerpt: "記事についているタグ、タグがついている記事。"
 ### {{ tag[0] }}
 {{ tag[1] | size }} posts
   {% for post in tag[1] %}
- - [{{ post.title }}]({{ post.url }})
+ - [{{ post.title }}]({% include relative %}{{ post.url }})
   {% endfor %}
 {% endfor %}

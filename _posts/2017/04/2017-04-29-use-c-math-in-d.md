@@ -4,7 +4,7 @@ title: "dubで自力でCのsqrt()を呼び出す"
 tags: dlang tech
 ---
 
-[前回]({{ site.url }}/2017/04/28/use-c-stdio-in-d.html)の続き。
+[前回]({% include relative %}/2017/04/28/use-c-stdio-in-d.html)の続き。
 今度はヘッダファイルを読むのにプリプロセスの必要なものを使いたい、
 ということで`core.stdc.math`を使わずにD言語のアプリケーションからC言語の`sqrt`を呼び出してみる。
 自分みたいな初心者のための基礎的な記事を量産することを目標にしているので、細かい手順をできるだけ詳細に具体的に書いていきたい。
@@ -126,4 +126,4 @@ sqrt( 2 ) == 1.41421
 
 ---
 
-[次回:OpenSSLを使う]({{ site.url }}/2017/05/03/use-c-sha256-in-d.html)
+[次回:OpenSSLを使う]({% include relative %}/2017/05/03/use-c-sha256-in-d.html)
