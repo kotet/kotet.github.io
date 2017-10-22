@@ -162,7 +162,7 @@ Check out some of the other files in this directory:
 
 ここに貼り付けたものは表示が崩れてしまっているかもしれないが、自分の環境ではちゃんといい感じになっている。
 
-![logo]({{ site.url }}/assets/2017/10/18/ipfs-logo.png)
+![logo]({% include relative %}/assets/2017/10/18/ipfs-logo.png)
 
 ### デーモンの起動
 
@@ -190,7 +190,7 @@ Created symlink from /home/kotet/.config/systemd/user/default.target.wants/ipfs.
 
 `http://localhost:5001/webui`をブラウザで開く。
 
-![webui]({{ site.url }}/assets/2017/10/18/webui.png)
+![webui]({% include relative %}/assets/2017/10/18/webui.png)
 
 無事に"Fancy Web Console"を開くことができた。
 "Connections"を見ると、接続中のPEERの数が100から500くらいの間で増えたり減ったりしている。

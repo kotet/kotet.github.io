@@ -18,14 +18,14 @@ GitHubには、Issue番号などを自動的にリンクにする機能がある
 
 ## リポジトリ内のPull request / Issueを参照
 
-![スクショ]({{ site.url }}/assets/2017/02/28/link-pr.png)
+![スクショ]({% include relative %}/assets/2017/02/28/link-pr.png)
 
 これはよく使われている。
 ただ`#<番号>`と書くだけである。
 
 ## リポジトリ内のCommitを参照
 
-![スクショ]({{ site.url }}/assets/2017/02/28/link-commit.png)
+![スクショ]({% include relative %}/assets/2017/02/28/link-commit.png)
 
 SHAを書くだけでリンクになる。
 全部書かなくても大丈夫。
@@ -33,14 +33,14 @@ SHAを書くだけでリンクになる。
 
 ## 他のリポジトリのPull request / Issueを参照
 
-![スクショ]({{ site.url }}/assets/2017/02/28/link-pr-other.png)
+![スクショ]({% include relative %}/assets/2017/02/28/link-pr-other.png)
 
 `<ユーザー名>/<リポジトリ名>#<番号>`と書く。
 これはリンクっぽい色をしている。
 
 ## 他のリポジトリのCommitを参照
 
-![スクショ]({{ site.url }}/assets/2017/02/28/link-commit-other.png)
+![スクショ]({% include relative %}/assets/2017/02/28/link-commit-other.png)
 
 `<ユーザー名>/<リポジトリ名>@<SHA>`と書く。
 これが自分が知りたかったこと。

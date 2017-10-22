@@ -4,7 +4,7 @@ title: "dubで自力でCの構造体を使う"
 tags: dlang tech
 ---
 
-[前回]({{ site.url }}/2017/05/03/use-c-sha256-in-d.html)の続き。
+[前回]({% include relative %}/2017/05/03/use-c-sha256-in-d.html)の続き。
 前回と同じようにOpenSSLを使って`std.digest.sha`を使わずにSHA256を計算する。
 今回は前回と違い、データは逐次入力される。
 そのような使い方の場合、`SHA256_CTX`と言う構造体に操作をしていく。

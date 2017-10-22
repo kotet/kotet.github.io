@@ -8,7 +8,7 @@ image: "2017/02/18/pocket-warmer.jpg"
 おそらく同年代ではどんなものか知っている人の方が少ないのではないだろうか。
 実際自分も親が買って来るまで知らなかった。
 
-[![白金触媒式カイロのイラスト]({{ site.url }}/assets/2017/02/18/pocket-warmer.jpg)](http://www.irasutoya.com/2016/12/blog-post_441.html)
+[![白金触媒式カイロのイラスト]({% include relative %}/assets/2017/02/18/pocket-warmer.jpg)](http://www.irasutoya.com/2016/12/blog-post_441.html)
 
 燃料式の懐炉には、燃料を染み込ませるワタの入ったタンク部、火口、フタと3つの部品からできている。
 燃料はベンジンである。

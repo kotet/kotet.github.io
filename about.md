@@ -10,7 +10,7 @@ Kotetとこのサイトについて。
 ### Kotet
   
 名前の読み方は自分でも決めていないので、いまタイトルを頭の中で読み上げた時の発音で読んでくれればいい。  
-![Kotet]({{ site.url }}/assets/kotet.jpg)  
+![Kotet]({% include relative %}/assets/kotet.jpg)  
 これはアイコン。たしか数年前に適当に書いたなにか。  
 主にD言語をやってるがすごいレベルには全く達していない。  
 [D言語ツアー](https://tour.dlang.org/tour/ja)

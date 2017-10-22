@@ -6,7 +6,7 @@ image: 2017/04/12/twitter.png
 mathjax: on
 ---
 
-![書いたマンデルブロー集合]({{ site.url }}/assets/2017/04/12/mandel.png)
+![書いたマンデルブロー集合]({% include relative %}/assets/2017/04/12/mandel.png)
 
 なにか計算的なことをやってみたくてマンデルブロ集合を書く。
 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。
