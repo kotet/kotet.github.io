@@ -6,7 +6,7 @@ image: 2017/10/18/twitter.png
 excerpt: "“InterPlanetary File System“というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。 今後「IPFS体験記」として投稿するのは、その記録である。 試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。"
 ---
 
-:[次回]({% post_url 2017/10/2017-10-19-ipfs-config %})
+:[次回]({% include relative %}{% post_url 2017/10/2017-10-19-ipfs-config %})
 
 ---
 
@@ -205,4 +205,4 @@ Created symlink from /home/kotet/.config/systemd/user/default.target.wants/ipfs.
 
 ---
 
-:[次回]({% post_url 2017/10/2017-10-19-ipfs-config %})
+:[次回]({% include relative %}{% post_url 2017/10/2017-10-19-ipfs-config %})
