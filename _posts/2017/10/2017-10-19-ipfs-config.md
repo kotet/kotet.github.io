@@ -6,7 +6,7 @@ image: 2017/10/19/twitter.png
 excerpt: "今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"
 ---
 
-[前回]({% post_url 2017/10/2017-10-18-ipfs-setup %}):[次回]({% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
+[前回]({% include relative %}{% post_url 2017/10/2017-10-18-ipfs-setup %}):[次回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
 
 ---
 
@@ -290,4 +290,4 @@ v0.4.11のドキュメントは[こちら](https://github.com/ipfs/go-ipfs/blob/
 
 ---
 
-[前回]({% post_url 2017/10/2017-10-18-ipfs-setup %}):[次回]({% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
+[前回]({% include relative %}{% post_url 2017/10/2017-10-18-ipfs-setup %}):[次回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
