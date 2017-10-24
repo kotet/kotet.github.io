@@ -8,6 +8,7 @@ excerpt: "ブラウザ上でのIPFSの使用を補助する目的で作られた
 ---
 
 [前回]({% include relative %}{% post_url 2017/10/2017-10-19-ipfs-config %}):
+[次回]({% include relative %}{% post_url 2017/10/2017-10-24-ipfs-chrome-extention %})
 
 ---
 
@@ -70,3 +71,4 @@ https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
 ---
 
 [前回]({% include relative %}{% post_url 2017/10/2017-10-19-ipfs-config %}):
+[次回]({% include relative %}{% post_url 2017/10/2017-10-24-ipfs-chrome-extention %})
