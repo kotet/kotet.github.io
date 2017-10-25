@@ -5,7 +5,9 @@ tags: ipfs tech log
 excerpt: 引き続き公式ブラウザ拡張の機能を見ていく。
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %}):
+[前回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
+:
+[次回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %})
 
 ---
 
@@ -58,4 +60,6 @@ IPFSリソースにアクセスすると一時的にそれがローカルに保�
 
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %}):
+[前回]({% include relative %}{% post_url 2017/10/2017-10-20-ipfs-browser-extention %})
+:
+[次回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %})
