@@ -7,7 +7,9 @@ excerpt: "そろそろキャッチコピーを考えるのが辛くなってき�
 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。"
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %}):
+[前回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %})
+:
+[次回]({% include relative %}{% post_url 2017/10/2017-10-30-ipfs-windows %})
 
 ---
 
@@ -77,4 +79,6 @@ hello world
 
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %}):
+[前回]({% include relative %}{% post_url 2017/10/2017-10-25-ipfs-add %})
+:
+[次回]({% include relative %}{% post_url 2017/10/2017-10-30-ipfs-windows %})
