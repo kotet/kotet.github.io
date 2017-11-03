@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anonymous adsについて その2"
-tags: log
+tags: log bitcoin
 excerpt: "前回の記事から月日は流れ、 Anonymous adsもいくらか改善された。 categoryがいまだに”Blogs”でなく”Links & Catalogs”になっちゃってるし、この機会にAd unitを作りなおしてみることにした。 ついでに知識のない人のために一連の作業を文章化しておく。"
 ---
 

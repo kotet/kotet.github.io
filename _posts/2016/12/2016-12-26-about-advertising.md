@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Anonymous Adsについて"
-tags: log
+tags: log bitcoin
 ---
 
 前から悩んでいたことだったのだが、自分はブログを更新しなさすぎる。

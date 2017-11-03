@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "まだ間に合うブロックチェーン【翻訳】"
-tags: blockchain-train-journal tech translation
+tags: blockchain-train-journal tech translation bitcoin
 excerpt: これはブロックチェーンの列車に(ほとんど)乗り遅れてしまったテッキーのためのブログです。うむ、the blockchain train って良いですね、歌を書かなければ！
 ---
 
