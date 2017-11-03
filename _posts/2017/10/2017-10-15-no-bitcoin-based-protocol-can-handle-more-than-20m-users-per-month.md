@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "現Bitcoinベースのプロトコルでは月に2000万を超えるユーザに対応できない【翻訳】"
-tags: tech translation
+tags: tech translation bitcoin
 excerpt: "Bitcoinのスケーラビリティー問題を解決するために、たくさんのいわゆる layer 2 プロトコルが提案されました。 それらのプロトコルは同じような、比較的シンプルな方針に従って動作します:"
 ---
 
