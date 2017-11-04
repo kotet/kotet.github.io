@@ -676,6 +676,7 @@
 layout: post
 title: "非中央集権型ストレージシステムを選ぶ【翻訳】"
 tags: blockchain-train-journal tech translation ipfs
+excerpt: "この記事はBlockchain train journalのパート2です、こちらから読み始めましょう:"
 ---
 
 <!-- # [Picking a Decentralized Storage System](http://decentralized.blog/picking-a-decentralized-storage-system.html) -->
