@@ -1,8 +1,8 @@
 language: ruby
 
 rvm:
-- 2.3.3
+- 2.4.0
 
-script: bundle exec jekyll build && bundle exec htmlproofer ./_site --disable-external --check-html
+script: bundle exec jekyll build -Vt && bundle exec htmlproofer ./_site --disable-external --check-html
 
 sudo: false
