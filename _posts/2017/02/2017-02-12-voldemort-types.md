@@ -165,3 +165,7 @@ source/app.d(7,20): Error: cannot access frame pointer of voldemort.generator.Vo
 Voldemort Typeは型をカプセル化する方法であり、Andrei Alexandrescuによって命名された。
 Rangeとかに使うと便利らしい。
 これには実行可能ファイルのサイズが大きくなる欠点があるらしく、それを防ぐためにHorcrux（分霊箱） Methodというのがあるようだが、ちょっとそれはまた今度。
+
+---
+
+追記: オブジェクトファイルが大きくなる問題は[DMD 2.077.0で改善されたらしい]({% include relative %}{% post_url 2017/11/2017-11-04-dmd-2-077-0-released %})。
