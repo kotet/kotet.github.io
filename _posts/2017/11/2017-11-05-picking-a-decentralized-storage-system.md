@@ -1,0 +1,249 @@
+---
+layout: post
+title: "非中央集権型ストレージシステムを選ぶ【翻訳】"
+tags: blockchain-train-journal tech translation ipfs
+---
+
+<!-- # [Picking a Decentralized Storage System](http://decentralized.blog/picking-a-decentralized-storage-system.html) -->
+
+<!-- # 非中央集権型ストレージシステムを選ぶ -->
+
+<!-- This article is part 2 of the Blockchain train journal, start reading here: [Catching the Blockchain Train](catching-the-blockchain-train.html). -->
+
+この記事はBlockchain train journalのパート2です、こちらから読み始めましょう:
+[まだ間に合うブロックチェーン【翻訳】]({% include relative %}{% post_url 2017/11/2017-11-03-catching-the-blockchain-train %})
+
+<!-- ## Some reading material to get started -->
+
+### はじめに読むもの
+
+<!-- A couple of articles that I found useful when learning about decentralized storage: -->
+
+非中央集権型ストレージについて学ぶのに役に立った記事です:
+
+<!-- *   [Decentralized Storage: The Backbone of the Third Web](https://media.consensys.net/decentralized-storage-the-backbone-of-the-third-web-d4bc54e79700)
+*   [HTTP is obsolete. It's time for the distributed, permanent web](https://ipfs.io/ipfs/QmNhFJjGcMPqpuYfxL62VVB9528NXqDNMFXiqN5bgFYiZ1/its-time-for-the-permanent-web.html)
+*   [What is the difference between Swarm and IPFS?](https://ethereum.stackexchange.com/a/2422/16115) -->
+
+*   [Decentralized Storage: The Backbone of the Third Web](https://media.consensys.net/decentralized-storage-the-backbone-of-the-third-web-d4bc54e79700)
+*   [HTTP is obsolete. It's time for the distributed, permanent web](https://ipfs.io/ipfs/QmNhFJjGcMPqpuYfxL62VVB9528NXqDNMFXiqN5bgFYiZ1/its-time-for-the-permanent-web.html)
+*   [What is the difference between Swarm and IPFS?](https://ethereum.stackexchange.com/a/2422/16115)
+
+<!-- ## Comparing decentralized storage systems -->
+
+### 非中央集権型ストレージシステムを比較する
+
+<!-- Our decentralized blog pages are in need of some sort of decentralized hosting. To build that from scratch seems like a lot of work and will probably result in a blockchain train crash. -->
+
+非中央集権型ブログページには何らかの非中央集権型ホスティングが必要です。
+ゼロから作るのはひじょうに多くの作業を必要とし、ブロックチェーン列車の脱線を招くでしょう。
+
+<!-- So let's see what is already out there we could use for our project. -->
+
+すでにあるものを見ていきましょう。
+
+<!-- I searched a bit and came up with: -->
+
+ちょっと調べたところ以下のような物たちを見つけました:
+
+<!-- *   [Storj](https://storj.io/)
+*   [SIA](https://sia.tech/)
+*   [MaidSafe](https://maidsafe.net/)
+*   [IPFS](https://ipfs.io/)
+*   [ZeroNet](https://zeronet.io/)
+*   [Ethereum Swarm](https://www.ethereum.org/)
+*   [BigchainDB](https://www.bigchaindb.com/)
+*   did I forget a serious contender? Please [let me know](https://twitter.com/pors). -->
+
+*   [Storj](https://storj.io/)
+*   [SIA](https://sia.tech/)
+*   [MaidSafe](https://maidsafe.net/)
+*   [IPFS](https://ipfs.io/)
+*   [ZeroNet](https://zeronet.io/)
+*   [Ethereum Swarm](https://www.ethereum.org/)
+*   [BigchainDB](https://www.bigchaindb.com/)
+*   忘れてるものがありますか？私に[教えてください](https://twitter.com/pors)。
+
+<!-- I’m not yet qualified to compare these technologies (still trying to catch the train!), but I’ll add some observations for each: -->
+
+私にはまだこれらのテクノロジーを比較する資格はありません（列車に飛び乗ろうとしているところです！）が、いくらかの観測を付け加えておきます:
+
+<!-- ### Storj -->
+
+#### Storj
+
+<!-- From the home page: -->
+
+ホームページより:
+
+<!-- > Blockchain-based, end-to-end encrypted, distributed object storage, where only you have access to your data. -->
+
+> ブロックチェーンベースで、end-to-end暗号化がされた、分散オブジェクトストレージです。あなただけがデータにアクセスできます。
+
+<!-- That doesn't sound like something that is handy for a blog, where we want content to be public. -->
+
+これはコンテンツを公開するブログにとって便利だとは思えません。
+
+<!-- Storj looks like a great product though, it is a bit like [Resilio Sync](https://www.resilio.com/), but with a blockchain added to create a marketplace for buying or renting out disk space on the network. -->
+
+Storjは素晴らしいプロダクトだと思います。
+[Resilio Sync](https://www.resilio.com/)にちょっとだけ似ていますが、ネットワークからディスクスペースを購入、レンタルするマーケットプレイスのためのブロックチェーンがあります。
+
+<!-- ### SIA -->
+
+#### SIA
+
+<!-- SIA is another Dropbox killer, more or less the same as Storj. -->
+
+SIAはStorjと同じようなDropboxキラーです。
+
+<!-- ### MaidSafe -->
+
+#### MaidSafe
+
+<!-- Where Storj and SIA pitch their service as a faster and cheaper way to store your data, Maidsafe promotes their SAFE network by scaring you. Cloud providers, government, and hackers can not be trusted is the message in their video. Apart from the funny name, it is very similar to the two services above. -->
+
+StorjやSIAがデータを保存する高速で安価な方法を提供するように、Mindsafeも恐ろしく**安全な**ネットワークを提供します。
+クラウドプロバイダ、政府、ハッカーは信用できないというのがそのビデオのメッセージです。
+面白い名前に反して、上の2つと同じようなサービスです。
+
+<!-- ### IPFS -->
+
+#### IPFS
+
+<!-- Now, this is a different beast. The first three services are `incentive platforms`, which means they have their own cryptocurrency to support their marketplace. IPFS also has such a thing, [FileCoin](https://filecoin.io/), but it is neatly split from IPFS which is more like a decentralized storage protocol. -->
+
+一方、これは違います。
+最初の3つのサービスは`incentive platforms`、つまりマーケットプレイスをサポートするための暗号通貨があります。
+IPFSも[FileCoin](https://filecoin.io/)というものがありますが、それはIPFSとはっきり分かれており、IPFSはより分散ストレージプロトコルのようです。
+
+<!-- IPFS stands for `interplanetary file system`, but they hide the original name from their homepage. Too funny for a serious business! -->
+
+IPFSは`interplanetary file system`の略ですが、IPFSがホームページからオリジナルの名前を隠しています。
+面白くて奇妙なビジネスです！
+
+<!-- On the home page it says: -->
+
+ホームページによると:
+
+<!-- > IPFS is the Distributed Web
+> 
+> A peer-to-peer hypermedia protocol to make the web faster, safer, and more open. -->
+
+> IPFSは分散Web
+>
+> Webを高速、安全、オープンにするpeer-to-peerのハイパーメディアプロトコルです。
+
+<!-- IPFS seems like an great option for our project. -->
+
+IPFSは私達のプロジェクトに適した選択肢のようです。
+
+<!-- ### ZeroNet -->
+
+#### ZeroNet
+
+<!-- ZeroNet doesn't have a cheesy video on their home page, so I had to actually _read_. However, their awesome presentation is 100x better than the four videos from the others combined: [ZeroNet preso](https://docs.google.com/presentation/d/1_2qK1IuOKJ51pgBvllZ9Yu7Au2l551t3XBgyTSvilew/pub?start=false&loop=false&delayms=3000&slide=id.g9a1cce9ee_0_4). -->
+
+ZeroNetはホームページに安っぽいビデオがないため、私は実際に**読む**必要がありました。
+しかし、プレゼンテーションは他の4つのビデオより100倍素晴らしいものでした:
+[ZeroNet preso](https://docs.google.com/presentation/d/1_2qK1IuOKJ51pgBvllZ9Yu7Au2l551t3XBgyTSvilew/pub?start=false&loop=false&delayms=3000&slide=id.g9a1cce9ee_0_4)
+
+<!-- They also seem to operate a lot less like a serious business compared to the others, showing more of the idealistic open source spirit. -->
+
+また、他のものと比べてビジネス感が少なく、より理想的なオープンソースの精神を持っているようでした。
+
+<!-- On the home page: -->
+
+ホームページによると:
+
+<!-- > Open, free and uncensorable websites, using Bitcoin cryptography and BitTorrent network -->
+
+> BitcoinクリプトグラフィとBitTorrentネットワークを使った、オープン、フリーで、検閲されないウェブサイト
+
+<!-- Oh, oh, that is what _we_ are trying to do here! A competitor! Nah, let's just keep an eye on the code, maybe we can learn a thing or two. -->
+
+Oh, oh,まさに**我々が**やろうとしていることではないですか！
+競争相手だ！
+コードを見てみましょう。
+何か学びがあるかもしれません。
+
+<!-- ### Ethereum Swarm -->
+
+#### Ethereum Swarm
+
+<!-- On our trip to become blockchain developers, we have no other choice than to dive into Ethereum. We will address that in a future episode. But their decentralized file storage system, named Swarm, must be considered here. -->
+
+ブロックチェーンデベロッパになる旅のなかで、かならずEthereumに触れることになるでしょう。
+将来のエピソードで扱います。
+しかしSwarmという名の非中央集権型ファイルストレージシステムについてはここで検討する必要があります。
+
+<!-- It took me a while to find the source code for this project, but [here it is](https://github.com/ethereum/go-ethereum/tree/master/swarm)! -->
+
+このプロジェクトのソースコードを見つけるのに手間取りましたが、[ここにあります](https://github.com/ethereum/go-ethereum/tree/master/swarm)！
+
+<!-- From the [documentation](http://swarm-guide.readthedocs.io/en/latest/introduction.html#introduction): -->
+
+[ドキュメンテーション](http://swarm-guide.readthedocs.io/en/latest/introduction.html#introduction)によると:
+
+<!-- > Swarm is a distributed storage platform and content distribution service, a native base layer service of the ethereum web 3 stack. The primary objective of Swarm is to provide a sufficiently decentralized and redundant store of Ethereum’s public record, in particular to store and distribute dapp code and data as well as block chain data. -->
+
+> Swarmは分散ストレージプラットフォーム、コンテンツ分散サービスであり、ethereum web 3スタックのネイティブレイヤサービスです。
+> Swarmの第一の目的は十分に非中央集権化、冗長化されたEthereumパブリックレコードのストアを提供すること、特にDappのコードやブロックチェーンデータを保存、分散することです。
+
+<!-- It seems that Swarm is an incentive platform enforced with Ethereum smart contracts, so not the best choice for our purpose. We gotta stay hands-on here. We want to add a coin later ourselves! -->
+
+SwarmはEthereumのスマートコントラクトにより動くインセンティブプラットフォームなので、私達の用途には最適ではないでしょう。
+ここでは行動を控えます。
+コインを追加したい！
+
+<!-- ### BigchainDB -->
+
+#### BigchainDB
+
+<!-- From their site: -->
+
+サイトによると:
+
+<!-- > BigchainDB is complementary to decentralized storage, processing and communication building blocks. It can be used side by side with higher-level decentralized computing platforms and applications, and protocols for identity, financial assets, intellectual property and sidechains. BigchainDB fills a gap in the decentralized stack. -->
+
+> BigchainDBは分散ストレージ、処理、コミュニケーションビルディングブロックを補完します。
+> 上位レベルの分散コンピューティングプラットフォームやアプリケーション、アイデンティティ、金融資産、知的財産権、サイドチェーンなどのプロトコルと並行して使用できます。
+> BigchainDBは非中央集権スタックのギャップを埋めるものです。
+
+<!-- This is a brilliant solution, almost too good to be true. It is not just decentralized storage, but a full blown database. -->
+
+これは素晴らしいソリューションで、ちょっと眉唾ものでさえあります。
+これは非中央集権型ストレージというだけでなく、完全なデータベースです。
+
+<!-- It is built on top of MongoDB and decentralized, so data is immutable, and there is no central authority. -->
+
+MongoDBの上に構築され、非中央集権化されており、データはイミュータブルで、中央権限はありません。
+
+<!-- For our current project it might be a bit overkill, but let's keep an eye on it. -->
+
+現在の私達のプロジェクトにはいささかオーバーキルでしょうし、見守ることにしましょう。
+
+<!-- ## The winning decentralized storage system -->
+
+### 非中央集権型ストレージシステムの勝者
+
+<!-- OK, I’ll be honest, I already picked one before I did this quick research what is around :-) -->
+
+OK, 正直に言うと、私はすでにこの中から1つ選んでいます :-)
+
+<!-- **_The winner is IPFS! Yay!_** -->
+
+**勝者はIPFSです！ Yay!**
+
+<!-- The runner-up we might have a look at at a later stage: BigchainDB! -->
+
+準優勝は、また後で扱うかもしれません: BigchainDB!
+
+<!-- Even in retrospect, IPFS seems like a good choice: all competitors have their "flaws" in the context of this project. By applying "selection by deduction", only IPFS remains. -->
+
+振り返ってみてもIPFSは良い選択肢に思えます: すべての競合はこのプロジェクトの文脈で「欠点」を持っています。
+消去法を適用すると、IPFSだけが残ります。
+
+<!-- After this very scientific approach in picking IPFS, let's hope it is indeed useful for us. -->
+
+非常に科学的なアプローチでIPFSを選択したので、それが私達にとって有益であることを願いましょう。
