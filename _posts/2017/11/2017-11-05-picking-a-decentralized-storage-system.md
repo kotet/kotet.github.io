@@ -679,6 +679,18 @@ tags: blockchain-train-journal tech translation ipfs
 excerpt: "この記事はBlockchain train journalのパート2です、こちらから読み始めましょう:"
 ---
 
+この記事は、
+[Picking a Decentralized Storage System](http://decentralized.blog/picking-a-decentralized-storage-system.html)
+を自分用に翻訳したものを
+[許可を得て](https://twitter.com/pors/status/925987521078743040)
+公開するものである。
+
+ソース中にコメントの形で原文を残している。
+内容が理解できる程度のざっくりした翻訳であり誤字や誤訳などが多いので、気になったら
+[Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})だ!
+
+---
+
 <!-- # [Picking a Decentralized Storage System](http://decentralized.blog/picking-a-decentralized-storage-system.html) -->
 
 <!-- # 非中央集権型ストレージシステムを選ぶ -->
