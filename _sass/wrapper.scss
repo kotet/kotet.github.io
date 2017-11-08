@@ -1,0 +1,24 @@
+.youtube-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.youtube-wrapper iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+.nicovideo-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 66.67%;
+}
+.nicovideo-wrapper iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
