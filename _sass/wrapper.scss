@@ -13,7 +13,7 @@
 .nicovideo-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 66.67%;
+  padding-top: 66.67%; /* 480 / 720 */
 }
 .nicovideo-wrapper iframe {
   position: absolute;
