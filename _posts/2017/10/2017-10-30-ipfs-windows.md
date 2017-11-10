@@ -6,9 +6,9 @@ excerpt: "今回はWindowsでIPFSを使ってみる。
 一応ローカルゲートウェイを動かすことに成功した。"
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-26-ipfs-tools%})
+[前回]({% include relative %}{% post_url 2017/10/2017-10-26-ipfs-tools %})
 :
-[次回]({% include relative %}{% post_url 2017/10/2017-11-10-ipfs-trap %})
+[次回]({% include relative %}{% post_url 2017/11/2017-11-10-ipfs-trap %})
 
 ---
 
@@ -217,6 +217,6 @@ Daemon is ready
 
 ---
 
-[前回]({% include relative %}{% post_url 2017/10/2017-10-26-ipfs-tools%})
+[前回]({% include relative %}{% post_url 2017/10/2017-10-26-ipfs-tools %})
 :
-[次回]({% include relative %}{% post_url 2017/10/2017-11-10-ipfs-trap %})
+[次回]({% include relative %}{% post_url 2017/11/2017-11-10-ipfs-trap %})
