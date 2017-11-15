@@ -2,6 +2,7 @@
 layout: post
 title:  "Twitterカードを設定した"
 tags: log
+excerpt: "Twitter cardsを設定してみた。基本的には問題ないが、一部の記事はエスケープがうまくいっていなくて表示がおかしかったりする。"
 ---
 
 Twitter cardsを設定してみた。

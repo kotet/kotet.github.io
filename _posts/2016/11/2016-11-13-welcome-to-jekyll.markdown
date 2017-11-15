@@ -2,6 +2,7 @@
 layout: post
 title:  "Welcome to Jekyll!"
 tags: log jekyll
+excerpt: "またサイトを作りなおした。もう何回目かわからない。"
 ---
 
 またサイトを作りなおした。もう何回目かわからない。

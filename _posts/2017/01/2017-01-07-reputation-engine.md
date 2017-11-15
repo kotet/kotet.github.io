@@ -2,6 +2,7 @@
 layout: post
 title:  "読書記録:ブランドの暗殺、悪意あるデマ"
 tags: essay
+excerpt: "今自分は「勝手に選別される世界」(原題:The Reputation Economy)という本を読んでいる。最近起きたことと内容が通じるものがあって色々考えたので、まだ途中だが本の内容を紹介したい。"
 ---
 
 今自分は「勝手に選別される世界」(原題:The Reputation Economy)という本を読んでいる。
