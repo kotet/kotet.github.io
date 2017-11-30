@@ -24,12 +24,12 @@ excerpt: '"D言語なら、この程度の処理はマイナス時間で完了�
 
 `std.conv.to`を使っている。
 `mixin template`のなかで`import`すると`fizzbuzz`の外にも適用されてしまうのでは？と思っていたが[別にそんなこともない](https://dpaste.dzfl.pl/37f2916891e3)ようだ。
-コンパイルオプション`-main`によって全く関数を書かずに済んでいる。
+コンパイルオプション`-main`によって手書きしなければならない関数はゼロになった。
 
 ```d
 /// fizzbuzz.d
 
-mixin template fizzbuzz(long N) if (1 < N)
+mixin template fizzbuzz(long N) if (0 < N)
 {
     import std.conv : to;
     static foreach (i; 1 .. N + 1)
