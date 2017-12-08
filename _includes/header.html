@@ -25,6 +25,7 @@
           </span>
         </a> {% endif %} {% endfor
         %}
+        <a class="page-link" href="{% include relative %}{{ "/feed.xml" | relative_url }}">{% include icon-rss.svg %}</a>
       </div>
     </nav>
 
