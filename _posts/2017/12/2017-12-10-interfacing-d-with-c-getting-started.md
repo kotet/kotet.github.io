@@ -121,7 +121,7 @@ void main()
 
 <!-- The `extern(C)` bit in the declaration of the C function in the D code is [a linkage attribute](https://dlang.org/spec/attribute.html#linkage). That’s covered by the other material I referenced above, but it’s a potential gotcha we’ll look at later in this series. -->
 
-Dのコード内にあるCの関数の宣言の`extern(C)`という部分は[リンケージアトリビュート](https://dlang.org/spec/attribute.html#linkage)です。
+Dのコード内にあるCの関数の宣言の`extern(C)`という部分は[リンケージ属性](https://dlang.org/spec/attribute.html#linkage)です。
 これは上記以外のものにも関わってきますが、その潜在的なハマりどころはこのシリーズの別の機会に見ていきます。
 
 <!-- #### Windows -->
