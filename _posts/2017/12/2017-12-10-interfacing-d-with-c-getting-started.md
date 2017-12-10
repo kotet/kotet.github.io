@@ -22,12 +22,12 @@ excerpt: "D言語の短期的な設計目標の一つにCとのインターフ�
 D言語の短期的な設計目標の一つに[Cとのインターフェース](https://dlang.org/spec/interfaceToC.html)能力があります。
 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC++コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。
 ほとんどのDの組み込み型、構造体までもがCとの直接の互換をもち、適切な[リンケージアトリビュート](https://dlang.org/spec/attribute.html#linkage)とともにD内で宣言されたCの関数に自由に渡すことができます。
-大抵の場合、Cのコードをコピーし、それをDのモジュールにペーストして、最小限の修正をすればコンパイルできます。
+大抵の場合、Cのコードをコピーし、それをDのモジュールにペーストして、最低限の修正をすればコンパイルできます。
 反対に、適切に宣言されたDの関数はCから呼び出すことができます。
 
 <!-- That’s not to say that D carries with it all of C’s warts. It includes features intended to eliminate, or more easily avoid, some of the errors that are all too easy to make in C. For example, bounds checking of arrays is enabled by default, and a safe subset of the language provides compile-time enforcement of memory safety. D also changes or avoids some things that C got wrong, such as what Walter Bright sees as [C’s biggest mistake](http://www.drdobbs.com/architecture-and-design/cs-biggest-mistake/228701625): conflating pointers with arrays. It’s in these differences of implementation that surprises lurk for the uninformed. -->
 
-これはDがCの欠点もそのまま持っているというわけではありません。
+これはDがCの欠点までそのまま持っているというわけではありません。
 DにはCでよく発生するエラーをなくす、あるいは簡単に回避するための機能があります。
 たとえば、配列の境界チェックはデフォルトで有効であり、言語のsafeサブセットはメモリ安全をコンパイル時に強制します。
 また、DはWalter Brightが[Cの最大の失敗](http://www.drdobbs.com/architecture-and-design/cs-biggest-mistake/228701625)と考えるCの悪いところを変更または回避しています。
@@ -165,7 +165,7 @@ hello
 
 Windowsで64ビットの出力を得るときには、DMCは使いません。
 この場合、DMDはWindowsのMicrosoft build toolsを要求します。
-MS build toolsをインストールしたら、設定済みx64ネイティブツールコマンドプロンプトを開き、以下のコマンドを実行します（Microsoftビルドツールの入手と設定済コマンドプロンプトの開き方についてはこのブログの‘[D, Windows, and C](https://dlang.org/blog/2017/10/25/dmd-windows-and-c)’を見てください。依存するVisual StudioやMS build toolsのバージョンがちょっと違うかもしれません）:
+MS build toolsをインストールしたら、設定済みx64ネイティブツールコマンドプロンプトを開き、以下のコマンドを実行します（Microsoft build toolsの入手と設定済コマンドプロンプトの開き方についてはこのブログの‘[D, Windows, and C](https://dlang.org/blog/2017/10/25/dmd-windows-and-c)’を見てください。依存するVisual StudioやMS build toolsのバージョンがちょっと違うかもしれません）:
 
 <!-- ```
 cl /c chello.c
@@ -239,7 +239,7 @@ dmd hello.d chello.o
 
 <!-- Now that we’re configured to compile and link C and D source in the same binary, let’s take a look at a rather common gotcha. To fully appreciate this one, it helps to compile it on both Windows and another platform. -->
 
-CとDのソースを同じバイナリにコンパイルしリンクできるようになったので、さらに一般的な落とし穴見ていきましょう。
+CとDのソースを同じバイナリにコンパイルしリンクできるようになったので、さらに一般的な落とし穴を見ていきましょう。
 これを正しく理解することは、Windowsとその他のプラットフォーム両方で役に立ちます。
 
 <!-- One of the features of D is that all of the integral types have a fixed size. A `short` is always 2 bytes and an `int` is always 4\. This never changes, no matter the underlying system architecture. This is quite different from C, where the spec only imposes relative requirements on the size of each integral type and leaves the specifics to the implementation. Even so, there are wide areas of agreement across modern compilers such that on every platform D currently supports the sizes for almost all the integral types match those in D. The exceptions are `long` and `ulong`. -->
@@ -317,9 +317,9 @@ void main()
 
 結果はCコンパイラとアーキテクチャに依存します。
 例えば、Windowsの`dmc`では`7316910580432895`、x86 `cl`では`59663353508790271`、x64 `cl`では`4294967295`になります。
-C側の`unsigned long`のサイズは最後のものも他の2つと変わらず4バイトですが、これは本当に正しい値です。
+C側の`unsigned long`のサイズは最後のものも他の2つと変わらず4バイトですが、この最後の値が本当の正しい値です。
 おそらくx64 ABIが返り値を8バイトの`RAX`レジスタに保存し、それがD側の8バイトである`ulong`として問題なく読めてしまうからだと思います。
-ここで重要なポイントは、D側が32ビットのレジスタに64ビットの返り値を期待しており、実際の値より大きな話題を呼んでいるため、x86のコードにおいてこの2つの値は役に立たないと言うことです。
+ここで重要なポイントは、D側が32ビットのレジスタに64ビットの返り値を期待しており、実際の値より大きな値を呼んでいるため、x86のコードの2つの値は役に立たないと言うことです。
 
 <!-- Thankfully, DRuntime provides a way around this in `core.c.config`, where you’ll find `c_long` and `c_ulong`. Both of these are conditionally configured to match the compile-time C runtime implementation and architecture configuration. With this, all that’s needed is to change the declaration of `max_val` in the D module, like so: -->
 
@@ -360,7 +360,7 @@ Windowsにおいては、一律で`4294967295`になります。
 
 <!-- Though less commonly encountered, `core.stdc.config` also declares a portable `c_long_double` type to match any `long double` that might pop up in a C library to which a D module must bind. -->
 
-遭遇することが少ないですが、`core.stdc.config`は`long double`に対応したポータブルな`c_long_double`型も宣言しており、DのモジュールがバインドしなければならないCライブラリに出てくるかもしれません。
+遭遇することは少ないですが、`core.stdc.config`は`long double`に対応したポータブルな`c_long_double`型も宣言しており、DのモジュールがバインドしなければならないCライブラリに登場するかもしれません。
 
 <!-- ### Looking ahead -->
 
@@ -369,5 +369,5 @@ Windowsにおいては、一律で`4294967295`になります。
 <!-- In this post, we’ve gotten set up to compile and link C and D in the same executable and have looked at the first of several potential problem spots. The next post in this series will focus entirely on getting D arrays and C arrays to cooperate. See you there! -->
 
 この投稿で、CとDをコンパイルし同じ実行ファイルにリンクするためのセットアップをし、最初のつまづきポイントをいくつか見ていきました。
-このシリーズの次の投稿ではDの配列とCの配列を強調させることについてフォーカスしていきます。
+このシリーズの次の投稿ではDの配列とCの配列を協調させることについてフォーカスしていきます。
 ではまた!
