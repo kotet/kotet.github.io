@@ -7,6 +7,7 @@ excerpt: "IPFS上にWikipediaを構築することにより政府がWikipediaを
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-10-ipfs-trap %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-19-ipfs-on-manjaro-linux %})
 
 ---
 
@@ -60,3 +61,4 @@ $ ipfs pin add QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX --progress
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-10-ipfs-trap %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-19-ipfs-on-manjaro-linux %})
