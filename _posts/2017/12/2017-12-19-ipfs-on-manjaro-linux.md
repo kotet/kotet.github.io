@@ -7,6 +7,7 @@ excerpt: "いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-29-ipfs-wikipedia %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-20-ipfs-soundcloud %})
 
 ---
 
@@ -36,3 +37,4 @@ ipfs version 0.4.13
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-29-ipfs-wikipedia %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-20-ipfs-soundcloud %})
