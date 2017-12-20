@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "IPFS体験記6:ipget"
-tags: ipfs tech log
+tags: ipfs tech log ipfs体験記
 excerpt: "そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。
 今回はIPFS用に作られたツールを見ていこうと思う。
 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。"

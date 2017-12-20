@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "非中央集権型Web、IPFS体験記4:ブラウザ拡張2"
-tags: ipfs tech log
+tags: ipfs tech log ipfs体験記
 excerpt: 引き続き公式ブラウザ拡張の機能を見ていく。
 ---
 

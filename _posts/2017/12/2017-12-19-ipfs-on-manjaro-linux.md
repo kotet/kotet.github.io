@@ -1,12 +1,13 @@
 ---
 layout: post
 title: "IPFS体験記10: `pacman -S go-ipfs`"
-tags: ipfs tech
+tags: ipfs tech ipfs体験記
 excerpt: "いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。"
 ---
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-29-ipfs-wikipedia %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-20-ipfs-soundcloud %})
 
 ---
 
@@ -36,3 +37,4 @@ ipfs version 0.4.13
 
 [前回]({% include relative %}{% post_url 2017/11/2017-11-29-ipfs-wikipedia %})
 :
+[次回]({% include relative %}{% post_url 2017/12/2017-12-20-ipfs-soundcloud %})
