@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "分散ファイルシステムIPFS体験記2:設定一覧"
-tags: ipfs tech log
+tags: ipfs tech log ipfs体験記
 image: 2017/10/19/twitter.png
 excerpt: "今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"
 ---

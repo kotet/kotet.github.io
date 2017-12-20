@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "IPFS体験記9:Wikipediaミラープロジェクト"
-tags: ipfs tech
+tags: ipfs tech ipfs体験記
 excerpt: "IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。"
 ---
 
