@@ -2,12 +2,9 @@
 layout: page
 title: Tags
 permalink: /tags/
-excerpt: "記事についているタグ、タグがついている記事。"
 ---
 
-記事についているタグ、タグがついている記事。
-
-{% for tag in site.tags %}{% assign tagname = tag[0] %}{% include tag.html tag=tagname %} {% endfor %}
+{% for tag in site.tags %}{% assign tagname = tag[0] %}[#{{ tagname }}](#{{ tagname }}) {% endfor %}
 
 {% for tag in site.tags %}
 ### {{ tag[0] }}

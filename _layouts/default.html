@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-  {% include head.html %}
-
-  <body itemscope itemtype="http://schema.org/WebPage">
-    {% include header.html %}
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
-        {% if page.noindex != true %}{% include share-widget/share-widget.html %}{% endif %}
-        {% include improve.html %}
-        {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
-      </div>
+{% include head.html %}
+<body>
+    <header>
+        <a class="site-title" href="{% include relative %}" >{{ site.title }}</a>
+        {% for my_page in site.pages %}{% if my_page.title and my_page.noindex != true %}
+         | <a href="{% include relative %}{{ my_page.url | relative_url }}">{{ my_page.title }}</a>
+        {% endif %}{% endfor %}
+    </header>
+    <hr>
+    <main>
+    <div class="content-wrapper">
+    {{ content }}
+    </div>
     </main>
-
-    {% include footer.html %}
-    {% include share-widget/script.html %}
-    {% include twitter-analytics.html %}
-  </body>
-
+    <hr>
+    <footer>
+        {% capture footer-md %}{% include footer.md %}{% endcapture %}{{ footer-md | markdownify }}
+    </footer>
+</body>
 </html>

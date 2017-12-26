@@ -1,25 +1,18 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">
-      <a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}" style="font-size: 0.5em;display: block;">#{{ page.tags[0] }}</a>
-       {{ page.title | escape }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}
-      {% for tag in page.tags %}
-      {% include tag.html tag=tag %}
-      {% endfor %}
-    </p>
-    {% include share-widget/share-widget.html %}
-  </header>
-
-  <div class="post-content" itemprop="articleBody">
+<article>
+    <div class="post-header">
+        <h1>
+            <a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}">#{{ page.tags[0] }}</a> 
+            {{ page.title | escape }}
+        </h1>
+        <p class="post-info">
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+            {% for tag in page.tags %}
+             | <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
+            {% endfor %}
+        </p>
+    </div>
     {{ content }}
-  </div>
-
-  {% if site.disqus.shortname %}
-    {% include disqus_comments.html %}
-  {% endif %}
 </article>
