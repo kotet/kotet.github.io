@@ -1,10 +1,8 @@
-pre {
-    overflow-x: scroll;
-}
 .highlighter-rouge {
     margin: 0;
     border-radius: 5px;
     background: lightgray;
+    overflow-x: scroll;
     .highlight { padding-left: 10px; }
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
