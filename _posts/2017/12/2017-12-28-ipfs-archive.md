@@ -99,6 +99,6 @@ constructing dir... QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn
 http://gateway.ipfs.io/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png
 ```
 
-[/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png](http://gateway.ipfs.io/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png)
+[/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png](https://ipfs.io/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png)
 
-![/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png](http://gateway.ipfs.io/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png)
+![/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png](https://ipfs.io/ipfs/QmQjVSYec1rLTcMJfepPKYaCiBUtqYEy7tM7ZbReuYHyhn/screencap.2017-12-28T13:53:30Z.png)
