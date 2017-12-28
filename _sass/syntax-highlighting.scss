@@ -6,7 +6,7 @@
     .highlight { 
         padding-left: 10px;
         max-width: none;
-        word-break: break-word;
+        word-break: keep-all;
     }
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
