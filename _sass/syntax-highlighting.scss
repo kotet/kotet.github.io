@@ -3,8 +3,10 @@
     border-radius: 5px;
     background: lightgray;
     overflow-x: scroll;
-    white-space: nowrap;
-    .highlight { padding-left: 10px; }
+    .highlight { 
+        padding-left: 10px;
+        max-width: none;
+    }
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
     .k     { font-weight: bold } // Keyword
