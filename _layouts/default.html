@@ -12,7 +12,7 @@
     <main>
     <div class="content-wrapper">
     {{ content }}
-    {% include anonymous-ad.html %}
+    {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
     </div>
     </main>
     <hr>
