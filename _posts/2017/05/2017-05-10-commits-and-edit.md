@@ -4,6 +4,8 @@ title: "記事の編集履歴、PR作成、その他Qiitaにあるような3つ�
 tags: jekyll tech
 ---
 
+**追記：現在は以下のテンプレートは動かないかもしれない。[更新版]({% include relative %}{% post_url 2018/01/2018-01-01-jekyll-templates-update %})**
+
 このサイトの各ページの下にある"Improve this page"について書く。
 GitHub Pagesでは、GitHubリポジトリの名前、ブランチ、現在のページに対応するソースファイルのパスが変数として得られる。
 なのでテンプレートを使ってQiitaの"編集履歴"、"編集リクエスト"のような機能を実現することができる。
