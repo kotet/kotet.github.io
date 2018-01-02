@@ -9,9 +9,13 @@ layout: default
         </h1>
         <p class="post-info">
                 <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+            {% if page.tags %}|{% endif %}
             {% for tag in page.tags %}
-             | <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
+             <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
             {% endfor %}
+             | <a href="https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch }}/{{ page.path }}">Raw</a>
+             <a href="https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.github.source.branch }}/{{ page.path }}">Log</a>
+             <a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">Edit</a>
         </p>
     </div>
     {{ content }}
