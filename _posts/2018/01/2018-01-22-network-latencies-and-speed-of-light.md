@@ -5,6 +5,19 @@ tags: tech translation
 excerpt: "この短い投稿で私は、現代のネットワーク（インターネット）のレイテンシが既に今の物理学上で可能な限界にかなり近く、勇敢な市民の行動と今後予測可能な範囲で普通のインターネットには使われそうにないネットワークエンジニアリングへの膨大な投資をもってしても2倍程度にしかならないため、今後も変わらないということを納得してもらうよう試みます。"
 ---
 
+この記事は
+[Network latencies and speed of light | The ryg blog](https://fgiesen.wordpress.com/2018/01/20/network-latencies-and-speed-of-light/)
+を自分用に翻訳したものを
+[許可を得て](https://twitter.com/rygorous/status/954912383687798784)
+公開するものである。
+
+ソース中にコメントの形で原文を残している。
+誤字や誤訳など気になったら
+[Pull requestを投げつけて](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})
+くれると喜ぶ。
+
+---
+
 <!-- In this short post I’m going to attempt to convince you that current network (Internet) latencies are here to stay, because they are already within a fairly small factor of what is possible under known physics, and getting _much_ closer to that limit – say, another 2x gain – requires heroics of civil and network engineering as well as massive capital expenditures that are very unlikely to be used for general internet links in the foreseeable future. -->
 
 この短い投稿で私は、現代のネットワーク（インターネット）のレイテンシが既に今の物理学上で可能な限界に**かなり**近く、今後予測可能な範囲で普通のインターネットには使われそうにない勇敢な土木とネットワークエンジニアリングへの膨大な投資をもってしても2倍程度にしかならないため、今後も変わらないということを納得してもらうよう試みます。
