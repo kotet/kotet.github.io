@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "記事の編集履歴、PR作成、その他Qiitaにあるような3つの機能の代替"
-tags: jekyll tech
+tags: jekyll tech github
 ---
 
 **追記：現在は以下のテンプレートは動かないかもしれない。[更新版]({% include relative %}{% post_url 2018/01/2018-01-01-jekyll-templates-update %})**

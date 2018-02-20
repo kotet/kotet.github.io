@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "GitHub Pagesで相対パスを使う"
-tags: jekyll tech
+tags: jekyll tech github
 excerpt: "IPFS上でサイトをホストしたりするとドメインがコロコロ変わったりするので、今のうちにすべてのリンクを相対パスにしておきたくなった。
 しかしGitHub Pagesにおいてそれは簡単なことではない。"
 ---
