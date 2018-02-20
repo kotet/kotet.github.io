@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "記事の編集履歴、PR作成、ソース表示 in GitHub Pages 2018"
-tags: jekyll tech
+tags: jekyll tech github
 excerpt: "以前書いた記事 のJekyllテンプレートが動かなくなっていた。現在でも使えるように書き換えていく。"
 ---
 
