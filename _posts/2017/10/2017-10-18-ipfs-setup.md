@@ -23,7 +23,7 @@ excerpt: "“InterPlanetary File System“というあまりにも魅力的な�
 
 `ipfs`をインストール、更新するために`ipfs-update`というツールが用意されているようなのでそれを使う。
 
-[IPFS Distributions](https://dist.ipfs.io/#ipfs-update)からバイナリをダウンロードしてきて、
+[IPFS Distributions](https://ipfs.io/ipns/dist.ipfs.io/#ipfs-update)からバイナリをダウンロードしてきて、
 適当なところに置く。
 
 ```console
@@ -200,7 +200,7 @@ Created symlink from /home/kotet/.config/systemd/user/default.target.wants/ipfs.
 
 ### 読んだもの
 
-- [IPFS Docs](https://ipfs.io/docs/)
+- [IPFS Docs](https://ipfs.io/ipns/ipfs.io/docs/)
 - [IPFS - ArchWiki](https://wiki.archlinux.jp/index.php/IPFS#.E3.82.B5.E3.83.BC.E3.83.93.E3.82.B9.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.A6.E3.83.87.E3.83.BC.E3.83.A2.E3.83.B3.E3.82.92.E8.B5.B7.E5.8B.95)
 
 ---
