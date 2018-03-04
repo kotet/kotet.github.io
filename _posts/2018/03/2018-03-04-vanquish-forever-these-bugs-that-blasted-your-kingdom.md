@@ -32,7 +32,7 @@ Walter BrightはD言語のBDFL[^1]でありDigital Marsのファウンダーで�
 
 <!-- ![](https://i0.wp.com/dlang.org/blog/wp-content/uploads/2018/02/bug.jpg?resize=256%2C156) -->
 
-![]({% include relative %}/assets/2018/03/bug.jpg)
+![Bug]({% include relative %}/assets/2018/03/bug.jpg)
 
 <!-- Do you ever get tired of bugs that are easy to make, hard to check for, often don’t show up in testing, and [blast your kingdom](https://getyarn.io/yarn-clip/ac6765ca-f2c6-49ec-a1ba-a7e9b0f692bf) once they are widely deployed? They cost you time and money again and again. If you were only a better programmer, these things wouldn’t happen, right? -->
 
