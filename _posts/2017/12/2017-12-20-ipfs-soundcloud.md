@@ -9,6 +9,8 @@ excerpt: "今まで前回、次回の記事に手動でリンクを貼ってい�
 [ipfs体験記]({% include relative %}/tags/#ipfs体験記)というタグを作ったのでそこから記事一覧にアクセスできる。
 今までタグに日本語を使うのを避けていたが、やってみたら意外と問題が起きなかった。
 
+追記: どうもシーダーがいなくなってアクセスできなくなってしまった様子のリソースがいくつかあるが、そのままにしておく。
+
 SoundCloud的ウェブサイトがあった。
 
 - [DSound - Decentralized Sound Platform](https://dsound.audio/#/feed)
@@ -60,17 +62,6 @@ wantlistはソートされておらず実行するたびに順番が違うので
 
 分散されているのはデータだけかと最初思ったが、どうやら完全に分散型のサービスらしい。
 データベースに[Steem](https://steem.io/)というものを使っているらしいが、Steemについての知識がゼロのためどれくらい分散されているのかわからない。
-
-[dsound.audio](https://dsound.audio)はあくまでIPFS上のコンテンツへのゲートウェイでしかない。
-なのでたとえば
-
-- [/ipns/dsound.audio/](https://ipfs.io/ipns/dsound.audio/)
-- [/ipns/QmbjdbW7D3Zc6AhiF8yQ4P6qpPmtiEZiJ8NS8Z7CVFgcFX/](https://ipfs.io/ipns/QmbjdbW7D3Zc6AhiF8yQ4P6qpPmtiEZiJ8NS8Z7CVFgcFX/)
-- [/ipfs/QmV8Wek5Kfx8HsAe1wnkJtUobNmjg1UxPhj1yKCT5prL4G/](https://ipfs.io/ipfs/QmV8Wek5Kfx8HsAe1wnkJtUobNmjg1UxPhj1yKCT5prL4G/)
-    （執筆時点で上のIPNSハッシュが指しているバージョン。これだけはシーダーがいる限りリンク切れにならないはず）
-
-などのようにIPFSから直接DSoundへアクセスできる。
-DSoundは非中央集権化されており、作者の一存では止めることはできない!
 
 なかなか実用的で素晴らしいと思う。
 あとはブラウザやスマホで動くIPFSノードがあれば……
