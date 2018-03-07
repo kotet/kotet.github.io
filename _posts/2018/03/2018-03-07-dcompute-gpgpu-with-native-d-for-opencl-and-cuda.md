@@ -74,7 +74,7 @@ Khronosで開発されたSPIR-Vバックエンドはとても古いLLVM 3.6.1を
 [UFCS](https://tour.dlang.org/tour/ja/gems/uniform-function-call-syntax-ufcs)、
 [スコープガード](https://tour.dlang.org/tour/ja/gems/scope-guards)、
 [レンジとそのアルゴリズム](https://tour.dlang.org/tour/ja/gems/range-algorithms)、
-[CTFE](https://tour.dlang.org/tour/en/gems/compile-time-function-evaluation-ctfe)などの言語機能にアクセスできます。
+[CTFE](https://tour.dlang.org/tour/ja/gems/compile-time-function-evaluation-ctfe)などの言語機能にアクセスできます。
 気をつけるべきこととして、ハードウェアとパフォーマンスの観点から関数ポインタ、仮想関数、動的再帰、RTTI、例外、ガベージコレクタの使用はカーネル言語から除外されています。
 OpenCL C++と違いカーネル関数をテンプレート化したりオーバーロードやデフォルト値をもたせたりできる点に注目するべきでしょう。
 imageとpipeのサポートは進行中です。
