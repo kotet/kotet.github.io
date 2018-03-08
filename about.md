@@ -35,7 +35,7 @@ excerpt: このサイトと自分について、それと関連するサイト�
 
 ### 坂 一哲 (Ban Kazutoshi)
 
-名字の読みをよく間違えられる。
+名字の読みを定期的に間違えられる。
 [POTS:体位性頻脈](http://potsanddysautonomiajapan.org/pots/)により1年間療養、その後愛知県立大学情報科学部に入学予定。
 
 ### アカウント
@@ -45,3 +45,4 @@ excerpt: このサイトと自分について、それと関連するサイト�
  - Qiita : [@kotet](https://qiita.com/kotet)
  - Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
  - Facebook : [@kazutoshi.ban.7](https://www.facebook.com/kazutoshi.ban.7)
+ <li>LINE : <details style="display:inline;"><summary>QRコード</summary><img src="{% include relative %}/assets/line-qr.png" alt="qr" style="max-width:250px;"></details></li>
