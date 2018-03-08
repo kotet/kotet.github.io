@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "DConpute:GPU上で走るD【翻訳】"
+title: "DCompute:GPU上で走るD【翻訳】"
 tags: dlang tech translation 
-excerpt: "これはDComputeの2つ目の記事です。 前回の記事では、DConputeの発展と小さな例を扱いました。 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。 しかし今はそんなことはありません。"
+excerpt: "これはDComputeの2つ目の記事です。 前回の記事では、DComputeの発展と小さな例を扱いました。 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。 しかし今はそんなことはありません。"
 ---
 
 
@@ -23,7 +23,7 @@ excerpt: "これはDComputeの2つ目の記事です。 前回の記事では、
 Nicholas WilsonはMurdoch Universityの生徒です。
 BEng (Hons)/BScのためにIndustrial Computer Systems (Hons)とInstrumentation & Control/ Molecular Biology & Genetics and Biomedical Scienceを学んでいます。
 彼は電界発光イメージングによるソーラーセルの欠陥のローコストな検出についての卒業論文を書き終わったので、
-DConputeの作業をしてそれについてD Blogに書く時間ができました。
+DComputeの作業をしてそれについてD Blogに書く時間ができました。
 彼はピアノとアイススケートをたしなみ、number bashing、オートマトン、その他様々なことをDでできるように7年をかけています。
 
 ---
@@ -32,7 +32,7 @@ DConputeの作業をしてそれについてD Blogに書く時間ができまし
 DCompute is a framework and compiler extension to support writing native kernels for OpenCL and CUDA in D to utilize GPUs and other accelerators for computationally intensive code. Its compute API drivers automate the interactions between user code and the tedious and error prone APIs with the goal of enabling the rapid development of high performance D libraries and applications. -->
 
 ![ldc]({% include relative %}/assets/2018/03/ldc.png){:align="left"}
-DConputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。
+DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。
 ハイパフォーマンスDライブラリやアプリケーションの高速な開発を可能にすることを目標にしたそのコンピュートAPIドライバはユーザーコードと退屈なものとエラーを起こしがちなAPIの間の相互作用を自動化します。
 
 <!-- ### Introduction -->
@@ -43,10 +43,10 @@ DConputeはGPUやその他アクセラレータを使う計算集約型コード
 
 これは[DCompute](https://github.com/libmir/dcompute)の2つ目の記事です。
 [前回の記事]({% include relative %}{% post_url 2018/03/2018-03-07-dcompute-gpgpu-with-native-d-for-opencl-and-cuda %})[^1]
-では、DConputeの発展と小さな例を扱いました。
+では、DComputeの発展と小さな例を扱いました。
 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。
 しかし今はそんなことはありません。
-[v0.1.0](https://github.com/libmir/dcompute/releases/tag/v0.1.0)では、DConputeはOpenCLとCUDAのネイティブラッパーであると同時に、CUDAよりも簡単なカーネルディスパッチを実現するものでもあります。
+[v0.1.0](https://github.com/libmir/dcompute/releases/tag/v0.1.0)では、DComputeはOpenCLとCUDAのネイティブラッパーであると同時に、CUDAよりも簡単なカーネルディスパッチを実現するものでもあります。
 
 [^1]: 原文: [https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/](https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/)
 
@@ -117,7 +117,7 @@ CUDAにも同じようなやり方で公開されるプロパティがありま�
 <!-- Launching a kernel is a large point of pain when dealing with the C API of both OpenCL and (only marginally less horrible) CUDA, due to the complete lack of type safety and having to use the `&` operator into a `void*` far too much. In DCompute this incantation simply becomes -->
 
 OpenCLと(酷さはそんなに変わらない)CUDAの両方のC APIを扱うとき、型安全の欠如と`void*`への`&`オペレータの使用のために、カーネルの起動は苦労するものです。
-DConputeではその呪文がOpenCLの場合は
+DComputeではその呪文がOpenCLの場合は
 
 ```d
 Event e = q.enqueue!(saxpy)([N])(b_res, alpha, b_x, b_y, N);
@@ -143,11 +143,11 @@ q.enqueue!(saxpy)([N, 1, 1], [1 ,1 ,1])(b_res, alpha, b_x, b_y, N);
 
 <!-- ### The future of DCompute -->
 
-### DConputeの未来
+### DComputeの未来
 
 <!-- While DCompute is functional, there is still much to do. The drivers still need some polish and user testing, and I need to set up continuous integration. A driver that unifies the different compute APIs is also in the works so that we can be even more cross-platform than the industry cross-platform standard. -->
 
-DConputeは機能的ですが、まだ十分ではありません。
+DComputeは機能的ですが、まだ十分ではありません。
 ドライバーは洗練とユーザーテストが必要で、継続的インテグレーションもセットアップしなければなりません。
 異なるコンピュートAPIをまとめるドライバも業界のクラスプラットフォーム標準よりもっとクロスプラットフォームにできるので、作業中です。
 
@@ -164,7 +164,7 @@ DConputeは機能的ですが、まだ十分ではありません。
 
 <!-- ### Using DCompute in your projects -->
 
-### プロジェクトでDConputeを使う
+### プロジェクトでDComputeを使う
 
 <!-- If you want to use [DCompute](https://github.com/libmir/dcompute), you’ll need a recent [LDC](https://github.com/ldc-developers/ldc) built against LLVM with the [NVPTX](https://llvm.org/docs/NVPTXUsage.html) (for CUDA) and/or SPIRV (for OpenCL 2.1+) targets enabled and should add `"dcompute": "~>0.1.0"` to your `dub.json`. LDC 1.4+ releases have NVPTX enabled. If you want to target OpenCL, you’ll need to build LDC yourself against [my fork of LLVM](https://github.com/thewilsonator/llvm/tree/compute). -->
 
