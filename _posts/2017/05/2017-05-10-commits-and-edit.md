@@ -15,25 +15,25 @@ GitHub Pagesでは、GitHubリポジトリの名前、ブランチ、現在の�
 ### 現在のページの編集(commit)履歴
 
 ```
-{% raw %}https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.branch }}/{{ page.path }}{% endraw %}
+{% raw %}https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.github.source.branch }}/{{ page.path }}{% endraw %}
 ```
 
-[サンプル](https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.branch }}/{{ page.path }})
+[サンプル](https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.github.source.branch }}/{{ page.path }})
 
 ### 現在のページの編集リクエスト(editing)ページ
 
 ```
-{% raw %}https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }}{% endraw %}
+{% raw %}https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}{% endraw %}
 ```
 
-[サンプル](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})
+[サンプル](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }})
 
 ### Markdownで本文を見る(raw)
 
 ```
-{% raw %}https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.branch }}/{{ page.path }}{% endraw %}
+{% raw %}https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch }}/{{ page.path }}{% endraw %}
 ```
 
-[サンプル](https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.branch }}/{{ page.path }})
+[サンプル](https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch }}/{{ page.path }})
 
 多分他にもいろいろできると思う。

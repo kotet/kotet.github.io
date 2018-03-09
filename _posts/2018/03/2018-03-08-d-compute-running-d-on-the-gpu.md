@@ -14,7 +14,7 @@ excerpt: "これはDComputeの2つ目の記事です。 前回の記事では、
 
 ソース中にコメントの形で原文を残している。
 今回あんまり訳せてないので気になったら
-[Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})だ!
+[Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }})だ!
 
 ---
 

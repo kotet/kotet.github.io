@@ -13,7 +13,7 @@ excerpt: "D言語の短期的な設計目標の一つにCとのインターフ�
 
 ソース中にコメントの形で原文を残している。
 内容が理解できる程度のざっくりした翻訳であり誤字や誤訳などが多いので、気になったら
-[Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})だ!
+[Pull request](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }})だ!
 
 ---
 
