@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "DConpute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】"
+title: "DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】"
 tags: dlang tech translation 
-excerpt: "DConputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。"
+excerpt: "DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。"
 ---
 
 この記事は、
@@ -22,7 +22,7 @@ excerpt: "DConputeはGPUやその他アクセラレータを使う計算集約�
 Nicholas WilsonはMurdoch Universityの生徒です。
 BEng (Hons)/BScのためにIndustrial Computer Systems (Hons)とInstrumentation & Control/ Molecular Biology & Genetics and Biomedical Scienceを学んでいます。
 彼は電界発光イメージングによるソーラーセルの欠陥のローコストな検出についての卒業論文を書き終わったので、
-DConputeの作業をしてそれについてD Blogに書く時間ができました。
+DComputeの作業をしてそれについてD Blogに書く時間ができました。
 彼はピアノとアイススケートをたしなみ、number bashing、オートマトン、その他様々なことをDでできるように7年をかけています。
 
 ---
@@ -31,7 +31,7 @@ DConputeの作業をしてそれについてD Blogに書く時間ができまし
 <!-- DCompute is a framework and compiler extension to support writing native kernels for OpenCL and CUDA in D to utilise GPUs and other accelerators for computationally intensive code. In development are drivers to automate the interactions between user code and the tedious and error prone compute APIs with the goal of enabling the rapid development of high performance D libraries and applications. -->
 
 ![ldc]({% include relative %}/assets/2018/03/ldc.png){:align="left"}
-DConputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。
+DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。
 ハイパフォーマンスDライブラリやアプリケーションの高速な開発を可能にすることを目標にユーザーコードと退屈なものとエラーを起こしがちなコンピュートAPIとの相互作用を自動化するドライバが開発中です。
 
 <!-- ### Introduction -->
@@ -66,11 +66,11 @@ Khronosで開発されたSPIR-Vバックエンドはとても古いLLVM 3.6.1を
 
 <!-- ### Current state of DCompute -->
 
-### DConputeの現状
+### DComputeの現状
 
 <!-- With the current state of DCompute we are able to write kernels natively in D and have access to most of its language-defining features like [templates & static introspection](https://tour.dlang.org/tour/en/basics/templates), [UFCS](https://tour.dlang.org/tour/en/gems/uniform-function-call-syntax-ufcs), [scope guards](https://tour.dlang.org/tour/en/gems/scope-guards), [ranges & algorithms](https://tour.dlang.org/tour/en/gems/range-algorithms) and [CTFE](https://tour.dlang.org/tour/en/gems/compile-time-function-evaluation-ctfe). Notably missing, for hardware and performance reasons, are those features commonly excluded in kernel languages, like function pointers, virtual functions, dynamic recursion, RTTI, exceptions and the use of the garbage collector. Note that unlike OpenCL C++ we allow kernel functions to be templated and have overloads and default values. Still in development is support for images and pipes. -->
 
-現在のDConputeではカーネルをネイティブにDで書くことができ、[テンプレートと静的イントロスペクション](https://tour.dlang.org/tour/ja/basics/templates)、
+現在のDComputeではカーネルをネイティブにDで書くことができ、[テンプレートと静的イントロスペクション](https://tour.dlang.org/tour/ja/basics/templates)、
 [UFCS](https://tour.dlang.org/tour/ja/gems/uniform-function-call-syntax-ufcs)、
 [スコープガード](https://tour.dlang.org/tour/ja/gems/scope-guards)、
 [レンジとそのアルゴリズム](https://tour.dlang.org/tour/ja/gems/range-algorithms)、
@@ -151,7 +151,7 @@ q.enqueue!(map!((a,b,c) => a=b+c))(x.length)(x, y, z);
 <!-- Unlike CUDA, where all the magic for transforming the above expression into code on the host lies in the compiler, `q.enqueue!func(sizes)(args)` will be processed by static introspection of the driver library of DCompute.   -->
 <!-- The sole reason we can do this in D is that we are able to query the mangled name the compiler will give to a symbol via the symbol’s `.mangleof` property. This, in combination with D’s easy to use and powerful templates, means we can significantly reduce the mental overhead associated with using the compute APIs. Also, implementing this in the library will be much simpler, and therefore faster to implement, than putting the same behaviour in the compiler. While this may not seem much for CUDA users, this will be a breath of fresh air to OpenCL users (just look at the [OpenCL vector add host code example](http://www.heterogeneouscompute.org/wordpress/wp-content/uploads/2011/06/Chapter2.txt) steps 7-11). -->
 
-上記の式をホストのコードに変換するすべてのマジックがコンパイラにあるCUDAと違い、`q.enqueue!func(sizes)(args)`はDConputeのドライバライブラリの静的イントロスペクションによって処理されます。
+上記の式をホストのコードに変換するすべてのマジックがコンパイラにあるCUDAと違い、`q.enqueue!func(sizes)(args)`はDComputeのドライバライブラリの静的イントロスペクションによって処理されます。
 Dにおいてそのようなことができるたった一つの理由は、コンパイラがシンボルに与える修飾名をシンボルの`.mangleof`プロパティで取得できるからです。
 これとDの簡単でパワフルなテンプレートの組み合わせによって、コンピュートAPIを使うことに関する心的オーバーヘッドを著しく減らすことができました。
 また、そのライブラリへの実装もシンプルになり、したがって同じふるまいをコンパイラにさせるのに比べて早く実装できました。
@@ -160,7 +160,7 @@ CUDAユーザーに向けた部分はまだ十分ではありませんが、Open
 
 <!-- While you cant do that just yet in DCompute, development should start to progress quickly and hopefully become a reality soon. -->
 
-まだDConputeでこのようなことはできませんが、開発は進み、うまく行けばまもなく現実のものになるでしょう。
+まだDComputeでこのようなことはできませんが、開発は進み、うまく行けばまもなく現実のものになるでしょう。
 
 <!-- I would like to thank John Colvin for the initial inspiration, Mike Parker for editing, and the LDC folks, David Nadlinger, Kai Nacke, Martin Kinke, with a special thanks to Johan Engelen, for their help with understanding the LDC codebase and reviewing my work. -->
 
@@ -168,5 +168,5 @@ CUDAユーザーに向けた部分はまだ十分ではありませんが、Open
 
 <!-- If you would like to help develop DCompute (or be kept in the loop), feel free to drop a line at the [libmir Gitter](https://gitter.im/libmir/public). Similarly, any efforts preparing the [SPIR-V](https://github.com/thewilsonator/llvm) [backend](https://github.com/thewilsonator/llvm-target-spirv) for inclusion into LLVM are also greatly appreciated. -->
 
-DConputeの開発を援助したい(または最新情報を受け取りたい)場合、どうぞ自由に[libmir Gitter](https://gitter.im/libmir/public)に連絡してください。
+DComputeの開発を援助したい(または最新情報を受け取りたい)場合、どうぞ自由に[libmir Gitter](https://gitter.im/libmir/public)に連絡してください。
 同様に、LLVMへ組み込むための[SPIR-V](https://github.com/thewilsonator/llvm) [バックエンド](https://github.com/thewilsonator/llvm-target-spirv)の開発への参加も受け付けています。
