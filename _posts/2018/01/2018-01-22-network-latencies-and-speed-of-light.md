@@ -13,7 +13,7 @@ excerpt: "この短い投稿で私は、現代のネットワーク（インタ�
 
 ソース中にコメントの形で原文を残している。
 誤字や誤訳など気になったら
-[Pull requestを投げつけて](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.branch }}/{{ page.path }})
+[Pull requestを投げつけて](https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }})
 くれると喜ぶ。
 
 ---
