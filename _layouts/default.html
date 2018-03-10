@@ -34,6 +34,7 @@
     </div>
     <div class="posts">
         {{ content }}
+        {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
     </div>
 </body>
 <script type="text/javascript">
