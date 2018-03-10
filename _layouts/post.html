@@ -5,10 +5,16 @@ layout: default
 {% include header.html %}
 
 <div class="content post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <div class="post-date">
+  <h1 class="post-title">
+    <a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}">#{{ page.tags[0] }}</a>
+    {{ page.title | escape }}
+  </h1>
+  <span class="post-date">
     <time>{{ page.date | date_to_string }}</time>
-  </div>
+  </span>
+  {% for tag in page.tags %}
+   / <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
+  {% endfor %}
   {{ content }}
 </div>
 {% if site.disqus_shortname %}
