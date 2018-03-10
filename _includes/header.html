@@ -1,0 +1,9 @@
+<header class="bloghead">
+    <h1 class="bloghead-title">
+    <a href="{% include relative %}/">{{ site.name }}<span>&#39;s Personal Blog</span></a>
+  </h1>
+    <nav class="bloghead-nav">
+        {% for page in site.pages %}{% if page.title %}
+        <a href="{% include relative %}{{ page.url | relative_url }}">{{ page.title }}<span> &nbsp;/&nbsp; </span></a> {% endif %}{% endfor %}
+    </nav>
+</header>

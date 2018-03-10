@@ -1,0 +1,19 @@
+---
+layout: default 
+---
+{%  include header.html %}
+<div class="content">
+  <div class="post-list">
+    {% for post in site.posts %}
+    <h2 class="post-title">
+        <a href="{% include relative %}{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    {% if post.description %}
+      <p>{{ post.description }}</p>
+    {% endif %}
+    <div class="post-date">
+      <time>{{ post.date | date_to_string }}</time>
+    </div>
+    {% endfor %}
+  </div>
+</div>
