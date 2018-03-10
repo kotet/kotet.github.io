@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="en">
 {% include head.html %}
-<body>
-    <header>
-        <a class="site-title" href="{% include relative %}" >{{ site.title }}</a>
-        <div style="display: inline-block">
-            {% for my_page in site.pages %}{% if my_page.title and my_page.noindex != true %}
-             | <a href="{% include relative %}{{ my_page.url | relative_url }}">{{ my_page.title }}</a>
-            {% endif %}{% endfor %}
-        </div>
-    </header>
-    <hr>
-    <main>
-    <div class="content-wrapper">
-    {{ content }}
-    {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url({% include relative %}/assets/background.jpeg);">
+        <img src="{% include relative %}/assets/logo.png" class="img-circle" alt="Me" />
+        <h3>{{ site.name }}</h3>
+        <p>{{ site.description }}</p>
+        <ul class="social">
+            {% if site.github %}
+            <a type="button" href="https://github.com/{{ site.github }}">
+                <i class="fa fa-github"></i>
+            </a>
+            {% endif %} {% if site.twitter %}
+            <a type="button" href="https://twitter.com/{{ site.twitter }}">
+                <i class="fa fa-twitter"></i>
+            </a>
+            {% endif %} {% if site.linkedin %}
+            <a type="button" href="https://linkedin.com/in/{{ site.linkedin }}">
+                <i class="fa fa-linkedin"></i>
+            </a>
+            {% endif %} {% if site.pinterest %}
+            <a type="button" href="https://pinterest.com/{{ site.pinterest }}">
+                <i class="fa fa-pinterest"></i>
+            </a>
+            {% endif %} {% if site.facebook %}
+            <a type="button" href="https://facebook.com/{{ site.facebook }}">
+                <i class="fa fa-facebook"></i>
+            </a>
+            {% endif %}
+        </ul>
     </div>
-    </main>
-    <hr>
-    <footer>
-        {% capture footer-md %}{% include footer.md %}{% endcapture %}{{ footer-md | markdownify }}
-    </footer>
+    <div class="posts">
+        {{ content }}
+        {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
+    </div>
 </body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
 </html>

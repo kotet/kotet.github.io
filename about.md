@@ -26,8 +26,7 @@ excerpt: このサイトと自分について、それと関連するサイト�
 ### Kotet
   
 名前の読み方は自分でも決めていないので、いまタイトルを頭の中で読み上げた時の発音で読んでくれればいい。  
-![Kotet]({% include relative %}/assets/kotet.jpg)  
-これはアイコン。たしか数年前に適当に書いたなにか。  
+アイコンは数年前に適当に書いたもの。  
 主にD言語をやってるがすごいレベルには全く達していない。  
 [D言語ツアー](https://tour.dlang.org/tour/ja)
 の翻訳に
@@ -40,9 +39,14 @@ excerpt: このサイトと自分について、それと関連するサイト�
 
 ### アカウント
 
- - Twitter : [@kotetttt](https://twitter.com/kotetttt)
- - GitHub : [@kotet](https://github.com/kotet)
- - Qiita : [@kotet](https://qiita.com/kotet)
- - Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
- - Facebook : [@kazutoshi.ban.7](https://www.facebook.com/kazutoshi.ban.7)
- <li>LINE : <details style="display:inline;"><summary>QRコード</summary><img src="{% include relative %}/assets/line-qr.png" alt="qr" style="max-width:250px;"></details></li>
+Twitter : [@kotetttt](https://twitter.com/kotetttt)
+
+GitHub : [@kotet](https://github.com/kotet)
+
+Qiita : [@kotet](https://qiita.com/kotet)
+
+Niconico : [@kotet](http://www.nicovideo.jp/user/46839326)
+
+Facebook : [@kazutoshi.ban.7](https://www.facebook.com/kazutoshi.ban.7)
+
+LINE : [QRコード]({% include relative %}/assets/line-qr.png)

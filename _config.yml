@@ -1,45 +1,41 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+name:               "Kotet"
+description:        "Kotetのブログ。<wbr/>興味分野の<wbr/>知識を<wbr/>まとめたり、<wbr/>翻訳したり<wbr/>している。"
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: "Kotet's Personal Blog"
-baseurl: "" # For github pages
-description: >- # You can edit footer in _includes/footer.md 
-  Kotetのブログ。興味分野の知識をまとめたり翻訳したりしている。
+url:                ""
+author:             "Kotet"
+email:              "kotet0418@gmail.com"
+gravatar_hash:
+twitter:            "kotetttt"
+github:             "kotet"
+pinterest:
+linkedin:
+facebook:           "kazutoshi.ban.7"
 
-google_analytics: UA-88180620-1 # Enter your tracking ID. Not available on IPFS
+disqus_shortname:
 
-twitter_cards: on # Not available on IPFS. /assets/logo.png required
-twitter_username: kotetttt
+baseurl:            ""
 
-# Build settings
-markdown: kramdown
+markdown:           kramdown
+
+nav:
+  - name:           "About"
+    href:           "/about"
+  - name:           "Download"
+    href:           "/products"
+
 sass:
-  style: compressed
+  style:            :compressed
 
-gems:
-  - jekyll-feed
-  - jekyll-sitemap
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+defaults:
+  -
+    scope:
+      path:         ""
+      type:         "pages"
+    values:
+      layout:       "page"
+  -
+    scope:
+      path:         ""
+      type:         "posts"
+    values:
+      layout:       "post"
