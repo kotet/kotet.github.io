@@ -10,7 +10,7 @@ layout: default
         <a href="{% include relative %}{{ post.url | relative_url }}">{{ post.title }}</a>
     </h2>
     {% if post.excerpt %}
-      <p>{{ post.excerpt }}</p>
+      <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
     {% endif %}
     <span class="post-date">
       <time>{{ post.date | date_to_string }}</time>
