@@ -18,6 +18,12 @@ twitter_username: kotetttt
 
 repository: kotet/kotet.github.io
 
+# site.githubが動作していないので一時的な対処
+github:
+  source:
+    branch: "master"
+  repository_nwo: "kotet/kotet.github.io"
+
 disqus_shortname:
 
 baseurl:            ""
