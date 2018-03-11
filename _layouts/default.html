@@ -10,7 +10,7 @@
         <p>{{ site.description }}</p>
         <ul class="social">
             {% if site.github %}
-            <a type="button" href="https://github.com/{{ site.github }}">
+            <a type="button" href="{{ site.github.owner_url }}">
                 <i class="fa fa-github"></i>
             </a>
             {% endif %} {% if site.twitter %}
