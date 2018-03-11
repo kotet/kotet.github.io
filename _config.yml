@@ -1,7 +1,7 @@
 name:               "Kotet"
 description:        "Kotetのブログ。<wbr/>興味分野の<wbr/>知識を<wbr/>まとめたり、<wbr/>翻訳したり<wbr/>している。"
 
-url:                ""
+url:                "https://kotet.github.io" # for Twitter card
 author:             "Kotet"
 email:              "kotet0418@gmail.com"
 gravatar_hash:
