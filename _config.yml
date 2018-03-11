@@ -6,7 +6,6 @@ author:             "Kotet"
 email:              "kotet0418@gmail.com"
 gravatar_hash:
 twitter:            "kotetttt"
-github:             "kotet"
 pinterest:
 linkedin:
 facebook:           "kazutoshi.ban.7"
@@ -17,12 +16,6 @@ twitter_cards: on
 twitter_username: kotetttt
 
 repository: kotet/kotet.github.io
-
-# site.githubが動作していないので一時的な対処
-github:
-  source:
-    branch: "master"
-  repository_nwo: "kotet/kotet.github.io"
 
 disqus_shortname:
 
