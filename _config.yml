@@ -11,6 +11,13 @@ pinterest:
 linkedin:
 facebook:           "kazutoshi.ban.7"
 
+google_analytics: UA-88180620-1
+
+twitter_cards: on
+twitter_username: kotetttt
+
+repository: kotet/kotet.github.io
+
 disqus_shortname:
 
 baseurl:            ""
