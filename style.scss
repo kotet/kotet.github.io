@@ -881,3 +881,9 @@ tbody tr:nth-child(odd) th {
 .highlighter-rouge {
     overflow-x: scroll;
 }
+
+.footnotes {
+    p {
+        display: inline-block;
+    }
+}
