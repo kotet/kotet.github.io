@@ -9,17 +9,20 @@ layout: default
     <a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}">#{{ page.tags[0] }}</a>
     {{ page.title | escape }}
   </h1>
-  <span class="post-date">
-    <time>{{ page.date | date_to_string }}</time>
-  </span>
-  {% for tag in page.tags %}
-   / <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
-  {% endfor %}
+  <p>
+    <span class="post-date">
+      <time>{{ page.date | date_to_string }}</time>
+    </span>
+    {% for tag in page.tags %}
+    / <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
+    {% endfor %}
+  </p>
   <p>
     <a href="https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch }}/{{ page.path }}">ソースを見る</a>
     / <a href="https://github.com/{{ site.github.repository_nwo }}/commits/{{ site.github.source.branch }}/{{ page.path }}">変更履歴を見る</a>
     / <a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">マサカリを投げる</a>
   </p>
+  <hr>
   {{ content }}
 </div>
 {% if site.disqus_shortname %}

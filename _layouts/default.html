@@ -9,11 +9,9 @@
         <h3>{{ site.name }}</h3>
         <p>{{ site.description }}</p>
         <ul class="social">
-            {% if site.github %}
             <a type="button" href="{{ site.github.owner_url }}">
                 <i class="fa fa-github"></i>
-            </a>
-            {% endif %} {% if site.twitter %}
+            </a> {% if site.twitter %}
             <a type="button" href="https://twitter.com/{{ site.twitter }}">
                 <i class="fa fa-twitter"></i>
             </a>
@@ -34,6 +32,7 @@
     </div>
     <div class="posts">
         {{ content }}
+        <hr>
         {% if jekyll.environment == 'production' %}{% include anonymous-ad.html %}{% endif %}
     </div>
 </body>
