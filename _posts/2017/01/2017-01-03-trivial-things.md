@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "よしなしごと 1/3"
-tags: trivial-things
+tags: trivial_things
 excerpt: "特に書きたいこともないのに何かを書きたくなった。
 よしなしごとなのでここに書かれていることを真に受けてはならない。"
 ---

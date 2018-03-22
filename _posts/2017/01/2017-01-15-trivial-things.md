@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "よしなしごと 1/15"
-tags: trivial-things
+tags: trivial_things
 ---
 
 contribution calendarが途切れそうなので何か書く。

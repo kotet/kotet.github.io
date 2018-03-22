@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "よしなしごと 1/10"
-tags: trivial-things
+tags: trivial_things
 ---
 
 今日は体調が悪く何もできないでいる。
