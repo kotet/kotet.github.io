@@ -139,8 +139,8 @@ ol + h3 {
 
 hr {
     border: 0;
-    border-top: .5px solid #eee;
-    border-bottom: .5px solid #eee;
+    border-top: .5px solid #bbb;
+    border-bottom: .5px solid #bbb;
     margin: 1.5rem auto;
 }
 
@@ -337,6 +337,9 @@ tbody tr:nth-child(odd) th {
         margin-left: 25vw;
         height: auto;
         width: 100%;
+        a {
+            color: white;
+        }
     }
     @media (min-width: 38em) {
         position: fixed;
@@ -372,6 +375,7 @@ tbody tr:nth-child(odd) th {
             a {
                 padding: 0;
                 margin-left: 0;
+                color: white;
             }
         }
     }
