@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "駆け足の人生:GCを減らすための工夫【翻訳】"
-tags: dlang tech translation dlang-gc-series
+tags: dlang tech translation dlang-gc-series d_blog
 excerpt: "この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。
 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ!"
 ---

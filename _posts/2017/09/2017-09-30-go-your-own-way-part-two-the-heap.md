@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】"
-tags: dlang tech translation dlang-gc-series
+tags: dlang tech translation dlang-gc-series d_blog
 excerpt: "この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。"
 ---
 

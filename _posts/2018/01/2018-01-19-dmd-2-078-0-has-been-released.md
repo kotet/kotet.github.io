@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DMD 2.078.0 Has Been Released【翻訳】"
-tags: dlang tech translation
+tags: dlang tech translation d_blog
 excerpt: "DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。"
 ---
 

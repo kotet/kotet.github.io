@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dの新しい名前修飾【抄訳】"
-tags: dlang tech translation
+tags: dlang tech translation d_blog
 excerpt: "D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC++コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。"
 ---
 

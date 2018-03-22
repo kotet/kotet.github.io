@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】"
-tags: dlang tech translation dlang-gc-series
+tags: dlang tech translation dlang-gc-series d_blog
 ---
 
 この記事は、

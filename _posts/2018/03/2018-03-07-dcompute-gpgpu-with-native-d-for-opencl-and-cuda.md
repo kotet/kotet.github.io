@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】"
-tags: dlang tech translation 
+tags: dlang tech translation d_blog
 excerpt: "DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。"
 ---
 
