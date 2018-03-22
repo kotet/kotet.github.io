@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "新・CTFEエンジンについて【翻訳】"
-tags: dlang tech translation
+tags: dlang tech translation d_blog
 excerpt: "9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"
 ---
 

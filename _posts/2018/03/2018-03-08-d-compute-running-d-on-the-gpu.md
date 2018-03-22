@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DCompute:GPU上で走るD【翻訳】"
-tags: dlang tech translation 
+tags: dlang tech translation d_blog
 excerpt: "これはDComputeの2つ目の記事です。 前回の記事では、DComputeの発展と小さな例を扱いました。 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。 しかし今はそんなことはありません。"
 ---
 

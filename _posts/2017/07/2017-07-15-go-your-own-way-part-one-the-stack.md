@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】"
-tags: dlang tech translation dlang-gc-series
+tags: dlang tech translation dlang_gc_series d_blog
 ---
 
 この記事は、
@@ -21,7 +21,7 @@ tags: dlang tech translation dlang-gc-series
 ---
 
 これは[GCシリーズ](https://dlang.org/blog/category/gc/)
-(訳注: [翻訳版]({% include relative %}/tags/#dlang-gc-series))の3番めの投稿です。
+(訳注: [翻訳版]({% include relative %}/tags/#dlang_gc_series))の3番めの投稿です。
 [最初の投稿](https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/)
 (訳注: [翻訳版]({% include relative %}{% post_url 2017/04/2017-04-16-dont-fear-the-reaper %}))で、
 私はDのガベージコレクタとそれを必要とする言語機能を紹介し、

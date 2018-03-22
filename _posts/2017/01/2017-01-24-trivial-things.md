@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "よしなしごと 1/24"
-tags: trivial-things
+tags: trivial_things
 ---
 
 今回もcontributionが途切れそうなので日記を書く。

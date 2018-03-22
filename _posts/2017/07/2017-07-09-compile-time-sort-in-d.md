@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dにおけるコンパイル時ソート【翻訳】"
-tags: dlang tech translation
+tags: dlang tech translation d_blog
 excerpt: "DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。
  「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました"
 ---

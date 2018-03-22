@@ -675,7 +675,7 @@
 # <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 layout: post
 title: "IPFSを理解する【翻訳】"
-tags: blockchain-train-journal tech translation ipfs
+tags: blockchain_train_journal tech translation ipfs
 excerpt: "この記事はBlockchain train journalの3本目の記事です。まずこちらから読み始めましょう:"
 ---
 

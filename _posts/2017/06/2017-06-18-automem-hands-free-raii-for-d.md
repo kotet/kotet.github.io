@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "automem: DのハンズフリーRAII【翻訳】"
-tags: dlang tech translation
+tags: dlang tech translation d_blog
 excerpt: "ガベージコレクトをする言語はフレーム問題に苦しむ傾向があり、Dもその例外ではありません。 マーク・アンド・スイープ・ガベージコレクタを取り入れることは簡単かつ便利な安全メモリ管理を実現しますが、 しかし、GCが一般的にパフォーマンスキラーであるという広まった認識、 たったそれだけのために多くの潜在的ユーザを遠ざけてしまいます。"
 ---
 

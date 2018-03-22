@@ -675,7 +675,7 @@
 # <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 layout: post
 title: "非中央集権型ストレージシステムを選ぶ【翻訳】"
-tags: blockchain-train-journal tech translation ipfs
+tags: blockchain_train_journal tech translation ipfs
 excerpt: "この記事はBlockchain train journalのパート2です、こちらから読み始めましょう:"
 ---
 
