@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "死神を恐れないで - GCについて知る【翻訳】"
-tags: dlang tech translation dlang-gc-series d_blog
+tags: dlang tech translation dlang_gc_series d_blog
 excerpt: ‪"Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬"
 ---
 
