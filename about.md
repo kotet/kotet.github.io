@@ -41,7 +41,7 @@ excerpt: このサイトと自分について、それと関連するサイト�
 
 名字の読みを定期的に間違えられる。
 
-[POTS:体位性頻脈](http://potsanddysautonomiajapan.org/pots/)により1年間療養、その後愛知県立大学情報科学部に入学予定。
+[POTS:体位性頻脈](http://potsanddysautonomiajapan.org/pots/)により1年間療養、その後愛知県立大学情報科学部に入学。
 ちなみにまだ[治ってはいない]({% include relative %}{% post_url 2018/03/2018-03-09-tilt-of-the-dead %})。
 
 ### アカウント
