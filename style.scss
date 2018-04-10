@@ -98,7 +98,6 @@ dd {
 }
 
 ul {
-    display: inline;
     list-style: inside circle;
     padding-left: 0;
     li {
@@ -109,6 +108,10 @@ ul {
         margin-top: .25rem;
         margin-bottom: .5rem;
     }
+}
+
+ul.social {
+    display: inline;
 }
 
 ol {
