@@ -12,5 +12,11 @@ layout: default
     / <a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">マサカリを投げる</a>
   </p>
   <hr>
+
+  <p>目次</p>
+
+  {% include toc.html html=content %}
+
+  <hr>
   {{ content }}
 </div>
