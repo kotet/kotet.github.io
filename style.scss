@@ -206,6 +206,8 @@ pre code {
 }
 
 .highlight {
+    background: #eee;
+    overflow-x: auto;
     margin-bottom: 1rem;
     border-radius: 4px;
 }
@@ -880,10 +882,6 @@ tbody tr:nth-child(odd) th {
 .ad-wrapper > iframe {
     width:100%;
     height:6em;
-}
-
-.highlighter-rouge {
-    overflow-x: scroll;
 }
 
 .footnotes {
