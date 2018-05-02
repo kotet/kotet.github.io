@@ -7,9 +7,6 @@ excerpt: "非プログラマ向けリンク集。"
 
 非プログラマ向けリンク集。
 
-- [Aviutl_Bezier](#aviutl_bezier)
-- [Aviutl_Bezier2](#aviutl_bezier2)
-
 ## Aviutl_Bezier
 ベジェ曲線を使ったアニメーションが作れるAviutl拡張編集スクリプト。
 
