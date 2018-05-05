@@ -42,7 +42,7 @@ kramdownにもToC生成機能があるらしい。
 {% raw %}{% include toc.html html=content %}{% endraw %}
 ```
 
-これで`contents`内のhタグを探して自動的にToCを生成してくれる。
+これで`content`内のhタグを探して自動的にToCを生成してくれる。
 
 #### サニタイズ
 
