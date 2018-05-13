@@ -103,6 +103,32 @@ $ grep '\(.\)\1\{2\}' < /usr/share/dict/cracklib-small
 これを回避できないかちょっと試してみたが、どうも思うようにいかない。
 だれか正規表現に詳しい人がいたら教えてほしい。
 
+**追記:** 上記の問題を解決することができたのでここに書く。
+解決はできたがこれは拡張正規表現ではなくPerl互換正規表現(PCRE)である。
+仕組みを知りたい人は否定先読みでググってほしい。
+やたら複雑になって可読性が低下した上に、たぶんこういう答えは求められていない。
+
+```console
+$ cat test.txt 
+a
+aa
+aaa
+aaaa
+abbb
+abbbb
+aaab
+aaaab
+abbbc
+abbbbc
+aaaabbb
+$ grep -P '(^|(.)(?!\2))(.)\3{2}(?!\3)(.|$)' < test.txt
+aaa
+abbb
+aaab
+abbbc
+aaaabbb
+```
+
 #### 2: [@jjjohn_son](https://twitter.com/jjjohn_son)の解釈 - "bookkeep"
 
 「繰り返し」が3回続く、という解釈。
