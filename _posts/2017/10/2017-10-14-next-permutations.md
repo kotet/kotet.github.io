@@ -88,3 +88,9 @@ void main()
 ```
 
 "Heap's algorithm"というのを使っているらしいが、日本語の情報が全然なくてつらいので理解できたらまた別に記事を書こうと思う。
+
+### 追記
+
+Wikipediaの記事 "Heap's algorithm"を翻訳した。
+
+[Heapのアルゴリズム - Wikipedia](https://ja.wikipedia.org/wiki/Heap%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0)
