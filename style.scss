@@ -1,8 +1,7 @@
 ---
 ---
 
-$open-sans: sans-serif;
-$source-sans: sans-serif;
+$source-sans:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
 
 * {
     -webkit-box-sizing: border-box;
@@ -208,13 +207,13 @@ pre code {
 
 .highlight {
     background: #eee;
-    overflow-x: auto;
     margin-bottom: 1rem;
     border-radius: 4px;
 }
 
 .highlight pre {
     margin-bottom: 0;
+    overflow-x: scroll;
 }
 
 .gist .gist-file {
