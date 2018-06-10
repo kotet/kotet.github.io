@@ -211,9 +211,15 @@ pre code {
     border-radius: 4px;
 }
 
-.highlight pre {
-    margin-bottom: 0;
+div.highlight {
     overflow-x: scroll;
+    padding: 1rem;
+}
+
+.highlight pre {
+    display: inline;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .gist .gist-file {
