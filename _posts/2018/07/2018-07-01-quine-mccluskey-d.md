@@ -40,7 +40,12 @@ mathjax: on
 
 この真理値表から機械的に積和形の式を書くとめっちゃ長くなるが、論理変数の数が最も少ない最簡形まで簡単化すると下のようにめっちゃ短い2通りの論理式になる。
 
-\\(f(A,B,C,D) = B \overline{C} \overline{D} + A \overline{D} + A C = B \overline{C} \overline{D} + A \overline{B} + A C\\)
+\\(
+    \begin{align}
+    f(A,B,C,D) &= B \overline{C} \overline{D} + A \overline{D} + A C\\\
+    &= B \overline{C} \overline{D} + A \overline{B} + A C
+    \end{align}    
+\\)
 
 論理式が簡単になると何が嬉しいのかというと、まず人間が読めるようになるというのがある。
 文字数が減ると入力間違いが減る。
@@ -187,7 +192,16 @@ unittest
 }
 ```
 
-`hammingDistance(a, b) == 1`のとき、`a`、`b`は\\(X\cdot P + \overline{X}\cdot P = (X + \overline{X})\cdot P = I\cdot P = P\\)を用いてマージできる。
+`hammingDistance(a, b) == 1`のとき、`a`、`b`は
+
+\\(
+    \begin{align}
+    X\cdot P + \overline{X}\cdot P &= (X + \overline{X})\cdot P\\\
+    &= I\cdot P = P
+    \end{align}
+\\)
+
+を用いてマージできる。
 
 ```d
 Conjunction merge(Conjunction a, Conjunction b)
@@ -233,7 +247,7 @@ unittest
 そうしてしまうとマクラスキー要素がなくなってしまうのでちゃんと書く。
 
 あと、ここでマージ元を覚えておく。
-そのために`TaggedConjuction`というものを新たに作って、関数内部ではそれを使うようにしている。
+そのために`TaggedConjunction`というものを新たに作って、関数内部ではそれを使うようにしている。
 
 ```d
 DNF[] qm(DNF dnfin, size_t[] dontcare)
