@@ -3,7 +3,11 @@ layout: default
 ---
 
 <header>
-    <h1><a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}">#{{ page.tags[0] }}</a> {{ page.title }}</h1>
+    <h1>
+        <a href="{% include relative %}/tags/#{{ page.tags[0] | downcase }}">#{{ page.tags[0] }}</a> {{ page.title }}</h1>
+    <p>
+        <time>{{ page.date | date_to_string }}</time>
+    </p>
     <p>
         {% for tag in page.tags %}
         <a href="{% include relative %}/tags/#{{ tag | downcase }}">#{{ tag }}</a>
@@ -21,6 +25,10 @@ layout: default
 </article>
 <footer>
     <p>{{ page.title }}</p>
+
+    <p>
+        <time>{{ page.date | date_to_string }}</time>
+    </p>
 
     <section class="tags">
         {% for tag in page.tags %}
