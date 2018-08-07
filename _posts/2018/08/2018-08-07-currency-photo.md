@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "仮想通貨の写真素材を手に入れた"
-tags: essay
+tags: essay log
 image: 2018/08/currency.jpg
 ---
 
