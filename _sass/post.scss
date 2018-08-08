@@ -9,6 +9,10 @@ article {
     }
     pre.highlight {
         overflow: auto;
+        word-break: keep-all;
+        code {
+            word-break: keep-all;
+        }
     }
     
     ul {
