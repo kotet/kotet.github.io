@@ -160,6 +160,8 @@ main {
 }
 
 .toc {
+    max-height: calc(100vh - 20em);
+    overflow-y: auto;
     ul {
         padding-left:1em;
     }
