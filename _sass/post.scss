@@ -20,6 +20,7 @@ article {
 
     li {
         list-style: unset;
+        line-height: 2;
     }
 
     table {
@@ -38,5 +39,10 @@ article {
         margin: 0;
         padding-left: 1em;
         border-left: 10px double lightgray;
+    }
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
     }
 }

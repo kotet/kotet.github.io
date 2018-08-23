@@ -8,13 +8,16 @@ html, body {
 }
 
 * {
-    max-width: 100%;
     word-break: break-word;
 }
 
 a {
     color: steelblue;
     text-decoration: none;
+}
+
+p {
+    line-height: 2;
 }
 
 a:hover {
@@ -160,7 +163,7 @@ main {
 }
 
 .toc {
-    max-height: calc(100vh - 20em);
+    max-height: calc(100vh - 30em);
     overflow-y: auto;
     ul {
         padding-left:1em;
