@@ -18,6 +18,8 @@ excerpt: "先に言っておくと、私はプロのデザイナーではあり�
 
 ---
 
+![ヘッダー]({% include relative %}/assets/2018/08/web-design-crush-cource.png)
+
 <!-- I will preface this by saying that I'm not professionally a designer. That being said, I like building pretty things and have had some success with that. A lot of developers seem overwhelmed by design, so I wanted to do a quick write\-up with visual examples with quick tips on how to improve the visuals of your site. Rules are made to be broken, but if you want to make a great website as easily as possible, these are some good rules of thumb! -->
 
 先に言っておくと、私はプロのデザイナーではありません。
