@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dlangman on Kotet&#39;s Personal Blog</title>
+    <link>https://kotet.jp/tags/dlangman/</link>
+    <description>Recent content in Dlangman on Kotet&#39;s Personal Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 12 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kotet.jp/tags/dlangman/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep Neural D-man</title>
+      <link>https://kotet.jp/2017/12/deep-neural-dman/</link>
+      <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2017/12/deep-neural-dman/</guid>
+      <description>D言語くん Advent Calendar 2017 11日めの記事。 空いていたので登録した。 ところでDeepAAというものがある。 ディープラーニングでアスキーアートを作る - Qiita こ</description>
+    </item>
+    
+    <item>
+      <title>〜D言語くんの分裂に関する更なる考察〜(代理投稿)</title>
+      <link>https://kotet.jp/2016/12/9c377a3c5befbb55620d/</link>
+      <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2016/12/9c377a3c5befbb55620d/</guid>
+      <description>この記事はQiitaに投稿されたものの転載です。 自分の記事を見て友人がD言語くんになったので記事を代理投稿する。D言語クラスタが怖いのか頑な</description>
+    </item>
+    
+    <item>
+      <title>待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った</title>
+      <link>https://kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</link>
+      <pubDate>Wed, 14 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</guid>
+      <description>この記事はQiitaに投稿されたものの転載です。 かのマハトマ・ガンジーも &amp;gt; もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられ</description>
+    </item>
+    
+    <item>
+      <title>改行とかのある文字列をエスケープしないで書きたい</title>
+      <link>https://kotet.jp/2016/12/170d11cc6b82592a8404/</link>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2016/12/170d11cc6b82592a8404/</guid>
+      <description>この記事はQiitaに投稿されたものの転載です。 AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。 エスケープされ見</description>
+    </item>
+    
+    <item>
+      <title>D言語くんの繁殖についての新説</title>
+      <link>https://kotet.jp/2016/12/b2bb34b3a139ceeb519e/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2016/12/b2bb34b3a139ceeb519e/</guid>
+      <description>この記事はQiitaに投稿されたもののフォークです。 これはD言語くん Advent Calendar 2016 3日目の記事です。 新個体の出現 2015年に繁殖期のD言語くんが発見</description>
+    </item>
+    
+  </channel>
+</rss>

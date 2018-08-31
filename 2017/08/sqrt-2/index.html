@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい…… ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        2の平方根をDだけで1万桁求める
+    </h2>
+    <p>
+        <time>2017-08-14</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#sqrt-d"><code>sqrt.d</code></a></li>
+<li><a href="#出力">出力</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>かなり前に円周率をたくさん求めたくなって、
+せっかくだからD言語だけで書いてみようと思い、
+<a href="http://tanakh.jp/posts/pi.html">こちら</a>の記事を参考に<a href="https://github.com/kotet/bigfixed">bigfixed</a>というライブラリを作った。
+これは<code>std.bigint</code>を使って固定小数点計算をするものである。
+しかし作っているうちに飽きてしまい完成する頃には円周率はどうでも良くなってきた。
+とりあえず計算の簡単な平方根を求めてみることにした。</p>
+
+<p>以下がそのコードである。
+Single-file packageになっているので<code>dub run --single --build=release sqrt.d</code>などとしてやるとこのファイル単体で動く。</p>
+
+<h4 id="sqrt-d"><code>sqrt.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">#!/usr/bin/env dub
+/+ dub.sdl:
+	name &#34;sqrt&#34;
+    dependency &#34;bigfixed&#34; version=&#34;*&#34;
++/
+void main()
+{
+    import std.stdio;
+
+    sqrt(2,10_000).writeln();
+}
+
+string sqrt(int n, size_t prec)
+{
+    import bigfixed : BigFixed;
+    import std.conv : to;
+    import std.math : ceil, log10;
+
+    immutable size_t q = (prec / log10(2.0)).ceil.to!size_t() + 1;
+    auto low = BigFixed(0, q);
+    auto high = BigFixed(n, q);
+
+    while ((high - low) != high.resolution)
+    {
+        immutable BigFixed mid = (high + low) &gt;&gt; 1;
+        immutable bool isLess = (mid * mid) &lt; n;
+        if (isLess)
+        {
+            low = mid;
+        }
+        else
+        {
+            high = mid;
+        }
+    }
+    return low.toDecimalString(prec);
+}</code></pre></div>
+<p>固定小数点数なので、整数と同じノリで二分法が使える。</p>
+
+<h4 id="出力">出力</h4>
+
+<pre><code>/// 前略
+9255474240448991887071069675242507745201229360810574142653234724064162141033353340551104521261750359028403745459186450472762434207177092979354010214096464502836834180407586081001407216192477179809859681115404464437285689592868319777977869346415984697451339177415379048778808300220583350467465553230285873258351
+</code></pre>
+
+<p><a href="http://www.h2.dion.ne.jp/~dra/suu/chi2/heihoukon/2.html">こちら</a>のサイトと値が一致した。
+なお、実ははじめ100万桁を計算しようとしたのだが、8時間たっても終了しなかったので断念している。
+速度に問題がある……</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

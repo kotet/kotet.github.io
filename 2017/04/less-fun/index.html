@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang Dのメタプログラミングは面白くない - C&#43;&#43;との比較【翻訳】 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 講演者の静かな声と、ほとんどC&#43;&#43;のコードのみを映し出すスライド(通常キーノートで期待していたものではありません)にもかかわらず、 Louis DionneのMeeting C&#43;&#43; 2016でのメタプログラミングについてのトーク は本当に面白いものでした。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        Dのメタプログラミングは面白くない - C&#43;&#43;との比較【翻訳】
+    </h2>
+    <p>
+        <time>2017-04-26</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#ケーススタディ-イベントシステム">ケーススタディ:イベントシステム</a></li>
+<li><a href="#コンパイル時ルックアップ">コンパイル時ルックアップ</a>
+<ul>
+<li><a href="#hana-mapでの実装">hana::mapでの実装</a></li>
+</ul></li>
+<li><a href="#両方を同時に得る">両方を同時に得る</a></li>
+<li><a href="#もっとうまくできないか"><strong>もっとうまくできないか?</strong></a>
+<ul>
+<li><a href="#インターフェース">インターフェース</a></li>
+<li><a href="#コンパイル時ルックアップ-1">コンパイル時ルックアップ</a></li>
+<li><a href="#trigger-のオーバーロード">trigger()のオーバーロード</a></li>
+<li><a href="#1対1">1対1</a></li>
+</ul></li>
+<li><a href="#dでのhana-map相当のもの">Dでのhana::map相当のもの</a>
+<ul>
+<li><a href="#前提条件">前提条件</a></li>
+<li><a href="#値の格納">値の格納</a></li>
+<li><a href="#オペレータ">オペレータ</a></li>
+<li><a href="#パフォーマンス">パフォーマンス</a></li>
+</ul></li>
+<li><a href="#要約">要約</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>この記事は、</p>
+
+<p><a href="https://epi.github.io/2017/03/18/less_fun.html">Metaprogramming is less fun in D</a></p>
+
+<p>を自分用に翻訳したものを
+<a href="https://epi.github.io/2017/03/18/less_fun.html#comment-3271891957">許可を得て</a>
+公開するものである。
+コードのコメントも翻訳してある。
+<a href="https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch }}/{{ page.path }}">ソース</a>に原文を併記してあるので、誤字や誤訳などを見つけたら今すぐ
+<a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">Pull request</a>だ!</p>
+
+<hr />
+
+<!-- Despite the speaker's calm voice and the slides showing almost nothing but
+code in C++ (which isn't what you'd normally expect from a keynote),
+Louis Dionne's [talk on metaprogramming at Meeting C++ 2016](https://www.youtube.com/watch?v=X_p9X5RzBJE)
+was a truly exciting one. -->
+
+<p>講演者の静かな声と、ほとんどC++のコードのみを映し出すスライド(通常キーノートに期待するものではありません)にもかかわらず、
+Louis Dionneの<a href="https://www.youtube.com/watch?v=X_p9X5RzBJE">Meeting C++ 2016でのメタプログラミングについてのトーク</a>
+は本当に面白いものでした。</p>
+
+<!-- It's been years since last time I did some metaprogramming in C++, and
+this talk brought me back old memories of that feeling when I'd put
+together some incredibly clever pieces of template black magic
+and it finally worked. _Oh, that was soo cunning. I'm the best hacker._
+I'm sure you know that feeling too. -->
+
+<p>私が最後にC++でメタプログラミングをしてから何年も立ち、
+私がテンプレートの信じられないほど巧妙な黒魔術の数々をまとめて、ついにそれを動かした時の古い記憶、感情をこのトークは思い起こさせました。
+<strong>なんて狡猾なんだろう、私は最高のハッカーだ。</strong>
+あなたもその気持ちを知っているでしょう。</p>
+
+<!-- I was happy to learn that the picture has changed significantly since that time,
+and cluttering the code with many nested levels of angle brackets
+adorned here and there with some double colons is no longer the thing.
+With [Hana](http://www.boost.org/doc/libs/release/libs/hana/)
+you basically write code that looks
+like your usual runtime function or operator calls, but under the hood
+these functions are generics that operate on the information
+carried in types of their arguments. There's no run-time
+state involved in these operations, so in the generated machine code
+they are all optimized out. Impressive. -->
+
+<p>私は状況が大きく変わったことを知って嬉しかったです。
+ダブルコロンによってあちこち装飾された、何重にもネストした山括弧でコードを散らかすことはもはや一般的ではありません。
+<a href="http://www.boost.org/doc/libs/release/libs/hana/">Hana</a>によって
+あなたは普通のランタイム関数またはオペレーターコールのように見えるコードを書きますが、その関数は裏ではそれらの引数の型からの情報に作用するジェネリクスになります。
+実行時の状態はこれらの操作に関係せず、生成されるマシンコードはすべて最適化されます。
+素晴らしい。</p>
+
+<!-- ## Case study: Event system -->
+
+<h3 id="ケーススタディ-イベントシステム">ケーススタディ:イベントシステム</h3>
+
+<!-- Let's take a look at the example discussed in the talk (starting at about 38:30).
+If you've watched it already, you can [skip this part](#better).
+I'll copy the entire example here so that it's close at hand for
+reference in further discussion. -->
+
+<p>このトークで議論されている例(だいたい38:30に始まります)を見てみましょう。
+あなたがそれをすでに見ているならば、<a href="#better">このパートをスキップする</a>こともできます。
+これ以降の議論で参考になるよう、私はここにサンプルの全体をコピーします。</p>
+
+<!-- Consider an event system that identifies events by their names.
+We can register any number of callbacks (handlers) to be called when an
+event is triggered. Later, we trigger the events,
+expecting that all callbacks registered for a given event will execute. -->
+
+<p>名前でイベントを識別するイベントシステムを考えてみましょう。
+イベントが発生した時に呼ばれるコールバック(ハンドラ)を複数登録することができます。
+その後イベントを発生させると、そのイベントに登録されたすべてのコールバックが実行されます。</p>
+
+<!-- {% highlight c++ %}
+int main() {
+  event_system events({"foo", "bar", "baz"});
+
+  events.on("foo", []() { std::cout << "foo triggered!" << '\n'; });
+  events.on("foo", []() { std::cout << "foo again!" << '\n'; });
+  events.on("bar", []() { std::cout << "bar triggered!" << '\n'; });
+  events.on("baz", []() { std::cout << "baz triggered!" << '\n'; });
+
+  events.trigger("foo");
+  events.trigger("baz");
+  // events.trigger("unknown"); // WOOPS! Runtime error!
+}
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  event_system events({<span style="color:#e6db74">&#34;foo&#34;</span>, <span style="color:#e6db74">&#34;bar&#34;</span>, <span style="color:#e6db74">&#34;baz&#34;</span>});
+
+  events.on(<span style="color:#e6db74">&#34;foo&#34;</span>, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;foo triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;foo&#34;</span>, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;foo again!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;bar&#34;</span>, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;bar triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;baz&#34;</span>, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;baz triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+
+  events.trigger(<span style="color:#e6db74">&#34;foo&#34;</span>);
+  events.trigger(<span style="color:#e6db74">&#34;baz&#34;</span>);
+  <span style="color:#75715e">// events.trigger(&#34;unknown&#34;); // おっと!ランタイムエラーです!
+</span><span style="color:#75715e"></span>}
+</code></pre></div>
+<!-- We start with a Java-style run-time only implementation. We use a hash map
+to find a vector of functions to call given an event name. Initially,
+an empty vector is inserted into the map for each known event. -->
+
+<p>Javaスタイルの実行時のみの実装から始めましょう。
+イベント名に応じた関数のvectorを探すためにハッシュマップを使います。
+はじめ、空のvectorが各イベントのマップに挿入されています。</p>
+
+<!-- {% highlight c++ %}
+struct event_system {
+  using Callback = std::function<void()>;
+  std::unordered_map<std::string, std::vector<Callback>> map_;
+
+  explicit event_system(std::initializer_list<std::string> events) {
+    for (auto const& event : events)
+      map_.insert({event, {}});
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> event_system {
+  <span style="color:#66d9ef">using</span> Callback <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>()<span style="color:#f92672">&gt;</span>;
+  std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Callback<span style="color:#f92672">&gt;&gt;</span> map_;
+
+  <span style="color:#66d9ef">explicit</span> <span style="color:#a6e22e">event_system</span>(std<span style="color:#f92672">::</span>initializer_list<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span> events) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">&amp;</span> event : events)
+      map_.insert({event, {}});
+  }
+</code></pre></div>
+<!-- Now, to register a callback, we find the right vector in the map, and push
+the callback at its end. -->
+
+<p>コールバックを登録するために、マップから正しいvectorを探し、その末尾にコールバックをプッシュします。</p>
+
+<!-- {% highlight c++ %}
+  template <typename F>
+  void on(std::string const& event, F callback) {
+    auto callbacks = map_.find(event);
+    assert(callbacks != map_.end() &&
+      "trying to add a callback to an unknown event");
+
+    callbacks->second.push_back(callback);
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F<span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">void</span> on(std<span style="color:#f92672">::</span>string <span style="color:#66d9ef">const</span><span style="color:#f92672">&amp;</span> event, F callback) {
+    <span style="color:#66d9ef">auto</span> callbacks <span style="color:#f92672">=</span> map_.find(event);
+    assert(callbacks <span style="color:#f92672">!=</span> map_.end() <span style="color:#f92672">&amp;&amp;</span>
+      <span style="color:#e6db74">&#34;trying to add a callback to an unknown event&#34;</span>);
+
+    callbacks<span style="color:#f92672">-&gt;</span>second.push_back(callback);
+  }
+</code></pre></div>
+<!-- Finally, triggering an event causes calling all callbacks in the vector for
+the specified event. -->
+
+<p>そしてイベントを発生させるとそのイベントのvectorの中にあるすべてのコールバックが呼ばれます。</p>
+
+<!-- {% highlight c++ %}
+  void trigger(std::string const& event) {
+    auto callbacks = map_.find(event);
+    assert(callbacks != map_.end() &&
+      "trying to trigger an unknown event");
+
+    for (auto& callback : callbacks->second)
+      callback();
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">trigger</span>(std<span style="color:#f92672">::</span>string <span style="color:#66d9ef">const</span><span style="color:#f92672">&amp;</span> event) {
+    <span style="color:#66d9ef">auto</span> callbacks <span style="color:#f92672">=</span> map_.find(event);
+    assert(callbacks <span style="color:#f92672">!=</span> map_.end() <span style="color:#f92672">&amp;&amp;</span>
+      <span style="color:#e6db74">&#34;trying to trigger an unknown event&#34;</span>);
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> callback : callbacks<span style="color:#f92672">-&gt;</span>second)
+      callback();
+  }
+</code></pre></div>
+<!-- That's all well and good, but frequently it's already known at design time
+what the possible events are and when they should be triggered.
+So why do we have to pay for the search in map each time we trigger an event?
+And worse, if we mistype the name of an event, we may be unlucky enough
+to only know it when it's too late. -->
+
+<p>これでもいいのですが、発生しうるイベントには何があるか、それがいつ発生するべきかはたいてい設計時点でわかっています。
+ならば、イベントが発生するたびに毎回マップを検索するコストを払う必要はないでしょう？
+更に悪いことに、イベントの名前を打ち間違えた場合、運が悪いと手遅れになってから気づくことになります。</p>
+
+<!-- ## Compile-time lookup -->
+
+<h3 id="コンパイル時ルックアップ">コンパイル時ルックアップ</h3>
+
+<!-- Hana can save us such annoyances by allowing us to do the lookup at compile
+time, with only cosmetic changes to the above code. First, we update the call site
+with compile-time string literals in place of the run-time ones. -->
+
+<p>Hanaは上のコードをちょっと修正するだけでコンパイル時のルックアップを可能にし、そのような苛立ちから我々を救ってくれます。
+まず、実行時のそれと同じ場所のコンパイル時文字列リテラルによってコールサイトを書き換えます。</p>
+
+<!-- {% highlight c++ %}
+int main() {
+  auto events = make_event_system("foo"_s, "bar"_s, "baz"_s);
+
+  events.on("foo"_s, []() { std::cout << "foo triggered!" << '\n'; });
+  events.on("foo"_s, []() { std::cout << "foo again!" << '\n'; });
+  events.on("bar"_s, []() { std::cout << "bar triggered!" << '\n'; });
+  events.on("baz"_s, []() { std::cout << "baz triggered!" << '\n'; });
+  // events.on("unknown"_s, []() {}); // compiler error!
+
+  events.trigger("foo"_s); // no overhead
+  events.trigger("baz"_s);
+  // events.trigger("unknown"_s); // compiler error!
+}
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">auto</span> events <span style="color:#f92672">=</span> make_event_system(<span style="color:#e6db74">&#34;foo&#34;</span>_s, <span style="color:#e6db74">&#34;bar&#34;</span>_s, <span style="color:#e6db74">&#34;baz&#34;</span>_s);
+
+  events.on(<span style="color:#e6db74">&#34;foo&#34;</span>_s, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;foo triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;foo&#34;</span>_s, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;foo again!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;bar&#34;</span>_s, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;bar triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  events.on(<span style="color:#e6db74">&#34;baz&#34;</span>_s, []() { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;baz triggered!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>; });
+  <span style="color:#75715e">// events.on(&#34;unknown&#34;_s, []() {}); // コンパイルエラー!
+</span><span style="color:#75715e"></span>
+  events.trigger(<span style="color:#e6db74">&#34;foo&#34;</span>_s); <span style="color:#75715e">// オーバーヘッドはありません
+</span><span style="color:#75715e"></span>  events.trigger(<span style="color:#e6db74">&#34;baz&#34;</span>_s);
+  <span style="color:#75715e">// events.trigger(&#34;unknown&#34;_s); // コンパイルエラー!
+</span><span style="color:#75715e"></span>}
+</code></pre></div>
+<!-- Note the `_s` suffix on all event names. It requires a
+[special string literal operator](http://www.boost.org/doc/libs/1_63_0/libs/hana/doc/html/structboost_1_1hana_1_1string.html#ad77f7afff008c2ce15739ad16a8bf0a8)
+which will probably make it into the C++ standard in 2020, but it's
+already implemented in Clang and GCC, so why not using it now?
+The operator builds a stateless object
+where the string itself is stored in the object's type, e.g.
+`"foo"_s` becomes an instance of `hana::string<'f', 'o', 'o'>`. -->
+
+<p>各イベント名の<code>_s</code>サフィックスに注目してください。
+それはおそらく2020年にC++標準になるであろう
+<a href="http://www.boost.org/doc/libs/1_63_0/libs/hana/doc/html/structboost_1_1hana_1_1string.html#ad77f7afff008c2ce15739ad16a8bf0a8">特殊文字列リテラルオペレータ</a>
+を必要としますが、ClangとGCCではすでに実装されています。
+使わない理由はありませんね?
+このオペレータは文字列をオブジェクトの型に持つステートレスなオブジェクトを構築します。
+たとえば<code>&quot;foo&quot;_s</code>は<code>hana::string&lt;'f', 'o', 'o'&gt;</code>のインスタンスになります。</p>
+
+<!-- ### Implementation with hana::map -->
+
+<h4 id="hana-mapでの実装">hana::mapでの実装</h4>
+
+<!-- Now let's replace the run-time map with `hana::map`,
+declaring a vector of callbacks for each event with a bit of
+[template parameter pack expansion magic](http://en.cppreference.com/w/cpp/language/parameter_pack). -->
+
+<p>実行時マップを、各イベントのコールバックのvectorをちょっとした
+<a href="http://en.cppreference.com/w/cpp/language/parameter_pack">テンプレートパラメータパック拡張マジック</a>
+で宣言する<code>hana::map</code>で置き換えましょう。</p>
+
+<!-- {% highlight c++ %}
+template <typename ...Events>
+struct event_system {
+  using Callback = std::function<void()>;
+  hana::map<hana::pair<Events, std::vector<Callback>>...> map_;
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> ...Events<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> event_system {
+  <span style="color:#66d9ef">using</span> Callback <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>()<span style="color:#f92672">&gt;</span>;
+  hana<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span>hana<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span>Events, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Callback<span style="color:#f92672">&gt;&gt;</span>...<span style="color:#f92672">&gt;</span> map_;
+</code></pre></div>
+<!-- Now we can just default construct the `event_system`, which will
+default construct `map_`, and
+consequently all the vectors of callbacks it contains
+will be initialized to empty vectors. -->
+
+<p>これでデフォルトで<code>event_system</code>が構築し、デフォルトで<code>map_</code>を構築することができ、
+その結果として含まれるすべてのコールバックのvectorが空のvectorに初期化されます。</p>
+
+<!-- {% highlight c++ %}
+template <typename ...Events>
+event_system<Events...> make_event_system(Events ...events) {
+  return {};
+}
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> ...Events<span style="color:#f92672">&gt;</span>
+event_system<span style="color:#f92672">&lt;</span>Events...<span style="color:#f92672">&gt;</span> make_event_system(Events ...events) {
+  <span style="color:#66d9ef">return</span> {};
+}
+</code></pre></div>
+<!-- Finally, we replace the run-time lookup with its compile-time equivalent. -->
+
+<p>最終的に、実行時ルックアップをコンパイル時のそれと置き換えます。</p>
+
+<!-- {% highlight c++ %}
+  template <typename Event, typename F>
+  void on(Event e, F callback) {
+    auto is_known_event = hana::contains(map_, e);
+    static_assert(is_known_event,
+      "trying to add a callback to an unknown event");
+
+    map_[e].push_back(callback);
+  }
+
+  template <typename Event>
+  void trigger(Event e) const {
+    auto is_known_event = hana::contains(map_, e);
+    static_assert(is_known_event,
+      "trying to trigger an unknown event");
+
+    for (auto& callback : map_[e])
+      callback();
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Event, <span style="color:#66d9ef">typename</span> F<span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">void</span> on(Event e, F callback) {
+    <span style="color:#66d9ef">auto</span> is_known_event <span style="color:#f92672">=</span> hana<span style="color:#f92672">::</span>contains(map_, e);
+    <span style="color:#66d9ef">static_assert</span>(is_known_event,
+      <span style="color:#e6db74">&#34;trying to add a callback to an unknown event&#34;</span>);
+
+    map_[e].push_back(callback);
+  }
+
+  <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Event<span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">void</span> trigger(Event e) <span style="color:#66d9ef">const</span> {
+    <span style="color:#66d9ef">auto</span> is_known_event <span style="color:#f92672">=</span> hana<span style="color:#f92672">::</span>contains(map_, e);
+    <span style="color:#66d9ef">static_assert</span>(is_known_event,
+      <span style="color:#e6db74">&#34;trying to trigger an unknown event&#34;</span>);
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> callback : map_[e])
+      callback();
+  }
+</code></pre></div>
+<!-- What happens here is that the vector that should be accessed is determined
+at compile time, and each instantiation of the function templates
+above just accesses its own vector. We expect that there's no additional run-time
+cost compared to hand written functions for each event, e.g. -->
+
+<p>アクセスすべきvectorはコンパイル時に決定され、上記の各関数テンプレートのインスタンス化はそのvectorにアクセスするだけです。
+たとえば下のように各イベントの関数を手書きするのと比べて追加の実行時コストはないでしょう。</p>
+
+<!-- {% highlight c++ %}
+  template <typename F>
+  void trigger_foo(F callback) {
+    for (auto& callback : callbacks_foo)
+      callback();
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F<span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">void</span> trigger_foo(F callback) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> callback : callbacks_foo)
+      callback();
+  }
+</code></pre></div>
+<!-- If your application triggers events frequently, changing from dynamic to static
+dispatch may result in a noticeable speedup. The chart below
+shows the time to call `trigger` for an event with exactly one callback
+registered. With compile-time lookup based on `hana::map` it's about 14 times
+faster than run-time lookup in `unordered_map`, and only about 15% slower
+than just calling an `std::function`. -->
+
+<p>アプリケーションがイベントを頻繁に発生させるとき、動的なディスパッチを性的なものに置き換えると顕著な高速化になります。
+下のチャートは1つのコールバックが登録されているイベントの<code>trigger</code>を呼ぶ時間を表しています。
+<code>hana::map</code>を基にしたコンパイル時ルックアップは大体<code>unordered_map</code>の実行時ルックアップの14倍速く、
+ただ<code>std::function</code>を呼び出すことと比べて15%遅いだけです。</p>
+
+<!-- ![Event system performance: D vs. C++](/img/cppdmeta/hana.svg) -->
+
+<p><img src="/assets/2017/04/26/hana.svg" alt="Event system performance: D vs. C++" /></p>
+
+<!-- ### You can have both at the same time -->
+
+<h3 id="両方を同時に得る">両方を同時に得る</h3>
+
+<!-- There are cases in which the event to be triggered will be decided only
+at run time, e.g.: -->
+
+<p>発生するイベントが実行時にのみ決まる場合があります。たとえば:</p>
+
+<!-- {% highlight c++ %}
+  std::string e = read_from_stdin();
+  events.trigger(e);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  std<span style="color:#f92672">::</span>string e <span style="color:#f92672">=</span> read_from_stdin();
+  events.trigger(e);
+</code></pre></div>
+<!-- Our event system can be easily extended to handle such cases.
+Just like in the first version with run-time only lookup, we use an
+unordered map. We don't want to store the callback vectors twice, so
+the values in the map are pointers to vectors already stored inside the
+static map. -->
+
+<p>このイベントシステムはそのようなケースをハンドリングするために容易に拡張できます。
+最初の実行時オンリールックアップを使ったバージョンのように、unordered mapを使います。
+コールバックvectorを2重に持ちたくないため、マップの値はすでに静的マップに保存されているvectorへのポインタです。</p>
+
+<!-- {% highlight c++ %}
+  std::unordered_map<std::string, std::vector<Callback>* const> dynamic_;
+
+  event_system() {
+    hana::for_each(hana::keys(map_), [&](auto event) {
+      dynamic_.insert({event.c_str(), &map_[event]});
+    });
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Callback<span style="color:#f92672">&gt;*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">&gt;</span> dynamic_;
+
+  event_system() {
+    hana<span style="color:#f92672">::</span>for_each(hana<span style="color:#f92672">::</span>keys(map_), [<span style="color:#f92672">&amp;</span>](<span style="color:#66d9ef">auto</span> event) {
+      dynamic_.insert({event.c_str(), <span style="color:#f92672">&amp;</span>map_[event]});
+    });
+  }
+</code></pre></div>
+<!-- Being able to trigger the run-time-determined event is now just a matter
+of overloading the trigger method that does exactly the same as the
+one we had in the pure run-time implementation. -->
+
+<p>実行時に決定するイベントを発生させられるようにするには、純実行時実装と同じようにトリガメソッドをオーバーロードするだけです。</p>
+
+<!-- {% highlight c++ %}
+  void trigger(std::string const& event) {
+    auto callbacks = dynamic_.find(event);
+    assert(callbacks != dynamic_.end() &&
+      "trying to trigger an unknown event");
+
+    for (auto& callback : *callbacks->second)
+      callback();
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">trigger</span>(std<span style="color:#f92672">::</span>string <span style="color:#66d9ef">const</span><span style="color:#f92672">&amp;</span> event) {
+    <span style="color:#66d9ef">auto</span> callbacks <span style="color:#f92672">=</span> dynamic_.find(event);
+    assert(callbacks <span style="color:#f92672">!=</span> dynamic_.end() <span style="color:#f92672">&amp;&amp;</span>
+      <span style="color:#e6db74">&#34;trying to trigger an unknown event&#34;</span>);
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> callback : <span style="color:#f92672">*</span>callbacks<span style="color:#f92672">-&gt;</span>second)
+      callback();
+  }
+</code></pre></div>
+<!-- <a name="better"></a> -->
+
+<p><a name="better"></a></p>
+
+<!-- ## _Can we do better_? -->
+
+<h3 id="もっとうまくできないか"><strong>もっとうまくできないか?</strong></h3>
+
+<!-- At this point in the talk (59:30) you'll hear Louis saying: -->
+
+<p>トークのこの時点(59:30)で、Louisがこう言っています:</p>
+
+<!-- > All I need to support compile-time and run-time lookup is a single overload.
+> That is pretty powerful, and I do not know any other language that allows me to do that. -->
+
+<blockquote>
+<p>コンパイル時と実行時のルックアップのサポートに必要なのはシングルオーバーロードです。
+それは非常に強力で、私は他にそれが可能な言語を知りません。</p>
+</blockquote>
+
+<!-- It was obvious to me that [D](http://dlang.org/)
+could do it better, and it took me about 10 minutes to sketch an equivalent
+implementation.
+But I can understand: if I were to advertise effects of years of hard work
+I'd done, I wouldn't want people to look for something else. ;) -->
+
+<p><a href="http://dlang.org/">D言語</a>がそれをもっとうまくできるのは明らかでした、10分で同等の実装を作ることができました。
+しかし私は理解できます: もし私が何年もの努力の積み重ねの結果を宣伝するならば、私は人々が他のものを探すことを望みません。 ;)</p>
+
+<!-- Don't you know D? You could've heard of it as "C++ done right", but that's not entirely
+true. D also has its own baggage of bad decisions and quirks.
+Over time, it's collected ad-hoc standard library additions in completely different styles.
+Its documentation is sometimes outdated or misses that one thing you're looking for.
+Its community and the support it receives from the industry are
+incomparably smaller to that received by C++.
+But leaving all of that aside, after years of using D for various tasks,
+I must agree that it really lives up to its promise of being ["a practical language for practical programmers who need to get the job done quickly,
+reliably, and leave behind maintainable, easy to understand code."](https://dlang.org/overview.html) -->
+
+<p>Dをご存じでない?
+「ちゃんとしたC++」として聞いたことがあるかもしれませんが、それは完全には真実ではありません。
+Dは悪い決定の荷物や癖を抱えてもいます。
+時間の経過とともに、全く異なるスタイルの追加がアドホックな標準ライブラリに集まってきます。
+ドキュメントは時に時代遅れになっているか、探しているものが抜けています。
+そのコミュニティも、それが業界から受けたサポートもC++で受けたそれとは比較にならないほど小さなものです。
+しかしそのすべてをさておいて、何年もDを様々なタスクに使用した上で、
+<a href="https://dlang.org/overview.html">&ldquo;信頼性・保守性の高い・読みやすいコードを書いて仕事をサクサク進める必要のある 現実的なプログラマのための、 現実的な言語&rdquo;</a> <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>
+であるという約束に恥じないものであるということに私は同意せざるを得ません。</p>
+
+<!-- So let's see if D can do The Overload Trick and at least
+match the C++/Hana duo in expressiveness in this use case. -->
+
+<p>そこで、Dがこのオーバーロードトリックをすることができ、表現力でC++/Hanaの組み合わせと少なくともこのユースケースで肩を並べるものかどうか見てみましょう。</p>
+
+<!-- ### Interface -->
+
+<h4 id="インターフェース">インターフェース</h4>
+
+<!-- Let's start with what we expect at the call site. -->
+
+<p>コールサイトで期待されるものから始めましょう。</p>
+
+<!-- {% highlight d %}
+void main() {
+  EventSystem!("foo", "bar", "baz") events;
+
+  events.on!"foo"(() { writeln("foo triggered!"); });
+  events.on!"foo"(() { writeln("foo again!"); });
+  events.on!"bar"(() { writeln("bar triggered!"); });
+  events.on!"baz"(() { writeln("baz triggered!"); });
+  // events.on!"unknown"(() {}); // compile error!
+
+  events.trigger!"foo";
+  events.trigger!"baz";
+  events.trigger("bar"); // overload for dynamic dispatch
+  // events.trigger!"unknown"; // compile error!
+}
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main() {
+  EventSystem!(&#34;foo&#34;, &#34;bar&#34;, &#34;baz&#34;) events;
+
+  events.on!&#34;foo&#34;(() { writeln(&#34;foo triggered!&#34;); });
+  events.on!&#34;foo&#34;(() { writeln(&#34;foo again!&#34;); });
+  events.on!&#34;bar&#34;(() { writeln(&#34;bar triggered!&#34;); });
+  events.on!&#34;baz&#34;(() { writeln(&#34;baz triggered!&#34;); });
+  // events.on!&#34;unknown&#34;(() {}); // コンパイルエラー!
+
+  events.trigger!&#34;foo&#34;;
+  events.trigger!&#34;baz&#34;;
+  events.trigger(&#34;bar&#34;); // 動的ディスパッチのオーバーロード
+  // events.trigger!&#34;unknown&#34;; // コンパイルエラー!
+}</code></pre></div>
+<!-- It looks pretty similar to what we had in C++.
+The most important difference is that
+in D, there's no special syntax for compile-time strings, and regular strings
+can be passed as template parameters.
+For this reason, the idea of stateless objects
+with strings encoded in types won't add any value here (but it is
+technically possible to implement it, see below). -->
+
+<p>C++でやったのとなかなか良く似ています。
+Dでの最も重要な違いは、コンパイル時文字列のための特殊なシンタックスがなく、普通の文字列がテンプレートパラメータとして渡せることです。
+そのため、型でエンコードされた文字列によるステートレスなオブジェクトのアイデアは意味がありません
+(しかし実装することは技術的に可能です。下を見てください)。</p>
+
+<!-- The `EventSystem` struct template can
+be instantiated by just passing the event names as arguments,
+and the default static initializers are sufficient for all its
+members, so there's no need for a factory function. -->
+
+<p><code>EventSystem</code>構造体テンプレートはただイベント名を引数として渡すだけでインスタンス化でき、
+すべてのメンバがデフォルト静的初期化子で事足り、ファクトリ関数を必要としません。</p>
+
+<!-- Function templates `on` and `trigger` also accept compile-time `string`s.
+Since each string is a single token, the parentheses around the
+template argument lists can be skipped, just as those around
+an empty run-time argument list. This minor syntactic quirk
+turned `trigger!("foo")()` into less cluttered `trigger!"foo"`. -->
+
+<p>関数テンプレート<code>on</code>と<code>trigger</code>はコンパイル時<code>string</code>も受け入れます。
+各文字列はシングルトークンのため、空の実行時引数リストと同じように、テンプレート引数リストの括弧は省略することができます。
+この小さな構文の特徴は<code>trigger!(&quot;foo&quot;)()</code>をより乱雑さのない<code>trigger!&quot;foo&quot;</code>にします。</p>
+
+<!-- The distiction between run-time and compile-time arguments is preserved
+with regular language rules. You don't need to remember that in this 
+particular case  the `_s` suffix implies a compile-time entity.
+Note that we trigger `foo` and `baz` via static dispatch, but we also
+expect that an overload is available that accepts a run-time
+evaluated event name when we trigger `bar`. -->
+
+<p>実行時とコンパイル時引数の区別は、標準の言語規則で決まっています。
+<code>_s</code>サフィックスがコンパイル時エンティティを暗示する特殊なケースを覚えておく必要はありません。
+<code>foo</code>や<code>baz</code>を静的ディスパッチで発生させることに注目してください。
+しかし<code>bar</code>を発生させるとき、実行時に評価されるイベント名を受け入れるオーバーロードも利用できるでしょう。</p>
+
+<!-- ### Compile-time lookup -->
+
+<h4 id="コンパイル時ルックアップ-1">コンパイル時ルックアップ</h4>
+
+<!-- Now on to the implementation: -->
+
+<p>ここから実装です:</p>
+
+<!-- {% highlight d %}
+struct EventSystem(events...) {
+  alias Callback = void delegate();
+  Callback[][events.length] callbacks_;   // like std::array<std::vector<Callback>, sizeof...(events)> in C++
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct EventSystem(events...) {
+  alias Callback = void delegate();
+  Callback[][events.length] callbacks_;   // C++の std::array&lt;std::vector&lt;Callback&gt;, sizeof...(events)&gt; のようなもの</code></pre></div>
+<!-- There's no equivalent of `hana::map` in [Phobos](http://dlang.org/phobos/),
+but since all values in the map are of the same type, we can
+declare a fixed-length array of them and use
+[`staticIndexOf`](https://dlang.org/phobos/std_meta.html#staticIndexOf)
+to map event names to indices in the array. The [argument list](http://dlang.org/ctarguments.html)
+that this struct template receives as `events...` may include various compile-time
+entities, including types, template names, constant values of different primitive
+or composite types. In particular, `string`s will do just fine.  -->
+
+<p><a href="http://dlang.org/phobos/">Phobos</a>には<code>hana::map</code>と同等のものはありません。
+しかしマップ内のすべての値は同じ型のため、その固定長配列を宣言し、イベント名を配列のインデックスに対応させるために
+<a href="https://dlang.org/phobos/std_meta.html#staticIndexOf"><code>staticIndexOf</code></a>を使うことができます。
+<code>events...</code>としてこの構造体テンプレートが受け取る<a href="http://dlang.org/ctarguments.html">引数リスト</a>は型や、
+テンプレート名、異なるプリミティブまたはコンポジット型の定数を含む様々なコンパイル時エンティティを含みます。
+特に、文字列はうまく行くでしょう。</p>
+
+<!-- The implementation of `on` and `trigger` also looks pretty
+similar to the C++ version, except that first we look for the index
+of the requested vector of callbacks, and then get the vector from the
+array via this index. -->
+
+<p><code>on</code>と<code>trigger</code>の実装もC++バージョンとよく似ていますが、
+これは要求されたコールバックのvectorのインデックスを探し、そのインデックスを介して配列からvectorを取得します。</p>
+
+<!-- {% highlight d %}
+  void on(string event)(Callback c) {
+    enum index = staticIndexOf!(event, events);
+    static assert(index >= 0,
+      "trying to add a callback to an unknown event: " ~ event);
+
+    callbacks_[index] ~= c;
+  }
+
+  void trigger(string event)() {
+    enum index = staticIndexOf!(event, events);
+    static assert(index >= 0,
+      "trying to trigger an unknown event: " ~ event);
+
+    foreach (callback; callbacks_[index])
+      callback();
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  void on(string event)(Callback c) {
+    enum index = staticIndexOf!(event, events);
+    static assert(index &gt;= 0,
+      &#34;trying to add a callback to an unknown event: &#34; ~ event);
+
+    callbacks_[index] ~= c;
+  }
+
+  void trigger(string event)() {
+    enum index = staticIndexOf!(event, events);
+    static assert(index &gt;= 0,
+      &#34;trying to trigger an unknown event: &#34; ~ event);
+
+    foreach (callback; callbacks_[index])
+      callback();
+  }</code></pre></div>
+<!-- Note the `enum` in place where C++ version used `auto`. The type is
+also inferred automatically, but using `enum` forces `index` to be
+computed at compile time and only then it can be used in `static assert`. -->
+
+<p>C++バージョンで<code>auto</code>を使用していた場所の<code>enum</code>に注目してください。
+この型も自動的に推論されますが、<code>enum</code>を使うと<code>index</code>をコンパイル時に計算することが強制され、
+<code>static assert</code>でのみ使用することができます。</p>
+
+<!-- The lookup (compile-time linear search with `staticIndexOf`) is done only once
+per instantiation (i.e. once per key),
+and there is no run-time cost associated with it.
+Also, indexing the array via statically known index doesn't
+add any run-time overhead. -->
+
+<p>このルックアップ(<code>staticIndexOf</code>によるコンパイル時線形探索)はインスタンス化あたり(つまりキーあたり)一度のみ行われ、
+結びつける実行時コストはありません。
+また、静的に判明するインデックスによる配列のインデクシングには実行時のオーバヘッドはありません。</p>
+
+<!-- ### Overloading trigger() -->
+
+<h4 id="trigger-のオーバーロード">trigger()のオーバーロード</h4>
+
+<!-- And now, the overload of `trigger` accepting a dynamic key.
+There's nothing unusual in having both template and non-template
+overloads side by side, so let's focus only on the implementation of run-time lookup.
+One way would be to use a [built-in associative array](https://dlang.org/spec/hash-map.html),
+populated during construction of the map object (you can try it yourself),
+but for a small number of keys, a linear search comparing the
+requested key with all known keys shouldn't be much worse. -->
+
+<p>そして、動的なキーを受け付けるよう<code>trigger</code>をオーバーロードします。
+テンプレートと非テンプレートオーバーロードの両方が隣り合って有るのは珍しいことではないため、
+実行時ルックアップの実装のみに専念しましょう。
+マップオブジェクトの構築中にある(自分で試すことができます)
+<a href="https://dlang.org/spec/hash-map.html">組み込み連想配列</a>を使うこともできますが、
+少数のキーに対しては、すべてのキーと要求されたキーとを比較する線形探索でもそんなに悪くないはずです。</p>
+
+<!-- {% highlight d %}
+  void trigger(string event) {
+    foreach (i, e; events) {
+      if (event == e) {
+        foreach (c; callbacks_[i])
+          c();
+        return;
+      }
+    }
+    assert(false, "trying to trigger an unknown event: " ~ event);
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  void trigger(string event) {
+    foreach (i, e; events) {
+      if (event == e) {
+        foreach (c; callbacks_[i])
+          c();
+        return;
+      }
+    }
+    assert(false, &#34;trying to trigger an unknown event: &#34; ~ event);
+  }</code></pre></div>
+<!-- What's going on here? The outer `foreach` iterates over `events`
+which is a compile-time tuple of `string`s. It's not really a loop--the
+compiler pastes the body of this _static_ `foreach` once for each
+element of the tuple, substituting that element for `e` and its index
+for `index`. The result is as if we have three `if`s one after another: -->
+
+<p>何が起きているのでしょう?
+外側の<code>foreach</code>は、<code>string</code>のコンパイル時タプルである<code>events</code>をイテレートしています。
+これは本当はループではありません – コンパイラはこの<strong>静的</strong><code>foreach</code>の本文を一度タプルの各要素に対してペーストし、
+その要素を<code>e</code>に、インデックスを<code>index</code>に置き換えます。
+結果としてまるで3つの<code>if</code>が連続してあるようになります:</p>
+
+<!-- {% highlight d %}
+      if (event == "foo") {
+        foreach (callback; callbacks_[0])
+          callback();
+        return;
+      }
+      if (event == "bar") {
+        foreach (callback; callbacks_[1])
+          callback();
+        return;
+      }
+      if (event == "baz") {
+        foreach (callback; callbacks_[2])
+          callback();
+        return;
+      }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">      if (event == &#34;foo&#34;) {
+        foreach (callback; callbacks_[0])
+          callback();
+        return;
+      }
+      if (event == &#34;bar&#34;) {
+        foreach (callback; callbacks_[1])
+          callback();
+        return;
+      }
+      if (event == &#34;baz&#34;) {
+        foreach (callback; callbacks_[2])
+          callback();
+        return;
+      }</code></pre></div>
+<!-- ### One-on-one -->
+
+<h4 id="1対1">1対1</h4>
+
+<!-- That's all. You can [download both versions](/files/cppdmeta.tar.gz),
+stare at the code for a while and compile them.
+The D version can be compiled with DMD, GDC or LDC. On my machine, it
+consistently compiles noticeably faster than the C++ one (minimum of 10
+consecutive attempts, all compiled on x86_64 with -O3): -->
+
+<p>これで全てです。
+<a href="https://epi.github.io/files/cppdmeta.tar.gz">両方のバージョンをダウンロードし</a>、しばらくコードを眺めコンパイルすることができます。
+DバージョンはDMD、GDCまたはLDCでコンパイルできます。
+私のマシン上では、C++のそれと比べて著しく速くコンパイルされました(最低10回の連続試行、すべてx86_64で-O3でコンパイル):</p>
+
+<!-- |            |  C++ (g++, clang++)  |     D (gdc, ldc2)  |
+|------------|:------:|:-------:|
+|GCC/GDC   6.2.0 |  0.98s |   0.45s |
+|Clang 3.9.1/LDC 1.1.0 |  1.09s |   0.67s | -->
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">C++ (g++, clang++)</th>
+<th align="center">D (gdc, ldc2)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>GCC/GDC   6.2.0</td>
+<td align="center">0.98s</td>
+<td align="center">0.45s</td>
+</tr>
+
+<tr>
+<td>Clang 3.9.1/LDC 1.1.0</td>
+<td align="center">1.09s</td>
+<td align="center">0.67s</td>
+</tr>
+</tbody>
+</table>
+
+<!-- I wouldn't draw any serious conclusions from the time it takes to
+compile a tiny toy program, but in general,
+[D was designed for fast compilation](http://www.drdobbs.com/cpp/increasing-compiler-speed-by-over-75/240158941),
+not to mention that the volume of library code brought in
+is much smaller. -->
+
+<p>小さなトイプログラムのコンパイルにかかる時間から重要な結論を引き出すことはできませんが、一般的に、
+<a href="http://www.drdobbs.com/cpp/increasing-compiler-speed-by-over-75/240158941">Dは高速なコンパイルができるよう設計されており</a>、
+取り込まれるライブラリコードの量がはるかに少ないというのは言うまでもありません。</p>
+
+<!-- And what if we mistyped a name of an event? The D frontend (common for
+all 3 major compilers) tries to balance
+between the volume and usefulness of error messages, and here
+it does the job very well. The only thing we'll see is: -->
+
+<p>そしてイベントの名前を打ち間違えた時どうなるか?
+Dフロントエンド(3つの主要なコンパイラ全てで共通)はエラーメッセージの量と有用性のバランスを取ろうとし、ここでは非常にうまく機能します。
+我々が見ることになるのはこれだけです:</p>
+
+<!-- {% highlight none %}
+es.d(23): Error: static assert  "trying to trigger an unknown event: unknown"
+es.d(102):        instantiated from here: trigger!"unknown"
+{% endhighlight %} -->
+
+<pre><code>es.d(23): Error: static assert  &quot;trying to trigger an unknown event: unknown&quot;
+es.d(102):        instantiated from here: trigger!&quot;unknown&quot;
+</code></pre>
+
+<!-- And in C++?
+In my shell I had to scroll up through about a hundred lines of heavily
+punctuated messages to see that important one coming from the `static_assert`
+(although with Clang's highlighting it wasn't as bad as with GCC's).
+There used to be a tool for transforming C++ error messages into something
+digestible for humans. Is it still around? -->
+
+<p>C++ではどうでしょう?
+私のシェルでは、<code>static_assert</code>からの重要なメッセージを見るために大体100行の大きく強調されたメッセージをスクロールしなければなりませんでした
+(ClangのハイライトはGCCのものよりは悪くなかったですが)。
+昔はC++のエラーメッセージを人が消化できるものに変換するツールがありました。
+あれはまだあるんでしょうか?</p>
+
+<!-- The last thing to check is if we didn't lose performance. In the graph
+below you can see the comparison of D vs. C++ version for both
+static and dynamic dispatch. The D version seems to be slightly faster
+in both cases, but it's only a limited microbenchmark. The D dynamic lookup
+might just perform better here because we use a different algorithm
+that favors small sets. And the ~10% speedup for the static lookup
+most likely comes from `std::function` doing a bit more work
+on each call than `delegate` does (check the assembly:
+[D](https://godbolt.org/g/kXgIIX),
+[C++](https://godbolt.org/g/zFXTHG).) It won't be noticed in a
+larger application doing anything meaningful in the callback, so
+let's just assume both versions perform equally well. -->
+
+<p>最後にチェックするのはパフォーマンスを失っていないかどうかです。
+下のグラフで静的、動的ディスパッチのDバージョン vs. C++バージョンの比較を見ることができます。
+Dバージョンは両方のケースで速いように見えますが、これは限られたマイクロベンチマークです。
+Dの動的ルックアップは小さなセットを好む違うアルゴリズムを使っているためより良い結果を出しているのかもしれません。
+静的ルックアップの~10%のスピードアップは、<code>std::function</code>が各コールで<code>delegate</code>がするよりも少し多くの仕事をしている可能性が高いです
+(アセンブリをチェックしてください: <a href="https://godbolt.org/g/kXgIIX">D</a>、<a href="https://godbolt.org/g/zFXTHG">C++</a>)。
+より大きなアプリケーションではコールバックでなにか意味のあることをしていることには気づきません。
+ので、2つのバージョンは同等に良い結果を出していると仮定しましょう。</p>
+
+<!-- ![Event system performance: D vs. C++](/img/cppdmeta/d.svg) -->
+
+<p><img src="/assets/2017/04/26/d.svg" alt="Event system performance: D vs. C++" /></p>
+
+<!-- In conclusion, with D we've achieved a similar result
+as in C++, but without resorting to a complex library.
+The D implementation looks straightforward, and uses only a few
+basic features of the language and standard library.
+There's no feeling of being super-clever
+nor did I have to learn anything new.
+But isn't it exactly what we expect
+from _maintainable, easy to understand code_? -->
+
+<p>結論として、Dでは複雑なライブラリに頼ることなくC++と同様の結果が得られました。
+Dの実装は明快で、少ない言語の基本機能と標準ライブラリのみを使っています。
+超絶クレバーになった感じはせず、新しいことを学ぶ必要もありませんでした。
+しかしそれはまさに<strong>保守性の高く、理解しやすい</strong>コードに期待することではないですか?</p>
+
+<!-- So is it really better? There's no absolute scale for that, but
+if other factors aren't more important, I'd likely be in favor of
+a solution that doesn't rely on an external library,
+compiles faster and produces less scary error messages
+if something goes wrong. -->
+
+<p>本当により良いのでしょうか?それについて絶対的なものさしはありません、しかし他の要素が比較的重要でない場合は、
+おそらく私は外部ライブラリに依存せず、コンパイルが速く、
+なにかうまく行かなかった時に恐ろしいエラーメッセージを大量に生成しないソリューションに賛成するでしょう。</p>
+
+<!-- ## hana::map equivalent in D -->
+
+<h3 id="dでのhana-map相当のもの">Dでのhana::map相当のもの</h3>
+
+<!-- But what if we wanted a data structure in D that behaves like
+`hana::map`?
+After all, we won't always have values of the same type, and using
+an intermediate integer index feels a little bit unprofessional.
+Is it possible? -->
+
+<p>しかしDで<code>hana::map</code>のように振る舞うデータストラクチャが必要になったらどうでしょうか?
+結局、常に同じ型の値を持つとは限りませんし、整数インデックスを介して使うのはちょっとプロフェッショナルな感じがしません。
+これは可能なのでしょうか?</p>
+
+<!-- ### Prerequisites -->
+
+<h4 id="前提条件">前提条件</h4>
+
+<!-- It turns out, the only obstacle is that a compile-time
+entity (type or value) cannot be used as a run-time argument to
+overloaded indexing operators.
+To overcome this,  the same technique as Hana uses can be applied in D.
+Consider a struct template parameterized with a single value or type.
+I don't know how to name it so let it be an `Entity`. -->
+
+<p>唯一の障害はコンパイル時エンティティ(型または値)はオーバーロードされたインデクシングオペレータへの実行時引数として使えないことであることがわかりました。
+これを克服するため、Hanaが使うのと同じ技術をDに適用することができます。
+単一の値または型でパラメータ化された構造体テンプレートを考えてみましょう。
+私はそれをなんと呼ぶか知らないため、<code>Entity</code>としましょう。</p>
+
+<!-- {% highlight d %}
+struct Entity(arg...)
+  if (arg.length == 1)
+{
+  static if (is(arg[0])) {
+    alias Type = arg[0];
+  } else static if (is(typeof(arg[0]) T)) {
+    alias Type = T;
+    enum value = arg[0];
+  }
+}
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Entity(arg...)
+  if (arg.length == 1)
+{
+  static if (is(arg[0])) {
+    alias Type = arg[0];
+  } else static if (is(typeof(arg[0]) T)) {
+    alias Type = T;
+    enum value = arg[0];
+  }
+}</code></pre></div>
+<!-- We can instantiate concrete struct types and create objects
+by writing e.g. `Entity!"foo"()` or `Entity!double()`.
+Such objects have no state, but their
+types will select different instantiations of template functions. -->
+
+<p>たとえば<code>Entity!&quot;foo&quot;()</code>または<code>Entity!double()</code>と書くことで具体的な構造体型をインスタンス化し、オブジェクトを生成できます。
+そのようなオブジェクトは状態を持ちませんが、異なるテンプレート関数のインスタンス化をされます。</p>
+
+<!-- Unlike regular function calls, constructing a struct object requires
+parentheses, which makes it a bit more verbose than Hana's `_c` and `_s`
+suffixes. There is a number of ways to make it more concise,
+parameterized `enum` being one of them: -->
+
+<p>普通の関数呼び出しと異なり、構造体オブジェクトの構築には括弧が必要で、Hanaの<code>_c</code>や<code>_s</code>サフィックスと比べて少し冗長になります。
+より簡潔にするにはいくつか方法があり、パラメータ化された<code>enum</code>はそのひとつです:</p>
+
+<!-- {% highlight d %}
+enum c(arg...) = Entity!arg();
+
+static assert(is(c!int.Type == int));
+static assert(is(c!"foo".Type == string));
+static assert(c!"foo".value == "foo");
+static assert(c!42.value == 42);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">enum c(arg...) = Entity!arg();
+
+static assert(is(c!int.Type == int));
+static assert(is(c!&#34;foo&#34;.Type == string));
+static assert(c!&#34;foo&#34;.value == &#34;foo&#34;);
+static assert(c!42.value == 42);</code></pre></div>
+<!-- Similar syntax for user-defined literals was reportedly used first
+in [`std.conv.octal`](https://dlang.org/phobos/std_conv.html#.octal). -->
+
+<p>ユーザ定義リテラルのよく似たシンタックスが<a href="https://dlang.org/phobos/std_conv.html#.octal"><code>std.conv.octal</code></a>
+で最初に使われたと伝えられています。</p>
+
+<!-- ### Storage for values -->
+
+<h4 id="値の格納">値の格納</h4>
+
+<!-- Now let's get to the map itself. We want something that can store values
+of different types
+(like [`std.typecons.Tuple`](https://dlang.org/phobos/std_typecons.html#.Tuple),
+and where keys are types or compile-time values, instantiated like this: -->
+
+<p>マップそのものに取り掛かりましょう。
+異なる型の値を保持でき(<a href="https://dlang.org/phobos/std_typecons.html#.Tuple">std.typecons.Tuple</a>のように)、
+キーは型かコンパイル時の値で、このようにインスタンス化される何かがほしいです:</p>
+
+<!-- {% highlight d %}
+struct Bar {}
+Map!(
+  "foo",  int,           // string "foo" maps to a value of type int
+  Bar,    string,        // type Bar maps to a value of type string
+  "한",   string[]) map; // string "한" maps to a value of type string[]
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Bar {}
+Map!(
+  &#34;foo&#34;,  int,           // 文字列 &#34;foo&#34; をint型の値にマップします
+  Bar,    string,        // 型 Bar をstring型の値にマップします
+  &#34;한&#34;,   string[]) map; // 文字列 &#34;한&#34; をstring[]型の値にマップします</code></pre></div>
+<!-- We need to separate the interleaving keys and value types and declare storage
+for the values themselves: -->
+
+<p>不連続なキーと値を分割し、値の記憶域を宣言する必要があります:</p>
+
+<!-- {% highlight d %}
+struct Map(spec...) {
+  alias Keys = Even!spec;
+  alias Values = Odd!spec;
+  Values values;
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Map(spec...) {
+  alias Keys = Even!spec;
+  alias Values = Odd!spec;
+  Values values;</code></pre></div>
+<!-- `Even` and `Odd` aren't standard things, but we can quickly implement them
+on our own: -->
+
+<p><code>Even</code>と<code>Odd</code>は標準のものではありませんが、素早く実装することができます:</p>
+
+<!-- {% highlight d %}
+template Stride(size_t first, size_t stride, A...) {
+  static if (A.length > first)
+    alias Stride = AliasSeq!(A[first], Stride!(stride, stride, A[first .. $]));
+  else
+    alias Stride = AliasSeq!();
+}
+
+alias Odd(A...) = Stride!(1, 2, A);
+alias Even(A...) = Stride!(0, 2, A);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template Stride(size_t first, size_t stride, A...) {
+  static if (A.length &gt; first)
+    alias Stride = AliasSeq!(A[first], Stride!(stride, stride, A[first .. $]));
+  else
+    alias Stride = AliasSeq!();
+}
+
+alias Odd(A...) = Stride!(1, 2, A);
+alias Even(A...) = Stride!(0, 2, A);</code></pre></div>
+<!-- Now, `values` is a built-in tuple consisting of elements of all types
+in the type list `Values`.
+It can be indexed using a constant integer, e.g. `map.values[2]`.
+It can also be iterated over using the "static `foreach`"
+construct we saw before.
+That means we've got iteration over keys or values for free. Try: -->
+
+<p><code>values</code>は型リスト<code>Values</code>のすべての型の要素からなる組み込みタプルです。
+これは<code>map.values[2]</code>のように整数定数を使ってインデックスできます。
+先ほど見た「静的<code>foreach</code>」を使いイテレートすることもできます。
+これはキーまたは値を自由にイテレートすることができるということを意味します。
+やってみましょう:</p>
+
+<!-- {% highlight d %}
+  // initialize via Struct Literal syntax
+  auto map =
+    Map!("foo", int, Bar, string, "한", string[])(
+      42, "baz", ["lorem", "ipsum", "dolor"]);
+
+  // iterate over keys
+  foreach (K; map.Keys)
+    writeln(K.stringof);
+
+  // iterate over types of values
+  foreach (V; map.Values)
+    writeln(V.stringof);
+
+  // iterate over values
+  foreach (value; map.values)
+    writeln(value);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  // 構造体リテラル構文で初期化
+  auto map =
+    Map!(&#34;foo&#34;, int, Bar, string, &#34;한&#34;, string[])(
+      42, &#34;baz&#34;, [&#34;lorem&#34;, &#34;ipsum&#34;, &#34;dolor&#34;]);
+
+  // キーでイテレート
+  foreach (K; map.Keys)
+    writeln(K.stringof);
+
+  // 値の型でイテレート
+  foreach (V; map.Values)
+    writeln(V.stringof);
+
+  // 値でイテレート
+  foreach (value; map.values)
+    writeln(value);</code></pre></div>
+<!-- ### Operators -->
+
+<h4 id="オペレータ">オペレータ</h4>
+
+<!-- Hana offers free function template `contains` to check whether a given key
+is in the map. In D, the `in` operator is usually used. It can
+be overloaded by implementing
+[`opBinaryRight`](https://dlang.org/spec/operatoroverloading.html#binary).
+Since it only depends on compile-time information (types of its arguments),
+it can be declared `static`: -->
+
+<p>Hanaは与えられたキーがマップに存在するかをチェックするための自由な関数テンプレート<code>contains</code>を提供します。
+Dでは、ふつう<code>in</code>オペレータが使われます。
+これは<a href="https://dlang.org/spec/operatoroverloading.html#binary"><code>opBinaryRight</code></a>
+を実装することでオーバーロードすることができます。
+それはコンパイル時の情報(引数の型)のみに依存するため、<code>static</code>として宣言できます:</p>
+
+<!-- {% highlight d %}
+  static bool opBinaryRight(string op, Key...)(Entity!Key key)
+    if (op == "in")
+  {
+    enum index = staticIndexOf!(Key, Keys);
+    return index >= 0;
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  static bool opBinaryRight(string op, Key...)(Entity!Key key)
+    if (op == &#34;in&#34;)
+  {
+    enum index = staticIndexOf!(Key, Keys);
+    return index &gt;= 0;
+  }</code></pre></div>
+<!-- Let's see if it works: -->
+
+<p>動作するのを見てみましょう:</p>
+
+<!-- {% highlight d %}
+  static assert(c!"foo" in map);
+  static assert(c!Bar in map);
+  static assert(c!"한" in map);
+  static assert(c!42 !in map);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  static assert(c!&#34;foo&#34; in map);
+  static assert(c!Bar in map);
+  static assert(c!&#34;한&#34; in map);
+  static assert(c!42 !in map);</code></pre></div>
+<!-- To look up a value using a compile-time key, we use `staticIndexOf`
+and add a meaningful message if the key is not found: -->
+
+<p>コンパイル時キーを使って値をルックアップするには<code>staticIndexOf</code>を使い、もしキーが見つからなかった時は意味のあるメッセージを添えます:</p>
+
+<!-- {% highlight d %}
+  private template IndexOf(alias Key) {
+    enum IndexOf = staticIndexOf!(Key, Keys);
+    static assert(IndexOf >= 0,
+      "trying to access a nonexistent key: " ~ Key);
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  private template IndexOf(alias Key) {
+    enum IndexOf = staticIndexOf!(Key, Keys);
+    static assert(IndexOf &gt;= 0,
+      &#34;trying to access a nonexistent key: &#34; ~ Key);
+  }</code></pre></div>
+<!-- This can be used to implement indexing operators. Why not a single one?
+Unlike in C++, where `operator[]` returns an lvalue reference which can
+be further manipulated using e.g. assignment operators, in D the
+operators for
+[read-only indexing](https://dlang.org/spec/operatoroverloading.html#array),
+[indexing with simple assignment](https://dlang.org/spec/operatoroverloading.html#assignment),
+and [indexing with compound assignment](https://dlang.org/spec/operatoroverloading.html#op-assign)
+are overloaded separately. -->
+
+<p>これはインデクシングオペレーターたちを実装するのに使えます。
+なぜ1つではなく「たち」と言ったのか?
+<code>operator[]</code>が代入演算子のように更に操作できる左辺参照を返すC++とは違い、
+Dで<a href="https://dlang.org/spec/operatoroverloading.html#array">リードオンリーインデクシング</a>、
+<a href="https://dlang.org/spec/operatoroverloading.html#assignment">単純な代入のインデクシング</a>、
+<a href="https://dlang.org/spec/operatoroverloading.html#op-assign">複合代入のインデクシング</a>、
+のオペレータは別々にオーバーロードされます。</p>
+
+<!-- {% highlight d %}
+  auto opIndex(Key...)(Entity!Key key) const {
+    return values[IndexOf!Key];
+  }
+
+  auto opIndexAssign(T, Key...)(auto ref T value, Entity!Key key) {
+    return values[IndexOf!Key] = value;
+  }
+
+  auto opIndexOpAssign(string op, T, Key...)(auto ref T value, Entity!Key key) {
+    return mixin(`values[IndexOf!Key] ` ~ op ~ `= value`);
+  }
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  auto opIndex(Key...)(Entity!Key key) const {
+    return values[IndexOf!Key];
+  }
+
+  auto opIndexAssign(T, Key...)(auto ref T value, Entity!Key key) {
+    return values[IndexOf!Key] = value;
+  }
+
+  auto opIndexOpAssign(string op, T, Key...)(auto ref T value, Entity!Key key) {
+    return mixin(`values[IndexOf!Key] ` ~ op ~ `= value`);
+  }</code></pre></div>
+<!-- In all cases, `T` and `Key` are inferred from the types of the arguments.
+Evaluation of `IndexOf!Key` and indexing in `values` are both done at compile time.
+Let's test it: -->
+
+<p>すべてのケースで、<code>T</code>と<code>Key</code>は引数の型から推測されます。
+<code>IndexOf!Key</code>の評価と<code>values</code>のインデクシングはともにコンパイル時に完了します。
+テストしてみましょう:</p>
+
+<!-- {% highlight d %}
+  // compile-time lookup, run-time assignment
+  map[c!"foo"] = 42;        // opIndexAssign
+  map[c!Bar] = "baz";
+  map[c!"한"] ~= "lorem";    // opIndexOpAssign!"~"
+  map[c!"한"] ~= "ipsum";
+  map[c!"한"] ~= "dolor";
+
+  // compile-time lookup, run-time comparison
+  assert(map[c!"foo"] == 42);  // opIndex
+  assert(map[c!Bar] == "baz");
+  assert(map[c!"한"] == ["lorem", "ipsum", "dolor"]);
+{% endhighlight %} -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">  // コンパイル時ルックアップ、実行時代入
+  map[c!&#34;foo&#34;] = 42;        // opIndexAssign
+  map[c!Bar] = &#34;baz&#34;;
+  map[c!&#34;한&#34;] ~= &#34;lorem&#34;;    // opIndexOpAssign!&#34;~&#34;
+  map[c!&#34;한&#34;] ~= &#34;ipsum&#34;;
+  map[c!&#34;한&#34;] ~= &#34;dolor&#34;;
+
+  // コンパイル時ルックアップ、実行時比較
+  assert(map[c!&#34;foo&#34;] == 42);  // opIndex
+  assert(map[c!Bar] == &#34;baz&#34;);
+  assert(map[c!&#34;한&#34;] == [&#34;lorem&#34;, &#34;ipsum&#34;, &#34;dolor&#34;]);</code></pre></div>
+<!-- ### Performance -->
+
+<h4 id="パフォーマンス">パフォーマンス</h4>
+
+<!-- That's all! We have a map that allows lookup and iteration in compile time
+with run-time-like syntax, just like `hana::map`, and it's nothing
+special--just a bunch of your everyday trivial one-liners. -->
+
+<p>これで全部です!
+我々は<code>hana::map</code>のように、実行時風シンタックスでコンパイル時にルックアップとイテレーションができるマップを手にしました。
+それは何ら特別なものではありません。
+ただの日常の何でもないワンライナーの集まりです。</p>
+
+<!-- You may want to try modifying `EventSystem` to use `Map` that we've
+just implemented. If you're impatient, you can find one possible
+implementation in [the same archive](/files/cppdmeta.tar.gz).
+I couldn't notice any measurable difference in compilation time between
+this version and the previous one, and the run-time performance is
+also very similar, as shown in the graph below. -->
+
+<p>実装した<code>Map</code>を使って<code>EventSystem</code>を修正してみたいかもしれません。
+我慢できないなら、<a href="https://epi.github.io/files/cppdmeta.tar.gz">同じアーカイブ</a>に実装があります。
+このバージョンと前のバージョンの間でコンパイル時間の計測可能な違いは私には検出できません。
+そして下のグラフでわかるように、実行時のパフォーマンスも同じです。</p>
+
+<!-- ![Event system based on static Map in D vs. previous solutions](/img/cppdmeta/dmap.svg) -->
+
+<p><img src="/assets/2017/04/26/dmap.svg" alt="Event system based on static Map in D vs. previous solutions" /></p>
+
+<!-- The question is whether this would be the right design choice in D.
+Operators `[]` and `in` are just syntactic sugar that could easily
+be replaced with "normal" template functions like `get` and `contains`, making
+the awkward `c!arg` unnecessary. Iteration over a list of compile-time
+entities or elements of value tuples
+is a built-in language feature, and doesn't need it either. -->
+
+<p>問題はこれがDでの正しいデザインチョイスかどうかです。
+オペレータ<code>[]</code>と<code>in</code>は<code>get</code>や<code>contains</code>のような「普通の」テンプレート関数で簡単に置き換えられる糖衣構文で、
+厄介な<code>c!arg</code>を作る必要はありません。
+コンパイル時エンティティのリストや、値のタプルの要素のイテレーションは組み込み言語機能で、どちらも必要ありません。</p>
+
+<!-- ## Summing up -->
+
+<h3 id="要約">要約</h3>
+
+<!-- This isn't the first attempt at emulating Hana in D. See for example
+[this post on type objects](https://maikklein.github.io/2016/03/01/metaprogramming-typeobject/),
+with an interesting example of quicksort on types.
+Hana's tricks making metafunctions look like regular run-time code
+are applicable in D, but thanks to D's built-in metaprogramming features
+they do not substantially improve code readability or programmer
+productivity. Until the [new CTFE engine](http://forum.dlang.org/thread/btqjnieachntljobzrho@forum.dlang.org)
+is complete and merged, they will probably only [hurt build times](https://forum.dlang.org/post/ntkhtqdoxpvwcatyvbhf@forum.dlang.org)
+without giving much in return. -->
+
+<p>これはDでHanaのエミュレートを試みる最初のものではありません。
+たとえば<a href="https://maikklein.github.io/2016/03/01/metaprogramming-typeobject/">型オブジェクトに関するこの投稿</a>
+を見てください、型のクイックソートの興味深い例があります。
+普通の実行時のコードのように見えるメタ関数を作るHanaのトリックはDにも適用できますが、Dの組み込みメタプログラミング機能のおかげで、
+それでコードの可読性やプログラマの生産性が大幅に向上したりはしません。
+<a href="http://forum.dlang.org/thread/btqjnieachntljobzrho@forum.dlang.org">新しいCTFEエンジン</a>
+が完成しマージされるまでは、おそらく無用に
+<a href="https://forum.dlang.org/post/ntkhtqdoxpvwcatyvbhf@forum.dlang.org">ビルド時間を長くする</a>
+だけです。</p>
+
+<!-- The talk concludes with a few examples of what will be possible
+with features proposed for C++20 – named arguments, `foreach` over
+a type list, and serialization to JSON with reflection.
+You probably won't be surprised that all of this have been possible in D for years,
+but with a cleaner syntax and less intellectual effort required, stripping
+metaprogramming of all the fun you could have doing it in C++. -->
+
+<p>トークはC++20の提案された機能で可能になることのいくつかの例で締めくくられます。
+名前付き引数、型リストのforeach、リフレクションによるJSONへのシリアライズ。
+その全てが何年も前にDで、より洗練された構文に、より少ない知的努力によって、メタプログラミングからC++でそれをする時の面白さをすべて取り除いた上で可能だったことなのであなたは驚かないかもしれません。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">訳注: 訳を<a href="http://www.kmonos.net/alang/d/overview.html">こちら</a>から引用しました
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

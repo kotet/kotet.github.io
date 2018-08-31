@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang KotetのD言語作業環境2018年春 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 一部に需要があるみたいなので、この機会に自分とD言語をつなぐ作業環境について記録しておく。 OS Arch Linuxである。 据え置きのPCもあるがノート ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        KotetのD言語作業環境2018年春
+    </h2>
+    <p>
+        <time>2018-04-12</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#os">OS</a></li>
+<li><a href="#コンパイラ">コンパイラ</a></li>
+<li><a href="#ライブラリ">ライブラリ</a></li>
+<li><a href="#端末">端末</a></li>
+<li><a href="#エディター">エディター</a></li>
+<li><a href="#競技プログラミング">競技プログラミング</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>一部に需要があるみたいなので、この機会に自分とD言語をつなぐ作業環境について記録しておく。</p>
+
+<h3 id="os">OS</h3>
+
+<p><a href="https://www.archlinux.org/">Arch Linux</a>である。
+据え置きのPCもあるがノートPCのほうが性能がいい上にファンの音がほとんどしないので基本的にそちらを使っている。
+一応WindowsとのデュアルブートになっているがWindowsはほとんど使わない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ uname -a
+Linux kotet-xps 4.14.32-1-lts #1 SMP Sun Apr 1 11:41:45 CEST 2018 x86_64 GNU/Linux</code></pre></div>
+<h3 id="コンパイラ">コンパイラ</h3>
+
+<p><a href="https://www.archlinux.org/packages/community/x86_64/dmd/">Archのパッケージマネージャで落ちてくるもの</a>をそのまま使っている。
+以前使っていたディストリビューションではインストールスクリプトを使っていたが、Archは特に何もしなくても最新版が落ちてきて非常に良い。
+<a href="https://www.archlinux.org/groups/x86_64/dlang/">dlang パッケージグループ</a>をインストールすれば一発で(自分が使う分には)完璧なセットが揃う。
+今の所速度を気にしたり他のプラットフォームで動かしたりすることはないのでコンパイラはdmdしか使っていない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">pacman</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">Ss</span> <span style="color:#a6e22e">dlang</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dcd</span> <span style="color:#ae81ff">0.9.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> (<span style="color:#a6e22e">dlang</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">Completion</span> <span style="color:#a6e22e">Daemon</span>: <span style="color:#a6e22e">auto</span><span style="color:#f92672">-</span><span style="color:#a6e22e">complete</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dfmt</span> <span style="color:#ae81ff">0.7.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">Dfmt</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">formatter</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">source</span> <span style="color:#a6e22e">code</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dmd</span> <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">2.079.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span> <span style="color:#a6e22e">dlang</span><span style="color:#f92672">-</span><span style="color:#a6e22e">dmd</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span> <span style="color:#a6e22e">reference</span> <span style="color:#a6e22e">compiler</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dmd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">docs</span> <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">2.079.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span> <span style="color:#a6e22e">dlang</span><span style="color:#f92672">-</span><span style="color:#a6e22e">dmd</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">Documentation</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">sample</span> <span style="color:#a6e22e">code</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dscanner</span> <span style="color:#ae81ff">0.5.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">Swiss</span><span style="color:#f92672">-</span><span style="color:#a6e22e">army</span> <span style="color:#a6e22e">knife</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">source</span> <span style="color:#a6e22e">code</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dtools</span> <span style="color:#ae81ff">2.079.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">Ancilliary</span> <span style="color:#a6e22e">tools</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dub</span> <span style="color:#ae81ff">1.8.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">Developer</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">manager</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ldc</span> <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1.8.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> (<span style="color:#a6e22e">dlang</span> <span style="color:#a6e22e">dlang</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ldc</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">A</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">Compiler</span> <span style="color:#a6e22e">based</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">LLVM</span> <span style="color:#a6e22e">Compiler</span> <span style="color:#a6e22e">Infrastructure</span> <span style="color:#a6e22e">including</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">runtime</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">libphobos2</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">liblphobos</span> <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1.8.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> (<span style="color:#a6e22e">dlang</span> <span style="color:#a6e22e">dlang</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ldc</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">A</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">Compiler</span> <span style="color:#a6e22e">based</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">LLVM</span> <span style="color:#a6e22e">Compiler</span> <span style="color:#a6e22e">Infrastructure</span> <span style="color:#a6e22e">including</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">runtime</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">libphobos2</span>
+<span style="color:#a6e22e">community</span><span style="color:#f92672">/</span><span style="color:#a6e22e">libphobos</span> <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">2.079.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">dlang</span> <span style="color:#a6e22e">dlang</span><span style="color:#f92672">-</span><span style="color:#a6e22e">dmd</span>) [<span style="color:#a6e22e">installed</span>]
+    <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">Phobos</span> <span style="color:#a6e22e">standard</span> <span style="color:#a6e22e">library</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">D</span> <span style="color:#a6e22e">programming</span> <span style="color:#a6e22e">language</span></code></pre></div>
+<h3 id="ライブラリ">ライブラリ</h3>
+
+<p><a href="https://dlang.org/phobos/index.html">標準ライブラリ</a>が充実しすぎていて特に使わない。
+なので最近は<a href="https://code.dlang.org/">パッケージマネージャーであるdub</a>も使っておらず、もっぱら直接dmdを使うかMakefileを書いている。</p>
+
+<h3 id="端末">端末</h3>
+
+<p><a href="https://gnunn1.github.io/tilix-web/">Tilix</a>を使っている。
+<a href="https://github.com/gnunn1/tilix">D言語製</a>というのも選んだ理由の一つだが、なにより便利である。
+ただおそらく機能の1割も使えていないし、他のターミナルエミュレータもTilixを入れるためにデフォルトのgnome-terminalを使うくらいしか試していないので、井の中の蛙感がある。</p>
+
+<h3 id="エディター">エディター</h3>
+
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a>を使っている。
+AURに<code>code</code>というパッケージ名で登録されており、<code>/usr/bin/code-oss</code>が入る。
+<code>&quot;editor.fontFamily&quot;: &quot;'Noto Sans Mono CJK JP'&quot;</code>以外はほとんどデフォルト設定のままである。
+デフォルトでもそれなりに便利というのは重要だと思う。</p>
+
+<p>たしか調査でもD言語erの中のかなりの割合がVSCodeを使っているということだったと思う。</p>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=dlang-vscode.dlang">dlang-vscode.dlang</a>という拡張機能があり、これを導入すればいろんなツールが使えるようになる。
+<code>ctrl + shift + i</code>でコードの整形をしてくれるのでこまめに押すといいと思う。</p>
+
+<p>Dに限らずVSCodeは便利で、この記事もVSCodeで書かれている。
+基本的にVSCodeがメインで、ちょっとした編集作業にはvimやgeditを使うこともあるといった感じ。
+どうも大学はemacsを推しているようなので操作を覚えないといけない。</p>
+
+<h3 id="競技プログラミング">競技プログラミング</h3>
+
+<p>D言語で競プロができるところは<a href="http://atcoder.jp/">AtCoder</a>しか知らない。
+dmdのバージョンがちょっと古いので、最新のdmdを使って書いているとローカルでは動くのに提出するとCE、みたいなことが頻発して悲しい気持ちになる。
+そこでDockerを使って同じバージョンを使えるようにしている。
+これによって新しい環境でもDockerがあればとりあえず</p>
+
+<pre><code>sudo docker run --rm -v $PWD:/src -w /src dlanguage/dmd:2.070.1 dmd app.d
+</code></pre>
+
+<p>という感じでコマンド一発でコンパイルだけはできるようになり、比較的素早くコンテストを開始できるようになった。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang DMD 2.076.0 Released【翻訳】 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        DMD 2.076.0 Released【翻訳】
+    </h2>
+    <p>
+        <time>2017-09-03</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#static-foreach">static foreach</a></li>
+<li><a href="#cとの統合と相互運用性の改善">Cとの統合と相互運用性の改善</a></li>
+<li><a href="#新しいリリーススケジュール">新しいリリーススケジュール</a></li>
+<li><a href="#今すぐ入手しましょう">今すぐ入手しましょう!</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>この記事は、</p>
+
+<p><a href="https://dlang.org/blog/2017/09/01/dmd-2-076-0-released/">DMD 2.076.0 Released – The D Blog</a></p>
+
+<p>を自分用に翻訳したものを
+<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
+公開するものである。</p>
+
+<p>誤字や誤訳などを見つけたら今すぐ
+<a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">Pull request</a>だ!</p>
+
+<hr />
+
+<p>コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、
+<a href="https://dlang.org/changelog/2.076.0.html">ダウンロードできるようになりました</a>。
+このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのための<code>static foreach</code>機能と、
+Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。</p>
+
+<h3 id="static-foreach">static foreach</h3>
+
+<p>ジェネリックプログラミングとジェネレーティブプログラミングのサポートの一環として、Dでは<code>version</code>や<code>static if</code>文のような構文による条件コンパイルができます。
+これらは異なるコードパスをコンパイル時に選択したり、文字列mixinやテンプレートmixinと組み合わせてコードブロックを生成するために使用されます。
+これらの機能による可能性は発見され続けていますが、コンパイル時ループ構築の欠如は常に不便をもたらしていました。</p>
+
+<p>こちらのサンプルで、<code>val0</code>から<code>valN</code>と名付けられる定数群は設定ファイルで指定された数値<code>N+1</code>を元に生成されなければなりません。
+実際の設定ファイルではパース用の関数が必要ですが、この例では<code>val.cfg</code>ファイルは<code>10</code>などの単一の数値のみを含み、他に何も書かれていないと仮定します。
+さらに、<code>val.cfg</code>はコマンドライン<code>dmd -J. valgen.d</code>を使ってコンパイルされるソースファイル<code>valgen.d</code>と同じディレクトリにあるものとします。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module valgen;
+import std.conv : to;
+
+enum valMax = to!uint(import(&#34;val.cfg&#34;));
+
+string genVals() 
+{
+    string ret;
+    foreach(i; 0 .. valMax) 
+    {
+        ret ~= &#34;enum val&#34; ~ to!string(i) ~ &#34;=&#34; ~ to!string(i) ~ &#34;;&#34;;
+    }
+    return ret;
+}
+
+string genWrites() 
+{
+    string ret;
+    foreach(i; 0 .. valMax) 
+    {
+        ret ~= &#34;writeln(val&#34; ~ to!string(i) ~ &#34;);&#34;;
+    }
+    return ret;
+}
+
+mixin(genVals);
+
+void main() 
+{
+    import std.stdio : writeln;
+    mixin(genWrites);
+}</code></pre></div>
+<p>記号定数<code>valMax</code>は、コンパイル時にファイルを読み、文字列リテラルとして扱われる
+<a href="https://dlang.org/spec/expression.html#import_expressions"><code>import</code>式</a>によって初期化されます。
+ファイル内の単一の数字のみを扱うので、文字列を直接<code>std.conv.to</code>関数テンプレートに渡して<code>uint</code>に変換することができます。
+<code>valMax</code>が<code>enum</code>のため、<code>to</code>の呼び出しはコンパイル時に発生する必要があります。
+最後に、コンパイル時関数評価(CTFE)の<a href="https://dlang.org/spec/function.html#interpretation">条件を満たす</a>ため、
+コンパイラはその呼び出しをインタプリタに渡します。</p>
+
+<p><code>genVals</code>関数は定数<code>val0</code>から<code>valN</code>までの宣言を生成するために存在し、<code>N</code>は<code>valMax</code>の値で決まります。
+26行目の文字列mixinが<code>genVals</code>のコンパイル時呼び出しの発生を強制するため、この関数はコンパイル時インタプリタによっても評価されます。
+関数内のループが各定数の宣言を含む単一の文字列を構築し、複数の定数宣言としてmixinするために返します。</p>
+
+<p>同じく、<code>genWrites</code>関数には<code>genVals</code>で生成した各定数で<code>writeln</code>を呼び出すという単一の目的があります。
+また、コードは単一の文字列として構築され、<code>main</code>関数内の文字列mixinは、
+返値がmixinしコンパイルできるように<code>genWrites</code>のコンパイル時の実行を強制します。</p>
+
+<p>このような単純な例でさえも宣言や関数呼び出しの生成のための関数が2つもできてしまうというのは可読性に問題があります。
+コード生成は非常に複雑になり、コンパイル時にのみ実行される関数の作成は複雑さを増大させます。
+Dのコンパイル時構築を使う誰にとっても反復が必要となるのは珍しいことではなく、
+コンパイル時ループを提供するためだけに存在する関数もまた珍しいことではなくなりました。
+このようなボイラープレート(訳注： 言語仕様上省く事ができない定型的なコード<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>)をなくしたいという欲求は、
+<code>static if</code>の仲間のようなものである<code>static foreach</code>のアイデアの優先順位を高くしました。</p>
+
+<p><a href="http://dconf.org/2017/index.html">DConf 2017</a>で、Timon Gehrはハッカソンに真剣に取り組み、
+コンパイラに<code>static foreach</code>のサポートを追加する<a href="https://github.com/dlang/dmd/pull/6760">プルリクエスト</a>を実装しました。
+彼は<a href="https://github.com/dlang/DIPs/blob/master/DIPs/DIP1010.md">DIP 1010</a>を実現するためにそれを踏襲し、
+DIP 1010は言語の作者から熱心な賛成を受けました。
+DMD 2.076で、<a href="https://dlang.org/changelog/2.076.0.html#staticforeach">ついにすべての準備が整った</a>というわけです。</p>
+
+<p>この新機能によって、上記の例は以下のように書き換えられます:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module valgen2;
+import std.conv : to;
+
+enum valMax = to!uint(import(&#34;val.cfg&#34;));
+
+static foreach(i; 0 .. valMax) 
+{
+    mixin(&#34;enum val&#34; ~ to!string(i) ~ &#34;=&#34; ~ to!string(i) ~ &#34;;&#34;);
+}
+
+void main() 
+{
+    import std.stdio : writeln;
+    static foreach(i; 0 .. valMax) 
+    {
+        mixin(&#34;writeln(val&#34; ~ to!string(i) ~ &#34;);&#34;);
+    }
+}</code></pre></div>
+<p>このような単純な例でもわかりやすく可読性の向上があります。
+このコンパイラのリリースをきっかけにコンパイル時に重いDライブラリ(そのほとんどではないでしょうか?)に大きなアップデートがあっても驚かないでください。</p>
+
+<h3 id="cとの統合と相互運用性の改善">Cとの統合と相互運用性の改善</h3>
+
+<p>DMDの<code>-betterC</code>コマンドラインスイッチは、かなり前から存在はしていましたが、
+実際には役に立たなかったし、より緊急の事項への対処のため放置されてきました。
+DMD 2.076で、それが動き始めました。</p>
+
+<p>一つのプログラムのうちでDとCの両方を組み合わせる、特に作業中のプロジェクトにおいてCのコードとDのコードを徐々に置き換えるのを簡単にする、
+というのがこの機能の背景にある考えです。
+Dは初めからCのABIと互換性があり、CのヘッダをDのモジュールに変換するいくらかの作業によって、あらゆる仲介なしに直接CのAPIを呼べるようにできます。
+逆にDをCのプログラムに組み込むことも可能でしたが、それはスムースなプロセスではありませんでした。</p>
+
+<p>おそらく最大の問題はDRuntimeでした。
+Dの一定の言語機能はDRuntimeの存在に依存しており、
+したがってCの中で使われることを意図したDコードはランタイムを持ってきてそれが初期化されていることを確認する必要があります。
+ランタイムとランタイムへのすべての参照はCとリンクする前に切り捨てる必要があり、
+それはコードを書く時とコンパイルするときの両方で少なくない努力を要します。</p>
+
+<p><code>-betterC</code>はDのライブラリをCの世界に持ち込み、
+Cのプロジェクトを一部または全部Dに置き換えることによってモダナイズするのに必要な努力を劇的に減らすことを目的としたものです。
+DMD 2.076ではその目的に向かっての重要な進捗がありました。
+<code>-betterC</code>がコマンドラインで指定されたとき、Dのモジュール内のすべてのアセットはDのアセットハンドラではなくCのアセットハンドラを使うようになります。
+さらに重要なのは、Dの標準ライブラリであるDRuntimeとPhobos、そのどちらも通常通り自動的にリンクされることがないということです。
+つまり、もはや<code>-betterC</code>を使うとき手動でビルドプロセスを設定したりバイナリを修正する必要はないということです。
+Dのモジュールから生成されたオブジェクトファイルやライブラリは特別な努力なしに直接Cとリンクできるようになりました。
+これはVisual StudioのDプラグインである<a href="http://rainers.github.io/visuald/visuald/StartPage.html">VisualD</a>を使う場合特に簡単です。
+以前からVisualDはCとDのモジュールの同じプロジェクト内でのミックスをサポートしています。
+アップデートされた<code>-betterC</code>スイッチはこの機能をより便利なものにします。</p>
+
+<h3 id="新しいリリーススケジュール">新しいリリーススケジュール</h3>
+
+<p>これはコンパイラや言語の機能ではありませんが、注目に値するものです。
+今回は新しいリリーススケジュールに準拠した最初のリリースです。
+これからはベータリリースは2017–10–15、2017–12–15、2018–2–15などのように、毎月15日にアナウンスされます。
+これによってリリーススケジュールにいくらか信頼性と予測可能性がもたらされ、拡張、変更、新機能のマイルストーンの計画が簡単になります。</p>
+
+<h3 id="今すぐ入手しましょう">今すぐ入手しましょう!</h3>
+
+<p>いつものように、このリリースの変更点、修正点、および拡張点は、<a href="https://dlang.org/changelog/2.076.0.html">チェンジログ</a>に記載されています。
+このリリースは常に<a href="http://downloads.dlang.org/releases/2.x/2.076.0">http://downloads.dlang.org/releases/2.x/2.076.0</a>からダウンロードでき、
+最新のリリースとベータ、ナイトリーはD言語のウェブサイトの<a href="https://dlang.org/download.html">ダウンロードページ</a>にあります。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://terasolunaorg.github.io/guideline/5.0.1.RELEASE/ja/Appendix/Lombok.html">https://terasolunaorg.github.io/guideline/5.0.1.RELEASE/ja/Appendix/Lombok.html</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

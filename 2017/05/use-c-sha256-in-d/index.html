@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang dubで自力でOpenSSLを呼び出す - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 前回の続き。 明示的にリンクする必要のあるライブラリであるOpenSSLを使ってstd.digest.shaを使わずにSHA256を計算する。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        dubで自力でOpenSSLを呼び出す
+    </h2>
+    <p>
+        <time>2017-05-03</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-dub-init">1 - <code>dub init</code></a></li>
+<li><a href="#2-宣言を探す">2 - 宣言を探す</a></li>
+<li><a href="#3-宣言">3 - 宣言</a>
+<ul>
+<li><a href="#source-sha-d-new-file"><code>source/sha.d</code> (New File)</a></li>
+</ul></li>
+<li><a href="#4-使う">4 - 使う</a>
+<ul>
+<li><a href="#source-app-d"><code>source/app.d</code></a></li>
+</ul></li>
+<li><a href="#5-リンクするライブラリの指定">5 - リンクするライブラリの指定</a>
+<ul>
+<li><a href="#dub-json"><code>dub.json</code></a></li>
+</ul></li>
+<li><a href="#6-完成">6 - 完成</a></li>
+<li><a href="#追記">追記</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p><a href="/2017/04/29/use-c-math-in-d.html">前回</a>の続き。
+明示的にリンクする必要のあるライブラリであるOpenSSLを使って<code>std.digest.sha</code>を使わずにSHA256を計算する。
+自分みたいな初心者のための基礎的な記事を量産することを目標にしているので、細かい手順をできるだけ詳細に具体的に書いていきたい。</p>
+
+<h3 id="1-dub-init">1 - <code>dub init</code></h3>
+
+<p>前回と同じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+.
+├── dub.json
+└── source
+    └── app.d
+
+1 directory, 2 files</code></pre></div>
+<h3 id="2-宣言を探す">2 - 宣言を探す</h3>
+
+<p>OpenSSLはインストール済みとする。
+<code>/usr/include/openssl/sha.h</code>を読んでみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat /usr/include/openssl/sha.h | grep SHA256
+# define SHA256_CBLOCK   (SHA_LBLOCK*4)/* SHA-256 treats input data as a
+# define SHA256_DIGEST_LENGTH    32
+typedef struct SHA256state_st {
+} SHA256_CTX;
+# ifndef OPENSSL_NO_SHA256
+int private_SHA224_Init(SHA256_CTX *c);
+int private_SHA256_Init(SHA256_CTX *c);
+int SHA224_Init(SHA256_CTX *c);
+int SHA224_Update(SHA256_CTX *c, const void *data, size_t len);
+int SHA224_Final(unsigned char *md, SHA256_CTX *c);
+int SHA256_Init(SHA256_CTX *c);
+int SHA256_Update(SHA256_CTX *c, const void *data, size_t len);
+int SHA256_Final(unsigned char *md, SHA256_CTX *c);
+unsigned char *SHA256(const unsigned char *d, size_t n, unsigned char *md);
+void SHA256_Transform(SHA256_CTX *c, const unsigned char *data);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat /usr/include/openssl/sha.h | grep SHA256_DIGEST_LENGTH
+# define SHA256_DIGEST_LENGTH    32</code></pre></div>
+<p>今回は</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">SHA256</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>d, size_t n, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>md);</code></pre></div>
+<p>と</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e"># define SHA256_DIGEST_LENGTH    32</span></code></pre></div>
+<p>を使えるようにする。</p>
+
+<h3 id="3-宣言">3 - 宣言</h3>
+
+<h4 id="source-sha-d-new-file"><code>source/sha.d</code> (New File)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">/// C : # define SHA256_DIGEST_LENGTH    32
+enum SHA256_DIGEST_LENGTH = 32;
+
+/// C : unsigned char *SHA256(const unsigned char *d, size_t n, unsigned char *md);
+extern (C) ubyte* SHA256(const ubyte* d, size_t n, ubyte* md);</code></pre></div>
+<p><code>unsigned char</code>は<code>ubyte</code>と対応している。</p>
+
+<h3 id="4-使う">4 - 使う</h3>
+
+<h4 id="source-app-d"><code>source/app.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio : writeln;
+import std.digest.digest : toHexString;
+import sha;
+
+void main()
+{
+	string text = &#34;The quick brown fox jumps over the lazy dog&#34;;
+	ubyte[SHA256_DIGEST_LENGTH] hash;
+
+	SHA256(cast(const ubyte*) &amp;text[0], text.length, cast(ubyte*) &amp;hash[0]);
+	
+	assert(hash.toHexString() == &#34;D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592&#34;);
+	hash.toHexString.writeln();
+}</code></pre></div>
+<p>入力文字列とその結果はこちらのサイトから引用した。
+このサイトの引用元はリンクが切れてしまっているようだ。</p>
+
+<p><a href="http://d.hatena.ne.jp/Guernsey/20100622/1277185273">SHA-256 ハッシュ計算 - BiBoLoG</a></p>
+
+<h3 id="5-リンクするライブラリの指定">5 - リンクするライブラリの指定</h3>
+
+<h4 id="dub-json"><code>dub.json</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;shatest&#34;</span>,
+	<span style="color:#f92672">&#34;authors&#34;</span>: [
+		<span style="color:#e6db74">&#34;kotet&#34;</span>
+	],
+	<span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;A minimal D application.&#34;</span>,
+	<span style="color:#f92672">&#34;copyright&#34;</span>: <span style="color:#e6db74">&#34;Copyright © 2017, kotet&#34;</span>,
+	<span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;proprietary&#34;</span>,
+	<span style="color:#f92672">&#34;libs&#34;</span>: [
+		<span style="color:#e6db74">&#34;openssl&#34;</span>
+	]
+}</code></pre></div>
+<p><code>libs</code>に外部ライブラリの名前を渡すとリンカオプションになる。</p>
+
+<h3 id="6-完成">6 - 完成</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dub build
+Performing &#34;debug&#34; build using dmd for x86_64.
+shatest ~master: building configuration &#34;application&#34;...
+Linking...
+$ ./shatest
+D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592</code></pre></div>
+<h3 id="追記">追記</h3>
+
+<p><a href="/2017/05/04/use-c-struct-in-d.html">次回:構造体を使う</a></p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang Lazyな新しいimportについての議論 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        Lazyな新しいimportについての議論
+    </h2>
+    <p>
+        <time>2017-02-15</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#a-new-import-idiom">A New Import Idiom</a>
+<ul>
+<li><a href="#1-オペレータ">1 <code>!</code>オペレータ</a></li>
+<li><a href="#2-改名import">2 改名import</a></li>
+<li><a href="#3-eponymous-templates">3 Eponymous Templates</a></li>
+<li><a href="#4-オペレータ">4 <code>~</code>オペレータ</a></li>
+<li><a href="#5-文字列mixin">5 文字列mixin</a></li>
+</ul></li>
+<li><a href="#話し合い">話し合い</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>最近は英語のD言語情報を読めるようになってきて楽しい。
+特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない速度で読めるようになった。<br />
+そういうわけで読んだものを自分の中で解釈し、自分の言葉でゆるく日本語にした記事を書いている。
+技術関係だから記事でcontributionを伸ばしても何も後ろめたくないのがいいところだ。</p>
+
+<p>というわけで今回はこちらを読んだ。一部コードをこちらから引用している。</p>
+
+<p><a href="https://forum.dlang.org/thread/iprikkrpishsudltbdpy@forum.dlang.org">A New Import Idiom` - D Programming Language Discussion Forum</a></p>
+
+<p><a href="https://dlang.org/blog/2017/02/13/a-new-import-idiom/">A New Import Idiom – The D Blog</a></p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>現在importは2つの範囲でできる。
+module-level importとlocal importである。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// A module-level import
+import std.datetime;
+  
+void fun(SysTime time)
+{
+  import std.stdio; // A local import
+  ...
+}</code></pre></div>
+<p>しかしたとえば関数<code>fun</code>の引数<code>time</code>に使われている型<code>SysTime</code>はmodule-level importされていないといけない。
+ちなみにスコープ文を使って下のようなことができるんじゃないかと思ってやってみたがやはりできなかった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">{
+    import std.datetime;
+    void fun(SysTime time)
+    {
+        import std.stdio;
+        writeln(&#34;hello&#34;);
+    }
+}</code></pre></div>
+<pre><code>source/app.d(1,1): Error: declaration expected, not '{'
+source/app.d(8,1): Error: unrecognized declaration
+</code></pre>
+
+<p>そこで
+<a href="https://github.com/dlang/DIPs/blob/master/DIPs/DIP1005.md#inline-imports">言語へのInline importsの導入が提案された</a>
+。
+今回読んだものはInline importを今までのものから新しい構文を追加せずにできる形を見つけたという話である。</p>
+
+<h2 id="a-new-import-idiom">A New Import Idiom</h2>
+
+<p>つまりこういうことである。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template from(string moduleName)
+{
+  mixin(&#34;import from = &#34; ~ moduleName ~ &#34;;&#34;);
+}
+
+void fun(from!&#34;std.datetime&#34;.SysTime time)
+{
+  import std.stdio;
+  ...
+}</code></pre></div>
+<p>要素を一つ一つ解説する。</p>
+
+<h3 id="1-オペレータ">1 <code>!</code>オペレータ</h3>
+
+<p><code>!</code>オペレータでテンプレートをインスタンス化するとき、引数がひとつだけならカッコを省略できる。
+つまり<code>from!&quot;std.datetime&quot;</code>は<code>from!(&quot;std.datetime&quot;)</code>と同じである。
+読みやすい。</p>
+
+<h3 id="2-改名import">2 改名import</h3>
+
+<p><a href="https://dlang.org/spec/module.html#renamed_imports">改名import</a>。
+importするモジュールにローカルな名前を与えて、 その名前で修飾したアクセスを強制することができる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void printSomething(string s) {
+    import io = std.stdio;
+    io.writeln(s);         // この形でのみアクセスできる
+    writeln(s);            // Error
+    std.stdio.writeln(s);  // Error
+}</code></pre></div>
+<h3 id="3-eponymous-templates">3 Eponymous Templates</h3>
+
+<p><a href="https://dlang.org/spec/template.html#implicit_template_properties">Eponymous Templates</a>
+といって、テンプレートの名前と同じ名前のメンバだけがある場合、省略できる。
+これによってたとえばテンプレートが</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template from()
+{
+    import kotet = std.datetime;
+}</code></pre></div>
+<p>となっている場合
+<code>from!().kotet.SysTime</code>
+と書かなければいけないところが、改名importで<code>kotet</code>というところをテンプレート名と同じ<code>from</code>にすることで
+<code>from!().SysTime</code>
+でよくなる。</p>
+
+<p>ここまでのものを組み合わせるとこのようなコードが書ける。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template dt() {
+    import dt = std.datetime; 
+}
+void fun(dt!().SysTime time) {}</code></pre></div>
+<p>更にこれを一般化する。</p>
+
+<h3 id="4-オペレータ">4 <code>~</code>オペレータ</h3>
+
+<p><code>~</code>オペレータで文字列を結合できる。</p>
+
+<h3 id="5-文字列mixin">5 文字列mixin</h3>
+
+<p>文字列mixinでコンパイル時にコードを生成できる。
+この場合は必要なモジュールを<code>from</code>として改名importするコードを作る。
+たとえば<code>moduleName</code>が<code>std.datetime</code>なら
+<code>mixin(&quot;import from = &quot; ~ moduleName ~ &quot;;&quot;);</code>
+で
+<code>import from = std.datetime;</code>
+というコードが生成される。
+つよい。</p>
+
+<p>すべてを組み合わせると前述の</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template from(string moduleName)
+{
+  mixin(&#34;import from = &#34; ~ moduleName ~ &#34;;&#34;);
+}</code></pre></div>
+<p>こちらのコードができる。
+インスタンス化すると、モジュールの中のシンボルが<code>from</code>の修飾付きでテンプレートのインスタンスのスコープ内にロードされる。</p>
+
+<h2 id="話し合い">話し合い</h2>
+
+<p>これを使うことでバイナリサイズが元の41%に減少し、コンパイル時間は30%にまで早くなったと
+<a href="https://dlang.org/blog/2017/02/13/a-new-import-idiom/">書かれているが</a>
+、それはどうやら
+<a href="https://forum.dlang.org/post/cbtjmdxtzyoajhngmlzj@forum.dlang.org">勘違いだったらしい</a>
+。</p>
+
+<p>これを標準ライブラリに追加することについては反対する人がいる。
+おもな理由としては</p>
+
+<blockquote>
+<p><a href="https://forum.dlang.org/post/o8028m$10o5$1@digitalmars.com">PhobosをC++ STLのような恐ろしいシロモノにするのはやめよう</a></p>
+
+<p><a href="https://forum.dlang.org/post/mailman.463.1487115250.31550.digitalmars-d-announce@puremagic.com">それが引き起こす混乱に見合ったメリットがあるとは思えない</a></p>
+</blockquote>
+
+<p>と言った感じである。
+一方</p>
+
+<blockquote>
+<p><a href="https://forum.dlang.org/post/zmufkhhoscvopdqbpomj@forum.dlang.org">DのテンプレートはC++のそれよりはるかに読みやすく直感的だと信じている</a></p>
+</blockquote>
+
+<p>という反論がある。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

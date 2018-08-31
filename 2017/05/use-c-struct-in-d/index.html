@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang dubで自力でCの構造体を使う - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 前回の続き。 前回と同じようにOpenSSLを使ってstd.digest.shaを使わずにSHA256を計算する。 今回は前回と違い、データは逐 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        dubで自力でCの構造体を使う
+    </h2>
+    <p>
+        <time>2017-05-04</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-dub-init">1 - <code>dub init</code></a></li>
+<li><a href="#2-宣言">2 - 宣言</a>
+<ul>
+<li><a href="#source-sha-d-new-file"><code>source/sha.d</code> (New File)</a></li>
+</ul></li>
+<li><a href="#4-リンクするライブラリの指定">4 - リンクするライブラリの指定</a>
+<ul>
+<li><a href="#dub-json"><code>dub.json</code></a></li>
+</ul></li>
+<li><a href="#5-完成">5 - 完成</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p><a href="/2017/05/03/use-c-sha256-in-d.html">前回</a>の続き。
+前回と同じようにOpenSSLを使って<code>std.digest.sha</code>を使わずにSHA256を計算する。
+今回は前回と違い、データは逐次入力される。
+そのような使い方の場合、<code>SHA256_CTX</code>と言う構造体に操作をしていく。
+よってD言語側でも<code>SHA256_CTX</code>を使えるようにする必要がある。
+自分みたいな初心者のための基礎的な記事を量産することを目標にしているので、細かい手順をできるだけ詳細に具体的に書いていきたい。</p>
+
+<h3 id="1-dub-init">1 - <code>dub init</code></h3>
+
+<p>前回と同じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+.
+├── dub.json
+└── source
+    └── app.d
+
+1 directory, 2 files</code></pre></div>
+<h3 id="2-宣言">2 - 宣言</h3>
+
+<p><code>$ gcc -E /usr/include/openssl/sha.h | less</code>として必要な関数や構造体の宣言を探す。
+そしてそれをDの宣言に書き下していく。</p>
+
+<h4 id="source-sha-d-new-file"><code>source/sha.d</code> (New File)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">extern (C)
+{
+    /**
+    C :
+    typedef struct SHA256state_st {
+        unsigned int h[8];
+        unsigned int Nl, Nh;
+        unsigned int data[16];
+        unsigned int num, md_len;
+    } SHA256_CTX;
+    */
+
+    struct SHA256_CTX
+    {
+        uint[8] h;
+        uint Nl;
+        uint Nh;
+        uint[16] data;
+        uint num;
+        uint md_len;
+    }
+
+    /// C : int SHA256_Init(SHA256_CTX *c);
+    int SHA256_Init(SHA256_CTX* c);
+    /// C : int SHA256_Update(SHA256_CTX *c, const void *data, size_t len);
+    int SHA256_Update(SHA256_CTX* c, const void* data, size_t len);
+    /// C : int SHA256_Final(unsigned char *md, SHA256_CTX *c);
+    int SHA256_Final(ubyte* md, SHA256_CTX* c);
+}
+/// C : # define SHA256_DIGEST_LENGTH    32
+enum SHA256_DIGEST_LENGTH = 32;</code></pre></div>
+<p>書き直すところが少なくてほとんどコピペからの修正で済む。
+うれしい。</p>
+
+<p>Cのコードで構造体は<code>struct SHA256state_st</code>として定義され、それに<code>SHA256_CTX</code>と別名をつけるようになっている。
+しかし
+<a href="https://www.gamedev.net/resources/_/technical/game-programming/binding-d-to-c-r3122">こちら</a>
+の記事にあるように、以下のコードは同じ意味になる。</p>
+
+<blockquote>
+<pre><code>&gt;// In C
+&gt;typedef struct foo_s
+&gt;{
+&gt;   int x;
+&gt;   struct foo_s *next;
+&gt;} foo_t;
+&gt;
+&gt;// In D
+&gt;struct foo_t
+&gt;{
+&gt;   int x;
+&gt;   foo_t *next;
+&gt;}
+&gt;```
+
+なので`SHA256state_st`はどこかになくなっている。
+
+### 3 - 使う
+
+#### `source/app.d`
+
+```d
+import std.stdio;
+import std.digest.digest : toHexString;
+import sha;
+
+void main()
+{
+	string[] strs = [&quot;The &quot;, &quot;quick &quot;, &quot;brown &quot;, &quot;fox &quot;, &quot;jumps &quot;, &quot;over &quot;,
+		&quot;the &quot;, &quot;lazy &quot;, &quot;dog&quot;];
+	ubyte[SHA256_DIGEST_LENGTH] hash;
+	SHA256_CTX ctx;
+
+	SHA256_Init(&amp;ctx);
+	foreach (str; strs)
+	{
+		SHA256_Update(&amp;ctx, cast(ubyte*)&amp;str[0], str.length);
+	}
+	SHA256_Final(cast(ubyte*)&amp;hash, &amp;ctx);
+
+	assert(hash.toHexString() == &quot;D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592&quot;);
+	hash.toHexString.writeln();
+}
+</code></pre>
+</blockquote>
+
+<h3 id="4-リンクするライブラリの指定">4 - リンクするライブラリの指定</h3>
+
+<h4 id="dub-json"><code>dub.json</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;shatest&#34;</span>,
+	<span style="color:#f92672">&#34;authors&#34;</span>: [
+		<span style="color:#e6db74">&#34;kotet&#34;</span>
+	],
+	<span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;A minimal D application.&#34;</span>,
+	<span style="color:#f92672">&#34;copyright&#34;</span>: <span style="color:#e6db74">&#34;Copyright © 2017, kotet&#34;</span>,
+	<span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;proprietary&#34;</span>,
+	<span style="color:#f92672">&#34;libs&#34;</span>: [
+		<span style="color:#e6db74">&#34;openssl&#34;</span>
+	]
+}</code></pre></div>
+<h3 id="5-完成">5 - 完成</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dub run
+Performing &#34;debug&#34; build using dmd for x86_64.
+shatest ~master: building configuration &#34;application&#34;...
+Linking...
+Running ./shatest
+D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592</code></pre></div></article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

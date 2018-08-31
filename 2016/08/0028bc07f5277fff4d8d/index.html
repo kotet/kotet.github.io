@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang Dでつくるbrainfu*kのインタプリタ - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" brainf*ckの処理系はすでにいろんな人が作っているけど勉強になりそうだったので自分で書いてみた。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        Dでつくるbrainfu*kのインタプリタ
+    </h2>
+    <p>
+        <time>2016-08-12</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    
+</aside>
+</header>
+<article><p>この記事はQiitaに投稿されたものの転載です。</p>
+
+<hr />
+
+<p>brainf*ckの処理系はすでにいろんな人が作っているけど勉強になりそうだったので自分で書いてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
+import std.getopt;
+import core.stdc.stdio;
+import std.file;
+import std.conv;
+
+const BUFFSIZE = 30000;
+
+void main(string[] args)
+{
+    string filename = args[1];
+    string code = readText(filename);
+    size_t ptr = 0;
+    size_t codeptr = 0;
+    ubyte[] memory = new ubyte[BUFFSIZE];
+    while(codeptr &lt; code.length)
+    {
+        switch(code[codeptr])
+        {
+            case &#39;+&#39;:
+                memory[ptr]++;
+                break;
+            case &#39;-&#39;:
+                memory[ptr]--;
+                break;
+            case &#39;&gt;&#39;:
+                ptr++;
+                break;
+            case &#39;&lt;&#39;:
+                ptr--;
+                break;
+            case &#39;.&#39;:
+                putchar(memory[ptr]);
+                break;
+            case &#39;,&#39;:
+                int tmp = getchar();
+                if(tmp == EOF) return;
+                memory[ptr] = tmp.to!ubyte;
+                break;
+            case &#39;[&#39;:
+                if(memory[ptr] == 0)
+                {
+                    int loopnest = 1;
+                    do
+                    {
+                        codeptr++;
+                        if(code[codeptr] == &#39;[&#39;) loopnest++;
+                        if(code[codeptr] == &#39;]&#39;) loopnest--;
+                    }while(0 &lt; loopnest);
+                }
+                break;
+            case &#39;]&#39;:
+                if(memory[ptr] != 0)
+                {
+                    int loopnest = 1;
+                    do
+                    {
+                        codeptr--;
+                        if(code[codeptr] == &#39;[&#39;) loopnest--;
+                        if(code[codeptr] == &#39;]&#39;) loopnest++;
+                    }while(0 &lt; loopnest);
+                }
+                break;
+            default:
+        }
+        codeptr++;
+    }
+}</code></pre></div>
+<p>getchar/putcharは何で置き換えればいいんだろうか？</p>
+
+<p><a href="http://esoteric.sange.fi/brainfuck/utils/mandelbrot/">マンデルブロー集合を描かせて</a>時間計測。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ time ./kbfi mandelbrot.b
+real	1m25.554s
+user	1m25.464s
+sys	0m0.044s
+
+real	1m25.144s
+user	1m25.104s
+sys	0m0.004s
+
+real	1m25.659s
+user	1m25.640s
+sys	0m0.000s
+
+$ time bf mandelbrot.b
+real	0m8.909s
+user	0m8.888s
+sys	0m0.012s
+
+real	0m9.066s
+user	0m9.048s
+sys	0m0.004s
+
+real	0m8.966s
+user	0m8.952s
+sys	0m0.008s</code></pre></div>
+<p>遅いのでこれから速くしていきたい。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

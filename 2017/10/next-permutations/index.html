@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang D言語の2つのnext_permutation - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" このツイートを見て「そうだったのか！知らなかった！」と言ってググったが目が節穴なのでこうして記事を書きはじめるまで目の前の検索結果が読めなかった。  ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        D言語の2つのnext_permutation
+    </h2>
+    <p>
+        <time>2017-10-14</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#std-algorithm-sorting-nextpermutation-https-dlang-org-library-std-algorithm-sorting-next-permutation-html"><a href="https://dlang.org/library/std/algorithm/sorting/next_permutation.html"><code>std.algorithm.sorting.nextPermutation</code></a></a></li>
+<li><a href="#std-algorithm-iteration-permutations-https-dlang-org-library-std-algorithm-iteration-permutations-html"><a href="https://dlang.org/library/std/algorithm/iteration/permutations.html"><code>std.algorithm.iteration.Permutations</code></a></a></li>
+<li><a href="#追記">追記</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">D言語にもnextPermutationあるんですけどね(ごり押し)</p>&mdash; W521 (@yosupot) <a href="https://twitter.com/yosupot/status/918779682127994880?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>このツイートを見て「そうだったのか！知らなかった！」と言ってググったが<del>目が節穴なのでこうして記事を書きはじめるまで目の前の検索結果が読めなかった。
+悔しいので無視して</del>「D言語 next_permutation」では出てこなかったので記事を書く。</p>
+
+<h3 id="std-algorithm-sorting-nextpermutation-https-dlang-org-library-std-algorithm-sorting-next-permutation-html"><a href="https://dlang.org/library/std/algorithm/sorting/next_permutation.html"><code>std.algorithm.sorting.nextPermutation</code></a></h3>
+
+<p>C++の<a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html"><code>next_permutation</code></a>と同じもの。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+{
+    import std.stdio;
+    import std.algorithm : nextPermutation;
+
+    auto ary = [1,2,3];
+    do
+    {
+        writeln(ary);
+    }
+    while(nextPermutation(ary));
+}</code></pre></div>
+<p><code>BidirectionalRange</code>を全部の並べ方を列挙できるようにIn-placeで入れ替える。
+最後になると<code>false</code>を返すため、上記のようにdo-whileで全パターンを列挙できる。</p>
+
+<pre><code>[1, 2, 3]
+[1, 3, 2]
+[2, 1, 3]
+[2, 3, 1]
+[3, 1, 2]
+[3, 2, 1]
+</code></pre>
+
+<p>C++と同じように、全パターンを列挙するためには最初がソート済みでなければならない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+{
+    import std.stdio;
+    import std.algorithm : nextPermutation;
+
+    auto ary = [3,2,1]; // ソートされていない
+    do
+    {
+        writeln(ary);
+    }
+    while(nextPermutation(ary));
+}</code></pre></div>
+<pre><code>[3, 2, 1]
+</code></pre>
+
+<h3 id="std-algorithm-iteration-permutations-https-dlang-org-library-std-algorithm-iteration-permutations-html"><a href="https://dlang.org/library/std/algorithm/iteration/permutations.html"><code>std.algorithm.iteration.Permutations</code></a></h3>
+
+<p>こちらはより汎用的に使える。
+与えられた<code>Range</code>のすべての並べ方の<code>Permutations!Range</code>、順列を返す。
+ソート済みでなくても、そもそも要素が比較可能でなくともいいようだ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+{
+    import std.stdio;
+    import std.algorithm : permutations, nextPermutation;
+    import std.complex : complex;
+
+    auto ary = [complex(1,1),
+                complex(2,0),
+                complex(3,-1)]; // 比較ができないためnextPermutationは動かない
+    permutations(ary).writeln();
+}</code></pre></div>
+<pre><code>[[1+1i, 2+0i, 3-1i], [2+0i, 1+1i, 3-1i], [3-1i, 1+1i, 2+0i], [1+1i, 3-1i, 2+0i], [2+0i, 3-1i, 1+1i], [3-1i, 2+0i, 1+1i]]
+</code></pre>
+
+<p>&ldquo;Heap&rsquo;s algorithm&rdquo;というのを使っているらしいが、日本語の情報が全然なくてつらいので理解できたらまた別に記事を書こうと思う。</p>
+
+<h3 id="追記">追記</h3>
+
+<p>Wikipediaの記事 &ldquo;Heap&rsquo;s algorithm&rdquo;を翻訳した。</p>
+
+<p><a href="https://ja.wikipedia.org/wiki/Heap%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0">Heapのアルゴリズム - Wikipedia</a></p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

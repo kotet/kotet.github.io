@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#tech 紙とペンでビットマップ画像を生成してbase64としてツイート - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 文名は容易に揚らず、生活リズムは日を逐うて崩れてゆく。 Kotetは漸く焦躁に駆られて来た。 この頃からその容貌も峭刻となり、肉落ち骨秀で、眼光 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/tech">#tech</a>
+        
+        紙とペンでビットマップ画像を生成してbase64としてツイート
+    </h2>
+    <p>
+        <time>2018-08-21</time>
+         <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#ビットマップ画像を手書きしてツイートしよう">ビットマップ画像を手書きしてツイートしよう</a></li>
+<li><a href="#ツイートできる最大サイズ">ツイートできる最大サイズ</a></li>
+<li><a href="#画像の作成">画像の作成</a>
+<ul>
+<li><a href="#ファイルヘッダー">ファイルヘッダー</a>
+<ul>
+<li><a href="#ファイルタイプ">ファイルタイプ</a></li>
+<li><a href="#ファイルサイズ">ファイルサイズ</a></li>
+<li><a href="#予約領域">予約領域</a></li>
+<li><a href="#画像データまでのオフセット">画像データまでのオフセット</a></li>
+</ul></li>
+<li><a href="#情報ヘッダー">情報ヘッダー</a>
+<ul>
+<li><a href="#情報ヘッダーのサイズ">情報ヘッダーのサイズ</a></li>
+<li><a href="#画像サイズ">画像サイズ</a></li>
+<li><a href="#プレーン数">プレーン数</a></li>
+<li><a href="#色ビット数">色ビット数</a></li>
+<li><a href="#圧縮形式">圧縮形式</a></li>
+<li><a href="#その他">その他</a></li>
+</ul></li>
+<li><a href="#画像データ">画像データ</a></li>
+</ul></li>
+<li><a href="#base64でエンコード">base64でエンコード</a>
+<ul>
+<li><a href="#3バイトごとに区切る">3バイトごとに区切る</a></li>
+<li><a href="#ブロックの変換">ブロックの変換</a></li>
+<li><a href="#最後の処理">最後の処理</a></li>
+</ul></li>
+<li><a href="#完成-そしてツイート">完成、そしてツイート</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<blockquote>
+<p>文名は容易に揚らず、生活リズムは日を逐うて崩れてゆく。
+Kotetは漸く焦躁に駆られて来た。
+この頃からその容貌も峭刻となり、肉落ち骨秀で、眼光のみ徒らに炯々として、
+曾て進士に登第した頃の豊頬の美少年の俤は、何処に求めようもない。
+数年の後、貧窮に堪えず、自らの衣食のために遂に節を屈して、再び東へ赴き、
+一地方アルバイトを奉ずることになった。
+数日の後、公用で旅に出ること叶わず初日にて欠勤した時、遂に発狂した。或夜半、
+急に顔色を変えて寝床から起上ると、
+<ruby><rb>base64</rb><rt>何か訳の分らぬこと</rt></ruby>を叫びつつそのまま下にとび下りて、
+闇の中へ駈出した。彼は二度と戻って来なかった。附近の山野を捜索しても、何の手掛りもない。
+その後Kotetがどうなったかを知る者は、誰もなかった。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+</blockquote>
+
+<h3 id="ビットマップ画像を手書きしてツイートしよう">ビットマップ画像を手書きしてツイートしよう</h3>
+
+<p>かなり前に D で ビットマップ形式の画像を生成するプログラムを書いた記憶がある。
+その時のソースコードは残っていないが、けっこう単純なフォーマットだった。
+ひょっとしたら全くコンピューターに頼らずに同じことができるのではないかと思い立った。
+というわけで画像を手書きしていく。</p>
+
+<p>目標は次の3つである。</p>
+
+<ol>
+<li>ビットマップ画像を紙とペンを使って生成</li>
+<li>できたバイナリを紙とペンを使って base64 でエンコード</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data URL</a>
+としてスマートフォンのキーボードを使ってTwitterに投稿</li>
+</ol>
+
+<p>特殊なものは使わない。
+誰でも持っている道具だけで画像をツイートしてみる。</p>
+
+<h3 id="ツイートできる最大サイズ">ツイートできる最大サイズ</h3>
+
+<p>この方式でツイートできる画像の大きさはどれくらいになるだろうか?
+まず、出てくる文字はすべて ASCII の範囲内なので文字数制限は280文字と考えていいだろう。
+ここから画像データに使えない領域を引いていく。</p>
+
+<p>まず、Data URL なので最初の <code>data:image/bmp;base64,</code> は必須である。
+これでまず22文字引かれる。
+残りは258文字となる。</p>
+
+<p>base64 エンコードを行うため、文字数に対して表現できるバイト数は4分の3になる。
+また、base64 文字数を4の倍数にするためのパディングが必要になる。
+したがって残りの文字数で表現できるデータ量は192バイトとなる。</p>
+
+<p>まず必要になるのが画像のヘッダ領域だが、これはフォーマットの選択によって減らすことができる。
+しかし頑張って作ったのにビューアが対応してなくて表示できなかったりすると悲しいので、
+全部で54バイト必要なWindows形式を採用した。
+残りは138バイトである。</p>
+
+<p>最後にビットマップ、画像データである。
+これも形式を選択したり圧縮したりで画素あたりのデータ量をかなり減らすことができるのだが、
+これもなんかめんどくさいので一般的な1画素あたり24ビット = 3バイトを選択しよう (ズボラ)。
+138を3で割ると46となるので、この条件でツイートできる画像の最大画素数は46である。
+ただし行を4バイト境界でアラインする必要があるので、横幅によっては大きなロスが発生する。
+それも考慮して、現実的に画像として使える縦横比のものを探すと横4ピクセル、
+縦11ピクセルの44画素くらいになるだろう。</p>
+
+<h3 id="画像の作成">画像の作成</h3>
+
+<p>というわけで画像 (のバイト列) を作っていく。
+今回作るのはこの縦横2ピクセルの画像である。
+左上から順に赤 (#FF0000)、緑 (#00FF00)、青 (#0000FF)、白 (#FFFFFF) で塗ってある。
+最初はがんばって絵を書こうとしたが、画像が大きくなるに従って計算ミスも増えてくるのでしかたない。</p>
+
+<p><img src="/assets/2018/08/bitmap.svg" alt="お題" /></p>
+
+<h4 id="ファイルヘッダー">ファイルヘッダー</h4>
+
+<h5 id="ファイルタイプ">ファイルタイプ</h5>
+
+<p>必ず先頭に<code>BM</code>の2文字が入る。
+<code>A</code>が0x41であるということさえ覚えておけば計算できるだろう。</p>
+
+<pre><code>42 4D
+</code></pre>
+
+<h5 id="ファイルサイズ">ファイルサイズ</h5>
+
+<p>ファイル全体のバイト数。
+32ビット整数。
+変な数値を入れても入れなくてもまともなビューアーはよしなに表示してくれるらしい。
+ノートに余白を設けておいて最後に計算するといいだろう。</p>
+
+<p>今回は70バイトだったので<code>00 00 00 46</code>(<code>00000000 00000000 00000000 01000110</code>)である。
+リトルエンディアンにしなければならないので実際のバイト列はこれを反転したものになる。
+今回255を超える数値は登場しないので、何も考えずに数値の後ろにゼロを連ねるだけで良くて非常に楽。</p>
+
+<pre><code>46 00 00 00
+</code></pre>
+
+<h5 id="予約領域">予約領域</h5>
+
+<p>2バイトの予約領域が2つある。
+ここはゼロ埋めしなければならない。</p>
+
+<pre><code>00 00 00 00
+</code></pre>
+
+<h5 id="画像データまでのオフセット">画像データまでのオフセット</h5>
+
+<p>画像データが何バイトめから始まるかを書く。
+これも32ビット整数。
+ヘッダのバイト数である54 = 0x36を書いたが、これでよかったのだろうか?</p>
+
+<pre><code>36 00 00 00
+</code></pre>
+
+<h4 id="情報ヘッダー">情報ヘッダー</h4>
+
+<h5 id="情報ヘッダーのサイズ">情報ヘッダーのサイズ</h5>
+
+<p>Windows 式なので40バイト。
+これも32ビット整数。</p>
+
+<pre><code>28 00 00 00
+</code></pre>
+
+<h5 id="画像サイズ">画像サイズ</h5>
+
+<p>ピクセル数。
+幅、高さの順番にどちらも符号付き32ビット整数。
+高さは通常正の数にするが、負にすると上下が反転して
+<a href="#post20180821imagelineorder">後述する</a>
+画像データの並びがわかりやすくなるらしい。
+わざわざ負数にして計算ミスを起こしたくないし、変なことして表示されなかったら悲しいので、
+ここはお行儀よくしておく。</p>
+
+<pre><code>02 00 00 00
+02 00 00 00
+</code></pre>
+
+<h5 id="プレーン数">プレーン数</h5>
+
+<p>これは16ビット整数。
+「ターゲット・デバイスのプレーンの枚数」らしいが、1で固定である。
+何を想定しているんだろうか。</p>
+
+<pre><code>01 00
+</code></pre>
+
+<h5 id="色ビット数">色ビット数</h5>
+
+<p>1画素を表現するのに使うビット数。
+これも16ビット整数。
+0 (プリンター等で使う)、1、4、8、16 (「正式に対応していない」らしい)、24、32から選ぶことができる。
+今回は一般的な8ビット×3の24ビット。</p>
+
+<pre><code>18 00
+</code></pre>
+
+<h5 id="圧縮形式">圧縮形式</h5>
+
+<p>条件によってはちょっとした圧縮をかけることができるらしい。
+32ビット整数。</p>
+
+<p>今回小さな画像を作っているのでバイト列にゼロが多い。
+しかし大きい画像の場合はファイルサイズなど32ビット整数でないと不十分なときもあるだろう。
+それを考慮してもこの項目は今までで一番ムダにスペースをとっているように思える。
+4億通りも圧縮形式の選択肢ができるものだろうか?
+余ったビットに圧縮に必要な情報でも入れるのだろうか。</p>
+
+<p>今回は色ビット数に24を指定してしまったので0 (無圧縮) 1択である。
+ビットマップのくせに圧縮なんて生意気なんだよ (暴言)</p>
+
+<pre><code>00 00 00 00
+</code></pre>
+
+<h5 id="その他">その他</h5>
+
+<p>この後にも画像データサイズ、解像度、パレット数、重要色数と項目が続いているが、今回の場合はすべてゼロでいい。
+5項目すべて32ビット整数。</p>
+
+<pre><code>00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+</code></pre>
+
+<h4 id="画像データ">画像データ</h4>
+
+<p>{: #post20180821imagelineorder}</p>
+
+<p>いよいよ絵を<strong>書いて</strong>いく。
+いくつか注意点がある。
+まず画像は下から上に向かって描画されていく。
+したがって行は上下反転した順番に並ぶ。
+次に、行は4バイトの境界でアラインされている必要がある。
+今回は1行が24ビット×2=6バイトになっているので、2バイトのパディングを入れてやらなければならない。
+最後に、色の並び順は RGB ではなく BGR である。</p>
+
+<pre><code>FF 00 00 FF FF FF 00 00
+00 00 FF 00 FF 00 00 00
+</code></pre>
+
+<h3 id="base64でエンコード">base64でエンコード</h3>
+
+<p>以上でバイナリデータが完成したので、base64にしていく。
+参考までにここまでで作ってきたビットマップ画像の全体を載せておく。</p>
+
+<pre><code>42 4D
+46 00 00 00
+00 00 00 00
+36 00 00 00
+28 00 00 00
+02 00 00 00
+02 00 00 00
+01 00
+18 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+FF 00 00 FF FF FF 00 00
+00 00 FF 00 FF 00 00 00
+</code></pre>
+
+<p>base64はASCIIの文字だけを使ってバイナリデータを表現するフォーマットである。
+6ビットを1文字で表現するため、データ量としては3分の4に増えることになる。</p>
+
+<h4 id="3バイトごとに区切る">3バイトごとに区切る</h4>
+
+<p>上のバイト列から毎回6ビットごと切り出して変換していくのは大変に辛そうなので、
+lcm(6,8) = 24ビット = 3バイトごとのブロックに分けて変換していく。
+上のバイト列を3バイトごとに改行するようにしたのがこちらである。</p>
+
+<pre><code>42 4D 46
+00 00 00
+00 00 00
+00 36 00
+00 00 28
+00 00 00
+02 00 00
+00 02 00
+00 00 01
+00 18 00
+00 00 00
+00 00 00
+00 00 00
+00 00 00
+00 00 00
+00 00 00
+00 00 00
+00 00 00
+FF 00 00
+FF FF FF
+00 00 00
+00 FF 00
+FF 00 00
+00
+</code></pre>
+
+<p><code>00 00 00</code>が多くて楽そうだ。
+というわけで変換していく。</p>
+
+<h4 id="ブロックの変換">ブロックの変換</h4>
+
+<p>最初の<code>42 4D 46</code>を変換してみる。
+まずはバイト列を2進数に直してみる。
+元が16進数なので1文字づつ置き換えていけばいい。</p>
+
+<pre><code>0100 0010 0100 1101 0100 0110
+</code></pre>
+
+<p>次にこれを6ビットごとに区切る。</p>
+
+<pre><code>010000 100100 110101 000110
+</code></pre>
+
+<p>ひとつづつ変換していく。
+ビット列と文字の対応は大文字、小文字、数値、+、/ という並びになっており規則性があるが、
+毎回計算すると (少なくとも自分は) 必ずミスをするので
+<a href="https://ja.wikipedia.org/wiki/Base64">Wikipedia</a>の対応表などをしっかり見ながらやろう。
+すると3バイトのブロックが以下のように4文字にエンコードされる。</p>
+
+<pre><code>Qk1G
+</code></pre>
+
+<h4 id="最後の処理">最後の処理</h4>
+
+<p>一番最後の1バイトが仲間を作れないでいる。
+ここでは上に加えて特別な処理が必要になる。</p>
+
+<p>まず2進数にして6ビットごとに区切ってみる。</p>
+
+<pre><code>000000 00
+</code></pre>
+
+<p>余った2ビットの後ろに0を続けて、6ビットに揃える。</p>
+
+<pre><code>000000 000000
+</code></pre>
+
+<p>そして同じように変換する。</p>
+
+<pre><code>AA
+</code></pre>
+
+<p>これで終わりではない。
+文字列の長さが4の倍数になるように<code>=</code>でパディングをしてやる必要がある。
+ここまでブロックを4文字に変換してきたので、ここも4文字になるようにしてやればいい。</p>
+
+<pre><code>AA==
+</code></pre>
+
+<p>というわけでできた文字列がこちらになる。</p>
+
+<pre><code>Qk1GAAAAAAAAADYAAAAoAAAAAgAAAAIAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAA////AAAAAP8A/wAAAA==
+</code></pre>
+
+<p>ちゃんと画像になっているかテストしてみよう。
+Arch Linuxの場合<code>base64</code>というコマンドが
+<a href="https://www.archlinux.org/packages/core/x86_64/coreutils/files/">coreutils</a>
+の中に入っている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo &#34;Qk1GAAAAAAAAADYAAAAoAAAAAgAAAAIAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAA////AAAAAP8A/wAAAA==&#34; | base64 -d &gt; test.bmp</code></pre></div>
+<h3 id="完成-そしてツイート">完成、そしてツイート</h3>
+
+<p><img src="/assets/2018/08/bitmap.png" alt="ノート" />{:style=&ldquo;width: 400px;&ldquo;}</p>
+
+<p>ノート1ページ (と複数の失敗ページ) の計算の結果、base64にエンコードされたビットマップ画像が完成した。
+後は<code>data:image/bmp;base64,</code>をくっつけてツイートするだけだ。</p>
+
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="tl" dir="ltr">data:image/bmp;base64,Qk1GAAAAAAAAADYAAAAoAAAAAgAAAAIAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAA////AAAAAP8A/wAAAA==</p>&mdash; Kotet (@kotetttt) <a href="https://twitter.com/kotetttt/status/1031647349838241792?ref_src=twsrc%5Etfw">August 20, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>完成した画像を下に貼っておく。
+たった4ドットだが、たしかにそこにある。</p>
+
+<p><img src="data:image/bmp;base64,Qk1GAAAAAAAAADYAAAAoAAAAAgAAAAIAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAA////AAAAAP8A/wAAAA==" alt="画像" /></p>
+
+<h3 id="参考">参考</h3>
+
+<ul>
+<li><a href="http://www.umekkii.jp/data/computer/file_format/bitmap.cgi">Bitmapファイルフォーマット</a></li>
+<li><a href="http://www5d.biglobe.ne.jp/~noocyte/Programming/Windows/BmpFileFormat.html">BMPファイルのフォーマット</a></li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://www.aozora.gr.jp/cards/000119/files/624_14544.html">中島敦 山月記</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

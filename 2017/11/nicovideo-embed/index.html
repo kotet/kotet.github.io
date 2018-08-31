@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#jekyll ニコニコ動画のプレーヤーを埋め込むJekyllテンプレート - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" ニコニコ動画のプレーヤー等の埋め込みコードがようやく、ようやくHTTPSに対応した。ので、早速埋め込んでみる。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/jekyll">#jekyll</a>
+        
+        ニコニコ動画のプレーヤーを埋め込むJekyllテンプレート
+    </h2>
+    <p>
+        <time>2017-11-08</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#プレーヤー">プレーヤー</a></li>
+<li><a href="#動画情報とサムネイル">動画情報とサムネイル</a></li>
+<li><a href="#レスポンシブ対応とテンプレート化">レスポンシブ対応とテンプレート化</a>
+<ul>
+<li><a href="#includes-nicovideo-html"><code>_includes/nicovideo.html</code></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>ニコニコ動画のプレーヤー等の埋め込みコードがようやく、ようやくHTTPSに対応した。</p>
+
+<p><a href="http://blog.nicovideo.jp/niconews/49321.html">「動画埋め込みコード」HTTPS対応のお知らせ|ニコニコインフォ</a></p>
+
+<p>ので、早速埋め込んでみる。</p>
+
+<h3 id="プレーヤー">プレーヤー</h3>
+
+<pre><code>&lt;script type=&quot;application/javascript&quot; src=&quot;https://embed.nicovideo.jp/watch/sm27881238/script?w=320&amp;h=180&quot;&gt;&lt;/script&gt;&lt;noscript&gt;&lt;a href=&quot;http://www.nicovideo.jp/watch/sm27881238&quot;&gt;【AviUtl】もっと簡単に滑らかなアニメーションができるスクリプト&lt;/a&gt;&lt;/noscript&gt;
+</code></pre>
+
+<p><script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm27881238/script?w=320&h=180"></script><noscript><a href="http://www.nicovideo.jp/watch/sm27881238">【AviUtl】もっと簡単に滑らかなアニメーションができるスクリプト</a></noscript></p>
+
+<p>動画は一度投稿すると修正できないため、時間がたつにつれてどんどん悪い点が目立って見えてくる。
+たとえ今でも見に来た人が高く評価してくれるような動画であっても時々削除したい衝動と戦うくらいなのだが、精神の修行も兼ねてここはあえて自分の動画を使う。</p>
+
+<p>そのまま貼り付けるとスマホなどで表示が崩れてしまうので小さめのものを貼っている。
+特に問題なさそうである。</p>
+
+<h3 id="動画情報とサムネイル">動画情報とサムネイル</h3>
+
+<pre><code>&lt;iframe width=&quot;312&quot; height=&quot;176&quot; src=&quot;https://ext.nicovideo.jp/thumb/sm27881238&quot; scrolling=&quot;no&quot; style=&quot;border:solid 1px #ccc;&quot; frameborder=&quot;0&quot;&gt;&lt;a href=&quot;http://www.nicovideo.jp/watch/sm27881238&quot;&gt;【AviUtl】もっと簡単に滑らかなアニメーションができるスクリプト&lt;/a&gt;&lt;/iframe&gt;
+</code></pre>
+
+<iframe width="312" height="176" src="https://ext.nicovideo.jp/thumb/sm27881238" scrolling="no" style="border:solid 1px #ccc;" frameborder="0"><a href="http://www.nicovideo.jp/watch/sm27881238">【AviUtl】もっと簡単に滑らかなアニメーションができるスクリプト</a></iframe>
+
+<p>一応対応できてるっぽいが、どうも執筆時点で以下の画像のようにコメントが見切れているようだ。
+仕様ではないと思うのだが、HTTPバージョンの頃からこんな感じだったのかはわからない。</p>
+
+<p><img src="/assets/2017/11/08/screenshot.png" alt="スクショ" /></p>
+
+<h3 id="レスポンシブ対応とテンプレート化">レスポンシブ対応とテンプレート化</h3>
+
+<p>動画情報は見切れているので、プレーヤーの方を使っていく。
+せっかくなので大きいサイズのものを使いたいが、プレーヤーをこのまま埋め込むとスマホなど幅の狭いブラウザで見た時に縦幅が横幅に応じて変化せず邪魔な感じになる。</p>
+
+<p><img src="/assets/2017/11/08/longcat.png" alt="スクショ" /></p>
+
+<p>そこで以下のようなCSS（SASS）を書く。
+&ldquo;Youtube レスポンシブ&rdquo;とかでググッて出てくるやつである。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">nicovideo-wrapper</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">padding-top</span>: <span style="color:#ae81ff">66.67</span><span style="color:#66d9ef">%</span>; <span style="color:#75715e">/* 480 / 720 */</span>
+}
+.<span style="color:#a6e22e">nicovideo-wrapper</span> <span style="color:#f92672">iframe</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">right</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#75715e">!important</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#75715e">!important</span>;
+}</code></pre></div>
+<p>そしてテンプレートを書く。
+Javascriptを切った時のための<code>noscript</code>タグを削除したが、まあこのサイトはずっとJavascriptを切った時のことなど想定せずに作ってきたので今更問題ないだろう。</p>
+
+<h4 id="includes-nicovideo-html"><code>_includes/nicovideo.html</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nicovideo-wrapper&#34;</span>&gt;
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;application/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://embed.nicovideo.jp/watch/{{ include.id }}/script&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;</code></pre></div>
+<p>すると以下のように画面幅に合わせていい感じに縦横比を保ちつつ伸縮してくれるプレーヤーを埋め込むことができる。</p>
+
+<pre><code>{% include nicovideo.html id=&quot;sm27881238&quot; %}
+</code></pre>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

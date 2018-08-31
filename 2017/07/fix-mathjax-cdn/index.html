@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#jekyll MathJaxのCDNが警告を発しつつも使えてしまっていた - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/jekyll">#jekyll</a>
+        
+        MathJaxのCDNが警告を発しつつも使えてしまっていた
+    </h2>
+    <p>
+        <time>2017-07-06</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#temporary-redirect-starting-may-1-2017">Temporary redirect starting May 1, 2017</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>生成されているHTMLを確認しようとChrome DevToolsを開いたところ、なにかWarningが出ていた。</p>
+
+<p><img src="/assets/2017/07/06/warning.png" alt="warning" /></p>
+
+<p>どうも数式表示のために読み込ませていたMathJaxのCDNである
+<code>cdn.mathjax.org</code>が今年の4月30日でシャットダウンされていたようだ。</p>
+
+<p><a href="https://www.mathjax.org/cdn-shutting-down/">MathJax CDN shutting down on April 30, 2017. Alternatives available.</a></p>
+
+<p>しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。
+なぜだろう?と思って更に読み込んだところ上のページに追記があった。</p>
+
+<blockquote>
+<h2 id="temporary-redirect-starting-may-1-2017">Temporary redirect starting May 1, 2017</h2>
+
+<p><strong>[Updated 2017/04/10]</strong></p>
+
+<p>We will implement a temporary redirect on cdn.mathjax.org to redirect users to cdnjs.</p>
+</blockquote>
+
+<p>いままでこのサイトで読み込まれていた<a href="https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js">https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js</a>
+を見てみると、なるほど確かにリダイレクト用に新しいCDNに<code>script</code>タグを置き換えるスクリプトになっている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">(<span style="color:#66d9ef">function</span> () {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newMathJax</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js&#39;</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oldMathJax</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;cdn.mathjax.org/mathjax/2.7-latest/MathJax.js&#39;</span>;
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">replaceScript</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">script</span>, <span style="color:#a6e22e">src</span>) {
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Make redirected script
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newScript</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;script&#39;</span>);
+    <span style="color:#a6e22e">newScript</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newMathJax</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/.*?(\?|$)/</span>, <span style="color:#e6db74">&#39;$1&#39;</span>);
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Move onload and onerror handlers to new script
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">newScript</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">onload</span>; 
+    <span style="color:#a6e22e">newScript</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">onerror</span>;
+    <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Move any content (old-style configuration scripts)
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">firstChild</span>) <span style="color:#a6e22e">newScript</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">firstChild</span>);
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Copy script id
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) <span style="color:#a6e22e">newScript</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">id</span>;
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Replace original script with new one
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">replaceChild</span>(<span style="color:#a6e22e">newScript</span>, <span style="color:#a6e22e">script</span>);
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  Issue a console warning
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#39;WARNING: cdn.mathjax.org has been retired. Check https://www.mathjax.org/cdn-shutting-down/ for migration tips.&#39;</span>)
+  }
+
+  <span style="color:#66d9ef">if</span> (document.<span style="color:#a6e22e">currentScript</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">script</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">currentScript</span>;
+    <span style="color:#a6e22e">replaceScript</span>(<span style="color:#a6e22e">script</span>, <span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">src</span>);
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Look for current script by searching for one with the right source
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldMathJax</span>.<span style="color:#a6e22e">length</span>;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scripts</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;script&#39;</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">scripts</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">script</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scripts</span>[<span style="color:#a6e22e">i</span>];
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/.*?:\/\//</span>,<span style="color:#e6db74">&#39;&#39;</span>);
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">substr</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">n</span>) <span style="color:#f92672">===</span> <span style="color:#a6e22e">oldMathJax</span>) {
+        <span style="color:#a6e22e">replaceScript</span>(<span style="color:#a6e22e">script</span>, <span style="color:#a6e22e">src</span>);
+        <span style="color:#66d9ef">break</span>;
+      }
+    }
+  }
+})();
+</code></pre></div>
+<p>MathJaxそのものよりもサイズが減って負荷軽減になっている……のだろうか?
+自分みたいな他のCDNに移行するのを忘れている人にはありがたいが、おかげでDevToolsを開くまで異変に気が付かなかった。
+ちゃんと動かなくなってくれたほうがかえって良かったかもしれない。</p>
+
+<p>とにかく気づいたのでURLを別のCDNプロバイダのものに変更して対処。</p>
+
+<p><img src="/assets/2017/07/06/diff.png" alt="diff" /></p>
+
+<p><a href="https://github.com/kotet/kotet.github.io/commit/200f8505a938263e4b3f38cf47f85c66751f4587">Fix MathJax CDN · kotet/kotet.github.io@200f850</a></p>
+
+<p>無事にMathJaxの警告はなくなった。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

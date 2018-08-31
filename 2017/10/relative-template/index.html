@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#jekyll GitHub Pagesで相対パスを使う - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" IPFS上でサイトをホストしたりするとドメインがコロコロ変わったりするので、今のうちにすべてのリンクを相対パスにしておきたくなった。 しかしGitHub Pagesにおいてそれは簡単なことではない。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/jekyll">#jekyll</a>
+        
+        GitHub Pagesで相対パスを使う
+    </h2>
+    <p>
+        <time>2017-10-23</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#だめなやつら">だめなやつら</a></li>
+<li><a href="#自作テンプレート">自作テンプレート</a>
+<ul>
+<li><a href="#includes-relative"><code>_includes/relative</code></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>IPFS上でサイトをホストしたりするとドメインがコロコロ変わったりするので、今のうちにすべてのリンクを相対パスにしておきたくなった。
+しかしGitHub Pagesにおいてそれは簡単なことではない。</p>
+
+<h3 id="だめなやつら">だめなやつら</h3>
+
+<ul>
+<li><code>relative_url</code> フィルタ</li>
+</ul>
+
+<p>名前からしてそれっぽいがこれではダメである。
+これは<code>/path/to/file</code>のような「ルートからの」相対パスになる。</p>
+
+<ul>
+<li>Jekyllプラグイン</li>
+</ul>
+
+<p>これが使えれば一番楽だろうが、残念ながらGitHub Pagesではプラグインの導入が自由でない。</p>
+
+<h3 id="自作テンプレート">自作テンプレート</h3>
+
+<p>そういうわけでなんとか今使える機能だけで相対パスを生成する必要がある。
+探してみたところこのようなものがあった。</p>
+
+<p><a href="https://stackoverflow.com/questions/7985081/how-to-deploy-a-jekyll-site-locally-with-css-js-and-background-images-included">How to deploy a jekyll site locally with css, js and background images included? - Stack Overflow</a></p>
+
+<p>ここにあった以下のテンプレートを参考に改良を加える。
+読めばわかるが、<code>page.url</code>の最後がファイル名でも<code>/</code>でも動作するようになっている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% assign lvl = page.url | append:&#39;X&#39; | split:&#39;/&#39; | size %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
+
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ relative }}css/main.css&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> /&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ relative }}scripts/jquery.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;</code></pre></div>
+<p>まず、すべてのページに2行のテンプレートを入れるのはめんどくさすぎるので別ファイルに分ける。</p>
+
+<h4 id="includes-relative"><code>_includes/relative</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% assign lvl = page.url | append:&#39;X&#39; | split:&#39;/&#39; | size %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}</code></pre></div>
+<p>これで<code>/path/to/file</code>や<code>/path/to/directory/</code>の形をしたルートからの相対パスの前に
+<code>{% include relative %}</code>をつけるだけで<code>../..//path/to/file</code>のような相対パスになる。
+ちょっと<code>/</code>が多い気がするが問題なく動作する。</p>
+
+<p>しかしこのままでは改行が入ってしまうので1行にする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% assign lvl = page.url | append:&#39;X&#39; | split:&#39;/&#39; | size %}{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}</code></pre></div>
+<p>問題はまだある。
+このままでは<code>/</code>で使った時に空文字列を返してしまい、URLが<code>/path/to/file</code>、つまりルートからのパスになってしまう。
+これではIPFS式のURL<code>/ipfs/&lt;hash&gt;/path/to/file</code>に対応できない。
+しかしこれは最後に<code>.</code>をつけてやるだけで解決する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% assign lvl = page.url | append:&#39;X&#39; | split:&#39;/&#39; | size %}{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}.</code></pre></div>
+<p>これが完成形である。
+ルートから遠いところでは<code>../.././path/to/file</code>、ルートでは<code>./path/to/file</code>のようなURLをこれを使って作ることができる。</p>
+
+<p>ただ、いちばん面倒なのはここではなく、既存のすべてのリンクにもれなくこの<code>{% include relative %}</code>
+を<a href="https://github.com/kotet/kotet.github.io/commit/d0057ecd2a60b48a0ad0901d6f5518ce69a49cf5">つけることだったりする</a>。</p>
+
+<hr />
+
+<p>追記: このテンプレートは404ページにリダイレクトされた時に動作しない。
+<code>/404.html</code>のつもりでHTMLが生成されるのだが、実際のlocationはアクセスしようとしたページのものになるので、階層がずれてしまう。
+完全な静的サイトだと信じきっていたので思わぬ落とし穴だった。
+404ページを内部リンクのないシンプルなHTMLにすることで対処した。
+今までどおりの404ページを使う方法を考えたい。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

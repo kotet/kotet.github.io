@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang DCompute:GPU上で走るD【翻訳】 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" これはDComputeの2つ目の記事です。 前回の記事では、DComputeの発展と小さな例を扱いました。 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。 しかし今はそんなことはありません。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        DCompute:GPU上で走るD【翻訳】
+    </h2>
+    <p>
+        <time>2018-03-08</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#イントロダクション">イントロダクション</a></li>
+<li><a href="#野獣を飼いならす">野獣を飼いならす</a></li>
+<li><a href="#dcomputeの未来">DComputeの未来</a></li>
+<li><a href="#プロジェクトでdcomputeを使う">プロジェクトでDComputeを使う</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>この記事は、
+<a href="https://dlang.org/blog/2017/10/30/d-compute-running-d-on-the-gpu/">DCompute: Running D on the GPU – The D Blog</a>
+を自分用に翻訳したものを
+<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
+公開するものである。</p>
+
+<p>ソース中にコメントの形で原文を残している。
+今回あんまり訳せてないので気になったら
+<a href="https://github.com/{{ site.github.repository_nwo }}/edit/{{ site.github.source.branch }}/{{ page.path }}">Pull request</a>だ!</p>
+
+<hr />
+
+<!-- _Nicholas Wilson is a student at Murdoch University, studying for his BEng (Hons)/BSc in Industrial Computer Systems (Hons) and Instrumentation & Control/ Molecular Biology & Genetics and Biomedical Science. He just finished his thesis on low-cost defect detection of solar cells by electroluminescence imaging, which gives him time to work on DCompute and write about it for the D Blog.He plays the piano, ice skates, and has spent 7 years putting D to use on number bashing, automation, and anything else that he could make a computer do for him._ -->
+
+<p>Nicholas WilsonはMurdoch Universityの生徒です。
+BEng (Hons)/BScのためにIndustrial Computer Systems (Hons)とInstrumentation &amp; Control/ Molecular Biology &amp; Genetics and Biomedical Scienceを学んでいます。
+彼は電界発光イメージングによるソーラーセルの欠陥のローコストな検出についての卒業論文を書き終わったので、
+DComputeの作業をしてそれについてD Blogに書く時間ができました。
+彼はピアノとアイススケートをたしなみ、number bashing、オートマトン、その他様々なことをDでできるように7年をかけています。</p>
+
+<hr />
+
+<!-- ![](https://i1.wp.com/dlang.org/blog/wp-content/uploads/2017/07/ldc.png?resize=160%2C160)
+DCompute is a framework and compiler extension to support writing native kernels for OpenCL and CUDA in D to utilize GPUs and other accelerators for computationally intensive code. Its compute API drivers automate the interactions between user code and the tedious and error prone APIs with the goal of enabling the rapid development of high performance D libraries and applications. -->
+
+<p><img src="/assets/2018/03/ldc.png" alt="ldc" />{:align=&ldquo;left&rdquo;}
+DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。
+ハイパフォーマンスDライブラリやアプリケーションの高速な開発を可能にすることを目標にしたそのコンピュートAPIドライバはユーザーコードと退屈なものとエラーを起こしがちなAPIの間の相互作用を自動化します。</p>
+
+<!-- ### Introduction -->
+
+<h3 id="イントロダクション">イントロダクション</h3>
+
+<!-- This is the second article on [DCompute](https://github.com/libmir/dcompute). In the [previous article](https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/), we looked at the development of DCompute and some trivial examples. While we were able to successfully build kernels, there was no way to run them short of using them with an existing framework or doing everything yourself. This is no longer the case. As of [v0.1.0](https://github.com/libmir/dcompute/releases/tag/v0.1.0), DCompute now comes with native wrappers for both OpenCL and CUDA, enabling kernel dispatch as easily as CUDA. -->
+
+<p>これは<a href="https://github.com/libmir/dcompute">DCompute</a>の2つ目の記事です。
+<a href="/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda">前回の記事</a><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>
+では、DComputeの発展と小さな例を扱いました。
+カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。
+しかし今はそんなことはありません。
+<a href="https://github.com/libmir/dcompute/releases/tag/v0.1.0">v0.1.0</a>では、DComputeはOpenCLとCUDAのネイティブラッパーであると同時に、CUDAよりも簡単なカーネルディスパッチを実現するものでもあります。</p>
+
+<!-- In order to run a kernel we need to pass it off to the appropriate compute API, either CUDA or OpenCL. While these APIs both try to achieve similar things they are different enough that to squeeze that last bit of performance out of them you need to treat each API separately. But there is sufficient overlap that we can make the interface reasonably consistent between the two. The C bindings to these APIs, however, are very low level and trying to use them is very tedious and extremely prone to error (yay `void*`).   -->
+
+<!-- In addition to the tedium and error proneness, you have to redundantly specify a lot of information, which further compounds the problem. Fortunately this is D and we can remove a lot of the redundancy through introspection and code generation. -->
+
+<p>カーネルを実行するためにはCUDAかOpenCL、どちらか適切なコンピュートAPIにそれを渡さなければなりません。
+どちらのAPIも同じことができますが、パフォーマンスのためにそれぞれのAPIを別々に扱うのに十分なほど違ってもいます。
+しかしそれでも2つの間には適度な一貫性をもったインターフェースを作ることができるほどには重なる部分があります。
+しかしこれらのAPIのCバインディングは非常にローレベルで、それを使うことは非常に退屈かつエラーを引き起こしやすいです(yay <code>void*</code>)。
+退屈さとエラー性に加えて、冗長な情報の指定法が組み合わさってきます。
+幸運にもこれはDであり、イントロスペクションとコード生成によって冗長性を大きく減らすことができます。</p>
+
+<!-- The drivers wrap the C API, providing a clean and consistent interface that’s easy to use. While the documentation is a little sparse at the moment, the source code is for the most part straightforward (if you’re familiar with the C APIs, looking where a function is used is a good place to start). There is the occasional piece of magic to achieve a sane API. -->
+
+<p>このドライバはC APIをラップし、クリーンで一貫性があり、簡単に使えるインターフェースを提供します。
+ドキュメントはいまのところちょっと不足気味ですが、ソースコードの殆どは素直に書かれています(C APIに慣れているなら、関数が使われているところから読んでみるといいでしょう)。
+ときおり、まともなAPIを実現するためにちょっとしたマジックがあったりします。</p>
+
+<!-- ### Taming the beasts -->
+
+<h3 id="野獣を飼いならす">野獣を飼いならす</h3>
+
+<!-- OpenCL’s `clGet*Info` functions are the way to access properties of the class hidden behind the `void*`. A typical call looks like -->
+
+<p>OpenCLの<code>clGet*Info</code>関数は<code>void*</code>に隠れたクラスのプロパティにアクセスするためのものです。
+典型的にはこのようになります:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">enum CL_FOO_REFERENCE_COUNT = 0x1234;
+cl_foo* foo = ...; 
+cl_int refCount;
+clGetFooInfo(foo, CL_FOO_REFERENCE_COUNT, refCount.sizeof, &amp;refCount,null);</code></pre></div>
+<!-- And that’s not even one for which you have to call, to figure out how much memory you need to allocate, then call again with the allocated buffer (and $DEITY help you if you want to get a `cl_program`’s binaries). -->
+
+<p>And that’s not even one for which you have to call, to figure out how much memory you need to allocate, then call again with the allocated buffer (and $DEITY help you if you want to get a <code>cl_program</code>’s binaries).</p>
+
+<!-- Using D, I have been able to turn that into this: -->
+
+<p>Dを使うとこのようになります:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Foo
+{
+    void* raw;
+    static struct Info
+    {
+        @(0x1234) int referenceCount;
+        ...
+    }
+    mixin(generateGetInfo!(Info, clGetFooInfo));
+}
+
+Foo foo  = ...;
+int refCount = foo.referenceCount;</code></pre></div>
+<!-- All the magic is in [`generateGetInfo`](https://github.com/libmir/dcompute/blob/master/source/dcompute/driver/ocl/util.d) to generate a property for each member in `Foo.Info`, enabling much better scalability and bonus documentation. -->
+
+<p>すべてのマジックは<code>Foo.Info</code>の各メンバに対しプロパティを生成し、スケーラビリティとドキュメントを与える<a href="https://github.com/libmir/dcompute/blob/master/source/dcompute/driver/ocl/util.d"><code>generateGetInfo</code></a>にあります。</p>
+
+<!-- CUDA also has properties exposed in a similar manner, however they are not essential (unlike OpenCL) for getting things done so their development has been deferred. -->
+
+<p>CUDAにも同じようなやり方で公開されるプロパティがありますが、(OpenCLとは違い)これは必須ではないため、開発は先送りされています。</p>
+
+<!-- Launching a kernel is a large point of pain when dealing with the C API of both OpenCL and (only marginally less horrible) CUDA, due to the complete lack of type safety and having to use the `&` operator into a `void*` far too much. In DCompute this incantation simply becomes -->
+
+<p>OpenCLと(酷さはそんなに変わらない)CUDAの両方のC APIを扱うとき、型安全の欠如と<code>void*</code>への<code>&amp;</code>オペレータの使用のために、カーネルの起動は苦労するものです。
+DComputeではその呪文がOpenCLの場合は</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">Event e = q.enqueue!(saxpy)([N])(b_res, alpha, b_x, b_y, N);</code></pre></div>
+<!-- for OpenCL (1D with N work items), and -->
+
+<p>このように(1D with N work items)、そしてCUDAの場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">q.enqueue!(saxpy)([N, 1, 1], [1 ,1 ,1])(b_res, alpha, b_x, b_y, N);</code></pre></div>
+<!-- for CUDA (equivalent to `saxpy<<<N,1,0,q>>>(b_res,alpha,b_x,b_y, N);`) -->
+
+<p>このように(<code>saxpy&lt;&lt;&lt;N,1,0,q&gt;&gt;&gt;(b_res,alpha,b_x,b_y, N);</code>と等価)シンプルになります。</p>
+
+<!-- Where `q` is a queue, `N` is the length of buffers (`b_res`, `b_x` & `b_y`) and `saxpy` (single-precision _a x plus y_) is the kernel in this example. A full example may be found [here](https://github.com/libmir/dcompute/blob/master/source/dcompute/tests/main.d), along with the magic that drives the [OpenCL](https://github.com/libmir/dcompute/blob/4182fb8e1b2532adee2c6af3859856cc45cad85e/source/dcompute/driver/ocl/queue.d#L79) and [CUDA](https://github.com/libmir/dcompute/blob/4182fb8e1b2532adee2c6af3859856cc45cad85e/source/dcompute/driver/cuda/queue.d#L60) enqueue functions. -->
+
+<p>この例で<code>q</code>はキュー、<code>N</code>はバッファーの長さ、(<code>b_res</code>, <code>b_x</code> &amp; <code>b_y</code>)と<code>saxpy</code>(single-precision <em>a x plus y</em>)はカーネルです。
+<a href="https://github.com/libmir/dcompute/blob/4182fb8e1b2532adee2c6af3859856cc45cad85e/source/dcompute/driver/ocl/queue.d#L79">OpenCL</a>と
+<a href="https://github.com/libmir/dcompute/blob/4182fb8e1b2532adee2c6af3859856cc45cad85e/source/dcompute/driver/cuda/queue.d#L60">CUDA</a>
+のエンキュー関数のマジックに関する完全な例は<a href="https://github.com/libmir/dcompute/blob/master/source/dcompute/tests/main.d">ここ</a>で見つかるでしょう。</p>
+
+<!-- ### The future of DCompute -->
+
+<h3 id="dcomputeの未来">DComputeの未来</h3>
+
+<!-- While DCompute is functional, there is still much to do. The drivers still need some polish and user testing, and I need to set up continuous integration. A driver that unifies the different compute APIs is also in the works so that we can be even more cross-platform than the industry cross-platform standard. -->
+
+<p>DComputeは機能的ですが、まだ十分ではありません。
+ドライバーは洗練とユーザーテストが必要で、継続的インテグレーションもセットアップしなければなりません。
+異なるコンピュートAPIをまとめるドライバも業界のクラスプラットフォーム標準よりもっとクロスプラットフォームにできるので、作業中です。</p>
+
+<!-- Being able to convert [SPIR-V into SPIR](https://www.khronos.org/spir/) would enable targeting `cl_khr_spir`-capable 1.x and 2.0 CL implementations, dramatically increasing the number of devices that can run D kernel code (there’s nothing stopping you using the OpenCL driver for other kernels though). -->
+
+<p><a href="https://www.khronos.org/spir/">SPIR-VをSPIRへ</a>変換できれば1.xと2.0のCL実装で<code>cl_khr_spir</code>をターゲットにする能力が得られ、D カーネルコードを実行できるデバイスの数は急激に増えます(他のカーネルのOpenCLドライバーを使わない理由はありません)。</p>
+
+<!-- On the compiler side of things, supporting OpenCL image and CUDA texture & surface operations in LDC would increase the applicability of the kernels that could be written.   -->
+
+<!-- I currently maintain a forward-ported fork of [Khronos’s SPIR-V LLVM](https://github.com/KhronosGroup/SPIRV-LLVM) to generate SPIR-V from LLVM IR. I plan to use [IWOCL](http://www.iwocl.org/) to coordinate efforts to merge it into the LLVM trunk, and in doing so, remove the need for some of the hacks in place to deal with the oddities of the SPIR-V backend. -->
+
+<p>コンパイラ側のものとしては、OpenCLのimageやCUDAのtextureやsurface操作をLDCがサポートすれば書けるカーネルの幅が広がります。
+私は現在LLVM IRからSPIR-Vを生成するための<a href="https://github.com/KhronosGroup/SPIRV-LLVM">Khronos’s SPIR-V LLVM</a>のフォワードポートフォークを管理しています。
+私はLLVM trunkへそれをマージするために取り組みを調整するために<a href="http://www.iwocl.org/">IWOCL</a>を使おうと考えており、そうするといくらかSPIR-Vの古いところに対処するためのハックが必要なくなります。</p>
+
+<!-- ### Using DCompute in your projects -->
+
+<h3 id="プロジェクトでdcomputeを使う">プロジェクトでDComputeを使う</h3>
+
+<!-- If you want to use [DCompute](https://github.com/libmir/dcompute), you’ll need a recent [LDC](https://github.com/ldc-developers/ldc) built against LLVM with the [NVPTX](https://llvm.org/docs/NVPTXUsage.html) (for CUDA) and/or SPIRV (for OpenCL 2.1+) targets enabled and should add `"dcompute": "~>0.1.0"` to your `dub.json`. LDC 1.4+ releases have NVPTX enabled. If you want to target OpenCL, you’ll need to build LDC yourself against [my fork of LLVM](https://github.com/thewilsonator/llvm/tree/compute). -->
+
+<p><a href="https://github.com/libmir/dcompute">DCompute</a>を使うつもりなら、<a href="https://llvm.org/docs/NVPTXUsage.html">NVPTX</a> (CUDA用)とSPIRV (OpenCL 2.1+用)ターゲットのどちらかまたは両方が有効化されたLLVMで<a href="https://github.com/ldc-developers/ldc">LDC</a>をビルドし、<code>&quot;dcompute&quot;: &quot;~&gt;0.1.0&quot;</code>を<code>dub.json</code>に追記する必要があります。
+1.4以降のLDCのリリースではNVPTXは有効化されています。
+OpenCLをターゲットとする場合、<a href="https://github.com/thewilsonator/llvm/tree/compute">私のLLVMフォーク</a>でLDCをビルドしてください。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">原文: <a href="https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/">https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

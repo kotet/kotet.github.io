@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#essay サイトの内容をGitHubのリポジトリと同期するメリット3つ - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" このようなツイートを見た。 理想的にはQiitaとかWikipediaみたいにみんなで編集できる状態にしておいて、より多くの人と合意が取れる状 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/essay">#essay</a>
+        
+        サイトの内容をGitHubのリポジトリと同期するメリット3つ
+    </h2>
+    <p>
+        <time>2017-01-29</time>
+         <a href="/tags/essay">#essay</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-誰でも更新履歴が見られる">1 - 誰でも更新履歴が見られる</a></li>
+<li><a href="#2-修正などを気軽に送ることができる">2 - 修正などを気軽に送ることができる</a></li>
+<li><a href="#3-内容についての議論ができる">3 - 内容についての議論ができる</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>このようなツイートを見た。
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">理想的にはQiitaとかWikipediaみたいにみんなで編集できる状態にしておいて、より多くの人と合意が取れる状態にしておくのが良いのだろうけど。残念ながらポエムはQiitaに投稿できないので…。</p>&mdash; いもす (@imos) <a href="https://twitter.com/imos/status/825379803075219456">2017年1月28日</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+これについて前から思っていた「GitHubのリポジトリの形で記事を公開するメリット」について書く。</p>
+
+<p>今このサイトはGitHub Pagesを使い公開している。
+なので必然的に記事のmarkdownはリポジトリ上にある。
+GitHub Pagesを使わなくても、GitHub上の記事の変更が自サイトに反映される形にしておくと閲覧者と発表者双方にとっていいことがあると思う。
+以下、そのメリットについて書き出していく。</p>
+
+<h2 id="1-誰でも更新履歴が見られる">1 - 誰でも更新履歴が見られる</h2>
+
+<p>個人サイトでも企業サイトでも、更新する前の内容を残しているところはあまり多くない。
+他サイトの言及やスクリーンショットから、当時と現在ではサイトの内容が違うらしいということがわかる程度である。
+しかし更新歴を見られるようにしておき、何が消されて何が書き足されたのかわかるようにしておくことで、閲覧者は歴史を踏まえて今の記事を見ることで混乱を防ぐことができる。
+また、発表者は過去の内容に責任を持ち、残しておくことができる。</p>
+
+<h2 id="2-修正などを気軽に送ることができる">2 - 修正などを気軽に送ることができる</h2>
+
+<p>個人サイトでTypoを見つけても、そこでどこにTypoがあり、どう修正すべきかを文章にしてまとめてメールなどで送るのは送る側も受け取る側もかなりめんどくさい。
+しかし記事をGitHubのリポジトリとして公開しておくとpull request機能を使い修正内容を簡潔に、Gitのdiffという統一された形式で送ることができる。
+Qiitaの編集リクエストと互換である。</p>
+
+<h2 id="3-内容についての議論ができる">3 - 内容についての議論ができる</h2>
+
+<p>記事の内容に関わる大きな修正は、ただPRを送るだけではダメだろう。
+その場合はissueを立てて、複数人で内容について議論できる。
+これにより記事の感想などの普通のコメントと、内容についての議論を分けることができる。
+さらに議論はその議題ごとに分割され保存される。
+相互にリンクされた議論は後から確認して、記事の変遷をたどっていくこともできる。
+このような議論はPR上でもできる。
+Qiitaには編集リクエストについて議論する場は設けられていなかったはずなので、この点でQiitaの上位互換である。</p>
+
+<p>以上のようにサイトをGitHubのリポジトリと連携させることにはメリットがある。
+ポエムをQiitaに書けなくなって個人サイトを作る場合には、GitHubを活用することをお勧めしたい。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

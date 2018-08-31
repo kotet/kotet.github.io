@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#ipfs IPFS体験記8:IPFS網漁 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" IPFSのハッシュを自動的に収集できるのではないかということに気がついた。スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思い出してテンションが上がった。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/ipfs">#ipfs</a>
+        
+        IPFS体験記8:IPFS網漁
+    </h2>
+    <p>
+        <time>2017-11-10</time>
+         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#ログを見る">ログを見る</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>IPFSのハッシュを自動的に収集できるのではないかということに気がついた。
+スイカネットを流れるデータを拾って集める<a href="https://kakuyomu.jp/works/4852201425154905871/episodes/4852201425154905928">横浜駅SFのワンシーン</a>を思い出してテンションが上がった。</p>
+
+<h3 id="ログを見る">ログを見る</h3>
+
+<p><code>ipfs log tail</code> でイベントのログを見ることができる。
+どのイベントが何を意味するのか、ドキュメントは見つけられなかった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs log tail
+{&#34;event&#34;:&#34;updatePeer&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.049612976Z&#34;}
+{&#34;event&#34;:&#34;handleFindPeerBegin&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.049723954Z&#34;}
+{&#34;duration&#34;:1341286,&#34;event&#34;:&#34;handleFindPeer&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.051066612Z&#34;}
+{&#34;event&#34;:&#34;updatePeer&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.674229585Z&#34;}
+{&#34;event&#34;:&#34;handleFindPeerBegin&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.674340168Z&#34;}
+{&#34;duration&#34;:1351836,&#34;event&#34;:&#34;handleFindPeer&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.675678763Z&#34;}
+{&#34;duration&#34;:8996677675,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322662561Z&#34;}
+{&#34;duration&#34;:8996323673,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322712121Z&#34;}
+{&#34;duration&#34;:8996400695,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322749876Z&#34;}
+{&#34;duration&#34;:9000177945,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.326684296Z&#34;}
+{&#34;duration&#34;:9000218920,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.32671394Z&#34;}
+...</code></pre></div>
+<p>イベント名を抽出してみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs log tail | jq &#34;.event&#34; | awk &#39;!colname[$1]++{print $1}&#39;
+&#34;updatePeer&#34;
+&#34;handleFindPeerBegin&#34;
+&#34;handleFindPeer&#34;
+&#34;Bitswap.Rebroadcast.idle&#34;
+&#34;handleAddProviderBegin&#34;
+&#34;handleAddProvider&#34;
+&#34;tptDialReusePort&#34;
+&#34;connDial&#34;
+&#34;swarmDialDo&#34;
+&#34;swarmDialBackoffAdd&#34;
+&#34;swarmDialAttemptStart&#34;
+&#34;swarmDialAttemptSync&#34;
+&#34;getClosestPeers&#34;
+&#34;swarmDialAttemptSyncBegin&#34;
+&#34;dhtSentMessage&#34;
+&#34;swarmDialAttemptStartBegin&#34;
+&#34;swarmDialDoBegin&#34;
+&#34;interfaceListenAddresses&#34;
+&#34;provide&#34;
+&#34;provideBegin&#34;
+&#34;getClosestPeersBegin&#34;
+&#34;findPeerSingleBegin&#34;
+&#34;dhtReceivedMessage&#34;
+&#34;findPeerSingle&#34;
+&#34;connDialBegin&#34;
+&#34;tptDialReusePortBegin&#34;
+&#34;connLifetime&#34;
+&#34;handleGetProvidersBegin&#34;
+&#34;handleGetProviders&#34;
+&#34;connDialZeroAddr&#34;
+&#34;handleGetValueBegin&#34;
+&#34;handleGetValue&#34;
+&#34;swarmDialBackoff&#34;
+&#34;connLifetimeBegin&#34;
+&#34;secureHandshakeBegin&#34;
+&#34;secureHandshake&#34;
+&#34;swarmDialDoSetupBegin&#34;
+&#34;swarmDialDoSetup&#34;
+&#34;swarmDialBackoffClear&#34;
+&#34;periodicBootstrapBegin&#34;
+&#34;bootstrapSkip&#34;
+&#34;periodicBootstrap&#34;</code></pre></div>
+<p>このうち<code>handleGetProviders</code>というイベントは
+「誰かが<code>ipfs dht findprov</code>したか、ゲートウェイ等で自動的に呼ばれたかで、ハッシュと対応したコンテンツを持っていないかを他のノードが聞いてきた」
+という意味のイベント（だと思う）。
+つまり、このイベントをキャッチすれば誰かがアクセスしようとしたハッシュを収集できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs log tail | grep &#39;&#34;handleGetProviders&#34;&#39; -m 1 --line-buffered | jq</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">2045973</span>,
+  <span style="color:#f92672">&#34;event&#34;</span>: <span style="color:#e6db74">&#34;handleGetProviders&#34;</span>,
+  <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;QmXLjNdoUETwAi8bErpc73FQEESTovBscu5XaC2wnpgfpY&#34;</span>,
+  <span style="color:#f92672">&#34;peer&#34;</span>: <span style="color:#e6db74">&#34;QmX9Nhr56k7K2JBQbu9JBpF2s1AQk8WpmZc6v4sqZERMRu&#34;</span>,
+  <span style="color:#f92672">&#34;session&#34;</span>: <span style="color:#e6db74">&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;</span>,
+  <span style="color:#f92672">&#34;system&#34;</span>: <span style="color:#e6db74">&#34;dht&#34;</span>,
+  <span style="color:#f92672">&#34;time&#34;</span>: <span style="color:#e6db74">&#34;2017-11-10T06:56:50.517580514Z&#34;</span>
+}</code></pre></div>
+<p><code>key</code>が、誰かが探そうとしているハッシュだと思う。
+とりあえず200件ほど集めてみる。
+それなりに時間がかかる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs log tail | grep &#39;&#34;handleGetProviders&#34;&#39; -m 200 --line-buffered | jq &#34;.key&#34; -r --unbuffered &gt;&gt; hashes.txt
+$ cat hashes.txt 
+Qmd38FX6orV498CN1Z17997R26jZUwgicb1GXZ2kp9kAmq
+QmW9zpbtUnym5MrZFTqx1gqcRPBn7LYsQmYjGF6go3MKNy
+QmXfUy6oCwYNaU87rN9vprMqL9soaBWvZqkTkjyKfCvgBE
+QmdaM5GdH8a3YAXJfxeLNWX5MRvZ6nPtXLfqBx27kmaPU4
+QmTawgaWc5mbFXb1YsG3USSvGyERwD4YW38HmmqzvutxWQ
+QmaUYFPjZE4Zttrd8bWUH5aXchWSNZsCdb9aXH4zMpjreL
+QmVU78LkGcNCWJiHKQTjkbXei4KXA5GhPb3ZJt4ET9pVmh
+QmTPYx6QsCcGjd1BRR55kJWAcEaAv1ypG5DpegRciC2VS9
+QmTfMqZsa2GzY1qyZ9H3s246qTbXZQfXkkb5xv7wVtzMV4
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmV8Emsju7VDsKYURQPFKkF3YqDDwgJ2nfxvEGU8hRa73r
+QmVGKFVHJM3Vfg8kF1vHpYnryPpPo4d8ei84adMFTgRB7X
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+Qmc4vcxmMMZDj5sq67exuMtmHbYiKWZdwYSzJ6XtW41pYU
+zb2rhhBBo75RS1WjAjsDsne3H1dvqcGkFmmtRRPDta57NMH5T
+QmePgqz7wrU6SF1wxF1oSDgPBvMxf7nqbwtpQQJhov5kzu
+QmPJAPbCfN4Lo6bwchNGTctGNQtd4AbmubeBASgry2rY2c
+QmZupYaAmmRnimpR9RQZuaU1X239m9HjyiyekJMKMuABt8
+QmdBJ16VfDpT9f8c5TH8YagBUHPcDDLcRkxuWQ6eeEdsEj
+QmVW9hZP3YVuEswAig3fdn4PZtiJrzT4L9dLPDHdzfxtjY
+QmTFzjH1cC9cdj7B8WTmsQjEqWKdVFjf8gxCEFUS6S3jf5
+QmWWW1UuPQvu87iL1XE81BWqyPwAW7ArSgt5jpbDR39Cqd
+zb2rhkNQ9F9aimY19GTqUTkAy5c2AV3yzgLrKrAYnF7pgsSKv
+zb2rhjiXqnYwigVLuoTcYNea9LgU5G4pCFDSzjuzxMTN4sWy9
+QmTWYoBgfnHGMeEVLhGxSKjQLbFyrTQyjNy9PXkLKwDFUR
+QmVSubKStQRVigJMoGUdpq9m7XfzKc5cp9w94HXDHLJfqJ
+zb2rhgpzJka244jia1uc7n8djXndB7tSwtfaJgX1ndf7ghMnu
+QmYKVG8An1a7nLFirf6QqJhZfoyPquj6xh5hYiqe6HULpF
+QmPW9zEqcDEWeFPSeyYf3o9Xvvu93TX7j1v2rhxhvyHR2P
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmUotHZmVLsqEjp3kYS2sE4b51ZE5UWm8rSw7yPsVJr22d
+zb2rhiXhD4b5ewXPXnpyFtFuGnBKkpAy68CZdN9Zakraurg3P
+QmdacU3xWUDvp57qkpAUSVZJXkUKMQr26sZfCPMthGmcKH
+QmNjdKSeBP39zjs44vEhV5DqexHvMY6Aa2zs89sP578KaN
+QmYiYA2NYprtunFCWpHUsuyzWNraM5PWoAyQUJywumLYhn
+QmSKtbTRvbm3WmMUMUQ5f75QAxMJQ2fDy8r4qdzm3Af6mk
+QmfGfPiiL9JSYAWXnLncQEW7umHh2S6Vx3wTr65cuxneT3
+QmfH9baorAhyAXFMi5UssmUDfxPu9VTzrtkjFe99rW6rKR
+QmPRWS8Dkpz1gApoiRMXgNiETxqTKsvJcJBC1PNvzNEGKC
+QmXbVcibcYVN6beabcAxzF83bqfeW2YZpyMcsuH9ykYJWk
+QmTGEiyXfDMzZpntHKBaucJPK8wPgztDPFMia2RjGgQGgz
+QmaENKCYRaZxpxYhCX8G2nJuE8JL7p57R6qoX4Jdqfg4zu
+QmUoqY9yBKG4nWgvcsD2XXHjDVkK8YhTHwZ6h7LQybfEZM
+QmUQMpidJUxgSd6d5ehvPGWrfe2rYmhGoMdL8nkPodvYyt
+QmYqMd4JidWfme7JSVjzN3e4TC7z4E3GnvMRDJuXAa5nv8
+zb2rha1kCsAqbk6uLAg3RPunE3R8HJNAbX1tRAC8ppUzh7SHx
+QmXnRqunY1ZTCR1RgbSc9pfjjmRrAd3h3bP5hwpbLGBTPk
+QmewcoN9jXMuF2v9YmiYvp6gDQf1h9JvZPQywhn9isDpRd
+QmV2vxCKrJzh6SGAmXa5KHSwwrZsoMBnyoZapUECxrqnEq
+QmPtxs8Lgrxq2MtzGZT8DL65jwdkjT64B24NkmdVbteNwL
+QmVWJsyspezc1yo6QZcWMMbh8knNPawcxz6YnVgcLvZVrm
+QmdBJ16VfDpT9f8c5TH8YagBUHPcDDLcRkxuWQ6eeEdsEj
+Qme2DySzpw8C93JKDekGfiP1TNTtB8mz7pNVxo8GUN78pe
+QmeBQVu3MSqRdA7LiHUUumgn8jnvYvCk9sjQRbjTEGTXG4
+QmbmGzgqoSXwE7181V9EtR8744JpfqoJixTuF6dsF62DrC
+QmeHoJWmEGQPeWS1VkGDCQT2JCrzVsR4bNQwHhogDknMPV
+QmbLAKr73XQR1MSA5GsEcsbzkoyxBhvP7oWdz4J4FnQffD
+QmRGnSXmnKSqAPBZHnqKC89nGX1TqXauGdF72VTRVeoKjW
+zb2rhb4hNCrLr2mYLeGk9f2zmgFevhGvhtpVH82SD1xs7PdH9
+QmaR3XtEz9o7f3UE8T3pnTJeaFLXbRBrMYnUvqqJ7byuxs
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+Qmcs5AJvpbhZbfegsfW6oLUZpiaeHTSEDhNT9w8ZYARrw8
+Qmes3DUxXU2iKw998kYbicUWDtHqDdhGrwC6bnXGkyXGCK
+Qmf8uT9Nz9FkC5yUJcYpTR6PyePzrvBVkh4RQi5tNJaB6R
+QmWDnRxGA7UHnuR6f6vq6ddkfZtyCCRtQuBkiLXqJ19EhY
+QmWkYhqa4Ltbs8y6GgAGZCES6wpXfeGiMwmyJu1zqS9drE
+QmXMnJQGRo3Rob6nh1yc4VYhoTs2FsMajqVpk5j8DGD8Dn
+QmbwFC2Yr59UMMhVgKiu4dgKksusqCh6ZGsUMW4C9Np5aP
+QmaoDee5YaBaA2ZE5MSDRgjM71t9RbQVRii8eBuYLFM59P
+QmSgb5o2r49Lg8hthvkH6hjAVXqTa798dTzjpynMu1TTqe
+QmdgbRGSnwZ8NM2HFrGyvbT6Ay5a5KP166bYZ3vP358F7D
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmSgb5o2r49Lg8hthvkH6hjAVXqTa798dTzjpynMu1TTqe
+QmUc94tUkDcgj9VNJRnd36xMVtz1HqHxzC8pVmQcA1rDuX
+QmUc94tUkDcgj9VNJRnd36xMVtz1HqHxzC8pVmQcA1rDuX
+QmVGKFVHJM3Vfg8kF1vHpYnryPpPo4d8ei84adMFTgRB7X
+QmQ2qUmEaLWiDxxe6Ke7BYnzddTcWFdnZqY7vt4Ke1gJ9p
+QmUcSPmsgtqHpKtemor9Ti385GHFKU23joC6TTfwE4aNs8
+zb2rhcy8JGBLAAu3ik75JeRZzmN99b2jxJZ5DjcPjkxQRjQyv
+zb2rhcy8JGBLAAu3ik75JeRZzmN99b2jxJZ5DjcPjkxQRjQyv
+QmaAJLdvbmqXMcDZmZjN9pDPAdojecZ3aFDujTsj5vyHvu
+zb2rhncb5GbjCr84TC4uWP5YzzqKJ3iV3cnJWmizViEMaDZea
+QmYP2Lj4tTU8FHN5ZMgbFiwsys8MauRizwveY7VtsYvjy4
+QmYP2Lj4tTU8FHN5ZMgbFiwsys8MauRizwveY7VtsYvjy4
+QmdYwmmuUEuMMvDuMcjGX3djVHXsqh7shFYdywTCh3KeN1
+QmXMQkhrouWWocU5UvEbz7JzvWSPFBtVRyUBbK5bAMnSv2
+QmXMQkhrouWWocU5UvEbz7JzvWSPFBtVRyUBbK5bAMnSv2
+zb2rhcJEBMctyC2yag4LEVm7FFWmB2jbftsJxMpZPbYqPeT8X
+QmPtub7JM3SL3t4oFtGpd2DWXBq29XBbcAMnfNzRxiiqT5
+QmR6grEwzX4EKPbaZ2xF85cFSz9HmDBD2miPr2Nv3u1ZEK
+QmaiphPA536mmjpBXymSD63DFaGXj7CKp1ntdQme9beXTK
+QmSC7UiPh19fyjXRRtfdXm1ty9Eim149wuXbx75WkudSBt
+QmWyXJna7aUd46oYkCNnG2FCbZeK3BNYSzYm1634iiDebu
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmNjdKSeBP39zjs44vEhV5DqexHvMY6Aa2zs89sP578KaN
+QmYv33uvWpgYDgQvGhqhu3WJn4YkcBp3wCj2JGW1mZp4sv
+QmYv33uvWpgYDgQvGhqhu3WJn4YkcBp3wCj2JGW1mZp4sv
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmbtwrYwdcEKkxHp2oCEkutwLvTNVn4LozCx1VRx4B2hXE
+QmbCrkMtaCunhBBTSfMzoP1Tp1Se7nBG7i3YDN4UoWsAk5
+QmegNe5PmJZcbH5zd3Z8WKU9Yd1YcnHW6UYGs8KSAGw1pf
+QmbKh76jmDMo7Y9F6eUpQBr5sZHLvo9qLDjbfo8nU1XfQq
+QmU9fszFB8PxG5xRSiBko5MK51e4bpvvw2KkM4NvAXcgkn
+QmSojPvSgEtWfDBqm35bPDqKAJ7jx8JF1JdxMRqc6wSCY3
+QmUWdq6dY5kWynGi6HRxVaUP9FRAynSFTdjidafr7vuGjc
+QmRNAQXyWuyJHnkHMNGAgeuFgpisdtZ13otutN8hcMG5AU
+QmUWdq6dY5kWynGi6HRxVaUP9FRAynSFTdjidafr7vuGjc
+QmVSXfnPx8FxcTtg3ni6gkUFx2vZohiM4F18EebrptbL6A
+QmbvNovbMWVec41Jo1q72Cwqb4cxTy2C1vm5dZPfEX1cP1
+Qmb2ujuFej5p2vZitjZxkF2jkqsng9Tw3ki7b3LvK2adEC
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmTmGDTvgNAtMjzVYjnrPgiZN5BdnAnydQQAdC1UA5i228
+QmebCTBJBYnB3GyoD5tATjfnhKvmSbqWjPT7STLgNN2egy
+QmQVRMKU8ShRBihz8K5XwigT5vXLNSP4XgEPh9EHpHijRB
+QmebCTBJBYnB3GyoD5tATjfnhKvmSbqWjPT7STLgNN2egy
+QmebCTBJBYnB3GyoD5tATjfnhKvmSbqWjPT7STLgNN2egy
+QmQVRMKU8ShRBihz8K5XwigT5vXLNSP4XgEPh9EHpHijRB
+QmXKU4f4d9LhvozyPL8g6H7fiPkfsDfGBrZo9vwB2WHLNU
+QmXKU4f4d9LhvozyPL8g6H7fiPkfsDfGBrZo9vwB2WHLNU
+QmXKU4f4d9LhvozyPL8g6H7fiPkfsDfGBrZo9vwB2WHLNU
+Qme55pTceNQJs2gD5cqEiWhXvWtgAY72weaVfBzPAf1kt1
+QmbiWETVreeuHPMBXViq3etXDZhdKZ6UjsLVBfghpeJsUD
+QmbiWETVreeuHPMBXViq3etXDZhdKZ6UjsLVBfghpeJsUD
+QmWq9GzoYSK6Xg31pRCuB2mbjsGpWPHAnMPb6jfnTBMB4a
+QmQZ2VYyYPAV3ceqSfe78D13DS8uSxxF5veQkSXi8r2bxu
+QmYAoVXrNuYNMEjpcGQr5ApUCEZf9AxE73RZXJQPxrXqcR
+QmcwwHU9JdNnZPUXwe7QYmBKdJxZwEgwTc2VFB7jHoVRcb
+Qme8wmA1GZDnbcDvrxff9LFZtL6rZssnZ3oPUhMnYM4Fmd
+QmbwCCFPUCy6S1A7qXBKfmMh6cE8XsFAv2tcDuF43gkJT2
+QmbQ723wn3MZdYQsgTUgvZAGKiCp4Wgfa2V7jL4bXuB7mQ
+QmPMTcGvu5eiJY1ujU1BRCzmzrF7YQSX2Wzfv5Ao5YnPBo
+QmQ5C88JcZdm3MyQEZccnuGfopgw13PtRTFmY3jQD4mGsU
+QmYkQN6AtFB3HN3gYRgW2pkzZVmG86RUziPpKc9VF5QnCU
+QmQEF2NKBfGbeBjEtPW1CKCPhKsc3RmEKNTpQofbJfa69K
+QmUwAULyGsVqN8pK5WoAV1tmZvAtttQyTmYq8xmkXML7EU
+QmafT98p4BPQJ3RE6RKiwaF1WvnJ5SkZcAkK7G6fiRxWCX
+QmQEF2NKBfGbeBjEtPW1CKCPhKsc3RmEKNTpQofbJfa69K
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmYzGQsw2R6zKZUduJogHy1SPCq52Nwu63CvVfAAWScW7k
+QmTjaLeJkgTP5Q9dcmgTuwVpjWz8sEGRcNCTUyd9x4yxVb
+QmeDxJ8jxW5xwsbY2uMsfGKpJdM4N5iNhFyxd7HunSwsKi
+QmeDxJ8jxW5xwsbY2uMsfGKpJdM4N5iNhFyxd7HunSwsKi
+QmeDxJ8jxW5xwsbY2uMsfGKpJdM4N5iNhFyxd7HunSwsKi
+QmR6c8WnASomXVxTrjygd7NRL8aRFeMoe33A4XW4BNDz4g
+QmZPgjJnby5zkc2TuJqmSynDF5ZcKDEpR4d3UmZMdBPDtu
+QmckniiH8kHBiB4UNtYZoiqBAuWU5eHDjH3n99LWjMLJxY
+QmaMFwnhwAdmSy4xh2mr7Y93ykq8BdK72mqiWaqmCA5MoP
+QmRp2r3B1MicoGG9S9e5mS9LPRrFiVEPvpyBd1RU9viWJc
+QmUvG2K1auRehPDV9A1mWmLtvEu15DLdfHUegGh4jPhnag
+QmR6c8WnASomXVxTrjygd7NRL8aRFeMoe33A4XW4BNDz4g
+QmZPgjJnby5zkc2TuJqmSynDF5ZcKDEpR4d3UmZMdBPDtu
+QmVrpdrh5uzn8EdDhJEVTr7eLSmqcWfFgsvYGcwhm6t4xB
+QmPQ8PTjzR5n643W5sSz6dojBqjBJM1Y54hWKKipHSmVN7
+Qmb2He57x4cE7mvcmSccP1YgfNuWM8gvqFAaBUZPXkKyZz
+QmdBJ16VfDpT9f8c5TH8YagBUHPcDDLcRkxuWQ6eeEdsEj
+QmUvG2K1auRehPDV9A1mWmLtvEu15DLdfHUegGh4jPhnag
+QmXzgpDNMbzGMjTfBd5H3K9hxY4T2WiKvybuFFsHnSR9ia
+QmXzgpDNMbzGMjTfBd5H3K9hxY4T2WiKvybuFFsHnSR9ia
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmPtub7JM3SL3t4oFtGpd2DWXBq29XBbcAMnfNzRxiiqT5
+QmZh7oKYfmzY4Gvf1seJ44ZDt7QoRtum1Uh7HUMtJxrb8D
+QmZPgjJnby5zkc2TuJqmSynDF5ZcKDEpR4d3UmZMdBPDtu
+QmcJZgFDLpFJUzE2PaqUFsjH3gGSvfZmy84RG5Lk6x2fge
+QmaP5qHHUtj2V6dkuY83vNcCjvYSJzpZSWfxJoYnPjYDA4
+QmS2s4AR8YctYoVLeZYTt4k8XPMY9qHE39rqWEocmuUuuw
+QmeMoF4YAfyXPbvjr1hGo2RntLYcgtfPek4fDVY7Y7mNtz
+QmPmJ44bxwoXw8SjPFRPZ8tia7GDxEaFVzHi7hsCCPBrr7
+Qmd4xTKfLKSiVokoAC1pKAKcgYuirBqr9akLQeCyQBvT4y
+Qmf5A4HCebbf37rZMSDkGSUBX5LcHfYf35hTB1U7Fhcw2z
+QmNz9xKc5qN5y19BeG8eU1ybkrcNxsvkenW2JviUQcgapV
+QmPTRT53jbt38gPBwRgo9fG7MaNa2wZ1vSUiio9qRcpCpJ
+QmNz9xKc5qN5y19BeG8eU1ybkrcNxsvkenW2JviUQcgapV
+QmeymSWhV4uymKB3QaBYYXTPVigBmsS6qcViMZVSwsmiHZ
+QmfAPkmscpcULVL5EBXaMcPQA5rM9zbjpnjQn3fyergSq5
+QmZkSpqxiViGKrf1pCMVoVFJU7rvzoaYya96ZyFt7SatKL
+QmeYnPaUaAVWCHueTW2M2LdhmpBXpBXTPq85Rtpr6JiM5o
+QmbVePcoHDiZLiPcsJmG96ViJcxDE2z4se1Tc4K4STgNTT
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+Qmf9Aqp3WwzxcHpJNi8zafEfRs9ze3rBhSu3EQZB1PBQ6d
+QmX1dCic7XsBPjR6q5hK7PDiLbnDUzJZFUgNcjpyfPvZ9w
+QmeiHXMB7eDNkkG3YSJADP3vPJBYju7y29tvQx62VScxiS
+QmRiJNrL5TjkyydhJAGWW9jAf38CgwZkhs3MmciLnjDc3k
+QmPyy4TpXcHgv9JCMGxtdcvNnDrj1VFXcT82ZWTJNVnh1Y
+QmTimP9SxACuysybbAoM2aPVJRYxcsd7rgCM4QF9Ri3Ex7
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmcRZnY13MM45VJhx5JtKsYSxuZCJVWzUawNG7HSjPuPkR
+zb2rhYM79n5DCyojxo2MUfuLS3rLd1hh9KB6PSsYLfci8BRjs
+Qmf9Aqp3WwzxcHpJNi8zafEfRs9ze3rBhSu3EQZB1PBQ6d
+QmQMZb2AS8ssnKhDz2cUbwvvwAA66w3jEuod58zRaW19xJ
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmXypqdjrHvQY5ePn4jbAdymG6ij9FMcQu5qMwhgk8xeqE
+QmRDHEjXnnR79hMS2yNsgVPYmnrT695zJdRBjFLYHkZN2x
+Qma8KT2c7GaQT82BZGgZGtn4deD5gFtFd5FLfBytt15q8W
+QmZTT6JS1hLhqupREUb8dwcRUkSaion4SE7F8aCGGdfSxy
+Qmf2rBnUYQjazKzv7gfbirTKS6cZR192koJErNpauaJNFj
+QmZ6RcsQbfpjYG5eKLFged2oUQKDVwQyE9Rzvsj4oVRKbK
+QmZop9gkPTQJCr8RYDtoxzVc8okiMJRLtEVueZqTLW4G64
+QmT1xRnP52NjAT1JCXwfvMyjiidZ1CCtzBQxeXFz2XCKjA
+QmRKQjaybXLfnfcoDEGGfzcNa7qULQZcuVagVhHP2TjveX
+QmRBD7YZYdLPCvZdn8xQF3G8czkSbw3AET7WwFbMXs8SSW</code></pre></div>
+<p>このなかでアクセスできるハッシュだけをフィルタする。
+ゲートウェイでのアクセスに失敗した時に<code>ipfs resolve -r</code>のエラーメッセージが出ていた気がするので、それを使う。
+これまたものすごく時間がかかる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat hashes.txt | xargs -I hash timeout 60 ipfs resolve -r hash 2&gt;/dev/null | sed &#39;/^$/d&#39; &gt;&gt; resolve.txt
+$ cat resolve.txt
+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</code></pre></div>
+<p>40件くらいに減ってしまった。
+ファイル名が入っているが肝心の中身にアクセスできない<a href="https://ipfs.io/ipfs/QmX1dCic7XsBPjR6q5hK7PDiLbnDUzJZFUgNcjpyfPvZ9w">壊れたディレクトリオブジェクト</a>や、
+<a href="https://ipfs.io/ipfs/QmPtxs8Lgrxq2MtzGZT8DL65jwdkjT64B24NkmdVbteNwL">フォーマットのわからないバイナリ</a>がほとんどである。
+そもそものユーザ数が少ないため、読めるデータもだいたい
+<a href="https://ipfs.io/ipfs/zb2rhYM79n5DCyojxo2MUfuLS3rLd1hh9KB6PSsYLfci8BRjs">WikipediaのHTML（ページ内のすべてがリンク切れ）</a>
+や<a href="https://ipfs.io/ipfs/zb2rhgpzJka244jia1uc7n8djXndB7tSwtfaJgX1ndf7ghMnu">Wikipediaの画像</a>だったりする。
+これはWikipediaがトルコでブロックされたために作られたスナップショットのものだと思う。</p>
+
+<p><a href="https://ipfs.io/blog/24-uncensorable-wikipedia/">Uncensorable Wikipedia on IPFS</a></p>
+
+<p>そんな中によくわからない<a href="https://ipfs.io/ipfs/zb2rhhBBo75RS1WjAjsDsne3H1dvqcGkFmmtRRPDta57NMH5T">画像</a>や
+<a href="https://ipfs.io/ipfs/QmcJZgFDLpFJUzE2PaqUFsjH3gGSvfZmy84RG5Lk6x2fge">テキスト</a>がある。
+面白くはない。
+あえて言うならば癒やしである。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

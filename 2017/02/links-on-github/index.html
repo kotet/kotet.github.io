@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#github コミットメッセージ上で他のリポジトリの特定のコミットを参照する等 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" GitHubには、Issue番号などを自動的にリンクにする機能がある。 他のリポジトリの特定のコミットを参照したかったのだが、なかなか方法が見 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/github">#github</a>
+        
+        コミットメッセージ上で他のリポジトリの特定のコミットを参照する等
+    </h2>
+    <p>
+        <time>2017-02-28</time>
+         <a href="/tags/github">#github</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#リポジトリ内のpull-request-issueを参照">リポジトリ内のPull request / Issueを参照</a></li>
+<li><a href="#リポジトリ内のcommitを参照">リポジトリ内のCommitを参照</a></li>
+<li><a href="#他のリポジトリのpull-request-issueを参照">他のリポジトリのPull request / Issueを参照</a></li>
+<li><a href="#他のリポジトリのcommitを参照">他のリポジトリのCommitを参照</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>GitHubには、Issue番号などを自動的にリンクにする機能がある。
+他のリポジトリの特定のコミットを参照したかったのだが、なかなか方法が見つからなかった。
+しばらく調べていたらGitHubのヘルプにたどり着いた。</p>
+
+<p><a href="https://help.github.com/articles/autolinked-references-and-urls/">Autolinked references and URLs - User Documentation</a></p>
+
+<p>試してみたところコミットメッセージ上に書いたPR、issue、commitへの参照が問題なくリンクになった。
+以下、
+<a href="https://github.com/kotet/test-">こちらのテスト用リポジトリ</a>
+などのスクショを交えてやりたい事ごとにまとめる。</p>
+
+<h2 id="リポジトリ内のpull-request-issueを参照">リポジトリ内のPull request / Issueを参照</h2>
+
+<p><img src="/assets/2017/02/28/link-pr.png" alt="スクショ" /></p>
+
+<p>これはよく使われている。
+ただ<code>#&lt;番号&gt;</code>と書くだけである。</p>
+
+<h2 id="リポジトリ内のcommitを参照">リポジトリ内のCommitを参照</h2>
+
+<p><img src="/assets/2017/02/28/link-commit.png" alt="スクショ" /></p>
+
+<p>ハッシュを書くだけでリンクになる。
+全部書かなくても特定できる長さ(最大級のプロジェクトでも8桁程度)なら大丈夫。
+灰色でリンクっぽくないが、クリックするとちゃんと指定したコミットへ飛ぶ。</p>
+
+<h2 id="他のリポジトリのpull-request-issueを参照">他のリポジトリのPull request / Issueを参照</h2>
+
+<p><img src="/assets/2017/02/28/link-pr-other.png" alt="スクショ" /></p>
+
+<p><code>&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;#&lt;番号&gt;</code>と書く。
+これはリンクっぽい色をしている。</p>
+
+<h2 id="他のリポジトリのcommitを参照">他のリポジトリのCommitを参照</h2>
+
+<p><img src="/assets/2017/02/28/link-commit-other.png" alt="スクショ" /></p>
+
+<p><code>&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;@&lt;ハッシュ&gt;</code>と書く。
+これが自分が知りたかったこと。
+やはり色がリンクっぽくない。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

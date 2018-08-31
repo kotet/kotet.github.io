@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang コンパイル時にファイルから文字列を読み込む - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 長い文字列を埋め込むために いろいろ迷走した が、コンパイル時にファイルから文字列を読み込む方法があることに気づいたので詳しく調べる。 Import Expression という ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        コンパイル時にファイルから文字列を読み込む
+    </h2>
+    <p>
+        <time>2017-01-31</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    
+</aside>
+</header>
+<article><p>長い文字列を埋め込むために
+<a href="/2016/12/170d11cc6b82592a8404">いろいろ迷走した</a>
+が、コンパイル時にファイルから文字列を読み込む方法があることに気づいたので詳しく調べる。</p>
+
+<p><a href="https://dlang.org/spec/expression.html#ImportExpression">Import Expression</a>
+というのがある。
+モジュールのimportとは違うものである。<br />
+<code>import( &lt;コンパイル時に決まる文字列定数&gt; )</code>と書くと、文字列をファイル名と解釈しその中身を文字列として取り込む。
+Cのincludeで変数に文字列を入れられるのと同じである。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+.
+├── resources
+│   └── test.txt
+└── test.d
+
+1 directory, 2 files</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">//$ cat test.d
+import std.stdio;
+
+void main()
+{
+    writeln(import(&#34;test.txt&#34;)); // resources/test.txtの中身を出力
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat resources/test.txt 
+this is test</code></pre></div>
+<p>セキュリティ上の理由により<code>-J</code>スイッチでインポートするファイルの場所を指定してやる必要がある。これは複数指定できるらしい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd test.d -Jresources
+$ ./test
+this is test</code></pre></div>
+<p>dubでも同じことが出来る。
+デフォルトでは<code>views</code>フォルダを指定した状態になっているが、
+<a href="http://code.dlang.org/package-format?lang=json#build-settings">stringImportPaths</a>
+でフォルダを変更することもできる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+.
+├── dub.json
+├── source
+│   └── app.d
+└── views
+    └── test.txt
+
+2 directories, 3 files</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">//$ cat source/app.d 
+import std.stdio;
+
+void main()
+{
+    writeln(import(&#34;test.txt&#34;));
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat views/test.txt 
+this is test</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dub run
+Performing &#34;debug&#34; build using dmd for x86_64.
+test ~master: building configuration &#34;application&#34;...
+Linking...
+Running ./test
+this is test</code></pre></div>
+<p>とても便利。
+たとえば<a href="https://github.com/kotet/progress/commit/3fc0faa3effcf1efe722b77414cfe22827d9ea5a">D言語くんのAAを使う時</a>とかに使える。</p>
+
+<p>続き: <a href="/2017/06/import-any-binary">importでコンパイル時にファイルを埋め込む</a></p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

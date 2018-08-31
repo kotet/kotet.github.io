@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang importでコンパイル時にファイルを埋め込む - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 以前に importを使って大きな文字列を別のファイルから読み込んだが、 同じ手を使って画像や動的リンクライブラリなどのテキストでないデータも読 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        importでコンパイル時にファイルを埋め込む
+    </h2>
+    <p>
+        <time>2017-06-28</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#dub-json"><code>dub.json</code></a></li>
+<li><a href="#source-app-d"><code>source/app.d</code></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p><a href="/2017/01/dlang-import-expression">以前</a>に
+<code>import</code>を使って大きな文字列を別のファイルから読み込んだが、
+同じ手を使って画像や動的リンクライブラリなどのテキストでないデータも読み込んで埋め込むことができるようだ。</p>
+
+<p><a href="https://p0nce.github.io/d-idioms/#Embed-a-dynamic-library-in-an-executable">Embed a dynamic library in an executable</a></p>
+
+<p>リソースの埋め込みはWindowsならリソースコンパイラ、Linuxならobjcopyというのを使うもののようだが、
+この方法はどちらでも使えて気軽でいいと思う。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+.
+├── dub.json
+├── resources
+│   └── dman.png
+└── source
+    └── app.d
+
+2 directories, 3 files</code></pre></div>
+<h4 id="dub-json"><code>dub.json</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;dman&#34;</span>,
+	<span style="color:#f92672">&#34;authors&#34;</span>: [
+		<span style="color:#e6db74">&#34;kotet&#34;</span>
+	],
+	<span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Dman&#34;</span>,
+	<span style="color:#f92672">&#34;copyright&#34;</span>: <span style="color:#e6db74">&#34;Copyright © 2017, kotet&#34;</span>,
+	<span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;MIT&#34;</span>,
+	<span style="color:#f92672">&#34;stringImportPaths&#34;</span>: [
+		<span style="color:#e6db74">&#34;resources&#34;</span>
+	]
+}</code></pre></div>
+<h4 id="source-app-d"><code>source/app.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">static immutable ubyte[] dman = cast(immutable ubyte[]) import(&#34;dman.png&#34;);
+
+void main()
+{
+	import std.file : write;
+	import std.uuid : randomUUID;
+	write(&#34;dman-&#34; ~ randomUUID().toString() ~ &#34;.png&#34;, dman);
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ls
+dub.json  resources  source
+$ dub build
+Performing &#34;debug&#34; build using dmd for x86_64.
+dman ~master: target for configuration &#34;application&#34; is up to date.
+To force a rebuild of up-to-date targets, run again with --force.
+$ ./dman 
+$ ./dman 
+$ ./dman 
+$ ls
+dman                                           dman-88c57901-9ce1-4347-a9b7-774fc1faf7e8.png  source
+dman-212640dc-fde8-4abd-bf85-ea4a6ef2cbdd.png  dub.json
+dman-3049dffd-db30-4901-b9d9-b2d132f4c0a5.png  resources</code></pre></div>
+<p>どこでも実行するたびにD言語くんのpng画像を生み出せるアプリケーションができた。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

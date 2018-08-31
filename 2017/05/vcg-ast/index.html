@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang 処理後の結果を見られるdmdのスイッチ -vcg-ast - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" Dconf 2017で出てきたコマンドラインスイッチ-vcg-astについて書き残しておく。 これはgccでいう-Eオプションのようなもので、これはいろ ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        処理後の結果を見られるdmdのスイッチ -vcg-ast
+    </h2>
+    <p>
+        <time>2017-05-08</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#使ってみる">使ってみる</a>
+<ul>
+<li><a href="#app-d"><code>app.d</code></a></li>
+<li><a href="#app-d-cg"><code>app.d.cg</code></a></li>
+</ul></li>
+<li><a href="#dubで使う">dubで使う</a>
+<ul>
+<li><a href="#dub-json"><code>dub.json</code></a></li>
+<li><a href="#source-app-d"><code>source/app.d</code></a></li>
+<li><a href="#source-app-d-cg"><code>source/app.d.cg</code></a></li>
+</ul></li>
+<li><a href="#関連リンク">関連リンク</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p><a href="http://dconf.org/2017/talks/koch.html">Dconf 2017で出てきた</a>コマンドラインスイッチ<code>-vcg-ast</code>について書き残しておく。
+これはgccでいう<code>-E</code>オプションのようなもので、これはいろいろな&rdquo;semantic steps&rdquo; <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>
+がすべて終了したあとのASTを読めるかたちに書きだすオプションである。</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/crHnumzsLUs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<p><code>-vcg-ast</code>が使われた動画。
+使用箇所付近(25:00)から再生が始まる。</p>
+
+<h3 id="使ってみる">使ってみる</h3>
+
+<h4 id="app-d"><code>app.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+{
+	import std.stdio : writeln;
+
+	static immutable table = () {
+		import std.range : iota, array;
+		import std.algorithm : map;
+		import std.math : sqrt;
+
+		return 10.iota.map!((real n) =&gt; n.sqrt()).array;
+	}();
+	alias T = table;
+	mixin(&#34;writeln(T);&#34;);
+}</code></pre></div>
+<p>ここで<code>$ dmd app.d -vcg-ast</code>すると、<code>app.d.cg</code>というファイルが生成される。
+中を見たら7912行もあった。</p>
+
+<h4 id="app-d-cg"><code>app.d.cg</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import object;
+void main()
+{
+	import std.stdio : writeln;
+	static immutable immutable(real[]) table = [0.00000L, 1.00000L, 1.41421L, 1.73205L, 2.00000L, 2.23607L, 2.44949L, 2.64575L, 2.82843L, 3.00000L];
+	alias T = static immutable immutable(real[]) table = [0.00000L, 1.00000L, 1.41421L, 1.73205L, 2.00000L, 2.23607L, 2.44949L, 2.64575L, 2.82843L, 3.00000L];
+	;
+	writeln(table);
+	return 0;
+}
+CommonType!(int, int)
+alias CommonType = int;
+CommonType!int
+alias CommonType = int;
+isFloatingPoint!int
+enum bool isFloatingPoint = false;
+Unqual!int
+alias Unqual = int;
+// 以下略</code></pre></div>
+<p>関数リテラルはCTFEの結果である配列になり、文字列mixinは普通のコードになり、さらにaliasも展開されている。
+やたら行数が大きいのは自動的にimportされた<code>object</code>のせいだろう。
+コードがコンパイラによってどのように展開されるかを知ることができてためになるし、なんだか見てて楽しい。</p>
+
+<h3 id="dubで使う">dubで使う</h3>
+
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">とりあえずdub使ってる人は、dub.jsonの場合、<br>&quot;configuration&quot;: [<br> { &quot;name&quot;: &quot;ast&quot;, &quot;dflag&quot;: [&quot;-vcg-ast&quot;] }<br>]<br>と書き足すなどしてビルドすると一発の模様です。</p>&mdash; lempiji@思秋期 (@lempiji) <a href="https://twitter.com/lempiji/status/860459096897576960">2017年5月5日</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<h4 id="dub-json"><code>dub.json</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;test&#34;</span>,
+	<span style="color:#f92672">&#34;authors&#34;</span>: [
+		<span style="color:#e6db74">&#34;kotet&#34;</span>
+	],
+	<span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;A minimal D application.&#34;</span>,
+	<span style="color:#f92672">&#34;copyright&#34;</span>: <span style="color:#e6db74">&#34;Copyright © 2017, kotet&#34;</span>,
+	<span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;proprietary&#34;</span>,
+	<span style="color:#f92672">&#34;dependencies&#34;</span>: {
+		<span style="color:#f92672">&#34;progress&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+	},
+	<span style="color:#f92672">&#34;targetType&#34;</span>: <span style="color:#e6db74">&#34;executable&#34;</span>,
+	<span style="color:#f92672">&#34;configurations&#34;</span>: [
+		{
+			<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>
+		},
+		{
+			<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;ast&#34;</span>,
+			<span style="color:#f92672">&#34;dflags&#34;</span>: [
+				<span style="color:#e6db74">&#34;-vcg-ast&#34;</span>
+			]
+		}
+	]
+}</code></pre></div>
+<h4 id="source-app-d"><code>source/app.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+{
+	import std.stdio : writeln;
+	import std.range : iota;
+	import progress.bar : Bar;
+
+	auto b = new Bar();
+	foreach (n; b.iter(10.iota))
+	{
+	}
+	mixin(&#34;writeln(b);&#34;);
+}</code></pre></div>
+<p><code>$ dub build -c ast</code>すると.d.cgファイルが出力される。</p>
+
+<h4 id="source-app-d-cg"><code>source/app.d.cg</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import object;
+void main()
+{
+	import std.stdio : writeln;
+	import std.range : iota;
+	import progress.bar : Bar;
+	Bar b = new Bar;
+	{
+		Generator!int __r3001 = b.iter(iota(10));
+		for (; !__r3001.empty(); __r3001.popFront())
+		{
+			int n = __r3001.front();
+		}
+	}
+	writeln(b);
+	return 0;
+}
+// 以下略</code></pre></div>
+<p><code>foreach</code>が<code>for</code>に展開されている。
+たのしい。</p>
+
+<h3 id="関連リンク">関連リンク</h3>
+
+<ul>
+<li><a href="http://forum.dlang.org/thread/oendp1$ct4$1@digitalmars.com">-vcg-ast dmd command line switch - D Programming Language Discussion Forum</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PL3jwVPmk_PRxo23yyoc0Ip_cP3-rCm7eB">DConf 2017 - YouTube</a></li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://github.com/dlang/dmd/pull/6556">vcg-ast by UplinkCoder · Pull Request #6556 · dlang/dmd</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

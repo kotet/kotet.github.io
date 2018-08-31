@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#ipfs体験記 11:IPFSによる分散型SoundCloud - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 今まで前回、次回の記事に手動でリンクを貼っていたが、記事を投稿するたびに複数のファイルを編集しなければならないのがめんどくさいのでやめる。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>
+        
+        11:IPFSによる分散型SoundCloud
+    </h2>
+    <p>
+        <time>2017-12-20</time>
+         <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>  <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    
+</aside>
+</header>
+<article><p>今まで前回、次回の記事に手動でリンクを貼っていたが、記事を投稿するたびに複数のファイルを編集しなければならないのがめんどくさいのでやめる。
+<a href="/tags/#ipfs体験記">ipfs体験記</a>というタグを作ったのでそこから記事一覧にアクセスできる。
+今までタグに日本語を使うのを避けていたが、やってみたら意外と問題が起きなかった。</p>
+
+<p>追記: どうもシーダーがいなくなってアクセスできなくなってしまった様子のリソースがいくつかあるが、そのままにしておく。</p>
+
+<p>SoundCloud的ウェブサイトがあった。</p>
+
+<ul>
+<li><a href="https://dsound.audio/#/feed">DSound - Decentralized Sound Platform</a></li>
+</ul>
+
+<p>以下は作者の書いた記事である。</p>
+
+<ul>
+<li><a href="https://steemit.com/music/@prc/introducing-dsound-a-decentralized-sound-platform-using-steem-and-ipfs">Introducing DSound: a decentralized sound platform using STEEM and IPFS — Steemit</a></li>
+<li><a href="https://steemit.com/music/@prc/dsound-the-launch-what-s-new-now-that-the-1st-alpha-is-closed-and-the-full-decentralization-of-it">DSound: The launch, what&rsquo;s new now that the 1st alpha is closed and the FULL decentralization of it — Steemit</a></li>
+</ul>
+
+<p>音声などのデータをIPFS上に保存しており、たとえば
+<a href="https://gateway.ipfsstore.it:8443/ipfs/QmQV535FtqctNyKb82Qh5XUbdh2bdmjyzS5AHcwEPWTaJS">https://gateway.ipfsstore.it:8443/ipfs/QmQV535FtqctNyKb82Qh5XUbdh2bdmjyzS5AHcwEPWTaJS</a>
+のように内部でパブリックゲートウェイを使ってアクセスしている。
+<a href="/2017/10/ipfs-browser-extention">以前紹介したブラウザ拡張</a>
+を有効にした状態で閲覧するとこのURLがローカルゲートウェイのものに書き換えられ、自分のIPFSノードからダウンロードされるようになる。
+または、ログインするとローカルゲートウェイを使うよう設定できるらしい。
+するとIPFSの効果により負荷が分散されるというわけだ。</p>
+
+<p><code>ipfs bitswap wantlist</code>を見ていると再生ボタンを押したあとにwantlistにハッシュが大量に追加されるのを見ることができる。
+wantlistはソートされておらず実行するたびに順番が違うので、<code>watch</code>などで監視する場合は<code>sort</code>する必要があるので注意しよう。</p>
+
+<p>しかし自分の環境だと1回目は途中でダウンロードが止まってしまうことがある。
+止まってしまってからページをリロードして、もう一度再生するとちゃんとwantlistがすべて消化される。
+これはこのサイトのバグだろうか、<code>go-ipfs</code>のバグだろうか、それとも単に自分とデータ保持者の回線の問題だろうか?</p>
+
+<p>コンテンツが完全に分散されているので、アクセスする人が多くてもローカルゲートウェイを使っており、シーダーが十分に多いなら管理者の負担にはならない。
+なので、通常なら禁止されがちのファイルへの直リンクが上記の記事では逆に紹介されている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">video</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz&#34;</span> <span style="color:#a6e22e">poster</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://ipfs.io/ipfs/Qme9AJ61nQJezRej79BZTxvT5uXuUzLTiFGH5kWewCJYLR&#34;</span> <span style="color:#a6e22e">controls</span>&gt;&lt;/<span style="color:#f92672">video</span>&gt;
+&lt;<span style="color:#f92672">audio</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz&#34;</span> <span style="color:#a6e22e">controls</span>&gt;&lt;/<span style="color:#f92672">audio</span>&gt;</code></pre></div>
+<!-- video/audioタグが貼れない…… -->
+
+<p><div id="videoandaudio"></div>
+<script>
+    let div = document.querySelector(&ldquo;#videoandaudio&rdquo;);
+    let v = document.createElement(&ldquo;video&rdquo;);
+    v.src = &lsquo;<a href="https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz'">https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz'</a>;
+    v.poster = &lsquo;<a href="https://ipfs.io/ipfs/Qme9AJ61nQJezRej79BZTxvT5uXuUzLTiFGH5kWewCJYLR'">https://ipfs.io/ipfs/Qme9AJ61nQJezRej79BZTxvT5uXuUzLTiFGH5kWewCJYLR'</a>;
+    v.controls = &ldquo;controls&rdquo;;
+    v.style = &lsquo;width: 100%;&lsquo;;
+    div.appendChild(v);
+    let a = document.createElement(&ldquo;audio&rdquo;);
+    a.src = &lsquo;<a href="https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz'">https://ipfs.io/ipfs/QmQAJq3xfPhekc8zph3KjssjYUBLBT3jnMAPHzJU1X9ELz'</a>;
+    a.controls = &ldquo;controls&rdquo;;
+    a.style = &lsquo;width: 100%;&lsquo;;
+    div.appendChild(a);
+</script></p>
+
+<p>分散されているのはデータだけかと最初思ったが、どうやら完全に分散型のサービスらしい。
+データベースに<a href="https://steem.io/">Steem</a>というものを使っているらしいが、Steemについての知識がゼロのためどれくらい分散されているのかわからない。</p>
+
+<p>なかなか実用的で素晴らしいと思う。
+あとはブラウザやスマホで動くIPFSノードがあれば……</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

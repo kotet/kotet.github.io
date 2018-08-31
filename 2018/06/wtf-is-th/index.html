@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#russian Th(x)ってなんだ - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 先日ロシアから来たという准教授のトークを聞いた。 機械学習とデータマイニングについてのトークで、英語スキルの乏しい自分は何を話しているのか追い ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/russian">#russian</a>
+        
+        Th(x)ってなんだ
+    </h2>
+    <p>
+        <time>2018-06-01</time>
+         <a href="/tags/russian">#russian</a>  <a href="/tags/deeplearning">#deeplearning</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#th-x-とは">Th(x)とは</a></li>
+<li><a href="#th-x-tanh-x">th x = tanh x</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>先日ロシアから来たという准教授のトークを聞いた。
+機械学習とデータマイニングについてのトークで、英語スキルの乏しい自分は何を話しているのか追いかけるだけで精一杯だった。
+しかし不思議と楽しめたのでよかった。</p>
+
+<h3 id="th-x-とは">Th(x)とは</h3>
+
+<p>トークで使っているスライドの中で、活性化関数のリストに \(\mathrm{Th}(x)\) という関数があった。
+どうせわからないことだらけだろうとノートPCを出しておいたので即座に<code>y=th(x)</code>などとググる。
+すると1番上にロシア語のページが出てきた。</p>
+
+<p><a href="https://www.math10.com/ru/vysshaya-matematika/giperbolicheskie-funktsii/giperbolicheskie-funktsii.html">Гиперболические функции - sh, ch, th, cth, sech, csch</a></p>
+
+<p>けっこう呑気してたKotetも数式が一瞬読めなくなるほどのロシア語の圧力にはビビった。
+とりあえず機械翻訳を使った。</p>
+
+<h3 id="th-x-tanh-x">th x = tanh x</h3>
+
+<p>言語が違っても数式は通じるというのは本当らしく、後日ちゃんと数式を読んでみるとロシア語を読むまでもなくすぐに意味がわかった。</p>
+
+<blockquote>
+<p>Гиперболический тангенс<br />
+\(\mathrm{th}\ x = ( e^x - e^{-x} ) / ( e^x + e^{-x} )\)</p>
+</blockquote>
+
+<p>Thとは双曲線正接関数のことだ。
+\(\tanh\)ですでに4文字しかないんだからそんなに略さなくてもいいじゃねえかと思いつつ<a href="https://ru.wikipedia.org/wiki/%D0%93%D0%B8%D0%BF%D0%B5%D1%80%D0%B1%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8">ru.wikipedia.orgの記事</a>を読んだところ、どうもロシアではこちらのほうが一般的らしい。</p>
+
+<blockquote>
+<p>гиперболический тангенс:<br />
+\(\mathrm{th}\ x = \frac{\mathrm{sh}\ x}{\mathrm{ch}\ x} = \frac{e^x - e^{-x}}{e^x + e^{-x}} = \frac{e^{2x} - 1}{e^{2x} + 1}\)<br />
+(в англоязычной литературе обозначается \(\tanh\ x\))</p>
+</blockquote>
+
+<p>最後の行には外国の文書では \(\tanh\ x\) と書かれる、といった感じのことが書いてある。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

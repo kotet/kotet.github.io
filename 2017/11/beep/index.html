@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#tech コマンド終了時に毎回音を鳴らす - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" 見てるのは時間の無駄だけど放置するほど長くはない処理のために、コマンド終了時に音を鳴らすようにしていた。 しかし頻繁に; beepを付け忘れるので、毎回何もしなくてもコマンド終了時に音を鳴らしたかった。  ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/tech">#tech</a>
+        
+        コマンド終了時に毎回音を鳴らす
+    </h2>
+    <p>
+        <time>2017-11-01</time>
+         <a href="/tags/tech">#tech</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    
+</aside>
+</header>
+<article><p>見てるのは時間の無駄だけど放置するほど長くはない処理のために、コマンド終了時に音を鳴らすようにしていた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ do-something ; beep</code></pre></div>
+<p>しかし頻繁に<code>; beep</code>を付け忘れるので、毎回何もしなくてもコマンド完了ごとに音を鳴らしたかった。
+だが、自分の検索能力の低さゆえ、なかなか方法がわからなかった。
+以下は自分で考えたのでもう少しいい方法があるかもしれない。</p>
+
+<p><code>PS1=&quot;\$(do-something)&quot;</code>とすると、プロンプトにコマンドの出力を表示できる。
+<code>beep</code>には出力がないので、結果的に音だけがなる。
+以下のようにしてプロンプトが表示されるたびにbeep音を鳴らすよう<code>.bashrc</code>に追記できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo &#39;PS1=&#34;$PS1\$(beep)&#34;&#39; &gt;&gt; ~/.bashrc
+$ source ~/.bashrc</code></pre></div>
+<p><code>beep</code>の部分を書き換えることで出る音を変えられる。
+自分は<code>beep -f 1000 -r 2 -l 50</code>としている。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>

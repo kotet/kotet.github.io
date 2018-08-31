@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>D_and_c on Kotet&#39;s Personal Blog</title>
+    <link>https://kotet.jp/tags/d_and_c/</link>
+    <description>Recent content in D_and_c on Kotet&#39;s Personal Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 10 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kotet.jp/tags/d_and_c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DとCのインターフェース:入門編【翻訳】</title>
+      <link>https://kotet.jp/2017/12/interfacing-d-with-c-getting-started/</link>
+      <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kotet.jp/2017/12/interfacing-d-with-c-getting-started/</guid>
+      <description>この記事はD言語 Advent Calendar 2017 10日目の記事であり、 Interfacing D with C: Getting Started – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形</description>
+    </item>
+    
+  </channel>
+</rss>

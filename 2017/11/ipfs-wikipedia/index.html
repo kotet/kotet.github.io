@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#ipfs IPFS体験記9:Wikipediaミラープロジェクト - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。 ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/ipfs">#ipfs</a>
+        
+        IPFS体験記9:Wikipediaミラープロジェクト
+    </h2>
+    <p>
+        <time>2017-11-29</time>
+         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#リポジトリの拡張">リポジトリの拡張</a>
+<ul>
+<li><a href="#config">config</a></li>
+</ul></li>
+<li><a href="#保存する">保存する</a></li>
+<li><a href="#見てみる">見てみる</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。</p>
+
+<p><a href="https://ipfs.io/blog/24-uncensorable-wikipedia/">Uncensorable Wikipedia on IPFS</a></p>
+
+<p>今回はそれに参加してみる。</p>
+
+<h3 id="リポジトリの拡張">リポジトリの拡張</h3>
+
+<p>それなりに大きなディスク容量（トルコ版で10ギガバイト、英語版で250ギガバイト）が必要なので、少しリポジトリを拡張する。
+29ギガバイトのストレージが落ちていたのでそれを使う。</p>
+
+<h4 id="config">config</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-     &#34;StorageMax&#34;: &#34;2GB&#34;
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+     &#34;StorageMax&#34;: &#34;29GB&#34;
+</span><span style="color:#a6e22e"></span></code></pre></div>
+<h3 id="保存する">保存する</h3>
+
+<p>早速Pinしてみる。
+最新版のハッシュは<a href="https://github.com/ipfs/distributed-wikipedia-mirror/blob/master/snapshot-hashes.yml">こちら</a>にある。
+執筆時点でトルコ語版のハッシュは<code>/ipfs/QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX</code>である。</p>
+
+<p>Pin前にサイズを知る方法はないのだろうか？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs pin add QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX --progress</code></pre></div>
+<p>ディスクがすごく遅いのと、提供ノードがあまり多くないのが原因でかなり時間がかかる。</p>
+
+<h3 id="見てみる">見てみる</h3>
+
+<p>執筆時点でも終わっていないが閲覧は問題なく行える。</p>
+
+<p>ページ右上に検索窓があるので、とりあえず日本を検索してみる。</p>
+
+<p><img src="/assets/2017/11/29/search.png" alt="スクショ" /></p>
+
+<p>初回は少し時間がかかるが問題なく使用できる。
+どうもJavascriptを使い完全にクライアントサイドで動いているように見える。</p>
+
+<p>自分はトルコ語を使えないので特に何もできることがない。
+というわけでこの記事はここで終わりである。</p>
+</article>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+    <p>This site compiled at <time></time></p>
+</footer>
+</body>
+
+</html>
