@@ -2,1344 +2,1344 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Kotet&#39;s Personal Blog</title>
-    <link>https://kotet.jp/</link>
+    <link>https://blog.kotet.jp/</link>
     <description>Recent content in Posts on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kotet.jp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.kotet.jp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>非デザイナーによる非デザイナーのための短期集中Webデザイン講座【翻訳】</title>
-      <link>https://kotet.jp/2018/08/a-web-design-crush-course/</link>
+      <link>https://blog.kotet.jp/2018/08/a-web-design-crush-course/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/a-web-design-crush-course/</guid>
+      <guid>https://blog.kotet.jp/2018/08/a-web-design-crush-course/</guid>
       <description>この記事は、 The Zen of Programming の A Web Design Crash Course: From one non-designer to another を翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 何か気にな</description>
     </item>
     
     <item>
       <title>紙とペンでビットマップ画像を生成してbase64としてツイート</title>
-      <link>https://kotet.jp/2018/08/handwritten-bmp-and-base64/</link>
+      <link>https://blog.kotet.jp/2018/08/handwritten-bmp-and-base64/</link>
       <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/handwritten-bmp-and-base64/</guid>
+      <guid>https://blog.kotet.jp/2018/08/handwritten-bmp-and-base64/</guid>
       <description>文名は容易に揚らず、生活リズムは日を逐うて崩れてゆく。 Kotetは漸く焦躁に駆られて来た。 この頃からその容貌も峭刻となり、肉落ち骨秀で、眼光</description>
     </item>
     
     <item>
       <title>標準ライブラリの to で配列を変換する</title>
-      <link>https://kotet.jp/2018/08/conv-to-for-array/</link>
+      <link>https://blog.kotet.jp/2018/08/conv-to-for-array/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/conv-to-for-array/</guid>
+      <guid>https://blog.kotet.jp/2018/08/conv-to-for-array/</guid>
       <description>D言語にはstd.conv.toという便利な関数がある。 これは配列の型も変換できるのだが、いままでうまく使えなくて毎回.map!(to!lo</description>
     </item>
     
     <item>
       <title>dppでCのヘッダファイルを自動変換</title>
-      <link>https://kotet.jp/2018/08/dpp/</link>
+      <link>https://blog.kotet.jp/2018/08/dpp/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/dpp/</guid>
+      <guid>https://blog.kotet.jp/2018/08/dpp/</guid>
       <description>dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。 自分はいまのところ C と連携するようなプログラムを書く予定はないが、 興</description>
     </item>
     
     <item>
       <title>仮想通貨の写真素材を手に入れた</title>
-      <link>https://kotet.jp/2018/08/currency-photo/</link>
+      <link>https://blog.kotet.jp/2018/08/currency-photo/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/currency-photo/</guid>
+      <guid>https://blog.kotet.jp/2018/08/currency-photo/</guid>
       <description>仮想通貨について書かれた記事のトップにありがちな画像素材をたくさん手に入れた。 ちょうど下のようなやつだ。 これはとある写真サイトのメーリングリ</description>
     </item>
     
     <item>
       <title>16:fs-repo-migrationsをつかった最新版への移行</title>
-      <link>https://kotet.jp/2018/08/ipfs-migration/</link>
+      <link>https://blog.kotet.jp/2018/08/ipfs-migration/</link>
       <pubDate>Thu, 02 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/ipfs-migration/</guid>
+      <guid>https://blog.kotet.jp/2018/08/ipfs-migration/</guid>
       <description>IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。 今回はそれを初めてやることになったので記録する。 いきさつ ノー</description>
     </item>
     
     <item>
       <title>長文を書けるようになりたい</title>
-      <link>https://kotet.jp/2018/08/writing/</link>
+      <link>https://blog.kotet.jp/2018/08/writing/</link>
       <pubDate>Thu, 02 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/08/writing/</guid>
+      <guid>https://blog.kotet.jp/2018/08/writing/</guid>
       <description>最近このサイトの更新が月に1、2回といった感じになっている。 長期休みが始まるので、これからいろんなことを書いていきたい。 文章を書くためには練</description>
     </item>
     
     <item>
       <title>Dで書くクワイン・マクラスキー法</title>
-      <link>https://kotet.jp/2018/07/quine-mccluskey-d/</link>
+      <link>https://blog.kotet.jp/2018/07/quine-mccluskey-d/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/07/quine-mccluskey-d/</guid>
+      <guid>https://blog.kotet.jp/2018/07/quine-mccluskey-d/</guid>
       <description>先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。 簡単にプログラムに落とし込めそうでテンション</description>
     </item>
     
     <item>
       <title>非中央集権静的Gitホスティング</title>
-      <link>https://kotet.jp/2018/06/ipfs-git-readonly/</link>
+      <link>https://blog.kotet.jp/2018/06/ipfs-git-readonly/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/06/ipfs-git-readonly/</guid>
+      <guid>https://blog.kotet.jp/2018/06/ipfs-git-readonly/</guid>
       <description>GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書</description>
     </item>
     
     <item>
       <title>Th(x)ってなんだ</title>
-      <link>https://kotet.jp/2018/06/wtf-is-th/</link>
+      <link>https://blog.kotet.jp/2018/06/wtf-is-th/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/06/wtf-is-th/</guid>
+      <guid>https://blog.kotet.jp/2018/06/wtf-is-th/</guid>
       <description>先日ロシアから来たという准教授のトークを聞いた。 機械学習とデータマイニングについてのトークで、英語スキルの乏しい自分は何を話しているのか追い</description>
     </item>
     
     <item>
       <title>同じ文字の繰り返しが3回続く単語にマッチする正規表現</title>
-      <link>https://kotet.jp/2018/05/grep-literacy/</link>
+      <link>https://blog.kotet.jp/2018/05/grep-literacy/</link>
       <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/05/grep-literacy/</guid>
+      <guid>https://blog.kotet.jp/2018/05/grep-literacy/</guid>
       <description>内向けの記事を書く。 正規表現の問題の解説記事である。 解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に</description>
     </item>
     
     <item>
       <title>KotetのD言語作業環境2018年春</title>
-      <link>https://kotet.jp/2018/04/dlang-environment/</link>
+      <link>https://blog.kotet.jp/2018/04/dlang-environment/</link>
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/04/dlang-environment/</guid>
+      <guid>https://blog.kotet.jp/2018/04/dlang-environment/</guid>
       <description>一部に需要があるみたいなので、この機会に自分とD言語をつなぐ作業環境について記録しておく。 OS Arch Linuxである。 据え置きのPCもあるがノート</description>
     </item>
     
     <item>
       <title>GitHub Pagesでも目次(ToC)は作れる</title>
-      <link>https://kotet.jp/2018/04/toc-on-github-pages/</link>
+      <link>https://blog.kotet.jp/2018/04/toc-on-github-pages/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/04/toc-on-github-pages/</guid>
+      <guid>https://blog.kotet.jp/2018/04/toc-on-github-pages/</guid>
       <description>スクロールがめんどくさくなってきたので目次(Table of Contents: ToC)を設置しようと思った。 しかしGitHub Pagesでは新しいプラグインの導</description>
     </item>
     
     <item>
       <title>D言語のビジョン2018年前半期【翻訳】</title>
-      <link>https://kotet.jp/2018/03/vision-2018h1/</link>
+      <link>https://blog.kotet.jp/2018/03/vision-2018h1/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/vision-2018h1/</guid>
+      <guid>https://blog.kotet.jp/2018/03/vision-2018h1/</guid>
       <description>この記事は、 Vision/2018H1 - D Wiki を自分用に翻訳したものを原文と同じ GNU Free Documentation License で公開するものである。 ソース中にコメントの形で原文を残している。 何か気になると</description>
     </item>
     
     <item>
       <title>LDC 1.8.0 Released【翻訳】</title>
-      <link>https://kotet.jp/2018/03/ldc-1-8-0-released/</link>
+      <link>https://blog.kotet.jp/2018/03/ldc-1-8-0-released/</link>
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/ldc-1-8-0-released/</guid>
+      <guid>https://blog.kotet.jp/2018/03/ldc-1-8-0-released/</guid>
       <description>この記事は、 DCompute: Running D on the GPU – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 何か気になる</description>
     </item>
     
     <item>
       <title>検査で気絶したので現状を記録しておく</title>
-      <link>https://kotet.jp/2018/03/tilt-of-the-dead/</link>
+      <link>https://blog.kotet.jp/2018/03/tilt-of-the-dead/</link>
       <pubDate>Fri, 09 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/tilt-of-the-dead/</guid>
+      <guid>https://blog.kotet.jp/2018/03/tilt-of-the-dead/</guid>
       <description>今日もD blogの記事を読むつもりだったのだが、起立性調節障害の検査で気絶したのでこの機会に自分の体位性頻脈について書きたい。 前回の検査のこ</description>
     </item>
     
     <item>
       <title>DCompute:GPU上で走るD【翻訳】</title>
-      <link>https://kotet.jp/2018/03/d-compute-running-d-on-the-gpu/</link>
+      <link>https://blog.kotet.jp/2018/03/d-compute-running-d-on-the-gpu/</link>
       <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/d-compute-running-d-on-the-gpu/</guid>
+      <guid>https://blog.kotet.jp/2018/03/d-compute-running-d-on-the-gpu/</guid>
       <description>この記事は、 DCompute: Running D on the GPU – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 今回あんまり</description>
     </item>
     
     <item>
       <title>DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】</title>
-      <link>https://kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/</link>
+      <link>https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/</guid>
+      <guid>https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/</guid>
       <description>この記事は、 DCompute: GPGPU with Native D for OpenCL and CUDA – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 誤字や</description>
     </item>
     
     <item>
       <title>DMD 2.079.0 Released【翻訳】</title>
-      <link>https://kotet.jp/2018/03/dmd-2-079-0-released/</link>
+      <link>https://blog.kotet.jp/2018/03/dmd-2-079-0-released/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/dmd-2-079-0-released/</guid>
+      <guid>https://blog.kotet.jp/2018/03/dmd-2-079-0-released/</guid>
       <description>この記事は、 DMD 2.079.0 Released – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 誤字や誤訳などを見</description>
     </item>
     
     <item>
       <title>プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】</title>
-      <link>https://kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/</link>
+      <link>https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/</guid>
+      <guid>https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/</guid>
       <description>この記事は、 Vanquish Forever These Bugs That Blasted Your Kingdom – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 誤字や誤</description>
     </item>
     
     <item>
       <title>15:ipfs mount</title>
-      <link>https://kotet.jp/2018/03/ipfs-mount/</link>
+      <link>https://blog.kotet.jp/2018/03/ipfs-mount/</link>
       <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/ipfs-mount/</guid>
+      <guid>https://blog.kotet.jp/2018/03/ipfs-mount/</guid>
       <description>実に1ヶ月ぶりの投稿になる。 今回はipfs mountというコマンドを試してみたのだが、あまり便利には思えなかった。 ipfs mount このコマンドは、IPF</description>
     </item>
     
     <item>
       <title>14:IPFSとDocker</title>
-      <link>https://kotet.jp/2018/01/ipfs-docker/</link>
+      <link>https://blog.kotet.jp/2018/01/ipfs-docker/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/ipfs-docker/</guid>
+      <guid>https://blog.kotet.jp/2018/01/ipfs-docker/</guid>
       <description>go-ipfsはdockerコンテナを提供している。 たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。 docker run -d --restart=always --name ipfs_host -v /home/kotet/Documents:/export -v /home/kotet/.ipfs/:/data/ipfs -p 4001:4001 -p</description>
     </item>
     
     <item>
       <title>ネットワーク遅延と光速度【翻訳】</title>
-      <link>https://kotet.jp/2018/01/network-latencies-and-speed-of-light/</link>
+      <link>https://blog.kotet.jp/2018/01/network-latencies-and-speed-of-light/</link>
       <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/network-latencies-and-speed-of-light/</guid>
+      <guid>https://blog.kotet.jp/2018/01/network-latencies-and-speed-of-light/</guid>
       <description>この記事は Network latencies and speed of light | The ryg blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 誤字や誤訳など</description>
     </item>
     
     <item>
       <title>DMD 2.078.0 Has Been Released【翻訳】</title>
-      <link>https://kotet.jp/2018/01/dmd-2-078-0-has-been-released/</link>
+      <link>https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/</link>
       <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/dmd-2-078-0-has-been-released/</guid>
+      <guid>https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/</guid>
       <description>この記事は DMD 2.078.0 Has Been Released – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 誤字や誤訳など気</description>
     </item>
     
     <item>
       <title>Dの新しい名前修飾【抄訳】</title>
-      <link>https://kotet.jp/2018/01/ds-newfangled-name-mangling/</link>
+      <link>https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/</link>
       <pubDate>Mon, 15 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/ds-newfangled-name-mangling/</guid>
+      <guid>https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/</guid>
       <description>この記事は D’s Newfangled Name Mangling – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 自分の能力が微</description>
     </item>
     
     <item>
       <title>「三方よし」の広告プラットフォーム Anonymous Adsのすゝめ</title>
-      <link>https://kotet.jp/2018/01/a-ads/</link>
+      <link>https://blog.kotet.jp/2018/01/a-ads/</link>
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/a-ads/</guid>
+      <guid>https://blog.kotet.jp/2018/01/a-ads/</guid>
       <description>このサイトに貼ってあるAnonymous Ads（以下A-ads）について書きたいことができた。 とても良心的な広告プラットフォームなので人気に</description>
     </item>
     
     <item>
       <title>記事の編集履歴、PR作成、ソース表示 in GitHub Pages 2018</title>
-      <link>https://kotet.jp/2018/01/jekyll-templates-update/</link>
+      <link>https://blog.kotet.jp/2018/01/jekyll-templates-update/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/01/jekyll-templates-update/</guid>
+      <guid>https://blog.kotet.jp/2018/01/jekyll-templates-update/</guid>
       <description>以前書いた記事 のJekyllテンプレートが動かなくなっていた。 現在でも使えるように書き換えていく。 何が変わったのか site.branchが動</description>
     </item>
     
     <item>
       <title>13:非中央集権型ウェブ魚拓</title>
-      <link>https://kotet.jp/2017/12/ipfs-archive/</link>
+      <link>https://blog.kotet.jp/2017/12/ipfs-archive/</link>
       <pubDate>Thu, 28 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/ipfs-archive/</guid>
+      <guid>https://blog.kotet.jp/2017/12/ipfs-archive/</guid>
       <description>IPFSでウェブページのアーカイブをするツールが複数存在する。 アーカイブのIPFSハッシュが公開されていれば、それを保持してくれているノード</description>
     </item>
     
     <item>
       <title>超軽量、IPFS対応レスポンシブJekyll theme ”ultralight”を作った</title>
-      <link>https://kotet.jp/2017/12/jekyll-theme-ultralight/</link>
+      <link>https://blog.kotet.jp/2017/12/jekyll-theme-ultralight/</link>
       <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/jekyll-theme-ultralight/</guid>
+      <guid>https://blog.kotet.jp/2017/12/jekyll-theme-ultralight/</guid>
       <description>CNNの低帯域の人向けのテキストオンリーのサイトlite.cnn.ioを見た。 とても軽い。 しかしニュースを快適に閲覧するための要素はすべて満</description>
     </item>
     
     <item>
       <title>12:ブラウザ拡張のDNSLINKサポート</title>
-      <link>https://kotet.jp/2017/12/ipfs-dnslink-support/</link>
+      <link>https://blog.kotet.jp/2017/12/ipfs-dnslink-support/</link>
       <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/ipfs-dnslink-support/</guid>
+      <guid>https://blog.kotet.jp/2017/12/ipfs-dnslink-support/</guid>
       <description>IPFSのブラウザ拡張について書いた以前の記事 には理解できなかったものが抜けている。 ipfs体験記12回めのこの記事ではその中のDNSLIN</description>
     </item>
     
     <item>
       <title>11:IPFSによる分散型SoundCloud</title>
-      <link>https://kotet.jp/2017/12/ipfs-soundcloud/</link>
+      <link>https://blog.kotet.jp/2017/12/ipfs-soundcloud/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/ipfs-soundcloud/</guid>
+      <guid>https://blog.kotet.jp/2017/12/ipfs-soundcloud/</guid>
       <description>今まで前回、次回の記事に手動でリンクを貼っていたが、記事を投稿するたびに複数のファイルを編集しなければならないのがめんどくさいのでやめる。 i</description>
     </item>
     
     <item>
       <title>IPFS体験記10: `pacman -S go-ipfs`</title>
-      <link>https://kotet.jp/2017/12/ipfs-on-manjaro-linux/</link>
+      <link>https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/</link>
       <pubDate>Tue, 19 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/ipfs-on-manjaro-linux/</guid>
+      <guid>https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/</guid>
       <description>いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。 ひとつ記事タイ</description>
     </item>
     
     <item>
       <title>Deep Neural D-man</title>
-      <link>https://kotet.jp/2017/12/deep-neural-dman/</link>
+      <link>https://blog.kotet.jp/2017/12/deep-neural-dman/</link>
       <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/deep-neural-dman/</guid>
+      <guid>https://blog.kotet.jp/2017/12/deep-neural-dman/</guid>
       <description>D言語くん Advent Calendar 2017 11日めの記事。 空いていたので登録した。 ところでDeepAAというものがある。 ディープラーニングでアスキーアートを作る - Qiita こ</description>
     </item>
     
     <item>
       <title>DとCのインターフェース:入門編【翻訳】</title>
-      <link>https://kotet.jp/2017/12/interfacing-d-with-c-getting-started/</link>
+      <link>https://blog.kotet.jp/2017/12/interfacing-d-with-c-getting-started/</link>
       <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/interfacing-d-with-c-getting-started/</guid>
+      <guid>https://blog.kotet.jp/2017/12/interfacing-d-with-c-getting-started/</guid>
       <description>この記事はD言語 Advent Calendar 2017 10日目の記事であり、 Interfacing D with C: Getting Started – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形</description>
     </item>
     
     <item>
       <title>インストールスクリプトの使い方</title>
-      <link>https://kotet.jp/2017/12/d-install-script/</link>
+      <link>https://blog.kotet.jp/2017/12/d-install-script/</link>
       <pubDate>Thu, 07 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/d-install-script/</guid>
+      <guid>https://blog.kotet.jp/2017/12/d-install-script/</guid>
       <description>今日は12月7日だが、空いていたのでD言語 Advent Calendar 2017 2日目に参加する。 D言語のダウンロードページにあるインストールスクリプトが、バージョン指定な</description>
     </item>
     
     <item>
       <title>マイナス時間で完了するfizzbuzz</title>
-      <link>https://kotet.jp/2017/12/compile-time-fizzbuzz/</link>
+      <link>https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/</link>
       <pubDate>Tue, 05 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/compile-time-fizzbuzz/</guid>
+      <guid>https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/</guid>
       <description>D言語なら、この程度の処理はマイナス時間で完了する。 コンパイル時にメッセージまで出力し、プログラムが開始する前に全てを終わらせられるのだ。 -</description>
     </item>
     
     <item>
       <title>DMDとDUBをソースからインストールする</title>
-      <link>https://kotet.jp/2017/12/d-from-source/</link>
+      <link>https://blog.kotet.jp/2017/12/d-from-source/</link>
       <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/d-from-source/</guid>
+      <guid>https://blog.kotet.jp/2017/12/d-from-source/</guid>
       <description>最近D言語を書いていない。 というかプログラミングらしいことをしていない。 さらに今使っているコンピュータにはDMDがインストールされてすらいな</description>
     </item>
     
     <item>
       <title>「どれかと等しい」を簡潔に書く</title>
-      <link>https://kotet.jp/2017/12/std-algorithm-comparison-among/</link>
+      <link>https://blog.kotet.jp/2017/12/std-algorithm-comparison-among/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/12/std-algorithm-comparison-among/</guid>
+      <guid>https://blog.kotet.jp/2017/12/std-algorithm-comparison-among/</guid>
       <description>a == b || a == c || a == d || a == eのような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。 いきさつ あれは今</description>
     </item>
     
     <item>
       <title>IPFS体験記9:Wikipediaミラープロジェクト</title>
-      <link>https://kotet.jp/2017/11/ipfs-wikipedia/</link>
+      <link>https://blog.kotet.jp/2017/11/ipfs-wikipedia/</link>
       <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/ipfs-wikipedia/</guid>
+      <guid>https://blog.kotet.jp/2017/11/ipfs-wikipedia/</guid>
       <description>IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。 Uncensorable Wikipedia on IPFS 今回は</description>
     </item>
     
     <item>
       <title>IPFS体験記8:IPFS網漁</title>
-      <link>https://kotet.jp/2017/11/ipfs-trap/</link>
+      <link>https://blog.kotet.jp/2017/11/ipfs-trap/</link>
       <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/ipfs-trap/</guid>
+      <guid>https://blog.kotet.jp/2017/11/ipfs-trap/</guid>
       <description>IPFSのハッシュを自動的に収集できるのではないかということに気がついた。 スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思</description>
     </item>
     
     <item>
       <title>IPFSを理解する【翻訳】</title>
-      <link>https://kotet.jp/2017/11/getting-to-know-ipfs/</link>
+      <link>https://blog.kotet.jp/2017/11/getting-to-know-ipfs/</link>
       <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/getting-to-know-ipfs/</guid>
+      <guid>https://blog.kotet.jp/2017/11/getting-to-know-ipfs/</guid>
       <description>この記事は、 Getting to know IPFS を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 内容が理解できる程度のざ</description>
     </item>
     
     <item>
       <title>ニコニコ動画のプレーヤーを埋め込むJekyllテンプレート</title>
-      <link>https://kotet.jp/2017/11/nicovideo-embed/</link>
+      <link>https://blog.kotet.jp/2017/11/nicovideo-embed/</link>
       <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/nicovideo-embed/</guid>
+      <guid>https://blog.kotet.jp/2017/11/nicovideo-embed/</guid>
       <description>ニコニコ動画のプレーヤー等の埋め込みコードがようやく、ようやくHTTPSに対応した。 「動画埋め込みコード」HTTPS対応のお知らせ|ニコニコ</description>
     </item>
     
     <item>
       <title>非中央集権型ストレージシステムを選ぶ【翻訳】</title>
-      <link>https://kotet.jp/2017/11/picking-a-decentralized-storage-system/</link>
+      <link>https://blog.kotet.jp/2017/11/picking-a-decentralized-storage-system/</link>
       <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/picking-a-decentralized-storage-system/</guid>
+      <guid>https://blog.kotet.jp/2017/11/picking-a-decentralized-storage-system/</guid>
       <description>この記事は、 Picking a Decentralized Storage System を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 内容が理解できる程度の</description>
     </item>
     
     <item>
       <title>DMD 2.077.0 Released【翻訳】</title>
-      <link>https://kotet.jp/2017/11/dmd-2-077-0-released/</link>
+      <link>https://blog.kotet.jp/2017/11/dmd-2-077-0-released/</link>
       <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/dmd-2-077-0-released/</guid>
+      <guid>https://blog.kotet.jp/2017/11/dmd-2-077-0-released/</guid>
       <description>この記事は、 DMD 2.077.0 Released – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 内容が理解できる程</description>
     </item>
     
     <item>
       <title>まだ間に合うブロックチェーン【翻訳】</title>
-      <link>https://kotet.jp/2017/11/catching-the-blockchain-train/</link>
+      <link>https://blog.kotet.jp/2017/11/catching-the-blockchain-train/</link>
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/catching-the-blockchain-train/</guid>
+      <guid>https://blog.kotet.jp/2017/11/catching-the-blockchain-train/</guid>
       <description>この記事は、 Catching the Blockchain Train を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残している。 内容が理解できる程度のざ</description>
     </item>
     
     <item>
       <title>コマンド終了時に毎回音を鳴らす</title>
-      <link>https://kotet.jp/2017/11/beep/</link>
+      <link>https://blog.kotet.jp/2017/11/beep/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/11/beep/</guid>
+      <guid>https://blog.kotet.jp/2017/11/beep/</guid>
       <description>見てるのは時間の無駄だけど放置するほど長くはない処理のために、コマンド終了時に音を鳴らすようにしていた。 $ do-something ; beep しかし頻繁に; beepを付け</description>
     </item>
     
     <item>
       <title>IPFS体験記7:Windows</title>
-      <link>https://kotet.jp/2017/10/ipfs-windows/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-windows/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-windows/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-windows/</guid>
       <description>今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。 ipfs-update ipfs-updateをダウンロードして展開、</description>
     </item>
     
     <item>
       <title>🏁100🎊</title>
-      <link>https://kotet.jp/2017/10/post-100/</link>
+      <link>https://blog.kotet.jp/2017/10/post-100/</link>
       <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/post-100/</guid>
+      <guid>https://blog.kotet.jp/2017/10/post-100/</guid>
       <description>100件目の記事である。 前回のゾロ目記事は無理に書こうとして中身がスカスカになったので、今回はあえて短くする。</description>
     </item>
     
     <item>
       <title>IPFS体験記6:ipget</title>
-      <link>https://kotet.jp/2017/10/ipfs-tools/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-tools/</link>
       <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-tools/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-tools/</guid>
       <description>そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。 今回はIPFS用に作られたツールを見ていこうと思う。 いろいろ試したのだが、うまく</description>
     </item>
     
     <item>
       <title>P2PプロトコルIPFS体験記5:アップロード</title>
-      <link>https://kotet.jp/2017/10/ipfs-add/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-add/</link>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-add/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-add/</guid>
       <description>今回は普通に使ってみようと思う。 ファイルの追加 ファイルの追加はipfs addでできる。 $ echo &amp;#34;hello world&amp;#34; &amp;gt; test $ ipfs add test added QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o test アドレスはファイルの中身のハ</description>
     </item>
     
     <item>
       <title>非中央集権型Web、IPFS体験記4:ブラウザ拡張2</title>
-      <link>https://kotet.jp/2017/10/ipfs-chrome-extention/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-chrome-extention/</link>
       <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-chrome-extention/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-chrome-extention/</guid>
       <description>引き続き公式ブラウザ拡張の機能を見ていく。 WebUIを開く シンプルながら地味に便利。 接続ノード数表示 異常が起きてたらすぐわかるかもしれない。</description>
     </item>
     
     <item>
       <title>GitHub Pagesで相対パスを使う</title>
-      <link>https://kotet.jp/2017/10/relative-template/</link>
+      <link>https://blog.kotet.jp/2017/10/relative-template/</link>
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/relative-template/</guid>
+      <guid>https://blog.kotet.jp/2017/10/relative-template/</guid>
       <description>IPFS上でサイトをホストしたりするとドメインがコロコロ変わったりするので、今のうちにすべてのリンクを相対パスにしておきたくなった。 しかしG</description>
     </item>
     
     <item>
       <title>永続Web、IPFS体験記3:ブラウザ拡張1</title>
-      <link>https://kotet.jp/2017/10/ipfs-browser-extention/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-browser-extention/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-browser-extention/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-browser-extention/</guid>
       <description>ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。 公式のものはFirefoxにも対応しているようだが、ここではCh</description>
     </item>
     
     <item>
       <title>分散ファイルシステムIPFS体験記2:設定一覧</title>
-      <link>https://kotet.jp/2017/10/ipfs-config/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-config/</link>
       <pubDate>Thu, 19 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-config/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-config/</guid>
       <description>今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事に</description>
     </item>
     
     <item>
       <title>惑星間ファイルシステムIPFS体験記1:セットアップ</title>
-      <link>https://kotet.jp/2017/10/ipfs-setup/</link>
+      <link>https://blog.kotet.jp/2017/10/ipfs-setup/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/ipfs-setup/</guid>
+      <guid>https://blog.kotet.jp/2017/10/ipfs-setup/</guid>
       <description>&amp;ldquo;InterPlanetary File System&amp;ldquo;というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけな</description>
     </item>
     
     <item>
       <title>現Bitcoinベースのプロトコルでは月に2000万を超えるユーザに対応できない【翻訳】</title>
-      <link>https://kotet.jp/2017/10/no-bitcoin-based-protocol-can-handle-more-than-20m-users-per-month/</link>
+      <link>https://blog.kotet.jp/2017/10/no-bitcoin-based-protocol-can-handle-more-than-20m-users-per-month/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/no-bitcoin-based-protocol-can-handle-more-than-20m-users-per-month/</guid>
+      <guid>https://blog.kotet.jp/2017/10/no-bitcoin-based-protocol-can-handle-more-than-20m-users-per-month/</guid>
       <description>この記事は、 No Bitcoin-based protocol can handle more than 20M users per month (Rune K. Svendsen&amp;rsquo;s Blog)を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残して</description>
     </item>
     
     <item>
       <title>D言語の2つのnext_permutation</title>
-      <link>https://kotet.jp/2017/10/next-permutations/</link>
+      <link>https://blog.kotet.jp/2017/10/next-permutations/</link>
       <pubDate>Sat, 14 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/next-permutations/</guid>
+      <guid>https://blog.kotet.jp/2017/10/next-permutations/</guid>
       <description>D言語にもnextPermutationあるんですけどね(ごり押し) &amp;mdash; W521 (@yosupot) October 13, 2017 このツイートを見て「そうだったのか！知らなかった！」と言って</description>
     </item>
     
     <item>
       <title>GitHub Pagesで総記事数を表示する</title>
-      <link>https://kotet.jp/2017/10/article-counter/</link>
+      <link>https://blog.kotet.jp/2017/10/article-counter/</link>
       <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/article-counter/</guid>
+      <guid>https://blog.kotet.jp/2017/10/article-counter/</guid>
       <description>タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。 ふと思い立ってトップ</description>
     </item>
     
     <item>
       <title>「ラップアラウンド」（トロイダル）な空間における2点間の距離の計算【翻訳】</title>
-      <link>https://kotet.jp/2017/10/calculating-the-distance-between-points-in-wrap-around-toroidal-space/</link>
+      <link>https://blog.kotet.jp/2017/10/calculating-the-distance-between-points-in-wrap-around-toroidal-space/</link>
       <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/calculating-the-distance-between-points-in-wrap-around-toroidal-space/</guid>
+      <guid>https://blog.kotet.jp/2017/10/calculating-the-distance-between-points-in-wrap-around-toroidal-space/</guid>
       <description>この記事は、 Calculating the Distance Between Points in “Wrap Around” (Toroidal) Space を自分用に翻訳したものを 許可を得て 公開するものである。 ソース中にコメントの形で原文を残し</description>
     </item>
     
     <item>
       <title>iPhoneとデスクトップでmarkdownを書くために用意したツール集</title>
-      <link>https://kotet.jp/2017/10/mobile-markdown-editor/</link>
+      <link>https://blog.kotet.jp/2017/10/mobile-markdown-editor/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/10/mobile-markdown-editor/</guid>
+      <guid>https://blog.kotet.jp/2017/10/mobile-markdown-editor/</guid>
       <description>前回書いた翻訳記事は、かなりの分量がiPhone上で書かれている。 iPhoneとデスクトップ両方を使ってmarkdownの翻訳記事を書くため</description>
     </item>
     
     <item>
       <title>オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</title>
-      <link>https://kotet.jp/2017/09/go-your-own-way-part-two-the-heap/</link>
+      <link>https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/</link>
       <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/go-your-own-way-part-two-the-heap/</guid>
+      <guid>https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/</guid>
       <description>この記事は、 Go Your Own Way (Part Two: The Heap) – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 今回からソース中にコメントの形で原文を残している。</description>
     </item>
     
     <item>
       <title>音声入力日記 - スローテンポな話術</title>
-      <link>https://kotet.jp/2017/09/slow-talking/</link>
+      <link>https://blog.kotet.jp/2017/09/slow-talking/</link>
       <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/slow-talking/</guid>
+      <guid>https://blog.kotet.jp/2017/09/slow-talking/</guid>
       <description>今日は特に具合が悪くて起き上がれないので、また音声入力日記を書こうと思う。 昨日しゃべり続けていたら元気になってきたので、今日もそれを狙ってみ</description>
     </item>
     
     <item>
       <title>修正もせずに100％音声入力する日記</title>
-      <link>https://kotet.jp/2017/09/voice-input/</link>
+      <link>https://blog.kotet.jp/2017/09/voice-input/</link>
       <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/voice-input/</guid>
+      <guid>https://blog.kotet.jp/2017/09/voice-input/</guid>
       <description>この記事は最初から最後まですべて音声認識で入れている。 修正を全くしないので、少しおかしなところがあると思う。 音声入力が終了してもう一度音声入</description>
     </item>
     
     <item>
       <title>Dで巡るソートアルゴリズム その2</title>
-      <link>https://kotet.jp/2017/09/sort-algorithm-in-d-2/</link>
+      <link>https://blog.kotet.jp/2017/09/sort-algorithm-in-d-2/</link>
       <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/sort-algorithm-in-d-2/</guid>
+      <guid>https://blog.kotet.jp/2017/09/sort-algorithm-in-d-2/</guid>
       <description>前回の続き。 今週は挿入ソート、コムソート、マージソートを書いた。 ここ一週間あまり体調が良くなかったため、気力と思考力の面であまりソートが書け</description>
     </item>
     
     <item>
       <title>Dで巡るソートアルゴリズム その1</title>
-      <link>https://kotet.jp/2017/09/sort-algorithm-in-d/</link>
+      <link>https://blog.kotet.jp/2017/09/sort-algorithm-in-d/</link>
       <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/sort-algorithm-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/09/sort-algorithm-in-d/</guid>
       <description>最近はプログラミングについてあまり大きいものを作ったり複雑なものを考えたりする時間がとれないので、 それなりにプログラムしてる感がある 達成感を</description>
     </item>
     
     <item>
       <title>DMD 2.076.0 Released【翻訳】</title>
-      <link>https://kotet.jp/2017/09/dmd-2-076-0-released/</link>
+      <link>https://blog.kotet.jp/2017/09/dmd-2-076-0-released/</link>
       <pubDate>Sun, 03 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/09/dmd-2-076-0-released/</guid>
+      <guid>https://blog.kotet.jp/2017/09/dmd-2-076-0-released/</guid>
       <description>この記事は、 DMD 2.076.0 Released – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ! コアDチ</description>
     </item>
     
     <item>
       <title>AtCoder Beginner Contest 006 - D</title>
-      <link>https://kotet.jp/2017/08/abc-006-d/</link>
+      <link>https://blog.kotet.jp/2017/08/abc-006-d/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/abc-006-d/</guid>
+      <guid>https://blog.kotet.jp/2017/08/abc-006-d/</guid>
       <description>最近はAtcoderの過去問をのそのそ解いている。 ABC006のD問題の公式の解説がいまいちしっくりこなかったので、 自分の言葉で解説しなおし</description>
     </item>
     
     <item>
       <title>2の平方根をDだけで1万桁求める</title>
-      <link>https://kotet.jp/2017/08/sqrt-2/</link>
+      <link>https://blog.kotet.jp/2017/08/sqrt-2/</link>
       <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/sqrt-2/</guid>
+      <guid>https://blog.kotet.jp/2017/08/sqrt-2/</guid>
       <description>かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリ</description>
     </item>
     
     <item>
       <title>techタグの記事が50本を突破</title>
-      <link>https://kotet.jp/2017/08/there-are-50-tech-posts/</link>
+      <link>https://blog.kotet.jp/2017/08/there-are-50-tech-posts/</link>
       <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/there-are-50-tech-posts/</guid>
+      <guid>https://blog.kotet.jp/2017/08/there-are-50-tech-posts/</guid>
       <description>techタグの50本目の記事では50本目であることについて言及しようと思っていたのだが、 前々回の「整数閉区間のRange」 がその50本目だっ</description>
     </item>
     
     <item>
       <title>ドキュメントの過去版を見る</title>
-      <link>https://kotet.jp/2017/08/docarchives-dlang/</link>
+      <link>https://blog.kotet.jp/2017/08/docarchives-dlang/</link>
       <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/docarchives-dlang/</guid>
+      <guid>https://blog.kotet.jp/2017/08/docarchives-dlang/</guid>
       <description>AtcoderのD言語が微妙に古かったりして昔のドキュメントがたまに欲しくなる。 たまに欲しくなるのに自分の検索能力が低いのかググっても全然出</description>
     </item>
     
     <item>
       <title>整数閉区間のRange</title>
-      <link>https://kotet.jp/2017/08/closed-integer-interval/</link>
+      <link>https://blog.kotet.jp/2017/08/closed-integer-interval/</link>
       <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/closed-integer-interval/</guid>
+      <guid>https://blog.kotet.jp/2017/08/closed-integer-interval/</guid>
       <description>binary.h in Dで、 第二引数が含まれるiotaというか、そんな感じのRangeが欲しくなった。 つまり0と10が与えられたら[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</description>
     </item>
     
     <item>
       <title>Anonymous adsについて その2</title>
-      <link>https://kotet.jp/2017/08/anonymous-ads/</link>
+      <link>https://blog.kotet.jp/2017/08/anonymous-ads/</link>
       <pubDate>Sun, 06 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/08/anonymous-ads/</guid>
+      <guid>https://blog.kotet.jp/2017/08/anonymous-ads/</guid>
       <description>前回の記事から月日は流れ、 Anonymous adsもいくらか改善された。 categoryがいまだに&amp;rdquo;Blogs&amp;rdquo;でなく&amp;rdquo;</description>
     </item>
     
     <item>
       <title>オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</title>
-      <link>https://kotet.jp/2017/07/go-your-own-way-part-one-the-stack/</link>
+      <link>https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/</link>
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/07/go-your-own-way-part-one-the-stack/</guid>
+      <guid>https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/</guid>
       <description>この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ</description>
     </item>
     
     <item>
       <title>Inoreaderが無料アカウントの機能を減らすらしいがアプリ内課金が不便</title>
-      <link>https://kotet.jp/2017/07/in-inoreader-app-purchases/</link>
+      <link>https://blog.kotet.jp/2017/07/in-inoreader-app-purchases/</link>
       <pubDate>Thu, 13 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/07/in-inoreader-app-purchases/</guid>
+      <guid>https://blog.kotet.jp/2017/07/in-inoreader-app-purchases/</guid>
       <description>InoreaderというRSSクライアントサービスがある。 いろいろ機能があって使っていたのだが、Basicプランの機能を減らすことにしたらし</description>
     </item>
     
     <item>
       <title>Dにおけるコンパイル時ソート【翻訳】</title>
-      <link>https://kotet.jp/2017/07/compile-time-sort-in-d/</link>
+      <link>https://blog.kotet.jp/2017/07/compile-time-sort-in-d/</link>
       <pubDate>Sun, 09 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/07/compile-time-sort-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/07/compile-time-sort-in-d/</guid>
       <description>この記事は、 Compile-Time Sort in D – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ! 最近B</description>
     </item>
     
     <item>
       <title>MathJaxのCDNが警告を発しつつも使えてしまっていた</title>
-      <link>https://kotet.jp/2017/07/fix-mathjax-cdn/</link>
+      <link>https://blog.kotet.jp/2017/07/fix-mathjax-cdn/</link>
       <pubDate>Thu, 06 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/07/fix-mathjax-cdn/</guid>
+      <guid>https://blog.kotet.jp/2017/07/fix-mathjax-cdn/</guid>
       <description>生成されているHTMLを確認しようとChrome DevToolsを開いたところ、なにかWarningが出ていた。 どうも数式表示のために読み込</description>
     </item>
     
     <item>
       <title>binary.h in D</title>
-      <link>https://kotet.jp/2017/07/binary-h-in-d/</link>
+      <link>https://blog.kotet.jp/2017/07/binary-h-in-d/</link>
       <pubDate>Wed, 05 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/07/binary-h-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/07/binary-h-in-d/</guid>
       <description>なんか、見てはいけないものを見てしまった気がする pic.twitter.com/MP4aw9gXqg &amp;mdash; すぱっしゅ＠こーせんちほーぐらし！ (@hajime725) &amp;lt;a href=&amp;ldquo;https://twitt</description>
     </item>
     
     <item>
       <title>GitHub Pagesで内部リンクを貼るpost_urlテンプレートについて</title>
-      <link>https://kotet.jp/2017/06/post-url-jekyll-template/</link>
+      <link>https://blog.kotet.jp/2017/06/post-url-jekyll-template/</link>
       <pubDate>Thu, 29 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/06/post-url-jekyll-template/</guid>
+      <guid>https://blog.kotet.jp/2017/06/post-url-jekyll-template/</guid>
       <description>Jekyllのpost_urlテンプレートについて日本語の情報が見つからず苦労したので書く。 どうもGitHub Pages(Jekyll)のU</description>
     </item>
     
     <item>
       <title>importでコンパイル時にファイルを埋め込む</title>
-      <link>https://kotet.jp/2017/06/import-any-binary/</link>
+      <link>https://blog.kotet.jp/2017/06/import-any-binary/</link>
       <pubDate>Wed, 28 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/06/import-any-binary/</guid>
+      <guid>https://blog.kotet.jp/2017/06/import-any-binary/</guid>
       <description>以前に importを使って大きな文字列を別のファイルから読み込んだが、 同じ手を使って画像や動的リンクライブラリなどのテキストでないデータも読</description>
     </item>
     
     <item>
       <title>駆け足の人生:GCを減らすための工夫【翻訳】</title>
-      <link>https://kotet.jp/2017/06/life-in-the-fast-lane/</link>
+      <link>https://blog.kotet.jp/2017/06/life-in-the-fast-lane/</link>
       <pubDate>Mon, 26 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/06/life-in-the-fast-lane/</guid>
+      <guid>https://blog.kotet.jp/2017/06/life-in-the-fast-lane/</guid>
       <description>この記事は、 Life in the Fast Lane – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今</description>
     </item>
     
     <item>
       <title>automem: DのハンズフリーRAII【翻訳】</title>
-      <link>https://kotet.jp/2017/06/automem-hands-free-raii-for-d/</link>
+      <link>https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/</link>
       <pubDate>Sun, 18 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/06/automem-hands-free-raii-for-d/</guid>
+      <guid>https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/</guid>
       <description>この記事は、 automem: Hands-Free RAII for D – The D Blog を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ! Atila N</description>
     </item>
     
     <item>
       <title>なぜ、どういう時にSOAを使うべきなのか【翻訳】</title>
-      <link>https://kotet.jp/2017/05/soa-d/</link>
+      <link>https://blog.kotet.jp/2017/05/soa-d/</link>
       <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/soa-d/</guid>
+      <guid>https://blog.kotet.jp/2017/05/soa-d/</guid>
       <description>この記事は Why and when you should use SoA · を自分用に訳したものを 許可を得て 公開するものである。 コードのコメントも一部翻訳されている。 ところどころ訳が怪しいと</description>
     </item>
     
     <item>
       <title>CTFEを強制するテンプレート</title>
-      <link>https://kotet.jp/2017/05/force-ctfe/</link>
+      <link>https://blog.kotet.jp/2017/05/force-ctfe/</link>
       <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/force-ctfe/</guid>
+      <guid>https://blog.kotet.jp/2017/05/force-ctfe/</guid>
       <description>CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。 if (__traits(compiles, F(Args)))のところ、何か</description>
     </item>
     
     <item>
       <title>コンパイル時fizzbuzzと謎のaliasSeqOf</title>
-      <link>https://kotet.jp/2017/05/compile-time-fizzbuzz/</link>
+      <link>https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/</link>
       <pubDate>Sat, 13 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/compile-time-fizzbuzz/</guid>
+      <guid>https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/</guid>
       <description>D言語のfizzbuzz - kubo39&amp;rsquo;s blog を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにし</description>
     </item>
     
     <item>
       <title>記事の編集履歴、PR作成、その他Qiitaにあるような3つの機能の代替</title>
-      <link>https://kotet.jp/2017/05/commits-and-edit/</link>
+      <link>https://blog.kotet.jp/2017/05/commits-and-edit/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/commits-and-edit/</guid>
+      <guid>https://blog.kotet.jp/2017/05/commits-and-edit/</guid>
       <description>追記：現在は以下のテンプレートは動かないかもしれない。更新版 このサイトの各ページの下にある&amp;rdquo;Improve this page&amp;rdquo</description>
     </item>
     
     <item>
       <title>処理後の結果を見られるdmdのスイッチ -vcg-ast</title>
-      <link>https://kotet.jp/2017/05/vcg-ast/</link>
+      <link>https://blog.kotet.jp/2017/05/vcg-ast/</link>
       <pubDate>Mon, 08 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/vcg-ast/</guid>
+      <guid>https://blog.kotet.jp/2017/05/vcg-ast/</guid>
       <description>Dconf 2017で出てきたコマンドラインスイッチ-vcg-astについて書き残しておく。 これはgccでいう-Eオプションのようなもので、これはいろ</description>
     </item>
     
     <item>
       <title>dubで自力でCの構造体を使う</title>
-      <link>https://kotet.jp/2017/05/use-c-struct-in-d/</link>
+      <link>https://blog.kotet.jp/2017/05/use-c-struct-in-d/</link>
       <pubDate>Thu, 04 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/use-c-struct-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/05/use-c-struct-in-d/</guid>
       <description>前回の続き。 前回と同じようにOpenSSLを使ってstd.digest.shaを使わずにSHA256を計算する。 今回は前回と違い、データは逐</description>
     </item>
     
     <item>
       <title>dubで自力でOpenSSLを呼び出す</title>
-      <link>https://kotet.jp/2017/05/use-c-sha256-in-d/</link>
+      <link>https://blog.kotet.jp/2017/05/use-c-sha256-in-d/</link>
       <pubDate>Wed, 03 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/05/use-c-sha256-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/05/use-c-sha256-in-d/</guid>
       <description>前回の続き。 明示的にリンクする必要のあるライブラリであるOpenSSLを使ってstd.digest.shaを使わずにSHA256を計算する。</description>
     </item>
     
     <item>
       <title>dubで自力でCのsqrt()を呼び出す</title>
-      <link>https://kotet.jp/2017/04/use-c-math-in-d/</link>
+      <link>https://blog.kotet.jp/2017/04/use-c-math-in-d/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/use-c-math-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/04/use-c-math-in-d/</guid>
       <description>前回の続き。 今度はヘッダファイルを読むのにプリプロセスの必要なものを使いたい、 ということでcore.stdc.mathを使わずにD言語のアプ</description>
     </item>
     
     <item>
       <title>dubで自力でCの標準ライブラリを呼び出す</title>
-      <link>https://kotet.jp/2017/04/use-c-stdio-in-d/</link>
+      <link>https://blog.kotet.jp/2017/04/use-c-stdio-in-d/</link>
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/use-c-stdio-in-d/</guid>
+      <guid>https://blog.kotet.jp/2017/04/use-c-stdio-in-d/</guid>
       <description>D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。 調べ</description>
     </item>
     
     <item>
       <title>Dのメタプログラミングは面白くない - C&#43;&#43;との比較【翻訳】</title>
-      <link>https://kotet.jp/2017/04/less-fun/</link>
+      <link>https://blog.kotet.jp/2017/04/less-fun/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/less-fun/</guid>
+      <guid>https://blog.kotet.jp/2017/04/less-fun/</guid>
       <description>この記事は、 Metaprogramming is less fun in D を自分用に翻訳したものを 許可を得て 公開するものである。 コードのコメントも翻訳してある。 ソースに原文を併記してあるので</description>
     </item>
     
     <item>
       <title>テキストページャをPythonからDに移植する【翻訳】</title>
-      <link>https://kotet.jp/2017/04/porting-text-pager-from-python-to-d/</link>
+      <link>https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/</link>
       <pubDate>Sun, 23 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/porting-text-pager-from-python-to-d/</guid>
+      <guid>https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/</guid>
       <description>この記事は、 jugad2 - Vasudev Ram on software innovation: Porting the text pager from Python to D (DLang) を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requ</description>
     </item>
     
     <item>
       <title>dlibでマンデルブロ集合を描く</title>
-      <link>https://kotet.jp/2017/04/mandelbrot-dlib/</link>
+      <link>https://blog.kotet.jp/2017/04/mandelbrot-dlib/</link>
       <pubDate>Sat, 22 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/mandelbrot-dlib/</guid>
+      <guid>https://blog.kotet.jp/2017/04/mandelbrot-dlib/</guid>
       <description>前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。 dlib != Dlib gecko0307/dlib: Math, XML, I/O streams, image and audio processing for D C++のほう</description>
     </item>
     
     <item>
       <title>新・CTFEエンジンについて【翻訳】</title>
-      <link>https://kotet.jp/2017/04/the-new-ctfe-engine/</link>
+      <link>https://blog.kotet.jp/2017/04/the-new-ctfe-engine/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/the-new-ctfe-engine/</guid>
+      <guid>https://blog.kotet.jp/2017/04/the-new-ctfe-engine/</guid>
       <description>この記事は The New CTFE Engine – The D Blog の翻訳である。 ぼーっと読んでたら途中でわけがわからなくなってきたので、しっかり翻訳しようと思って書いた。 その後翻訳</description>
     </item>
     
     <item>
       <title>死神を恐れないで - GCについて知る【翻訳】</title>
-      <link>https://kotet.jp/2017/04/dont-fear-the-reaper/</link>
+      <link>https://blog.kotet.jp/2017/04/dont-fear-the-reaper/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/dont-fear-the-reaper/</guid>
+      <guid>https://blog.kotet.jp/2017/04/dont-fear-the-reaper/</guid>
       <description>この記事は Don’t Fear the Reaper – The D Blog の翻訳である。 翻訳したものを公開する 許可をもらえた ので、ここに公開する。 誤字や誤訳などを見つけたら今すぐ Pull</description>
     </item>
     
     <item>
       <title>Dでマンデルブロ集合を書く</title>
-      <link>https://kotet.jp/2017/04/mandelbrot-command-line-interface/</link>
+      <link>https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/</link>
       <pubDate>Wed, 12 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/mandelbrot-command-line-interface/</guid>
+      <guid>https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/</guid>
       <description>なにか計算的なことをやってみたくてマンデルブロ集合を書く。 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。 マンデル</description>
     </item>
     
     <item>
       <title>Gitlabのissueのタスクの進捗をまとめるシェルスクリプト</title>
-      <link>https://kotet.jp/2017/04/gitlab-progress-reporting/</link>
+      <link>https://blog.kotet.jp/2017/04/gitlab-progress-reporting/</link>
       <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/gitlab-progress-reporting/</guid>
+      <guid>https://blog.kotet.jp/2017/04/gitlab-progress-reporting/</guid>
       <description>いろいろあって必要になって作った。 ひょっとすると他に必要な人がいるかもしれないので残しておく。 特定のprojectのissueのdescri</description>
     </item>
     
     <item>
       <title>便利なオンラインメモ帳を訪ねて三千里</title>
-      <link>https://kotet.jp/2017/04/gitlab/</link>
+      <link>https://blog.kotet.jp/2017/04/gitlab/</link>
       <pubDate>Sun, 09 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/gitlab/</guid>
+      <guid>https://blog.kotet.jp/2017/04/gitlab/</guid>
       <description>体調が悪かったためcontributionがまだない。 ので、ちょこっと日記を書こうと思う。 いつものことだが少し眠いので文章に脈絡がないかもし</description>
     </item>
     
     <item>
       <title>ネイティブも知らない&#34;newbility&#34;、その意味と成り立ち</title>
-      <link>https://kotet.jp/2017/04/wtf-is-newbility/</link>
+      <link>https://blog.kotet.jp/2017/04/wtf-is-newbility/</link>
       <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/04/wtf-is-newbility/</guid>
+      <guid>https://blog.kotet.jp/2017/04/wtf-is-newbility/</guid>
       <description>zhaopuming/awesome-dを読んでいたところ&amp;rdquo;newbility&amp;rdquo;という見慣れない英単語に遭遇した。 Hprose</description>
     </item>
     
     <item>
       <title>In式のオーバーロード2種</title>
-      <link>https://kotet.jp/2017/03/overloading-in-expression/</link>
+      <link>https://blog.kotet.jp/2017/03/overloading-in-expression/</link>
       <pubDate>Wed, 29 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/03/overloading-in-expression/</guid>
+      <guid>https://blog.kotet.jp/2017/03/overloading-in-expression/</guid>
       <description>普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。 やりたいこと1つに対応して1つの記事があ</description>
     </item>
     
     <item>
       <title>Google ストリートビュー神話 第1章</title>
-      <link>https://kotet.jp/2017/03/tale-of-google-street-view/</link>
+      <link>https://blog.kotet.jp/2017/03/tale-of-google-street-view/</link>
       <pubDate>Sat, 25 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/03/tale-of-google-street-view/</guid>
+      <guid>https://blog.kotet.jp/2017/03/tale-of-google-street-view/</guid>
       <description>Google ストリートビューを見ているとどんどん対応範囲が増えていて驚く。 こんな辺境なところにまであのカメラを背負った車が走ってきているのかということ</description>
     </item>
     
     <item>
       <title>Run と Execute の違いは何か</title>
-      <link>https://kotet.jp/2017/03/difference-between-run-and-execute/</link>
+      <link>https://blog.kotet.jp/2017/03/difference-between-run-and-execute/</link>
       <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/03/difference-between-run-and-execute/</guid>
+      <guid>https://blog.kotet.jp/2017/03/difference-between-run-and-execute/</guid>
       <description>要約 2つに意味の違いはほぼない。ただし、executeはより専門用語的なニュアンスがあり、知識のない人にはrunを使う。 いきさつ 今日も日課の</description>
     </item>
     
     <item>
       <title>ForestとSiri等9件</title>
-      <link>https://kotet.jp/2017/03/log/</link>
+      <link>https://blog.kotet.jp/2017/03/log/</link>
       <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/03/log/</guid>
+      <guid>https://blog.kotet.jp/2017/03/log/</guid>
       <description>普段からどうしようもない生活を送っているが、今日は特にどうしようもなかった。 この上contributionまで途切れたら何かダメになるような</description>
     </item>
     
     <item>
       <title>POTSと診断された事等3件</title>
-      <link>https://kotet.jp/2017/03/pots/</link>
+      <link>https://blog.kotet.jp/2017/03/pots/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/03/pots/</guid>
+      <guid>https://blog.kotet.jp/2017/03/pots/</guid>
       <description>少し間が空くとすぐにハードルが上がり、ずっと記事を書かないようになってしまうような気がしてきたので何か書こうと思う。 今まではこれから書くよう</description>
     </item>
     
     <item>
       <title>コミットメッセージ上で他のリポジトリの特定のコミットを参照する等</title>
-      <link>https://kotet.jp/2017/02/links-on-github/</link>
+      <link>https://blog.kotet.jp/2017/02/links-on-github/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/02/links-on-github/</guid>
+      <guid>https://blog.kotet.jp/2017/02/links-on-github/</guid>
       <description>GitHubには、Issue番号などを自動的にリンクにする機能がある。 他のリポジトリの特定のコミットを参照したかったのだが、なかなか方法が見</description>
     </item>
     
     <item>
       <title>オリンピック懐炉</title>
-      <link>https://kotet.jp/2017/02/olympic-pocket-warmer/</link>
+      <link>https://blog.kotet.jp/2017/02/olympic-pocket-warmer/</link>
       <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/02/olympic-pocket-warmer/</guid>
+      <guid>https://blog.kotet.jp/2017/02/olympic-pocket-warmer/</guid>
       <description>使い捨て懐炉と合わせて燃料式の懐炉を使っている。 おそらく同年代ではどんなものか知っている人の方が少ないのではないだろうか。 実際自分も親が買っ</description>
     </item>
     
     <item>
       <title>Lazyな新しいimportについての議論</title>
-      <link>https://kotet.jp/2017/02/new-import-idiom/</link>
+      <link>https://blog.kotet.jp/2017/02/new-import-idiom/</link>
       <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/02/new-import-idiom/</guid>
+      <guid>https://blog.kotet.jp/2017/02/new-import-idiom/</guid>
       <description>最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない</description>
     </item>
     
     <item>
       <title>名前を言ってはいけないあの型 - Voldemort Types</title>
-      <link>https://kotet.jp/2017/02/voldemort-types/</link>
+      <link>https://blog.kotet.jp/2017/02/voldemort-types/</link>
       <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/02/voldemort-types/</guid>
+      <guid>https://blog.kotet.jp/2017/02/voldemort-types/</guid>
       <description>こちら のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。 前提 まずインデックスの2乗が得られる</description>
     </item>
     
     <item>
       <title>コンパイル時にファイルから文字列を読み込む</title>
-      <link>https://kotet.jp/2017/01/dlang-import-expression/</link>
+      <link>https://blog.kotet.jp/2017/01/dlang-import-expression/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/dlang-import-expression/</guid>
+      <guid>https://blog.kotet.jp/2017/01/dlang-import-expression/</guid>
       <description>長い文字列を埋め込むために いろいろ迷走した が、コンパイル時にファイルから文字列を読み込む方法があることに気づいたので詳しく調べる。 Import Expression という</description>
     </item>
     
     <item>
       <title>何かを思い出すたびに記憶が飛んだり変わったりする系男子</title>
-      <link>https://kotet.jp/2017/01/cogito-ergo-sum/</link>
+      <link>https://blog.kotet.jp/2017/01/cogito-ergo-sum/</link>
       <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/cogito-ergo-sum/</guid>
+      <guid>https://blog.kotet.jp/2017/01/cogito-ergo-sum/</guid>
       <description>「我思う、故に我あり」という言葉があるが厳密にはあれは間違いで、正しくは「我思う、また記憶す、故に我あり」である。 生物は記憶することによって</description>
     </item>
     
     <item>
       <title>サイトの内容をGitHubのリポジトリと同期するメリット3つ</title>
-      <link>https://kotet.jp/2017/01/github-is-backward-compatible-with-qiita/</link>
+      <link>https://blog.kotet.jp/2017/01/github-is-backward-compatible-with-qiita/</link>
       <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/github-is-backward-compatible-with-qiita/</guid>
+      <guid>https://blog.kotet.jp/2017/01/github-is-backward-compatible-with-qiita/</guid>
       <description>このようなツイートを見た。 理想的にはQiitaとかWikipediaみたいにみんなで編集できる状態にしておいて、より多くの人と合意が取れる状</description>
     </item>
     
     <item>
       <title>よしなしごと 1/24</title>
-      <link>https://kotet.jp/2017/01/trivial-things0124/</link>
+      <link>https://blog.kotet.jp/2017/01/trivial-things0124/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/trivial-things0124/</guid>
+      <guid>https://blog.kotet.jp/2017/01/trivial-things0124/</guid>
       <description>今回もcontributionが途切れそうなので日記を書く。 どうでもいい内容なので、公開もずらして2日ぶんのcontributionにする予</description>
     </item>
     
     <item>
       <title>多元宇宙とたんぽぽのコーヒーについて(制作記)</title>
-      <link>https://kotet.jp/2017/01/of-multiverses-and-dandelion-coffee/</link>
+      <link>https://blog.kotet.jp/2017/01/of-multiverses-and-dandelion-coffee/</link>
       <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/of-multiverses-and-dandelion-coffee/</guid>
+      <guid>https://blog.kotet.jp/2017/01/of-multiverses-and-dandelion-coffee/</guid>
       <description>昔から身近なものを有効活用するのを考えることが好きだった。 小さい頃は砂をかけると回るおもちゃから動力を取り出せないかと考えていた。 定期的に風</description>
     </item>
     
     <item>
       <title>53日間GitHubで草を生やし続けて気づいたnつのこと</title>
-      <link>https://kotet.jp/2017/01/github-contribution-calendar/</link>
+      <link>https://blog.kotet.jp/2017/01/github-contribution-calendar/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/github-contribution-calendar/</guid>
+      <guid>https://blog.kotet.jp/2017/01/github-contribution-calendar/</guid>
       <description>最近体調不良が続いた結果、contributionのない日ができてしまった。 別に1日途切れたくらいでおしまいというわけでもないしやめる必要も</description>
     </item>
     
     <item>
       <title>よしなしごと 1/15</title>
-      <link>https://kotet.jp/2017/01/trivial-things0115/</link>
+      <link>https://blog.kotet.jp/2017/01/trivial-things0115/</link>
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/trivial-things0115/</guid>
+      <guid>https://blog.kotet.jp/2017/01/trivial-things0115/</guid>
       <description>contribution calendarが途切れそうなので何か書く。 なんで途切れかけているかというと、センター試験があったからだ。 さすがに当日もコンピュータをいじ</description>
     </item>
     
     <item>
       <title>自動運転車を信頼できる人とできない人の違いについて</title>
-      <link>https://kotet.jp/2017/01/automatic-driving-vehicle/</link>
+      <link>https://blog.kotet.jp/2017/01/automatic-driving-vehicle/</link>
       <pubDate>Thu, 12 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/automatic-driving-vehicle/</guid>
+      <guid>https://blog.kotet.jp/2017/01/automatic-driving-vehicle/</guid>
       <description>以前何人かの人に「自動運転車に乗りたいか」と聞いた。 自分は断然乗りたい派だったのだが、周囲の人間は高確率で(確率が求められるほど多くの人には</description>
     </item>
     
     <item>
       <title>よしなしごと 1/10</title>
-      <link>https://kotet.jp/2017/01/trivial-things0110/</link>
+      <link>https://blog.kotet.jp/2017/01/trivial-things0110/</link>
       <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/trivial-things0110/</guid>
+      <guid>https://blog.kotet.jp/2017/01/trivial-things0110/</guid>
       <description>今日は体調が悪く何もできないでいる。 何かだらだらと書いていればいい変化があるかもしれないと思ってこのようなことをしている。 体調の悪さがアウト</description>
     </item>
     
     <item>
       <title>Qiitaの記事をJekyllの投稿の形式に変換してバックアップする</title>
-      <link>https://kotet.jp/2017/01/64fd38ef5e10bf8ae3fa/</link>
+      <link>https://blog.kotet.jp/2017/01/64fd38ef5e10bf8ae3fa/</link>
       <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/64fd38ef5e10bf8ae3fa/</guid>
+      <guid>https://blog.kotet.jp/2017/01/64fd38ef5e10bf8ae3fa/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 ひょっとしたら隕石が落ちてきたりしてQiitaに投稿した記事が消えてしまうことがあるかもしれ</description>
     </item>
     
     <item>
       <title>読書記録:ブランドの暗殺、悪意あるデマ</title>
-      <link>https://kotet.jp/2017/01/reputation-engine/</link>
+      <link>https://blog.kotet.jp/2017/01/reputation-engine/</link>
       <pubDate>Sat, 07 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/reputation-engine/</guid>
+      <guid>https://blog.kotet.jp/2017/01/reputation-engine/</guid>
       <description>今自分は「勝手に選別される世界」(原題:The Reputation Economy)という本を読んでいる。 最近起きたことと内容が通じるものがあって色々考えたので</description>
     </item>
     
     <item>
       <title>和語のすゝめ</title>
-      <link>https://kotet.jp/2017/01/encouragement-of-native-japanese-word/</link>
+      <link>https://blog.kotet.jp/2017/01/encouragement-of-native-japanese-word/</link>
       <pubDate>Fri, 06 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/encouragement-of-native-japanese-word/</guid>
+      <guid>https://blog.kotet.jp/2017/01/encouragement-of-native-japanese-word/</guid>
       <description>これは前に読んだ本からの受け売りなのだが、かつて西洋から様々な概念が輸入されてきた時、それをどう翻訳するかについて議論があったそうだ。 当時は</description>
     </item>
     
     <item>
       <title>よしなしごと 1/3</title>
-      <link>https://kotet.jp/2017/01/trivial-things0103/</link>
+      <link>https://blog.kotet.jp/2017/01/trivial-things0103/</link>
       <pubDate>Tue, 03 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2017/01/trivial-things0103/</guid>
+      <guid>https://blog.kotet.jp/2017/01/trivial-things0103/</guid>
       <description>特に書きたいこともないのに何かを書きたくなった。 よしなしごとなのでここに書かれていることを真に受けてはならない。 このサイトの更新はスマホから</description>
     </item>
     
     <item>
       <title>JekyllでテキストをHTML用にエスケープする</title>
-      <link>https://kotet.jp/2016/12/87e059092aed0a8aee9a/</link>
+      <link>https://blog.kotet.jp/2016/12/87e059092aed0a8aee9a/</link>
       <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/87e059092aed0a8aee9a/</guid>
+      <guid>https://blog.kotet.jp/2016/12/87e059092aed0a8aee9a/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 Twitter cardsを設定するためにこちらの記事を参考にテンプレートを書いた。 Jekyll で作成したサイトを Twitter</description>
     </item>
     
     <item>
       <title>Twitterカードを設定した</title>
-      <link>https://kotet.jp/2016/12/twitter-cards/</link>
+      <link>https://blog.kotet.jp/2016/12/twitter-cards/</link>
       <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/twitter-cards/</guid>
+      <guid>https://blog.kotet.jp/2016/12/twitter-cards/</guid>
       <description>Twitter cardsを設定してみた。 test https://t.co/5H66x9AP5w &amp;mdash; Kotet (@kotetttt) 2016年12月29日 基本的には問題ないが、一部の記事はエスケープがうまくいっていなくて表示がおかしか</description>
     </item>
     
     <item>
       <title>日本むかしっぽい話 「ビッグな男」</title>
-      <link>https://kotet.jp/2016/12/tale-of-the-man/</link>
+      <link>https://blog.kotet.jp/2016/12/tale-of-the-man/</link>
       <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/tale-of-the-man/</guid>
+      <guid>https://blog.kotet.jp/2016/12/tale-of-the-man/</guid>
       <description>「大きさを認識できない人たち」という言葉を見て、しばらく反芻していたらおはなしができたので書く。 むかしむかし、あるところに一人の男がおりまし</description>
     </item>
     
     <item>
       <title>GitHubで草を生やす話</title>
-      <link>https://kotet.jp/2016/12/grass-of-contribution/</link>
+      <link>https://blog.kotet.jp/2016/12/grass-of-contribution/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/grass-of-contribution/</guid>
+      <guid>https://blog.kotet.jp/2016/12/grass-of-contribution/</guid>
       <description>記録の上では27日付の日記であるし、実際今この文を書いているのは12月27日である。 しかしこの投稿がサイトに反映されるのは27日ではなく、少</description>
     </item>
     
     <item>
       <title>Anonymous Adsについて</title>
-      <link>https://kotet.jp/2016/12/about-advertising/</link>
+      <link>https://blog.kotet.jp/2016/12/about-advertising/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/about-advertising/</guid>
+      <guid>https://blog.kotet.jp/2016/12/about-advertising/</guid>
       <description>前から悩んでいたことだったのだが、自分はブログを更新しなさすぎる。 毎度毎度ポツポツと記事を書いたら長期間放置して、 サイトをイチから作りなおし</description>
     </item>
     
     <item>
       <title>文字列の長さを取得するときはlengthを使ってはいけない</title>
-      <link>https://kotet.jp/2016/12/b6f1630928af176147e4/</link>
+      <link>https://blog.kotet.jp/2016/12/b6f1630928af176147e4/</link>
       <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/b6f1630928af176147e4/</guid>
+      <guid>https://blog.kotet.jp/2016/12/b6f1630928af176147e4/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 自分の進捗表示用パッケージprogressにPRが来た。 Bars: bug on narrow terminals when non-ascii fill character is used どうやら文字列</description>
     </item>
     
     <item>
       <title>〜D言語くんの分裂に関する更なる考察〜(代理投稿)</title>
-      <link>https://kotet.jp/2016/12/9c377a3c5befbb55620d/</link>
+      <link>https://blog.kotet.jp/2016/12/9c377a3c5befbb55620d/</link>
       <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/9c377a3c5befbb55620d/</guid>
+      <guid>https://blog.kotet.jp/2016/12/9c377a3c5befbb55620d/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 自分の記事を見て友人がD言語くんになったので記事を代理投稿する。D言語クラスタが怖いのか頑な</description>
     </item>
     
     <item>
       <title>GitHubのissueを悪用して画像をホストする</title>
-      <link>https://kotet.jp/2016/12/a2203a400136ba50b41e/</link>
+      <link>https://blog.kotet.jp/2016/12/a2203a400136ba50b41e/</link>
       <pubDate>Wed, 14 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/a2203a400136ba50b41e/</guid>
+      <guid>https://blog.kotet.jp/2016/12/a2203a400136ba50b41e/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 知らなかったので投稿。 DashというDで書かれたゲームエンジンがあるのだが、そのreadme</description>
     </item>
     
     <item>
       <title>待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った</title>
-      <link>https://kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</link>
+      <link>https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</link>
       <pubDate>Wed, 14 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</guid>
+      <guid>https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 かのマハトマ・ガンジーも &amp;gt; もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられ</description>
     </item>
     
     <item>
       <title>サッと一時ブランチを作って作業して捨てる</title>
-      <link>https://kotet.jp/2016/12/d84f1638de9d50129faa/</link>
+      <link>https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/</link>
       <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/d84f1638de9d50129faa/</guid>
+      <guid>https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしてい</description>
     </item>
     
     <item>
       <title>改行とかのある文字列をエスケープしないで書きたい</title>
-      <link>https://kotet.jp/2016/12/170d11cc6b82592a8404/</link>
+      <link>https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/</link>
       <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/170d11cc6b82592a8404/</guid>
+      <guid>https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。 エスケープされ見</description>
     </item>
     
     <item>
       <title>D言語くんの繁殖についての新説</title>
-      <link>https://kotet.jp/2016/12/b2bb34b3a139ceeb519e/</link>
+      <link>https://blog.kotet.jp/2016/12/b2bb34b3a139ceeb519e/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/b2bb34b3a139ceeb519e/</guid>
+      <guid>https://blog.kotet.jp/2016/12/b2bb34b3a139ceeb519e/</guid>
       <description>この記事はQiitaに投稿されたもののフォークです。 これはD言語くん Advent Calendar 2016 3日目の記事です。 新個体の出現 2015年に繁殖期のD言語くんが発見</description>
     </item>
     
     <item>
       <title>Jekyllのtheme&#34;minima&#34;のハンバーガーメニューがiOSで動作しないバグ</title>
-      <link>https://kotet.jp/2016/11/hamburger-menu-not-working/</link>
+      <link>https://blog.kotet.jp/2016/11/hamburger-menu-not-working/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/11/hamburger-menu-not-working/</guid>
+      <guid>https://blog.kotet.jp/2016/11/hamburger-menu-not-working/</guid>
       <description>現在このブログのハンバーガーメニューはうまく機能していない。 今日はこの問題を解決しようと思って調べた。どうやら自分がなにかやらかしていたわけ</description>
     </item>
     
     <item>
       <title>「ゆるやかな大麻コミュニティ」から妄想した「美しくなる文化」の芽生え</title>
-      <link>https://kotet.jp/2016/12/a-delusion-about-grass-community/</link>
+      <link>https://blog.kotet.jp/2016/12/a-delusion-about-grass-community/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/12/a-delusion-about-grass-community/</guid>
+      <guid>https://blog.kotet.jp/2016/12/a-delusion-about-grass-community/</guid>
       <description>新しい発想とは他者との会話の中で生まれるものなんだなあと実感することが多々ある。今日も友人との会話の中で面白い結論に達したので書き留めたい。</description>
     </item>
     
     <item>
       <title>ローカルのdubプロジェクトに依存するdubプロジェクト</title>
-      <link>https://kotet.jp/2016/11/4ef5039d17c521ec5dc7/</link>
+      <link>https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/</link>
       <pubDate>Sun, 27 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/11/4ef5039d17c521ec5dc7/</guid>
+      <guid>https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったの</description>
     </item>
     
     <item>
       <title>どどんとふ on windows</title>
-      <link>https://kotet.jp/2016/11/fca7f3550b554ee7cfd3/</link>
+      <link>https://blog.kotet.jp/2016/11/fca7f3550b554ee7cfd3/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/11/fca7f3550b554ee7cfd3/</guid>
+      <guid>https://blog.kotet.jp/2016/11/fca7f3550b554ee7cfd3/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 主に友人に需要があるそうなのでWindows上でどどんとふサーバーを動かせるか頑張った。 XA</description>
     </item>
     
     <item>
       <title>Welcome to Jekyll!</title>
-      <link>https://kotet.jp/2016/11/welcome-to-jekyll/</link>
+      <link>https://blog.kotet.jp/2016/11/welcome-to-jekyll/</link>
       <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/11/welcome-to-jekyll/</guid>
+      <guid>https://blog.kotet.jp/2016/11/welcome-to-jekyll/</guid>
       <description>またサイトを作りなおした。もう何回目かわからない。 今回はGitHub PagesのJekyllをつかったもの。もうなんかめんどくさいのでテーマ</description>
     </item>
     
     <item>
       <title>JSONValueにJSONValueを入れる</title>
-      <link>https://kotet.jp/2016/10/94ac71bb6d196dff6f47/</link>
+      <link>https://blog.kotet.jp/2016/10/94ac71bb6d196dff6f47/</link>
       <pubDate>Sat, 29 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/10/94ac71bb6d196dff6f47/</guid>
+      <guid>https://blog.kotet.jp/2016/10/94ac71bb6d196dff6f47/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 語彙が足りなくて適切なタイトルが出てこない。 とにかくそういう事をするときは、JSONValu</description>
     </item>
     
     <item>
       <title>D言語でBasic認証</title>
-      <link>https://kotet.jp/2016/10/21bdd7902454434ab1ce/</link>
+      <link>https://blog.kotet.jp/2016/10/21bdd7902454434ab1ce/</link>
       <pubDate>Wed, 26 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/10/21bdd7902454434ab1ce/</guid>
+      <guid>https://blog.kotet.jp/2016/10/21bdd7902454434ab1ce/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 std.net.curlを使えば簡単にできた。探すのにすこし時間がかかったのでサンプル的なも</description>
     </item>
     
     <item>
       <title>Dでつくるbrainfu*kのインタプリタ</title>
-      <link>https://kotet.jp/2016/08/0028bc07f5277fff4d8d/</link>
+      <link>https://blog.kotet.jp/2016/08/0028bc07f5277fff4d8d/</link>
       <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/08/0028bc07f5277fff4d8d/</guid>
+      <guid>https://blog.kotet.jp/2016/08/0028bc07f5277fff4d8d/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 brainf*ckの処理系はすでにいろんな人が作っているけど勉強になりそうだったので自分で書</description>
     </item>
     
     <item>
       <title>OpenGL/GLFWはじめての人がD言語でウィンドウを表示するまで</title>
-      <link>https://kotet.jp/2016/06/16583bad8631623e9bcc/</link>
+      <link>https://blog.kotet.jp/2016/06/16583bad8631623e9bcc/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/06/16583bad8631623e9bcc/</guid>
+      <guid>https://blog.kotet.jp/2016/06/16583bad8631623e9bcc/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 DでOpenGLとかそういうのが使いたくなったので練習をした。 Dubを使って環境構築した記事</description>
     </item>
     
     <item>
       <title>自分以外のユーザの作ったリストを取得する</title>
-      <link>https://kotet.jp/2016/06/a206127cf8e75cc7a719/</link>
+      <link>https://blog.kotet.jp/2016/06/a206127cf8e75cc7a719/</link>
       <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/06/a206127cf8e75cc7a719/</guid>
+      <guid>https://blog.kotet.jp/2016/06/a206127cf8e75cc7a719/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 フォローイング/フォロワーの作ったリストのリストが欲しくなって、そういうものを作るツールを作</description>
     </item>
     
     <item>
       <title>行列と高速化の練習をした</title>
-      <link>https://kotet.jp/2016/05/c3b3c20f4257f83dce8c/</link>
+      <link>https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/05/c3b3c20f4257f83dce8c/</guid>
+      <guid>https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。 と</description>
     </item>
     
     <item>
       <title>どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順</title>
-      <link>https://kotet.jp/2016/03/ec6701540ea336083405/</link>
+      <link>https://blog.kotet.jp/2016/03/ec6701540ea336083405/</link>
       <pubDate>Wed, 30 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/03/ec6701540ea336083405/</guid>
+      <guid>https://blog.kotet.jp/2016/03/ec6701540ea336083405/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 こちらやこちらの手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかっ</description>
     </item>
     
     <item>
       <title>ズンドコキヨシ with D</title>
-      <link>https://kotet.jp/2016/03/9d170a372434caf0c876/</link>
+      <link>https://blog.kotet.jp/2016/03/9d170a372434caf0c876/</link>
       <pubDate>Sun, 13 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2016/03/9d170a372434caf0c876/</guid>
+      <guid>https://blog.kotet.jp/2016/03/9d170a372434caf0c876/</guid>
       <description>この記事はQiitaに投稿されたものの転載です。 元ネタを読んで一番最初に思いついたやり方です。 main.d import std.stdio; import std.random; void main(){ string[] words = [&amp;#34;ズン&amp;#34;</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://kotet.jp/about/</link>
+      <link>https://blog.kotet.jp/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/about/</guid>
+      <guid>https://blog.kotet.jp/about/</guid>
       <description>このサイトと自分について、それと関連するサイトへの案内 このブログについて ここはKotetが2，3ツイート以上の長文を書きたくなった時にそれを</description>
     </item>
     
     <item>
       <title>Products</title>
-      <link>https://kotet.jp/products/</link>
+      <link>https://blog.kotet.jp/products/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/products/</guid>
+      <guid>https://blog.kotet.jp/products/</guid>
       <description>非プログラマ向けリンク集。 Aviutl_Bezier ベジェ曲線を使ったアニメーションが作れるAviutl拡張編集スクリプト。 v1.0.0 - ダウンロード 【AviUtl】簡単に複</description>
     </item>
     

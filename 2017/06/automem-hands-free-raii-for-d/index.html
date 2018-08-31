@@ -6,7 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>#dlang automem: DのハンズフリーRAII【翻訳】 - Kotet&#39;s Personal Blog </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" /> <meta name="generator" content="Hugo 0.49-DEV" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+    <link rel="canonical" href="https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/" />
+    <script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88180620-1');
+    </script>
+    <link rel="icon" href="/favicon.ico">
+    <meta name="twitter:card" content="summary" />
+<meta name="og:title" content="#dlang automem: DのハンズフリーRAII【翻訳】 - Kotet&#39;s Personal Blog" />
+<meta name="og:description" content=" ガベージコレクトをする言語はフレーム問題に苦しむ傾向があり、Dもその例外ではありません。 マーク・アンド・スイープ・ガベージコレクタを取り入れることは簡単かつ便利な安全メモリ管理を実現しますが、 しかし、GCが一般的にパフォーマンスキラーであるという広まった認識、 たったそれだけのために多くの潜在的ユーザを遠ざけてしまいます。  " />
+
+<meta name="twitter:url" content="https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/" />
+<meta name="twitter:site" content="@kotetttt" />
+<meta name="twitter:creator" content="@kotetttt" />
+    <meta name="generator" content="Hugo 0.49-DEV" />
     
 <meta name="description" content=" ガベージコレクトをする言語はフレーム問題に苦しむ傾向があり、Dもその例外ではありません。 マーク・アンド・スイープ・ガベージコレクタを取り入れることは簡単かつ便利な安全メモリ管理を実現しますが、 しかし、GCが一般的にパフォーマンスキラーであるという広まった認識、 たったそれだけのために多くの潜在的ユーザを遠ざけてしまいます。 ">
 <style>
@@ -215,7 +232,6 @@ Dで、C++やRustのように、手動メモリ管理なしで<code>@nogc</code>
         <div class="ad-wrapper"></div>
     </main>
     <footer class="site">
-    <p>This site compiled at <time></time></p>
 </footer>
 </body>
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>D_wiki on Kotet&#39;s Personal Blog</title>
-    <link>https://kotet.jp/tags/d_wiki/</link>
+    <link>https://blog.kotet.jp/tags/d_wiki/</link>
     <description>Recent content in D_wiki on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kotet.jp/tags/d_wiki/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.kotet.jp/tags/d_wiki/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>D言語のビジョン2018年前半期【翻訳】</title>
-      <link>https://kotet.jp/2018/03/vision-2018h1/</link>
+      <link>https://blog.kotet.jp/2018/03/vision-2018h1/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/2018/03/vision-2018h1/</guid>
+      <guid>https://blog.kotet.jp/2018/03/vision-2018h1/</guid>
       <description>この記事は、 Vision/2018H1 - D Wiki を自分用に翻訳したものを原文と同じ GNU Free Documentation License で公開するものである。 ソース中にコメントの形で原文を残している。 何か気になると</description>
     </item>
     

@@ -2,237 +2,237 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Kotet&#39;s Personal Blog</title>
-    <link>https://kotet.jp/tags/</link>
+    <link>https://blog.kotet.jp/tags/</link>
     <description>Recent content in Tags on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kotet.jp/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.kotet.jp/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bitcoin</title>
-      <link>https://kotet.jp/tags/bitcoin/</link>
+      <link>https://blog.kotet.jp/tags/bitcoin/</link>
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/bitcoin/</guid>
+      <guid>https://blog.kotet.jp/tags/bitcoin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blockchain_train_journal</title>
-      <link>https://kotet.jp/tags/blockchain_train_journal/</link>
+      <link>https://blog.kotet.jp/tags/blockchain_train_journal/</link>
       <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/blockchain_train_journal/</guid>
+      <guid>https://blog.kotet.jp/tags/blockchain_train_journal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>D_and_c</title>
-      <link>https://kotet.jp/tags/d_and_c/</link>
+      <link>https://blog.kotet.jp/tags/d_and_c/</link>
       <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/d_and_c/</guid>
+      <guid>https://blog.kotet.jp/tags/d_and_c/</guid>
       <description></description>
     </item>
     
     <item>
       <title>D_blog</title>
-      <link>https://kotet.jp/tags/d_blog/</link>
+      <link>https://blog.kotet.jp/tags/d_blog/</link>
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/d_blog/</guid>
+      <guid>https://blog.kotet.jp/tags/d_blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>D_wiki</title>
-      <link>https://kotet.jp/tags/d_wiki/</link>
+      <link>https://blog.kotet.jp/tags/d_wiki/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/d_wiki/</guid>
+      <guid>https://blog.kotet.jp/tags/d_wiki/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deeplearning</title>
-      <link>https://kotet.jp/tags/deeplearning/</link>
+      <link>https://blog.kotet.jp/tags/deeplearning/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/deeplearning/</guid>
+      <guid>https://blog.kotet.jp/tags/deeplearning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dlang</title>
-      <link>https://kotet.jp/tags/dlang/</link>
+      <link>https://blog.kotet.jp/tags/dlang/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/dlang/</guid>
+      <guid>https://blog.kotet.jp/tags/dlang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dlang_gc_series</title>
-      <link>https://kotet.jp/tags/dlang_gc_series/</link>
+      <link>https://blog.kotet.jp/tags/dlang_gc_series/</link>
       <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/dlang_gc_series/</guid>
+      <guid>https://blog.kotet.jp/tags/dlang_gc_series/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dlangman</title>
-      <link>https://kotet.jp/tags/dlangman/</link>
+      <link>https://blog.kotet.jp/tags/dlangman/</link>
       <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/dlangman/</guid>
+      <guid>https://blog.kotet.jp/tags/dlangman/</guid>
       <description></description>
     </item>
     
     <item>
       <title>English</title>
-      <link>https://kotet.jp/tags/english/</link>
+      <link>https://blog.kotet.jp/tags/english/</link>
       <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/english/</guid>
+      <guid>https://blog.kotet.jp/tags/english/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Essay</title>
-      <link>https://kotet.jp/tags/essay/</link>
+      <link>https://blog.kotet.jp/tags/essay/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/essay/</guid>
+      <guid>https://blog.kotet.jp/tags/essay/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Github</title>
-      <link>https://kotet.jp/tags/github/</link>
+      <link>https://blog.kotet.jp/tags/github/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/github/</guid>
+      <guid>https://blog.kotet.jp/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ipfs</title>
-      <link>https://kotet.jp/tags/ipfs/</link>
+      <link>https://blog.kotet.jp/tags/ipfs/</link>
       <pubDate>Thu, 02 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/ipfs/</guid>
+      <guid>https://blog.kotet.jp/tags/ipfs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ipfs体験記</title>
-      <link>https://kotet.jp/tags/ipfs%E4%BD%93%E9%A8%93%E8%A8%98/</link>
+      <link>https://blog.kotet.jp/tags/ipfs%E4%BD%93%E9%A8%93%E8%A8%98/</link>
       <pubDate>Thu, 02 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/ipfs%E4%BD%93%E9%A8%93%E8%A8%98/</guid>
+      <guid>https://blog.kotet.jp/tags/ipfs%E4%BD%93%E9%A8%93%E8%A8%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jekyll</title>
-      <link>https://kotet.jp/tags/jekyll/</link>
+      <link>https://blog.kotet.jp/tags/jekyll/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/jekyll/</guid>
+      <guid>https://blog.kotet.jp/tags/jekyll/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Log</title>
-      <link>https://kotet.jp/tags/log/</link>
+      <link>https://blog.kotet.jp/tags/log/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/log/</guid>
+      <guid>https://blog.kotet.jp/tags/log/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://kotet.jp/tags/python/</link>
+      <link>https://blog.kotet.jp/tags/python/</link>
       <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/python/</guid>
+      <guid>https://blog.kotet.jp/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Qiita</title>
-      <link>https://kotet.jp/tags/qiita/</link>
+      <link>https://blog.kotet.jp/tags/qiita/</link>
       <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/qiita/</guid>
+      <guid>https://blog.kotet.jp/tags/qiita/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regexp</title>
-      <link>https://kotet.jp/tags/regexp/</link>
+      <link>https://blog.kotet.jp/tags/regexp/</link>
       <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/regexp/</guid>
+      <guid>https://blog.kotet.jp/tags/regexp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Russian</title>
-      <link>https://kotet.jp/tags/russian/</link>
+      <link>https://blog.kotet.jp/tags/russian/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/russian/</guid>
+      <guid>https://blog.kotet.jp/tags/russian/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tale</title>
-      <link>https://kotet.jp/tags/tale/</link>
+      <link>https://blog.kotet.jp/tags/tale/</link>
       <pubDate>Sat, 25 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/tale/</guid>
+      <guid>https://blog.kotet.jp/tags/tale/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tech</title>
-      <link>https://kotet.jp/tags/tech/</link>
+      <link>https://blog.kotet.jp/tags/tech/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/tech/</guid>
+      <guid>https://blog.kotet.jp/tags/tech/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Translation</title>
-      <link>https://kotet.jp/tags/translation/</link>
+      <link>https://blog.kotet.jp/tags/translation/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/translation/</guid>
+      <guid>https://blog.kotet.jp/tags/translation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Trivial_things</title>
-      <link>https://kotet.jp/tags/trivial_things/</link>
+      <link>https://blog.kotet.jp/tags/trivial_things/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/trivial_things/</guid>
+      <guid>https://blog.kotet.jp/tags/trivial_things/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Webdesign</title>
-      <link>https://kotet.jp/tags/webdesign/</link>
+      <link>https://blog.kotet.jp/tags/webdesign/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kotet.jp/tags/webdesign/</guid>
+      <guid>https://blog.kotet.jp/tags/webdesign/</guid>
       <description></description>
     </item>
     
