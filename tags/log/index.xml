@@ -6,10 +6,19 @@
     <description>Recent content in Log on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 08 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.kotet.jp/tags/log/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kotet.jp ドメインを取得した</title>
+      <link>https://blog.kotet.jp/2018/08/welcome-to-hugo/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.kotet.jp/2018/08/welcome-to-hugo/</guid>
+      <description>経緯 大量の記事とテンプレートのおかげで、最近サイトの生成が遅くなっていた。 その遅さが編集に差し障るレベルになりつつあったので、そろそろJek</description>
+    </item>
     
     <item>
       <title>dppでCのヘッダファイルを自動変換</title>
