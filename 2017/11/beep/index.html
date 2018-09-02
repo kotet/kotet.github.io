@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>#tech コマンド終了時に毎回音を鳴らす - Kotet&#39;s Personal Blog </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
     <link rel="canonical" href="https://blog.kotet.jp/2017/11/beep/" />
     <script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
     <script>
@@ -48,6 +48,26 @@
 
     main > article {
         margin: 1em;
+    }
+
+    main > footer {
+        color: var(--textgray);
+        border-top: var(--border);
+        padding: 1em;
+    }
+
+    main > footer a {
+        color: var(--textgray);
+    }
+
+    main > footer h2 {
+        display: inline;
+        font-size: 1em;
+    }
+
+    main > footer p {
+        display: inline;
+        margin-left: 1em;
     }
 
     #TableOfContents>ul {
@@ -122,6 +142,18 @@ $ source ~/.bashrc</code></pre></div>
 <p><code>beep</code>の部分を書き換えることで出る音を変えられる。
 自分は<code>beep -f 1000 -r 2 -l 50</code>としている。</p>
 </article>
+<footer>
+    <h2>
+        
+        <a href="/tags/tech">#tech</a>
+        
+        コマンド終了時に毎回音を鳴らす
+    </h2>
+    <p>
+        <time>2017-11-01</time>
+         <a href="/tags/tech">#tech</a> 
+    </p>
+</footer>
 
         <div class="ad-wrapper"></div>
     </main>

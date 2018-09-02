@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>#dlang dlibでマンデルブロ集合を描く - Kotet&#39;s Personal Blog </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
     <link rel="canonical" href="https://blog.kotet.jp/2017/04/mandelbrot-dlib/" />
     <script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
     <script>
@@ -48,6 +48,26 @@
 
     main > article {
         margin: 1em;
+    }
+
+    main > footer {
+        color: var(--textgray);
+        border-top: var(--border);
+        padding: 1em;
+    }
+
+    main > footer a {
+        color: var(--textgray);
+    }
+
+    main > footer h2 {
+        display: inline;
+        font-size: 1em;
+    }
+
+    main > footer p {
+        display: inline;
+        margin-left: 1em;
     }
 
     #TableOfContents>ul {
@@ -277,6 +297,18 @@ size_t judge(Complex!real c, size_t judge_iter)
 絶対何かしらエラーが出ると思っていたのだが、普通に動いてしかも4、5倍高速化できてしまった。
 どういうことなのかはよくわからないが、並列処理について知識を持たない自分が雑に書いても並列化の恩恵を得られるというのは素晴らしいことだと思う。</p>
 </article>
+<footer>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        dlibでマンデルブロ集合を描く
+    </h2>
+    <p>
+        <time>2017-04-22</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+</footer>
 
         <div class="ad-wrapper"></div>
     </main>
