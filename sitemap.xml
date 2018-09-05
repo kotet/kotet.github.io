@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.kotet.jp/2018/09/indexable-dictionary/</loc>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.kotet.jp/2018/08/welcome-to-hugo/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
   </url>
@@ -749,7 +754,7 @@
   
   <url>
     <loc>https://blog.kotet.jp/2018/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -794,7 +799,7 @@
   
   <url>
     <loc>https://blog.kotet.jp/tags/dlang/</loc>
-    <lastmod>2018-08-13T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -854,13 +859,13 @@
   
   <url>
     <loc>https://blog.kotet.jp/tags/log/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -905,7 +910,7 @@
   
   <url>
     <loc>https://blog.kotet.jp/tags/tech/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
