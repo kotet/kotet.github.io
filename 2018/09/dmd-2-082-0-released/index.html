@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#dlang DMD 2.082.0 Released【翻訳】 - Kotet&#39;s Personal Blog </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <link rel="canonical" href="https://blog.kotet.jp/2018/09/dmd-2-082-0-released/" />
+    <script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88180620-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8443812672116269",
+        enable_page_level_ads: true
+    });
+    </script>
+    <link rel="icon" href="/favicon.ico">
+    <meta name="twitter:card" content="summary" />
+<meta name="og:title" content="#dlang DMD 2.082.0 Released【翻訳】 - Kotet&#39;s Personal Blog" />
+<meta name="og:description" content=" D言語財団はDプログラミング言語のリファレンスコンパイラ、DMDのバージョン2.079.0をアナウンスします。   " />
+
+<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
+
+<meta name="twitter:url" content="https://blog.kotet.jp/2018/09/dmd-2-082-0-released/" />
+<meta name="twitter:site" content="@kotetttt" />
+<meta name="twitter:creator" content="@kotetttt" />
+    <meta name="generator" content="Hugo 0.49-DEV" />
+    
+<meta name="description" content=" D言語財団はDプログラミング言語のリファレンスコンパイラ、DMDのバージョン2.079.0をアナウンスします。  ">
+<style>
+    main {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    main > header {
+        margin: 1em;
+    }
+
+    main > article {
+        margin: 1em;
+    }
+
+    main > footer {
+        color: var(--textgray);
+        border-top: var(--border);
+        padding: 1em;
+    }
+
+    main > footer a {
+        color: var(--textgray);
+    }
+
+    main > footer h2 {
+        display: inline;
+        font-size: 1em;
+    }
+
+    main > footer p {
+        display: inline;
+        margin-left: 1em;
+    }
+
+    #TableOfContents>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents>ul>li>ul {
+         
+        padding: 0;
+    }
+
+    #TableOfContents li {
+        list-style: none;
+    }
+
+    #TableOfContents>ul>li>ul>li>ul li {
+        list-style-type: initial;
+    }
+
+    aside {
+        padding: .5em 1em;
+        background: #EEE;
+    }
+</style>
+<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true
+      }
+    });
+    </script>
+
+</head>
+
+<body>
+    <header class="site">
+        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/products">PRODUCTS</a></li>
+                <li><a href="/tags">TAGS</a></li>
+                <li><a href="/index.xml">FEED</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+<header>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        DMD 2.082.0 Released【翻訳】
+    </h2>
+    <p>
+        <time>2018-09-06</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <aside>
+    <p>Table of Contents</p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#ツールの改善">ツールの改善</a>
+<ul>
+<li><a href="#dub-の改善">DUB の改善</a></li>
+<li><a href="#windows向け署名済みバイナリー">Windows向け署名済みバイナリー</a></li>
+</ul></li>
+<li><a href="#コンパイラとライブラリ">コンパイラとライブラリ</a>
+<ul>
+<li><a href="#コンパイラ">コンパイラ</a></li>
+<li><a href="#druntime">DRuntime</a></li>
+<li><a href="#phobos">Phobos</a></li>
+</ul></li>
+<li><a href="#september-pumpkin-spice">September pumpkin spice</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article>
+
+<p>この記事は、
+<a href="https://dlang.org/blog/2018/09/04/dmd-2-082-0-released/">DMD 2.082.0 Released – The D Blog</a>
+を自分用に翻訳したものを
+<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
+公開するものだ。</p>
+
+<p>ソース中にコメントの形で原文を残している。
+誤字や誤訳などを見つけたら教えてほしい。</p>
+
+<hr />
+
+<!-- ![](https://i1.wp.com/dlang.org/blog/wp-content/uploads/2016/08/d3.png?resize=160%2C301) -->
+
+<p><img align="left" alt="D言語くん" src="/img/blog/2018/09/dman.png" ></p>
+
+<!-- DMD 2.082.0 was released over the weekend. There were 28 major changes and 76 closed Bugzilla issues in this release, including some very welcome improvements in the toolchain. [Head over to the download page](https://dlang.org/download.html) to pick up the official package for your platform and [visit the changelog for the details](https://dlang.org/changelog/2.082.0.html). -->
+
+<p>週末、DMD 2.082.0 がリリースされました。
+このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、
+76の Bugzilla issues のクローズが含まれます。
+あなたのプラットフォーム向けの公式パッケージを
+<a href="https://dlang.org/download.html">ダウンロードページに行って</a>
+選び、<a href="https://dlang.org/changelog/2.082.0.html">チェンジログで詳細を確認</a>しましょう。</p>
+
+<!-- Tooling improvements
+-------------------- -->
+
+<h3 id="ツールの改善">ツールの改善</h3>
+
+<!-- While there were several improvements and fixes to the compiler, standard library, and runtime in this release, there were some seemingly innocuous quality\-of\-life changes to the tooling that are sure to be greeted with more enthusiasm. -->
+
+<p>コンパイラ、標準ライブラリ、ランタイムに対するいくつかの改善と修正に加えて、
+ツールに対する一見退屈な、熱意を持って迎えられるべきQOLの変更がありました。</p>
+
+<!-- ### DUB gets dubbier -->
+
+<h4 id="dub-の改善">DUB の改善</h4>
+
+<!-- DUB, the build tool and package manager for D that ships with DMD, received a number  of enhancements, including [better dependency resolution](https://dlang.org/changelog/2.082.0.html#recursive_dependecy_resolution), [variable support in the build settings](https://dlang.org/changelog/2.082.0.html#buildSettingsVars), and [improved environment variable expansion](https://dlang.org/changelog/2.082.0.html#env-var-replacement). -->
+
+<p>D のビルドツール兼パッケージマネージャであり、DMD とともに公開される DUB は、
+<a href="https://dlang.org/changelog/2.082.0.html#recursive_dependecy_resolution">よりよい依存解決</a>、
+<a href="https://dlang.org/changelog/2.082.0.html#buildSettingsVars">ビルド設定における変数サポート</a>、
+<a href="https://dlang.org/changelog/2.082.0.html#env-var-replacement">環境変数展開の改善</a>
+などの多くの改善をしました。</p>
+
+<!-- Arguably the most welcome change will be the [removal of the regular update check](https://dlang.org/changelog/2.082.0.html#upgrade_check). Previously, DUB would check for dependency updates once a day before starting a project build. If there was no internet connection, or if there were any errors in dependency resolution, the process could hang for some time. With the removal of the daily check, upgrades will only occur when running `dub upgrade` in a project directory. Add to that the brand new `--dry-run` flag to get a list of any upgradable dependencies without executing the upgrades. -->
+
+<p>最も歓迎される変更は間違いなく
+<a href="https://dlang.org/changelog/2.082.0.html#upgrade_check">更新チェック</a>でしょう。
+いままで DUB はプロジェクトをビルドする前に、依存のアップデートのチェックを1日1回行っていました。
+インターネットに接続していないとき、または依存解決に何らかの問題が発生したときに、
+プロセスはしばらくハングすることがありました。
+このチェックを削除したことで、アップグレードはプロジェクトディレクトリで
+<code>dub upgrade</code> したとき以外発生しないようになりました。
+新しく追加された <code>--dry-run</code> フラグを追加すると、
+アップグレード可能な依存を実際にアップグレードすることなく確認できます。</p>
+
+<!-- ### Signed binaries for Windows -->
+
+<h4 id="windows向け署名済みバイナリー">Windows向け署名済みバイナリー</h4>
+
+<!-- For quite some time users of DMD on Windows have had the annoyance of seeing [a warning from Windows Smartscreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) when running the installer, and the occasional false positive from AntiVirus software when running DMD. -->
+
+<p>Windows における DMD ユーザーはインストーラーを実行した際に
+<a href="https://en.wikipedia.org/wiki/Microsoft_SmartScreen">Windows Smartscreenからの警告</a>
+という迷惑を被ることがあります。
+また、DMD を実行した際には時々アンチウイルスソフトのフォールス・ポジティブが起こります。</p>
+
+<!-- Now those in the Windows D camp can [do a little victory dance](https://www.youtube.com/watch?v=KL19ZVbcPaw), as all of the binaries in the distribution, including the installer, [are signed with the D Language Foundation’s new code signing certificate](https://dlang.org/changelog/2.082.0.html#signed_windows_binaries). This is one more quality\-of\-life issue that can finally be laid to rest. On a side note, the cost of the certificate was the first expense entered [into our Open Collective page](https://opencollective.com/dlang). -->
+
+<p>インストーラーを含む、配布されるすべてのバイナリが
+<a href="https://dlang.org/changelog/2.082.0.html#signed_windows_binaries">D言語財団の新しいコード署名証明書で署名されるようになった</a>
+ため、Windows で D を使っている人々は
+<a href="https://www.youtube.com/watch?v=KL19ZVbcPaw">勝利の舞</a>
+を踊るでしょう。
+これは忘れ去られ、当たり前になっていくQOLイシューです。
+付け加えておくと、<a href="https://opencollective.com/dlang">我々の Open Collective</a>
+からの最初の支出はこの証明書に使われました。</p>
+
+<!-- Compiler and libraries
+---------------------- -->
+
+<h3 id="コンパイラとライブラリ">コンパイラとライブラリ</h3>
+
+<!-- Many of the changes and updates in the compiler and library department are unlikely to compel anyone to shout from the rooftops, but a handful are nonetheless notable. -->
+
+<p>コンパイラとライブラリ部で行われた更新や変更の多くは屋根の上で叫ばずにはいられない、
+というものではありませんが、しかしいくらか注目に値するものがあります。</p>
+
+<!-- ### The compiler -->
+
+<h4 id="コンパイラ">コンパイラ</h4>
+
+<!-- One such is an expansion of [the User\-Defined Attribute syntax](https://dlang.org/spec/attribute.html#uda). Previously, these were only allowed on declarations. Now, [they can be applied to function parameters](https://dlang.org/changelog/2.082.0.html#uda-function-parameters): -->
+
+<p>ひとつは<a href="https://dlang.org/spec/attribute.html#uda">ユーザー定義属性構文</a>です。
+以前まで、これは宣言部以外で書くことができませんでした。
+いまやそれらは<a href="https://dlang.org/changelog/2.082.0.html#uda-function-parameters">関数パラメータにも適用できます</a>。</p>
+
+<!-- ```d
+// Previously, it was illegal to attach a UDA to a function parameter
+
+void example(@(22) string param)
+
+{
+
+    // It's always been legal to attach UDAs to type, variable, and function declarations.
+
+    @(11) string var;
+
+    pragma(msg, \[\_\_traits(getAttributes, var)\] \== \[11\]);
+
+    pragma(msg, \[\_\_traits(getAttributes, param)\] \== \[22\]);
+
+}
+``` -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// 以前は、UDAを関数パラメーターに適用することは違法（illegal）でした
+
+void example(@(22) string param)
+
+{
+
+    // 型、変数、関数宣言にUDAを適用するのは合法（legal）です
+
+    @(11) string var;
+
+    pragma(msg, [__traits(getAttributes, var)] == [11]);
+
+    pragma(msg, [__traits(getAttributes, param)] == [22]);
+
+}</code></pre></div>
+<!-- _[Run this example online](https://run.dlang.io/is/Hu4csb)_ -->
+
+<p><em><a href="https://run.dlang.io/is/Hu4csb">この例をオンラインで実行する</a></em></p>
+
+<!-- The same goes for enum members (it’s not explicitly listed in the highlights at the top of the changelog, [but is mentioned in the bugfix list](https://dlang.org/changelog/2.082.0.html#bugfix-list)): -->
+
+<p>列挙体のメンバーも同じことができます（これはチェンジログ上部のハイライトにはリストされていませんが、
+<a href="https://dlang.org/changelog/2.082.0.html#bugfix-list">Bugfix リスト上では言及されています</a>）:</p>
+
+<!-- ```d
+enum Foo {
+
+@(10) one,
+
+@(20) two,
+
+}
+
+void main()
+
+{
+
+pragma(msg, \[\_\_traits(getAttributes, Foo.one)\] \== \[10\]);
+
+pragma(msg, \[\_\_traits(getAttributes, Foo.two)\] \== \[20\]);
+
+}
+``` -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">enum Foo {
+
+@(10) one,
+
+@(20) two,
+
+}
+
+void main()
+
+{
+
+pragma(msg, [__traits(getAttributes, Foo.one)] == [10]);
+
+pragma(msg, [__traits(getAttributes, Foo.two)] == [20]);
+
+}</code></pre></div>
+<!-- _[Run this example online](https://run.dlang.io/is/B2H73i)_ -->
+
+<p><em><a href="https://run.dlang.io/is/B2H73i">この例をオンラインで実行する</a></em></p>
+
+<!-- [The DasBetterC subset of D](http://dlang.org/blog/2018/06/11/dasbetterc-converting-make-c-to-d/) is [enhanced in this release with some improvements](https://dlang.org/changelog/2.082.0.html#betterc_cmp_types). It’s now possible to use array literals in initializers. Previously, array literals required the use of `TypeInfo`, which is part of DRuntime and therefore unavailable in `-betterC` mode. Moreover, comparing arrays of structs is now supported and comparing arrays of byte\-sized types should no longer generate any linker errrors. -->
+
+<p><a href="http://dlang.org/blog/2018/06/11/dasbetterc-converting-make-c-to-d/">D の DasBetterC サブセット</a>
+は
+<a href="https://dlang.org/changelog/2.082.0.html#betterc_cmp_types">このリリースのいくつかの改善により強化されています</a>
+。
+初期化子に配列リテラルを使うことができるようになりました。
+以前まで、配列リテラルは <code>TypeInfo</code> を必要としており、
+<code>TypeInfo</code> は DRuntime の一部であり <code>-betterC</code> モードでは使えませんでした。
+さらに、構造体の配列の比較がサポートされ、1バイト型の配列の比較もリンカエラーを起こさなくなりました。</p>
+
+<!-- ```d
+import core.stdc.stdio;
+
+struct Sint
+
+{
+
+    int x;
+
+    this(int v) { x \= v;}
+
+}
+
+extern(C) void main()
+
+{
+
+    // No more TypeInfo error in this initializer
+
+    Sint\[6\] a1 \= \[Sint(1), Sint(2), Sint(3), Sint(1), Sint(2), Sint(3)\];
+
+    foreach(si; a1) printf("%i\\n", si.x);
+
+    // Arrays/slices of structs can now be compared
+
+    assert(a1\[0..3\] \== a1\[3..$\]);
+
+    // No more linker error when comparing strings, either explicitly
+
+    // or implicitly such as in a switch.
+
+    auto s \= "abc";
+
+    switch(s)
+
+    {
+
+     case "abc":
+
+     puts("Got a match!");
+
+     break;
+
+     default:
+
+     break;
+
+    }
+
+    // And the same goes for any byte\-sized type
+
+    char\[6\] a \= \[1,2,3,1,2,3\];
+
+    assert(a\[0..3\] \>= a\[3..$\]);
+
+    puts("All the asserts passed!");
+
+}
+``` -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.stdc.stdio;
+struct Sint
+{
+    int x;
+    this(int v) { x = v;}
+}
+
+extern(C) void main()
+{
+    // この初期化子では TypeInfo エラーが起きません
+    Sint[6] a1 = [Sint(1), Sint(2), Sint(3), Sint(1), Sint(2), Sint(3)];
+    foreach(si; a1) printf(&#34;%i\n&#34;, si.x);
+
+    // 構造体の配列 / スライスが比較可能になりました
+    assert(a1[0..3] == a1[3..$]);
+
+    // 文字列の比較はリンカエラーを起こさなくなりました。
+    // 明示的にも、 switch のように暗黙的にも。
+    auto s = &#34;abc&#34;;
+    switch(s)
+    {
+        case &#34;abc&#34;:
+            puts(&#34;Got a match!&#34;);
+            break;
+        default:
+            break;
+    }
+
+    // 1バイト型でも同じです
+    char[6] a = [1,2,3,1,2,3];
+    assert(a[0..3] &gt;= a[3..$]);
+
+    puts(&#34;All the asserts passed!&#34;);
+}</code></pre></div>
+<!-- _[Run this example online](https://run.dlang.io/is/FiuBop)_ -->
+
+<p><em><a href="https://run.dlang.io/is/FiuBop">この例をオンラインで実行する</a></em></p>
+
+<!-- ### DRuntime -->
+
+<h4 id="druntime">DRuntime</h4>
+
+<!-- Another quality\-of\-life fix, this one touching on the debugging experience, is a [new run\-time flag that can be passed to any D program](https://dlang.org/changelog/2.082.0.html#exceptions-opt) compiled against the 2.082 release of the runtime or later, `--DRT-trapException=0`. This allows exception trapping to be disabled from the command line. -->
+
+<p>もうひとつの QOL フィックス、これはデバッグ体験に関わるものです。
+2.082 以降のランタイムのリリースに対してコンパイルされた
+<a href="https://dlang.org/changelog/2.082.0.html#exceptions-opt">D プログラムに新たなランタイムフラグを渡せるようになりました</a>。
+<code>--DRT-trapException=0</code> です。
+これでコマンドラインから例外トラッピングを無効にできます。</p>
+
+<!-- Previously, this was supported only via a global variable, `rt_trapExceptions`. To disable exception trapping, this variable had to be set to `false` before DRuntime gained control of execution, which meant implementing your own `extern(C) main` and calling `_d_run_main` to manually initialize DRuntime which, in turn, would run the normal D `main`—all of which is demonstrated in the Tip of the Week from [the August 7, 2016, edition of This Week in D](http://arsdnet.net/this-week-in-d/2016-aug-07.html) (you’ll also find there a nice explanation of why you might want to disable this feature. HINT: running in your debugger). A command\-line flag is sooo much simpler, no? -->
+
+<p>以前まで、これはグローバル変数 <code>rt_trapExceptions</code> によってサポートされていました。
+例外トラッピングを無効にするには、この変数を DRuntime が実行のコントロールを始める前に
+<code>false</code> に設定する必要があります。
+つまり、<code>extern(C) main</code> を自分で実装し、DRuntime の初期化のために <code>_d_run_main</code> を呼び、
+そして通常の D の <code>main</code> が呼ばれるということです。
+これは<a href="http://arsdnet.net/this-week-in-d/2016-aug-07.html">2016年8月7日のThis Week in D</a>
+の今週の Tip としてデモンストレートされています。
+（なぜ機能を無効化しなければならないかの説明も得られるでしょう。ヒント: デバッガーの実行）
+コマンドラインフラグのほうがシンプル、違いますか？</p>
+
+<!-- ### Phobos -->
+
+<h4 id="phobos">Phobos</h4>
+
+<!-- The `std.array` module [has long had an `array` function](https://dlang.org/phobos/std_array.html#array) that can be used to create a dynamic array from any finite range. With this release, [the module gains a `staticArray` function](https://dlang.org/changelog/2.082.0.html#std-array-asStatic) that can do the same for static arrays, though it’s limited to input ranges (which includes other arrays). When the length of a range is not knowable at compile time, it must be passed as a template argument. Otherwise, the range itself can be passed as a template argument. -->
+
+<p><code>std.array</code> モジュールには有限レンジから動的配列を生成する
+<a href="https://dlang.org/phobos/std_array.html#array"><code>array</code> 関数があります</a>。
+このリリースで <a href="https://dlang.org/changelog/2.082.0.html#std-array-asStatic">このモジュールに <code>staticArray</code> 関数が追加されました</a>。
+これで Input range に限り（他の配列を含む）、同じことが静的配列でも可能になります。
+レンジの長さがコンパイル時にわからない場合、テンプレート引数としてそれを渡す必要があります。
+そうでないなら、レンジそれ自身がテンプレート引数として渡せます。</p>
+
+<!-- ```d
+import std.stdio;
+
+void main()
+
+{
+
+    import std.range : iota;
+
+    import std.array : staticArray;
+
+    auto input \= 3.iota;
+
+    auto a \= input.staticArray!2;
+
+    pragma(msg, is(typeof(a) \== int\[2\]));
+
+    writeln(a);
+
+    auto b \= input.staticArray!(long\[4\]);
+
+    pragma(msg, is(typeof(b) \== long\[4\]));
+
+    writeln(b);
+
+}
+``` -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
+void main()
+{
+    import std.range : iota;
+    import std.array : staticArray;
+
+    auto input = 3.iota;
+    auto a = input.staticArray!2;
+    pragma(msg, is(typeof(a) == int[2]));
+    writeln(a);
+    auto b = input.staticArray!(long[4]);
+    pragma(msg, is(typeof(b) == long[4]));
+    writeln(b);
+}</code></pre></div>
+<!-- _[Run this example online](https://run.dlang.io/is/7dpxJM)_ -->
+
+<p><em><a href="https://run.dlang.io/is/7dpxJM">この例をオンラインで実行する</a></em></p>
+
+<!-- September pumpkin spice
+----------------------- -->
+
+<h3 id="september-pumpkin-spice">September pumpkin spice</h3>
+
+<!-- [Participation in the #dbugfix campaign](https://dlang.org/blog/2018/02/03/the-dbugfix-campaign/) for this cycle was, like last cycle, rather dismal. Even so, I’ll have an update on that topic later this month in a post of its own. -->
+
+<p>今サイクルの<a href="https://dlang.org/blog/2018/02/03/the-dbugfix-campaign/"> #dbugfix キャンペーンの参加状況</a>は、
+前サイクルと同様に、どちらかというと芳しくありません。
+しかし、今月後半にこのトピックに関するアップデートの記事があります。</p>
+
+<!-- Three of eight applicants were selected for [the Symmetry Autumn of Code](https://dlang.org/blog/symmetry-autumn-of-code/), which officially kicked off on September 1. Stay tuned here for a post on that topic as well. -->
+
+<p>志願者のうち8分の3が9月1日に始まった
+<a href="https://dlang.org/blog/symmetry-autumn-of-code/">the Symmetry Autumn of Code</a>
+に選ばれました。
+これについての記事も楽しみにしていてください。</p>
+
+<!-- The blog has been quiet for a few weeks, but the gears are slowly and squeakily starting to grind again. Other posts lined up for this month include the next long\-overdue [installment in the GC Series](https://dlang.org/blog/the-gc-series/) and the launch of [a new ‘D in Production’ profile](https://dlang.org/blog/d-in-production/). -->
+
+<p>当ブログの更新は何週間か少なくなりますが、歯車はゆっくりと、きしみながら再び回り始めています。
+今月は、しばらくぶりの
+<a href="https://dlang.org/blog/the-gc-series/">GC シリーズの投稿</a>と、
+新シリーズ
+<a href="https://dlang.org/blog/d-in-production/"><code>D in Production</code></a>
+の投稿が予定されています。</p>
+</article>
+<footer>
+    <h2>
+        
+        <a href="/tags/dlang">#dlang</a>
+        
+        DMD 2.082.0 Released【翻訳】
+    </h2>
+    <p>
+        <time>2018-09-06</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+</footer>
+
+        <div class="ad-wrapper"></div>
+    </main>
+    <footer class="site">
+</footer>
+</body>
+
+</html>

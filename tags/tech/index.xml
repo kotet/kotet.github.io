@@ -6,10 +6,19 @@
     <description>Recent content in Tech on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 05 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.kotet.jp/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DMD 2.082.0 Released【翻訳】</title>
+      <link>https://blog.kotet.jp/2018/09/dmd-2-082-0-released/</link>
+      <pubDate>Thu, 06 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.kotet.jp/2018/09/dmd-2-082-0-released/</guid>
+      <description>この記事は、 DMD 2.082.0 Released – The D Blog を自分用に翻訳したものを 許可を得て 公開するものだ。 ソース中にコメントの形で原文を残している。 誤字や誤訳などを見つけ</description>
+    </item>
     
     <item>
       <title>完備辞書と気分の上下</title>
