@@ -303,7 +303,7 @@ Kotetは漸く焦躁に駆られて来た。
 <p>ピクセル数。
 幅、高さの順番にどちらも符号付き32ビット整数。
 高さは通常正の数にするが、負にすると上下が反転して
-<a href="#post20180821imagelineorder">後述する</a>
+<a href="#画像データ">後述する</a>
 画像データの並びがわかりやすくなるらしい。
 わざわざ負数にして計算ミスを起こしたくないし、変なことして表示されなかったら悲しいので、
 ここはお行儀よくしておく。</p>
@@ -361,8 +361,6 @@ Kotetは漸く焦躁に駆られて来た。
 </code></pre>
 
 <h4 id="画像データ">画像データ</h4>
-
-<p>{: #post20180821imagelineorder}</p>
 
 <p>いよいよ絵を<strong>書いて</strong>いく。
 いくつか注意点がある。
@@ -500,7 +498,7 @@ Arch Linuxの場合<code>base64</code>というコマンドが
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo &#34;Qk1GAAAAAAAAADYAAAAoAAAAAgAAAAIAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAA////AAAAAP8A/wAAAA==&#34; | base64 -d &gt; test.bmp</code></pre></div>
 <h3 id="完成-そしてツイート">完成、そしてツイート</h3>
 
-<p><img src="/assets/2018/08/bitmap.png" alt="ノート" />{:style=&ldquo;width: 400px;&ldquo;}</p>
+<p><img src="/assets/2018/08/bitmap.png" alt="ノート" width="400"></p>
 
 <p>ノート1ページ (と複数の失敗ページ) の計算の結果、base64にエンコードされたビットマップ画像が完成した。
 後は<code>data:image/bmp;base64,</code>をくっつけてツイートするだけだ。</p>
