@@ -6,10 +6,19 @@
     <description>Recent content in 2018 on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 06 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.kotet.jp/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kotet SVG化計画</title>
+      <link>https://blog.kotet.jp/2018/09/convert-kotet-to-svg/</link>
+      <pubDate>Sat, 08 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.kotet.jp/2018/09/convert-kotet-to-svg/</guid>
+      <description>前々から自分のアイコンを SVG にしたいと思っていた。 今日、おもむろに Inkscape を起動して絵を書き、生成された SVG を手で非可逆圧縮した。 それが以下の画像だ。</description>
+    </item>
     
     <item>
       <title>DMD 2.082.0 Released【翻訳】</title>
