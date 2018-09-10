@@ -39,69 +39,7 @@
     <meta name="generator" content="Hugo 0.49-DEV" />
     
 <meta name="description" content=" 今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。 ">
-<style>
-    main {
-        width: 800px;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    main > header {
-        margin: 1em;
-    }
-
-    main > article {
-        margin: 1em;
-    }
-
-    main > footer {
-        color: var(--textgray);
-        border-top: var(--border);
-        padding: 1em;
-    }
-
-    main > footer a {
-        color: var(--textgray);
-    }
-
-    main > footer h2 {
-        display: inline;
-        font-size: 1em;
-    }
-
-    main > footer p {
-        display: inline;
-        margin-left: 1em;
-    }
-
-    #TableOfContents>ul {
-         
-        padding: 0;
-    }
-
-    #TableOfContents>ul>li>ul {
-         
-        padding: 0;
-    }
-
-    #TableOfContents li {
-        list-style: none;
-    }
-
-    #TableOfContents>ul>li>ul>li>ul li {
-        list-style-type: initial;
-    }
-
-    aside {
-        padding: .5em 1em;
-        background: #EEE;
-    }
-
-    article svg {
-        display: block;
-        margin: 0 auto;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/single.css" />
 <script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -111,7 +49,7 @@
         processEscapes: true
       }
     });
-    </script>
+</script>
 
 </head>
 
@@ -167,8 +105,7 @@
 <p><a href="https://dist.ipfs.io/#ipfs-update">ipfs-update</a>をダウンロードして展開、めんどくさいのでPATHを通さずその場で実行してみる。
 <code>install.sh</code>は特に使うわけではないっぽい。
 以下Powershell。</p>
-
-<pre><code>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update
 NAME:
    ipfs-update.exe - Update ipfs.
 
@@ -191,12 +128,9 @@ GLOBAL OPTIONS:
    --verbose         Print verbose output.
    --distpath value  specify the distributions build to use
    --help, -h        show help
-   --version, -v     print the version
-</code></pre>
-
+   --version, -v     print the version</code></pre></div>
 <p>大丈夫そうに見える。さっそく最新の安定板をインストールする。</p>
-
-<pre><code>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update versions
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update versions
 v0.3.2
 v0.3.4
 v0.3.5
@@ -223,9 +157,7 @@ PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt;
 fetching go-ipfs version v0.4.11
 binary downloaded, verifying...
 install failed, reverting changes...
-error initializing with new binary: exec: &quot;C:\\Users\\KOTET_~1\\AppData\\Local\\Temp\\ipfs-update124567527\\ipfs-new&quot;: file does not exist:
-</code></pre>
-
+error initializing with new binary: exec: &#34;C:\\Users\\KOTET_~1\\AppData\\Local\\Temp\\ipfs-update124567527\\ipfs-new&#34;: file does not exist:</code></pre></div>
 <p>どうも失敗したようだ。
 実はどうも現在バグがあるらしい。</p>
 
@@ -238,8 +170,7 @@ error initializing with new binary: exec: &quot;C:\\Users\\KOTET_~1\\AppData\\Lo
 <p><a href="https://dist.ipfs.io/#go-ipfs">go-ipfs</a>をダウンロードして展開。
 READMEも改行コードがWindows仕様になってないし、やはりバイナリ以外は不要である。
 <code>ipfs.exe</code>をPATHの通っているところに置くのだがやはりめんどくさいのでデスクトップに置く。</p>
-
-<pre><code>PS C:\Users\kotet_000\Desktop&gt; ./ipfs version
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">PS C:\Users\kotet_000\Desktop&gt; ./ipfs version
 ipfs version 0.4.11
 PS C:\Users\kotet_000\Desktop&gt; ./ipfs init
 initializing IPFS node at C:\Users\kotet_000\.ipfs
@@ -259,7 +190,7 @@ Hello and Welcome to IPFS!
 ██║██║     ██║     ███████║
 ╚═╝╚═╝     ╚═╝     ╚══════╝
 
-If you're seeing this, you have successfully installed
+If you&#39;re seeing this, you have successfully installed
 IPFS and are now interfacing with the ipfs merkledag!
 
  -------------------------------------------------------
@@ -275,14 +206,11 @@ Check out some of the other files in this directory:
   ./help
   ./quick-start     &lt;-- usage examples
   ./readme          &lt;-- this file
-  ./security-notes
-</code></pre>
-
+  ./security-notes</code></pre></div>
 <p>いい感じである。
 デーモンも起動してみる。
 ファイアウォールで通信がブロックされ、ダイアログが出るのでアクセスを許可する。</p>
-
-<pre><code>PS C:\Users\kotet_000\Desktop&gt; ./ipfs daemon
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">PS C:\Users\kotet_000\Desktop&gt; ./ipfs daemon
 Initializing daemon...
 Swarm listening on /ip4/127.0.0.1/tcp/4001
 Swarm listening on /ip4/192.168.0.12/tcp/4001
@@ -298,7 +226,7 @@ API server listening on /ip4/127.0.0.1/tcp/5001
 Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
 19:12:55.646 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
-19:12:58.083 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:12:58.083 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
 19:12:59.319 ERROR core/serve: ipfs cat /ipns/ipfs.io/images/ipfs-illustrations-how-3.svg: Failed to get block for QmYrWgJ33ptegZS2coWTfSLnA6gBJmJ9jQBGMKBJdBStCZ: open C:\Users\kotet_000\.ipfs\blocks\KE\CIQJYOZWNOSPYJHT46H3GAMCAUPTUFQBDMBUJ4ECAUITI423B3BMKEQ.data: The process cannot access the file because it is being used by another process. gateway_handler.go:593
 19:12:59.321 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:12:59.322 ERROR core/serve: ipfs cat /ipns/ipfs.io/images/ipfs-illustrations-how-5.svg: Failed to get block for QmS2ZnyfFvUrYAnrQ9kJTzuVMNHq5eMKkQyGkxYatSqppC: open C:\Users\kotet_000\.ipfs\blocks\L7\CIQDNTF4BXBAAAHBHGNZPGUWBCIPRLGJWNOSDGFNM6LAFSHASKG4L7I.data: The process cannot access the file because it is being used by another process. gateway_handler.go:593
@@ -310,10 +238,10 @@ Daemon is ready
 19:12:59.756 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:14:25.015 ERROR        dht: checking dht client type: context canceled notif.go:81
 19:14:59.797 ERROR        dht: checking dht client type: context canceled notif.go:81
-19:18:29.629 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
-19:18:45.995 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:18:29.629 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:18:45.995 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
 19:20:43.918 ERROR        dht: checking dht client type: context canceled notif.go:81
-19:21:04.290 ERROR core/serve: ipfs resolve -r /ipfs/QmPhnvn747LqwPYMJmQVorMaGbMSgA7mRRoyyZYz3DoZRQ/locale/webui-ja.json: no link named &quot;webui-ja.json&quot; under Qmc6bAsXTFFdvV3RoLuf6jjV3jzsRLntfsivWQZ75s8QaL gateway_handler.go:593
+19:21:04.290 ERROR core/serve: ipfs resolve -r /ipfs/QmPhnvn747LqwPYMJmQVorMaGbMSgA7mRRoyyZYz3DoZRQ/locale/webui-ja.json: no link named &#34;webui-ja.json&#34; under Qmc6bAsXTFFdvV3RoLuf6jjV3jzsRLntfsivWQZ75s8QaL gateway_handler.go:593
 19:21:09.050 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:36.324 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:36.354 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
@@ -352,9 +280,7 @@ Daemon is ready
 19:21:51.468 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:51.468 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:51.469 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
-// 後略
-</code></pre>
-
+// 後略</code></pre></div>
 <p>早速利用してみたが、エラーがものすごい勢いで出ている。
 しかしとりあえず利用できる程度には動いているので今日のところは良しとする。</p>
 </article>

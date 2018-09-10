@@ -39,69 +39,7 @@
     <meta name="generator" content="Hugo 0.49-DEV" />
     
 <meta name="description" content=" 前回の続き。 前回と同じようにOpenSSLを使ってstd.digest.shaを使わずにSHA256を計算する。 今回は前回と違い、データは逐 ">
-<style>
-    main {
-        width: 800px;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    main > header {
-        margin: 1em;
-    }
-
-    main > article {
-        margin: 1em;
-    }
-
-    main > footer {
-        color: var(--textgray);
-        border-top: var(--border);
-        padding: 1em;
-    }
-
-    main > footer a {
-        color: var(--textgray);
-    }
-
-    main > footer h2 {
-        display: inline;
-        font-size: 1em;
-    }
-
-    main > footer p {
-        display: inline;
-        margin-left: 1em;
-    }
-
-    #TableOfContents>ul {
-         
-        padding: 0;
-    }
-
-    #TableOfContents>ul>li>ul {
-         
-        padding: 0;
-    }
-
-    #TableOfContents li {
-        list-style: none;
-    }
-
-    #TableOfContents>ul>li>ul>li>ul li {
-        list-style-type: initial;
-    }
-
-    aside {
-        padding: .5em 1em;
-        background: #EEE;
-    }
-
-    article svg {
-        display: block;
-        margin: 0 auto;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/single.css" />
 <script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -111,7 +49,7 @@
         processEscapes: true
       }
     });
-    </script>
+</script>
 
 </head>
 
@@ -153,6 +91,10 @@
 <li><a href="#2-宣言">2 - 宣言</a>
 <ul>
 <li><a href="#source-sha-d-new-file"><code>source/sha.d</code> (New File)</a></li>
+</ul></li>
+<li><a href="#3-使う">3 - 使う</a>
+<ul>
+<li><a href="#source-app-d"><code>source/app.d</code></a></li>
 </ul></li>
 <li><a href="#4-リンクするライブラリの指定">4 - リンクするライブラリの指定</a>
 <ul>
@@ -230,36 +172,35 @@ enum SHA256_DIGEST_LENGTH = 32;</code></pre></div>
 の記事にあるように、以下のコードは同じ意味になる。</p>
 
 <blockquote>
-<pre><code>&gt;// In C
-&gt;typedef struct foo_s
-&gt;{
-&gt;   int x;
-&gt;   struct foo_s *next;
-&gt;} foo_t;
-&gt;
-&gt;// In D
-&gt;struct foo_t
-&gt;{
-&gt;   int x;
-&gt;   foo_t *next;
-&gt;}
-&gt;```
+<pre><code>// In C
+typedef struct foo_s
+{
+    int x;
+    struct foo_s *next;
+} foo_t;
 
-なので`SHA256state_st`はどこかになくなっている。
+// In D
+struct foo_t
+{
+    int x;
+    foo_t *next;
+}
+</code></pre>
+</blockquote>
 
-### 3 - 使う
+<p>なので<code>SHA256state_st</code>はどこかになくなっている。</p>
 
-#### `source/app.d`
+<h3 id="3-使う">3 - 使う</h3>
 
-```d
-import std.stdio;
+<h4 id="source-app-d"><code>source/app.d</code></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
 import std.digest.digest : toHexString;
 import sha;
 
 void main()
 {
-	string[] strs = [&quot;The &quot;, &quot;quick &quot;, &quot;brown &quot;, &quot;fox &quot;, &quot;jumps &quot;, &quot;over &quot;,
-		&quot;the &quot;, &quot;lazy &quot;, &quot;dog&quot;];
+	string[] strs = [&#34;The &#34;, &#34;quick &#34;, &#34;brown &#34;, &#34;fox &#34;, &#34;jumps &#34;, &#34;over &#34;,
+		&#34;the &#34;, &#34;lazy &#34;, &#34;dog&#34;];
 	ubyte[SHA256_DIGEST_LENGTH] hash;
 	SHA256_CTX ctx;
 
@@ -270,12 +211,9 @@ void main()
 	}
 	SHA256_Final(cast(ubyte*)&amp;hash, &amp;ctx);
 
-	assert(hash.toHexString() == &quot;D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592&quot;);
+	assert(hash.toHexString() == &#34;D7A8FBB307D7809469CA9ABCB0082E4F8D5651E46D3CDB762D02D0BF37C9E592&#34;);
 	hash.toHexString.writeln();
-}
-</code></pre>
-</blockquote>
-
+}</code></pre></div>
 <h3 id="4-リンクするライブラリの指定">4 - リンクするライブラリの指定</h3>
 
 <h4 id="dub-json"><code>dub.json</code></h4>
