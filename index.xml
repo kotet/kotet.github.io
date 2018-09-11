@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Kotet&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 08 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.kotet.jp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>17:普通のファイルシステムのようにIPFSで読み書き</title>
+      <link>https://blog.kotet.jp/2018/09/ipfs-mount-rw/</link>
+      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.kotet.jp/2018/09/ipfs-mount-rw/</guid>
+      <description>ipfs mount というコマンドがある。 FUSE を使って IPFS を通常のファイルシステムとしてマウントできる。 ただし、以下に書かれているようにこれはあくまで読み込み専</description>
+    </item>
     
     <item>
       <title>Kotet SVG化計画</title>
