@@ -784,103 +784,86 @@
   <url>
     <loc>https://blog.kotet.jp/tags/bitcoin/</loc>
     <lastmod>2018-01-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/blockchain_train_journal/</loc>
     <lastmod>2017-11-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/d_and_c/</loc>
     <lastmod>2017-12-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/d_blog/</loc>
     <lastmod>2018-09-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/d_wiki/</loc>
     <lastmod>2018-03-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/deeplearning/</loc>
     <lastmod>2018-06-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/dlang/</loc>
     <lastmod>2018-09-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/dlang_gc_series/</loc>
     <lastmod>2017-09-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/dlangman/</loc>
     <lastmod>2017-12-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/english/</loc>
     <lastmod>2017-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/essay/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/github/</loc>
     <lastmod>2018-04-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/hugo/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/ipfs/</loc>
     <lastmod>2018-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/ipfs%E4%BD%93%E9%A8%93%E8%A8%98/</loc>
     <lastmod>2018-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/jekyll/</loc>
     <lastmod>2018-04-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/log/</loc>
     <lastmod>2018-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -895,25 +878,21 @@
   <url>
     <loc>https://blog.kotet.jp/tags/python/</loc>
     <lastmod>2017-12-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/qiita/</loc>
     <lastmod>2017-01-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/regexp/</loc>
     <lastmod>2018-05-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/russian/</loc>
     <lastmod>2018-06-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -925,31 +904,26 @@
   <url>
     <loc>https://blog.kotet.jp/tags/tale/</loc>
     <lastmod>2017-03-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/tech/</loc>
     <lastmod>2018-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/translation/</loc>
     <lastmod>2018-09-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/trivial_things/</loc>
     <lastmod>2017-01-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.kotet.jp/tags/webdesign/</loc>
     <lastmod>2018-08-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

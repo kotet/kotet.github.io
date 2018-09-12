@@ -49,7 +49,8 @@
         margin: 1em;
     }
     main>article>h2 svg {
-        height: 1ex;
+        height: 1.5ex;
+        fill: #444;
     }
 </style>
 
@@ -57,7 +58,6 @@
 
 <body>
     <header class="site">
-        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
         <nav>
             <ul>
                 <li><a href="/about">ABOUT</a></li>
@@ -67,31 +67,73 @@
                 
             </ul>
         </nav>
+        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
     </header>
     <main>
         
 <article>
-        <h2>Dlang_gc_series
-            <a href="./index.xml" title="rss feed">
+    <h2>Dlang_gc_series
+        <a href="./index.xml" title="rss feed">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="15%"></rect>
+                <circle cx="145" cy="367" r="35" fill="#fff"></circle>
+                <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
+            </svg>
+        </a>
+    </h2>
 
-                <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
-                    <rect width="512" height="512" rx="15%"></rect>
-                    <circle cx="145" cy="367" r="35" fill="#fff"></circle>
-                    <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
-                </svg>
-            </a>
-        </h2>
-        <p></p>
-        
-        
-        <a href="https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/"><h3>オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/"><h3>オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/06/life-in-the-fast-lane/"><h3>駆け足の人生:GCを減らすための工夫【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/"><h3>死神を恐れないで - GCについて知る【翻訳】</h3></a>
-        
+    <p><p>D言語ブログのGCに関する記事シリーズの翻訳。</p>
+</p>
+
+     
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/">オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-09-30</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/">オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-07-15</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/06/life-in-the-fast-lane/">駆け足の人生:GCを減らすための工夫【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-06-26</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ! 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/">死神を恐れないで - GCについて知る【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-04-16</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         ‪&#34;Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬&#34; 
+    </p>
+     
 </article>
 
         <div class="ad-wrapper"></div>

@@ -49,7 +49,8 @@
         margin: 1em;
     }
     main>article>h2 svg {
-        height: 1ex;
+        height: 1.5ex;
+        fill: #444;
     }
 </style>
 
@@ -57,7 +58,6 @@
 
 <body>
     <header class="site">
-        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
         <nav>
             <ul>
                 <li><a href="/about">ABOUT</a></li>
@@ -67,37 +67,109 @@
                 
             </ul>
         </nav>
+        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
     </header>
     <main>
         
 <article>
-        <h2>Github
-            <a href="./index.xml" title="rss feed">
+    <h2>Github
+        <a href="./index.xml" title="rss feed">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="15%"></rect>
+                <circle cx="145" cy="367" r="35" fill="#fff"></circle>
+                <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
+            </svg>
+        </a>
+    </h2>
 
-                <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
-                    <rect width="512" height="512" rx="15%"></rect>
-                    <circle cx="145" cy="367" r="35" fill="#fff"></circle>
-                    <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
-                </svg>
-            </a>
-        </h2>
-        <p></p>
-        
-        
-        <a href="https://blog.kotet.jp/2018/04/toc-on-github-pages/"><h3>GitHub Pagesでも目次(ToC)は作れる</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/01/jekyll-templates-update/"><h3>記事の編集履歴、PR作成、ソース表示 in GitHub Pages 2018</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/10/relative-template/"><h3>GitHub Pagesで相対パスを使う</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/07/fix-mathjax-cdn/"><h3>MathJaxのCDNが警告を発しつつも使えてしまっていた</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/05/commits-and-edit/"><h3>記事の編集履歴、PR作成、その他Qiitaにあるような3つの機能の代替</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/02/links-on-github/"><h3>コミットメッセージ上で他のリポジトリの特定のコミットを参照する等</h3></a>
-        
-        <a href="https://blog.kotet.jp/2016/12/a2203a400136ba50b41e/"><h3>GitHubのissueを悪用して画像をホストする</h3></a>
-        
+    <p><p>GitHubに関する記事。</p>
+</p>
+
+     
+    <h3>
+        <a href="/tags/jekyll">#jekyll</a>
+        <a href="https://blog.kotet.jp/2018/04/toc-on-github-pages/">GitHub Pagesでも目次(ToC)は作れる</a>
+    </h3>
+    <p>
+        <time>2018-04-11</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         スクロールがめんどくさくなってきたので目次(Table of Contents: ToC)を設置しようと思った。 しかしGitHub Pagesでは新しいプラグインの導 
+    </p>
+      
+    <h3>
+        <a href="/tags/jekyll">#jekyll</a>
+        <a href="https://blog.kotet.jp/2018/01/jekyll-templates-update/">記事の編集履歴、PR作成、ソース表示 in GitHub Pages 2018</a>
+    </h3>
+    <p>
+        <time>2018-01-01</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         以前書いた記事 のJekyllテンプレートが動かなくなっていた。現在でも使えるように書き換えていく。 
+    </p>
+      
+    <h3>
+        <a href="/tags/jekyll">#jekyll</a>
+        <a href="https://blog.kotet.jp/2017/10/relative-template/">GitHub Pagesで相対パスを使う</a>
+    </h3>
+    <p>
+        <time>2017-10-23</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         IPFS上でサイトをホストしたりするとドメインがコロコロ変わったりするので、今のうちにすべてのリンクを相対パスにしておきたくなった。 しかしGitHub Pagesにおいてそれは簡単なことではない。 
+    </p>
+      
+    <h3>
+        <a href="/tags/jekyll">#jekyll</a>
+        <a href="https://blog.kotet.jp/2017/07/fix-mathjax-cdn/">MathJaxのCDNが警告を発しつつも使えてしまっていた</a>
+    </h3>
+    <p>
+        <time>2017-07-06</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。 
+    </p>
+      
+    <h3>
+        <a href="/tags/jekyll">#jekyll</a>
+        <a href="https://blog.kotet.jp/2017/05/commits-and-edit/">記事の編集履歴、PR作成、その他Qiitaにあるような3つの機能の代替</a>
+    </h3>
+    <p>
+        <time>2017-05-10</time>
+         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         追記：現在は以下のテンプレートは動かないかもしれない。更新版 このサイトの各ページの下にある&rdquo;Improve this page&rdquo 
+    </p>
+      
+    <h3>
+        <a href="/tags/github">#github</a>
+        <a href="https://blog.kotet.jp/2017/02/links-on-github/">コミットメッセージ上で他のリポジトリの特定のコミットを参照する等</a>
+    </h3>
+    <p>
+        <time>2017-02-28</time>
+         <a href="/tags/github">#github</a>  <a href="/tags/tech">#tech</a> 
+    </p>
+    <p>
+         GitHubには、Issue番号などを自動的にリンクにする機能がある。 他のリポジトリの特定のコミットを参照したかったのだが、なかなか方法が見 
+    </p>
+      
+    <h3>
+        <a href="/tags/qiita">#qiita</a>
+        <a href="https://blog.kotet.jp/2016/12/a2203a400136ba50b41e/">GitHubのissueを悪用して画像をホストする</a>
+    </h3>
+    <p>
+        <time>2016-12-14</time>
+         <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/github">#github</a> 
+    </p>
+    <p>
+         知らなかったので投稿。DashというDで書かれたゲームエンジンがあるのだが、そのreadmeの一番上にあるでっかいロゴの画像ファイルがどこにおいてあるのか気になった。 
+    </p>
+     
 </article>
 
         <div class="ad-wrapper"></div>

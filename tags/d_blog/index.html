@@ -49,7 +49,8 @@
         margin: 1em;
     }
     main>article>h2 svg {
-        height: 1ex;
+        height: 1.5ex;
+        fill: #444;
     }
 </style>
 
@@ -57,7 +58,6 @@
 
 <body>
     <header class="site">
-        <h1><a href="/">Kotet&#39;s Personal Blog</a></h1>
         <nav>
             <ul>
                 <li><a href="/about">ABOUT</a></li>
@@ -67,59 +67,243 @@
                 
             </ul>
         </nav>
+        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
     </header>
     <main>
         
 <article>
-        <h2>D_blog
-            <a href="./index.xml" title="rss feed">
+    <h2>D_blog
+        <a href="./index.xml" title="rss feed">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="15%"></rect>
+                <circle cx="145" cy="367" r="35" fill="#fff"></circle>
+                <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
+            </svg>
+        </a>
+    </h2>
 
-                <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512">
-                    <rect width="512" height="512" rx="15%"></rect>
-                    <circle cx="145" cy="367" r="35" fill="#fff"></circle>
-                    <path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"></path>
-                </svg>
-            </a>
-        </h2>
-        <p></p>
-        
-        
-        <a href="https://blog.kotet.jp/2018/09/dmd-2-082-0-released/"><h3>DMD 2.082.0 Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/03/ldc-1-8-0-released/"><h3>LDC 1.8.0 Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/03/d-compute-running-d-on-the-gpu/"><h3>DCompute:GPU上で走るD【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/"><h3>DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/03/dmd-2-079-0-released/"><h3>DMD 2.079.0 Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/"><h3>プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/"><h3>DMD 2.078.0 Has Been Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/"><h3>Dの新しい名前修飾【抄訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/12/interfacing-d-with-c-getting-started/"><h3>DとCのインターフェース:入門編【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/11/dmd-2-077-0-released/"><h3>DMD 2.077.0 Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/"><h3>オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/09/dmd-2-076-0-released/"><h3>DMD 2.076.0 Released【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/"><h3>オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/07/compile-time-sort-in-d/"><h3>Dにおけるコンパイル時ソート【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/06/life-in-the-fast-lane/"><h3>駆け足の人生:GCを減らすための工夫【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/"><h3>automem: DのハンズフリーRAII【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/"><h3>死神を恐れないで - GCについて知る【翻訳】</h3></a>
-        
-        <a href="https://blog.kotet.jp/2017/04/the-new-ctfe-engine/"><h3>新・CTFEエンジンについて【翻訳】</h3></a>
-        
+    <p><p>D言語ブログ（
+<a href="https://blog.dlang.org">blog.dlang.org</a>
+）の翻訳記事。</p>
+</p>
+
+     
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/09/dmd-2-082-0-released/">DMD 2.082.0 Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-09-06</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         週末、DMD 2.082.0 がリリースされました。 このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、 76の Bugzilla issues のクローズが含まれます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/03/ldc-1-8-0-released/">LDC 1.8.0 Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-03-10</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         Co-maintainerのDavid NadlingerがDConf 2013のトークで話したように、 LDC、LLVMバックエンドを使ったD言語コンパイラはここ十数年活発に開発されてきました。 GCCバックエンドを使いGCCへ追加された GDCと合わせてDの2大プロダクションコンパイラだと考えられています。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/03/d-compute-running-d-on-the-gpu/">DCompute:GPU上で走るD【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-03-08</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         これはDComputeの2つ目の記事です。 前回の記事では、DComputeの発展と小さな例を扱いました。 カーネルをビルドすることには成功しましたが、それを既存のフレームワークや自力で簡単に実行する方法はありませんでした。 しかし今はそんなことはありません。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/">DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-03-07</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/03/dmd-2-079-0-released/">DMD 2.079.0 Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-03-05</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         D言語財団はDプログラミング言語のリファレンスコンパイラ、DMDのバージョン2.079.0をアナウンスします。  
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/">プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-03-04</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         簡単に発生し、チェックが難しく、たいていテストにも引っかからず、 デプロイされるとあなたの城を粉砕する、 そんなバグに苦労したことはありませんか? そういうバグはあなたの時間と金銭を何度も奪ってゆきます。 自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう? 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/">DMD 2.078.0 Has Been Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2018-01-19</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/">Dの新しい名前修飾【抄訳】</a>
+    </h3>
+    <p>
+        <time>2018-01-15</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/12/interfacing-d-with-c-getting-started/">DとCのインターフェース:入門編【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-12-10</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_and_c">#d_and_c</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/11/dmd-2-077-0-released/">DMD 2.077.0 Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-11-04</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         D FoundationはDMD 2.077.0を発表しました。 このDプログラミング言語のリファレンスコンパイラの最新のリリースはdlang.orgのダウンロードページから利用できます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/">オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-09-30</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/09/dmd-2-076-0-released/">DMD 2.076.0 Released【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-09-03</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/">オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-07-15</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/07/compile-time-sort-in-d/">Dにおけるコンパイル時ソート【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-07-09</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/06/life-in-the-fast-lane/">駆け足の人生:GCを減らすための工夫【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-06-26</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ! 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/06/automem-hands-free-raii-for-d/">automem: DのハンズフリーRAII【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-06-18</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         ガベージコレクトをする言語はフレーム問題に苦しむ傾向があり、Dもその例外ではありません。 マーク・アンド・スイープ・ガベージコレクタを取り入れることは簡単かつ便利な安全メモリ管理を実現しますが、 しかし、GCが一般的にパフォーマンスキラーであるという広まった認識、 たったそれだけのために多くの潜在的ユーザを遠ざけてしまいます。 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/">死神を恐れないで - GCについて知る【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-04-16</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         ‪&#34;Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬&#34; 
+    </p>
+      
+    <h3>
+        <a href="/tags/dlang">#dlang</a>
+        <a href="https://blog.kotet.jp/2017/04/the-new-ctfe-engine/">新・CTFEエンジンについて【翻訳】</a>
+    </h3>
+    <p>
+        <time>2017-04-13</time>
+         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
+    </p>
+    <p>
+         9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。 
+    </p>
+     
 </article>
 
         <div class="ad-wrapper"></div>
