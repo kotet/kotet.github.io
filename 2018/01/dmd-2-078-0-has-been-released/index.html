@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang DMD 2.078.0 Has Been Released【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang DMD 2.078.0 Has Been Released【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,126 +6,21 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        DMD 2.078.0 Has Been Released【翻訳】
-    </h2>
-    <p>
-        <time>2018-01-19</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#cランタイムのコンストラクションとデストラクション">Cランタイムのコンストラクションとデストラクション</a></li>
-<li><a href="#betterc-のraii"><code>-betterC</code>のRAII</a></li>
-<li><a href="#選択的-moduleinfo">選択的<code>ModuleInfo</code></a></li>
-<li><a href="#その他の変更">その他の変更</a></li>
-<li><a href="#2018年に向けて">2018年に向けて</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事は
-<a href="https://dlang.org/blog/2018/01/04/dmd-2-078-0-has-been-released/">DMD 2.078.0 Has Been Released – The D Blog</a>
+</script><title>#dlang DMD 2.078.0 Has Been Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.078.0 Has Been Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。 完全なチェンジログはdlang.orgで見ることができ、あなたのプラットフォーム向けのコンパイラがメインダウンロードページか2.078.0 リリースディレクトリからダウンロードできます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/01/dmd-2-078-0-has-been-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+DMD 2.078.0 Has Been Released【翻訳】</h2><p><time>2018-01-19</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#cランタイムのコンストラクションとデストラクション>Cランタイムのコンストラクションとデストラクション</a></li><li><a href=#betterc-のraii><code>-betterC</code>のRAII</a></li><li><a href=#選択的-moduleinfo>選択的<code>ModuleInfo</code></a></li><li><a href=#その他の変更>その他の変更</a></li><li><a href=#2018年に向けて>2018年に向けて</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は
+<a href=https://dlang.org/blog/2018/01/04/dmd-2-078-0-has-been-released/>DMD 2.078.0 Has Been Released – The D Blog</a>
 を自分用に翻訳したものを
-<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
-公開するものである。</p>
-
-<p>ソース中にコメントの形で原文を残している。
+<a href=http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631>許可を得て</a>
+公開するものである。</p><p>ソース中にコメントの形で原文を残している。
 誤字や誤訳など気になったら
-<a href="https://github.com/kotet/blog.kotet.jp">Pull requestを投げつけて</a>
-くれると喜ぶ。</p>
-
-<hr />
-
-<!-- Another major release of DMD, this time 2.078.0, has been packaged and delivered in time for the new year. See the full changelog at [dlang.org](https://dlang.org/changelog/2.078.0.html) and download the compiler for your platform either from the [main download](https://dlang.org/download.html) page or [the 2.078.0 release directory](http://downloads.dlang.org/releases/2.x/2.078.0/). -->
-
-<p>DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。
-完全なチェンジログは<a href="https://dlang.org/changelog/2.078.0.html">dlang.org</a>で見ることができ、あなたのプラットフォーム向けのコンパイラが<a href="https://dlang.org/download.html">メインダウンロード</a>ページか<a href="http://downloads.dlang.org/releases/2.x/2.078.0/">2.078.0 リリースディレクトリ</a>からダウンロードできます。</p>
-
-<!-- This release brings a number of quality-of-life improvements, fixing some minor annoyances and inconsistencies, three of which are targeted at smoothing out the experience of programming in D without DRuntime. -->
-
-<p>このリリースでは複数のQoLの改善、軽微な問題や矛盾の修正が提供され、そのうち3つはDRuntimeを使わずにDでプログラミングをする際の問題を解決するためのものです。</p>
-
-<!-- ### C runtime construction and destruction -->
-
-<h3 id="cランタイムのコンストラクションとデストラクション">Cランタイムのコンストラクションとデストラクション</h3>
-
-<!-- D has included [static constructors and destructors](https://dlang.org/spec/class.html#StaticConstructor), both as aggregate type members and at module level, for most of its existence. The former are called in lexical order as DRuntime goes through its initialization routine, and the latter are called in reverse lexical order as the runtime shuts down. But when programming in an environment without DRuntime, such as when using [the `-betterC` compiler switch](https://dlang.org/spec/betterc.html), or using a stubbed-out runtime, static construction and destruction are not available. -->
-
-<p>Dには<a href="https://dlang.org/spec/class.html#StaticConstructor">静的コンストラクタ/デストラクタ</a>があり、大抵aggregate typeのメンバとしてや、モジュールレベルに存在します。
+<a href=https://github.com/kotet/blog.kotet.jp>Pull requestを投げつけて</a>
+くれると喜ぶ。</p><hr><p>DMDのメジャーリリース、2.078.0が新年にパッケージされ、提供されていました。
+完全なチェンジログは<a href=https://dlang.org/changelog/2.078.0.html>dlang.org</a>で見ることができ、あなたのプラットフォーム向けのコンパイラが<a href=https://dlang.org/download.html>メインダウンロード</a>ページか<a href=http://downloads.dlang.org/releases/2.x/2.078.0/>2.078.0 リリースディレクトリ</a>からダウンロードできます。</p><p>このリリースでは複数のQoLの改善、軽微な問題や矛盾の修正が提供され、そのうち3つはDRuntimeを使わずにDでプログラミングをする際の問題を解決するためのものです。</p><h3 id=cランタイムのコンストラクションとデストラクション>Cランタイムのコンストラクションとデストラクション</h3><p>Dには<a href=https://dlang.org/spec/class.html#StaticConstructor>静的コンストラクタ/デストラクタ</a>があり、大抵aggregate typeのメンバとしてや、モジュールレベルに存在します。
 コンストラクタはDRuntimeの初期化ルーチンの間にレキシカルオーダーで呼ばれ、デストラクタはランタイムが終了する時に逆順に呼ばれます。
-しかし<a href="https://dlang.org/spec/betterc.html"><code>-betterC</code>コンパイラスイッチ</a>を使うなどしてDRuntimeのない環境でプログラミングをする時や、ランタイムが途中でなくなった時には、静的コンストラクションとデストラクションができなくなります。</p>
-
-<!-- DMD 2.078.0 brings static module construction and destruction to those environments in the form of [two new pragmas](https://dlang.org/changelog/2.078.0.html#crt-constructor), `pragma(crt_constructor)` and `pragma(crt_destructor)` respectively. The former causes any function to which it’s applied to be executed before the C `main`, and the latter after the C `main`, as in this example: -->
-
-<p>DMD 2.078.0はそれらの環境に静的モジュールコンストラクションとデストラクションを、それぞれ<code>pragma(crt_constructor)</code>、<code>pragma(crt_destructor)</code>という<a href="https://dlang.org/changelog/2.078.0.html#crt-constructor">新しい2つのプラグマ</a>の形で導入します。
-前者は関数をCの<code>main</code>よりも前に、後者はCの<code>main</code>よりも後に実行させます。たとえばこのように:</p>
-
-<!-- **crun1.d** -->
-
-<p><strong>crun1.d</strong></p>
-
-<!-- ```d
-// Compile with:    dmd crun1.d
-// Alternatively:   dmd -betterC crun1.d
-
-import core.stdc.stdio;
-
-// Each of the following functions should have
-// C linkage (cdecl).
-extern(C):
-
-pragma(crt_constructor)
-void init()
-{
-    puts("init");
-}
-
-pragma(crt_destructor)
-void fini()
-{
-    puts("fini");
-}
-
-void main()
-{
-    puts("C main");
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// コンパイル方法:    dmd crun1.d
+しかし<a href=https://dlang.org/spec/betterc.html><code>-betterC</code>コンパイラスイッチ</a>を使うなどしてDRuntimeのない環境でプログラミングをする時や、ランタイムが途中でなくなった時には、静的コンストラクションとデストラクションができなくなります。</p><p>DMD 2.078.0はそれらの環境に静的モジュールコンストラクションとデストラクションを、それぞれ<code>pragma(crt_constructor)</code>、<code>pragma(crt_destructor)</code>という<a href=https://dlang.org/changelog/2.078.0.html#crt-constructor>新しい2つのプラグマ</a>の形で導入します。
+前者は関数をCの<code>main</code>よりも前に、後者はCの<code>main</code>よりも後に実行させます。たとえばこのように:</p><p><strong>crun1.d</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// コンパイル方法:    dmd crun1.d
 // または:   dmd -betterC crun1.d
 
 import core.stdc.stdio;
@@ -192,57 +44,13 @@ void fini()
 void main()
 {
     puts(&#34;C main&#34;);
-}</code></pre></div>
-<!-- The compiler requires that any function annotated with the new pragmas be declared with the `extern(C)` [linkage attribute](https://dlang.org/spec/attribute.html#linkage). In this example, though it isn’t required, `main` is also declared as `extern(C)`. The colon syntax on line 8 applies the attribute to every function that follows, up to the end of the module or until a new linkage attribute appears. -->
-
-<p>新しいプラグマのついた関数は<code>extern(C)</code><a href="https://dlang.org/spec/attribute.html#linkage">リンケージ属性</a>で宣言される必要があります。
+}</code></pre></div><p>新しいプラグマのついた関数は<code>extern(C)</code><a href=https://dlang.org/spec/attribute.html#linkage>リンケージ属性</a>で宣言される必要があります。
 この例では<code>main</code>も、必須ではありませんが<code>extern(C)</code>として宣言されています。
-8行目のコロンによってそれ以降、モジュールの終わりか新しいリンケージ属性が適用されるまでのすべての関数に属性が適用されます。</p>
-
-<!-- In a normal D program, the C `main` is the entry point for DRuntime and is generated by the compiler. When the C runtime calls the C `main`, the D runtime does its initialization, which includes starting up the GC, executing static constructors, gathering command-line arguments into a string array, and calling the application’s `main` function, a.k.a. D `main`. -->
-
-<p>通常のDのプログラムでは、Cの<code>main</code>はDRuntimeのエントリポイントでありコンパイラによって生成されます。
-CのランタイムがCの<code>main</code>を呼ぶと、DのランタイムはGCの開始、静的コンストラクタの実行、コマンドライン引数の文字列配列化、アプリケーションの<code>main</code>関数、つまりDの<code>main</code>の呼び出しなどの初期化を行います。</p>
-
-<!-- When a D module’s `main` is annotated with `extern(C)`, it essentially replaces DRuntime’s implementation, as the compiler will never generate a C `main` function for the runtime in that case. If `-betterC` is not supplied on the command line, or an alternative implementation is not provided, DRuntime itself is still available and can be manually initialized and terminated. -->
-
-<p>Dのモジュールの<code>main</code>に<code>extern(C)</code>がついている時はコンパイラがCの<code>main</code>関数を生成しないため、DRuntimeの実装が根本的に置き換えられます。
-<code>-betterC</code>がコマンドラインに与えられていない、または置き換え実装が提供されていない場合、DRuntimeは利用可能で手動で初期化/終了できます。</p>
-
-<!-- The example above is intended to clearly show that the `crt_constructor` pragma will cause `init` to execute before the C `main` and the `crt_destructor` causes `fini` to run after. This introduces new options for scenarios where DRuntime is unavailable. However, take away the `extern(C)` from `main` and the same execution order will print to the command line: -->
-
-<p>上の例は明らかに<code>crt_constructor</code>プラグマが<code>init</code>の実行をCの<code>main</code>よりも前に発生させ、<code>crt_destructor</code>が<code>fini</code>を後に実行させることを示しています。
+8行目のコロンによってそれ以降、モジュールの終わりか新しいリンケージ属性が適用されるまでのすべての関数に属性が適用されます。</p><p>通常のDのプログラムでは、Cの<code>main</code>はDRuntimeのエントリポイントでありコンパイラによって生成されます。
+CのランタイムがCの<code>main</code>を呼ぶと、DのランタイムはGCの開始、静的コンストラクタの実行、コマンドライン引数の文字列配列化、アプリケーションの<code>main</code>関数、つまりDの<code>main</code>の呼び出しなどの初期化を行います。</p><p>Dのモジュールの<code>main</code>に<code>extern(C)</code>がついている時はコンパイラがCの<code>main</code>関数を生成しないため、DRuntimeの実装が根本的に置き換えられます。
+<code>-betterC</code>がコマンドラインに与えられていない、または置き換え実装が提供されていない場合、DRuntimeは利用可能で手動で初期化/終了できます。</p><p>上の例は明らかに<code>crt_constructor</code>プラグマが<code>init</code>の実行をCの<code>main</code>よりも前に発生させ、<code>crt_destructor</code>が<code>fini</code>を後に実行させることを示しています。
 これによってDRuntimeが使えない時の新たな選択肢が導入されます。
-しかし、<code>main</code>から<code>extern(C)</code>を取り除き、同じコマンドラインを実行すると:</p>
-
-<!-- **crun2.d** -->
-
-<p><strong>crun2.d</strong></p>
-
-<!-- ```d
-// Compile with:    dmd crun2.d
-
-import core.stdc.stdio;
-
-pragma(crt_constructor)
-extern(C) void init()
-{
-    puts("init");
-}
-
-pragma(crt_destructor)
-extern(C) void fini()
-{
-    puts("fini");
-}
-
-void main()
-{
-    import std.stdio : writeln;
-    writeln("D main");
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// コンパイル方法:    dmd crun2.d
+しかし、<code>main</code>から<code>extern(C)</code>を取り除き、同じコマンドラインを実行すると:</p><p><strong>crun2.d</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// コンパイル方法:    dmd crun2.d
 
 import core.stdc.stdio;
 
@@ -262,53 +70,14 @@ void main()
 {
     import std.stdio : writeln;
     writeln(&#34;D main&#34;);
-}</code></pre></div>
-<!-- The difference is that the C `main` now belongs to DRuntime and our main is the D `main`. The execution order is: `init`, C `main`, D `main`, `fini`. This means `init` is effectively called before DRuntime is initialized and `fini` after it terminates. Because this example uses the DRuntime function `writeln`, it can’t be compiled with `-betterC`. -->
-
-<p>Cの<code>main</code>はDRuntimeに属し、mainはDの<code>main</code>であるという点が異なります。
+}</code></pre></div><p>Cの<code>main</code>はDRuntimeに属し、mainはDの<code>main</code>であるという点が異なります。
 実行順は<code>init</code>、Cの<code>main</code>、Dの<code>main</code>、<code>fini</code>となります。
 つまり事実上<code>init</code>はDRuntimeが初期化される前に、<code>fini</code>は終了した後に呼ばれます。
-この例はDRuntimeの関数<code>writeln</code>を使うため、<code>-betterC</code>ではコンパイルできません。</p>
-
-<!-- You may discover that `writeln` works if you import it at the top of the module and substitute it for `puts` in the example. However, always remember that even though DRuntime may be available, it’s not in a valid state when a `crt_constructor` and a `crt_destructor` are executed. -->
-
-<p><code>writeln</code>をモジュールの1番上でインポートし、<code>puts</code>と置き換えると動作することに気づいたかもしれません。
-しかしDRuntimeが使えたとしても、<code>crt_constructor</code>や<code>crt_destructor</code>が実行されるときは有効ではないことを忘れないでください。</p>
-
-<!-- ### RAII for `-betterC` -->
-
-<h3 id="betterc-のraii"><code>-betterC</code>のRAII</h3>
-
-<!-- One of the limitations in `-betterC` mode has been the absence of RAII. In normal D code, `struct` destructors are executed when an instance goes out of scope. This is handled by DRuntime, and since the runtime isn’t available in `-betterC` mode, neither are `struct` destructors. With DMD 2.078.0, the _are_ in the preceding sentence [becomes _were_](https://dlang.org/changelog/2.078.0.html#raii). -->
-
-<p><code>-betterC</code>モードの制限のひとつにRAIIの欠如がありました。
+この例はDRuntimeの関数<code>writeln</code>を使うため、<code>-betterC</code>ではコンパイルできません。</p><p><code>writeln</code>をモジュールの1番上でインポートし、<code>puts</code>と置き換えると動作することに気づいたかもしれません。
+しかしDRuntimeが使えたとしても、<code>crt_constructor</code>や<code>crt_destructor</code>が実行されるときは有効ではないことを忘れないでください。</p><h3 id=betterc-のraii><code>-betterC</code>のRAII</h3><p><code>-betterC</code>モードの制限のひとつにRAIIの欠如がありました。
 通常のDのコードでは、<code>struct</code>のデストラクタはインスタンスがスコープから出た時に実行されます。
 これはDRuntimeによって行われ、そして<code>-betterC</code>モードではそのランタイムが使えないため、<code>struct</code>のデストラクタもまた使えません。
-DMD 2.078.0で、それは<a href="https://dlang.org/changelog/2.078.0.html#raii">過去の話になります</a>。</p>
-
-<!-- **destruct.d** -->
-
-<p><strong>destruct.d</strong></p>
-
-<!-- ```d
-// Compile with:    dmd -betterC destruct.d
-
-import core.stdc.stdio : puts;
-
-struct DestroyMe
-{
-    ~this()
-    {
-        puts("Destruction complete.");
-    }
-}
-
-extern(C) void main()
-{
-    DestroyMe d;
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// コンパイル方法:    dmd -betterC destruct.d
+DMD 2.078.0で、それは<a href=https://dlang.org/changelog/2.078.0.html#raii>過去の話になります</a>。</p><p><strong>destruct.d</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// コンパイル方法:    dmd -betterC destruct.d
 
 import core.stdc.stdio : puts;
 
@@ -323,39 +92,7 @@ struct DestroyMe
 extern(C) void main()
 {
     DestroyMe d;
-}</code></pre></div>
-<!-- Interestingly, this is implemented in terms of `try..finally`, so a side-effect is that `-betterC` mode now supports `try` and `finally` blocks: -->
-
-<p>面白いことに、これは<code>try..finally</code>の文脈で実装されており、そのため副作用として<code>-betterC</code>モードが<code>try</code>、<code>finally</code> ブロックをサポートするようになりました:</p>
-
-<!-- **cleanup1.d** -->
-
-<p><strong>cleanup1.d</strong></p>
-
-<!-- ```d
-// Compile with:    dmd -betterC cleanup1.d
-
-import core.stdc.stdlib,
-       core.stdc.stdio;
-
-extern(C) void main()
-{
-    int* ints;
-    try
-    {
-        // acquire resources here
-        ints = cast(int*)malloc(int.sizeof * 10);
-        puts("Allocated!");
-    }
-    finally
-    {
-        // release resources here
-        free(ints);
-        puts("Freed!");
-    }
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// コンパイル方法:    dmd -betterC cleanup1.d
+}</code></pre></div><p>面白いことに、これは<code>try..finally</code>の文脈で実装されており、そのため副作用として<code>-betterC</code>モードが<code>try</code>、<code>finally</code> ブロックをサポートするようになりました:</p><p><strong>cleanup1.d</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// コンパイル方法:    dmd -betterC cleanup1.d
 
 import core.stdc.stdlib,
        core.stdc.stdio;
@@ -375,39 +112,7 @@ extern(C) void main()
         free(ints);
         puts(&#34;Freed!&#34;);
     }
-}</code></pre></div>
-<!-- Since D’s [`scope(exit)` feature](https://dlang.org/spec/statement.html#ScopeGuardStatement) is also implemented in terms of `try..finally`, this is now possible in `-betterC` mode also: -->
-
-<p>Dの<a href="https://dlang.org/spec/statement.html#ScopeGuardStatement"><code>scope(exit)</code>機能</a>も<code>try..finally</code>の文脈で実装されているため、これも<code>-betterC</code>モードで使うことができます:</p>
-
-<!-- **cleanup2.d** -->
-
-<p><strong>cleanup2.d</strong></p>
-
-<!-- ```d
-// Compile with: dmd -betterC cleanup2.d
-
-import core.stdc.stdlib,
-       core.stdc.stdio;
-
-extern(C) void main()
-{
-    auto ints1 = cast(int*)malloc(int.sizeof * 10);
-    scope(exit)
-    {
-        puts("Freeing ints1!");
-        free(ints1);
-    }
-
-    auto ints2 = cast(int*)malloc(int.sizeof * 10);
-    scope(exit)
-    {
-        puts("Freeing ints2!");
-        free(ints2);
-    }
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// コンパイル方法: dmd -betterC cleanup2.d
+}</code></pre></div><p>Dの<a href=https://dlang.org/spec/statement.html#ScopeGuardStatement><code>scope(exit)</code>機能</a>も<code>try..finally</code>の文脈で実装されているため、これも<code>-betterC</code>モードで使うことができます:</p><p><strong>cleanup2.d</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// コンパイル方法: dmd -betterC cleanup2.d
 
 import core.stdc.stdlib,
        core.stdc.stdio;
@@ -427,89 +132,22 @@ extern(C) void main()
         puts(&#34;Freeing ints2!&#34;);
         free(ints2);
     }
-}</code></pre></div>
-<!-- Note that exceptions are not implemented for `-betterC` mode, so there’s no `catch`, `scope(success)`, or `scope(failure)`. -->
-
-<p>例外が<code>-betterC</code>モードで実装されていないため、<code>catch</code>、<code>scope(success)</code>、<code>scope(failure)</code>はありません。</p>
-
-<!-- ### Optional `ModuleInfo` -->
-
-<h3 id="選択的-moduleinfo">選択的<code>ModuleInfo</code></h3>
-
-<!-- One of the seemingly obscure features dependent upon DRuntime is [the `ModuleInfo` type](https://dlang.org/phobos/object.html#.ModuleInfo). It’s a type that works quietly behind the scenes as one of the enabling mechanisms of reflection and most D programmers will likely never hear of it. That is, unless they start trying to stub out their own minimal runtime. That’s when linker errors start cropping up complaining about the missing `ModuleInfo` type, since the compiler will have generated an instance of it for each module in the program. -->
-
-<p>DRuntimeに依存している一見あいまいな機能に<a href="https://dlang.org/phobos/object.html#.ModuleInfo"><code>ModuleInfo</code>型</a>があります。
+}</code></pre></div><p>例外が<code>-betterC</code>モードで実装されていないため、<code>catch</code>、<code>scope(success)</code>、<code>scope(failure)</code>はありません。</p><h3 id=選択的-moduleinfo>選択的<code>ModuleInfo</code></h3><p>DRuntimeに依存している一見あいまいな機能に<a href=https://dlang.org/phobos/object.html#.ModuleInfo><code>ModuleInfo</code>型</a>があります。
 これはリフレクションを実現するために背後で働く型で、ほとんどのDプログラマは聞いたこともありません。
 ランタイムをなくそうとする人を除いて。
-コンパイラがプログラムのモジュールごとにそのインスタンスを生成するため、<code>ModuleInfo</code>型の不足についてリンカエラーがいきなり発生することがあります。</p>
-
-<!-- DMD 2.078.0 [changes things up](https://dlang.org/changelog/2.078.0.html#optional_ModuleInfo). The compiler is aware of the presence of the runtime implementation at compile time, so it can see whether or not the current implementation provides a `ModuleInfo` declaration. If it does, instances will be generated as appropriate. If it doesn’t, then the instances won’t be generated. This makes it just that much easier to stub out your own runtime, which is something you’d want to do if you were, say, [writing a kernel in D](https://dlang.org/blog/2016/06/24/project-highlight-the-powernex-kernel/). -->
-
-<p>DMD 2.078.0は<a href="https://dlang.org/changelog/2.078.0.html#optional_ModuleInfo">それを変更します</a>。
+コンパイラがプログラムのモジュールごとにそのインスタンスを生成するため、<code>ModuleInfo</code>型の不足についてリンカエラーがいきなり発生することがあります。</p><p>DMD 2.078.0は<a href=https://dlang.org/changelog/2.078.0.html#optional_ModuleInfo>それを変更します</a>。
 コンパイラはコンパイル時のランタイム実装の存在を認めることで、現在の実装が<code>ModuleInfo</code>の宣言を提供しているかどうかを確認できます。
 宣言されている場合、インスタンスが適切に生成されます。
 宣言されていない場合、インスタンスは生成されません。
-これにより、たとえば<a href="https://dlang.org/blog/2016/06/24/project-highlight-the-powernex-kernel/">Dでカーネルを書く</a>などする際にランタイムをなくすことが簡単になります。</p>
-
-<!-- ### Other notable changes -->
-
-<h3 id="その他の変更">その他の変更</h3>
-
-<!-- New users of DMD on Windows will now have an easier time getting a 64-bit environment set up. It’s still necessary [to install the Microsoft build tools](https://dlang.org/blog/2017/10/25/dmd-windows-and-c/), but now DMD will [detect the installation](https://dlang.org/changelog/2.078.0.html#vs-auto-detection) of either the Microsoft Build Tools package or Visual Studio at runtime when either `-m64` or `-m32mscoff` is specified on the command line. Previously, configuration was handled automatically only by the installer; manual installs had to be configured manually. -->
-
-<p>WindowsでのDMDの新しいユーザは64ビットの環境をセットアップするのが簡単になりました。
-まだ<a href="https://dlang.org/blog/2017/10/25/dmd-windows-and-c/">Microsoft build toolsのインストール</a>は必要ですが、DMDは<code>-m64</code>または<code>-m32mscoff</code>をコマンドラインで指定して実行された際に、Microsoft Build ToolsパッケージかVisual Studioがインストールされているか<a href="https://dlang.org/changelog/2.078.0.html#vs-auto-detection">自動検出するようになりました</a>。
-以前は自動設定はインストーラのみが行なっており、手動インストールの際は手動で設定する必要がありました。</p>
-
-<!-- DRuntime has been enhanced to allow more fine-grained control over unit tests. Of particular note is the `--DRT-testmode` flag which can be passed to any D executable. With the argument `"run-main"`, the current default, any unit tests present will be run and then `main` will execute if they all pass; with `"test-or-main"`, the planned default beginning with DMD 2.080.0, any unit tests present will run and the program will exit with a summary of the results, otherwise `main` will execute; with `"test-only"`, `main` will not be executed, but test results will still be summarized if present. -->
-
-<p>ユニットテストに対してより粒度の細かいコントロールができるようにDRuntimeが強化されました。
+これにより、たとえば<a href=https://dlang.org/blog/2016/06/24/project-highlight-the-powernex-kernel/>Dでカーネルを書く</a>などする際にランタイムをなくすことが簡単になります。</p><h3 id=その他の変更>その他の変更</h3><p>WindowsでのDMDの新しいユーザは64ビットの環境をセットアップするのが簡単になりました。
+まだ<a href=https://dlang.org/blog/2017/10/25/dmd-windows-and-c/>Microsoft build toolsのインストール</a>は必要ですが、DMDは<code>-m64</code>または<code>-m32mscoff</code>をコマンドラインで指定して実行された際に、Microsoft Build ToolsパッケージかVisual Studioがインストールされているか<a href=https://dlang.org/changelog/2.078.0.html#vs-auto-detection>自動検出するようになりました</a>。
+以前は自動設定はインストーラのみが行なっており、手動インストールの際は手動で設定する必要がありました。</p><p>ユニットテストに対してより粒度の細かいコントロールができるようにDRuntimeが強化されました。
 注目すべき点はDの実行ファイルに渡せる<code>--DRT-testmode</code>フラグです。
 現在のデフォルト引数<code>&quot;run-main&quot;</code>では、存在するユニットテストが全て実行され、それが通った後に<code>main</code>が実行されます。
 DMD 2.080.0からデフォルトになる予定の<code>&quot;test-or-main&quot;</code>が渡された場合、ユニットテストが存在すればそれが実行されて、プログラムはその結果のサマリーを出して終了します。
 ユニットテストが存在しないなら<code>main</code>が実行されます。
-<code>&quot;test-only&quot;</code>の場合<code>main</code>は実行されず、テストが存在すればその結果が要約されます。</p>
-
-<!-- ### Onward into 2018 -->
-
-<h3 id="2018年に向けて">2018年に向けて</h3>
-
-<!-- This is the first DMD release of 2018. We can’t wait to see what the next 12 months bring for the D programming language community. From everyone at the D Language Foundation, we hope you have a very Happy New Year! -->
-
-<p>これは2018年最初のDMDのリリースです。
+<code>&quot;test-only&quot;</code>の場合<code>main</code>は実行されず、テストが存在すればその結果が要約されます。</p><h3 id=2018年に向けて>2018年に向けて</h3><p>これは2018年最初のDMDのリリースです。
 今後12ヶ月間Dプログラミング言語コミュニティで何が起こるか非常に楽しみです。
-D言語財団の皆様、明けましておめでとうございます！</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        DMD 2.078.0 Has Been Released【翻訳】
-    </h2>
-    <p>
-        <time>2018-01-19</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+D言語財団の皆様、明けましておめでとうございます！</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+DMD 2.078.0 Has Been Released【翻訳】</h2><p><time>2018-01-19</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

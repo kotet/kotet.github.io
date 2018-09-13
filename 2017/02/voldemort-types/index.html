@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 名前を言ってはいけないあの型 - Voldemort Types - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/02/voldemort-types/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 名前を言ってはいけないあの型 - Voldemort Types - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" こちら のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。 前提 まずインデックスの2乗が得られる  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/02/voldemort-types/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" こちら のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。 前提 まずインデックスの2乗が得られる ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="こちら のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。 前提 まずインデックスの2乗が得られる"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,59 +6,11 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        名前を言ってはいけないあの型 - Voldemort Types
-    </h2>
-    <p>
-        <time>2017-02-12</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#前提">前提</a></li>
-<li><a href="#voldemort-types">Voldemort Types</a></li>
-<li><a href="#まとめ">まとめ</a></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p><a href="http://p0nce.github.io/d-idioms/#Voldemort-types">こちら</a>
-のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。</p>
-
-<h2 id="前提">前提</h2>
-
-<p>まずインデックスの2乗が得られる構造体があるとする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module voldemort;
+</script><title>#dlang 名前を言ってはいけないあの型 - Voldemort Types - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/02/voldemort-types/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 名前を言ってはいけないあの型 - Voldemort Types - Kotet's Personal Blog"><meta name=og:description content="こちら のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。 前提 まずインデックスの2乗が得られる"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/02/voldemort-types/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+名前を言ってはいけないあの型 - Voldemort Types</h2><p><time>2017-02-12</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><a href=#前提>前提</a></li><li><a href=#voldemort-types>Voldemort Types</a></li><li><a href=#まとめ>まとめ</a></li></ul></li></ul></nav></aside></header><article><p><a href=http://p0nce.github.io/d-idioms/#Voldemort-types>こちら</a>
+のサイトでVoldemort Typesとかいう衝撃的な名前のものを見たのでしっかり読み込んでみた。</p><h2 id=前提>前提</h2><p>まずインデックスの2乗が得られる構造体があるとする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module voldemort;
 
 struct TomRiddle
 {
@@ -109,14 +18,10 @@ struct TomRiddle
     {
         return n*n;
     }
-}</code></pre></div>
-<p>そしてそれを返す関数がある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">TomRiddle generator()
+}</code></pre></div><p>そしてそれを返す関数がある。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>TomRiddle generator()
 {
     return TomRiddle();
-}</code></pre></div>
-<p>このモジュールを使ってこのようなコードを書く。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
+}</code></pre></div><p>このモジュールを使ってこのようなコードを書く。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.stdio;
 import voldemort;
 
 void main()
@@ -126,19 +31,13 @@ void main()
     {
         writeln(square[i]);
     }
-}</code></pre></div>
-<p>実行するとこうなる。</p>
-
-<pre><code>0
+}</code></pre></div><p>実行するとこうなる。</p><pre><code>0
 1
 4
 9
 16
-</code></pre>
-
-<p>ユーザーコードに<code>TomRiddle</code>が出てきているので、カプセル化に失敗している。
-たとえばこの型を<code>Voldemort</code>に変えると当然動かなくなる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module voldemort;
+</code></pre><p>ユーザーコードに<code>TomRiddle</code>が出てきているので、カプセル化に失敗している。
+たとえばこの型を<code>Voldemort</code>に変えると当然動かなくなる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module voldemort;
 
 struct Voldemort
 {
@@ -151,14 +50,8 @@ struct Voldemort
 Voldemort generator()
 {
     return Voldemort();
-}</code></pre></div>
-<pre><code>source/app.d(6,15): Error: undefined identifier 'TomRiddle'
-</code></pre>
-
-<h2 id="voldemort-types">Voldemort Types</h2>
-
-<p>ここで構造体<code>Voldemort</code>の定義を<code>generator</code>の中に入れる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module voldemort;
+}</code></pre></div><pre><code>source/app.d(6,15): Error: undefined identifier 'TomRiddle'
+</code></pre><h2 id=voldemort-types>Voldemort Types</h2><p>ここで構造体<code>Voldemort</code>の定義を<code>generator</code>の中に入れる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module voldemort;
 
 auto generator()
 {
@@ -170,11 +63,9 @@ auto generator()
         }
     }
     return Voldemort();
-}</code></pre></div>
-<p>すると<code>Voldemort</code>はVoldemort Typeになる。
+}</code></pre></div><p>すると<code>Voldemort</code>はVoldemort Typeになる。
 Voldemort Typeは関数の外でその名前を呼ぶことができない。
-以下のようにちゃんと正しい名前で呼んであげてもエラーが出る。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
+以下のようにちゃんと正しい名前で呼んであげてもエラーが出る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.stdio;
 import voldemort;
 
 void main()
@@ -184,13 +75,9 @@ void main()
     {
         writeln(square[i]);
     }
-}</code></pre></div>
-<pre><code>source/app.d(6,15): Error: undefined identifier 'Voldemort', did you mean import 'voldemort'?
-</code></pre>
-
-<p>Voldemort Typeは型推論を介してしか渡すことができなくなる。
-つまりこのようなコードになる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.stdio;
+}</code></pre></div><pre><code>source/app.d(6,15): Error: undefined identifier 'Voldemort', did you mean import 'voldemort'?
+</code></pre><p>Voldemort Typeは型推論を介してしか渡すことができなくなる。
+つまりこのようなコードになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.stdio;
 import voldemort;
 
 void main()
@@ -200,62 +87,15 @@ void main()
     {
         writeln(square[i]);
     }
-}</code></pre></div>
-<pre><code>0
+}</code></pre></div><pre><code>0
 1
 4
 9
 16
-</code></pre>
-
-<p>こんな感じで新しいインスタンスを生成しようとしてみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">auto square = generator();
-typeof(square) square2;</code></pre></div>
-<p>しかしコンパイラは関数のスコープの外で<code>Voldemort</code>がインスタンス化されるのを許さない。</p>
-
-<pre><code>source/app.d(7,20): Error: cannot access frame pointer of voldemort.generator.Voldemort
-</code></pre>
-
-<h2 id="まとめ">まとめ</h2>
-
-<p>Voldemort Typeは型をカプセル化する方法であり、Andrei Alexandrescuによって命名された。
+</code></pre><p>こんな感じで新しいインスタンスを生成しようとしてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto square = generator();
+typeof(square) square2;</code></pre></div><p>しかしコンパイラは関数のスコープの外で<code>Voldemort</code>がインスタンス化されるのを許さない。</p><pre><code>source/app.d(7,20): Error: cannot access frame pointer of voldemort.generator.Voldemort
+</code></pre><h2 id=まとめ>まとめ</h2><p>Voldemort Typeは型をカプセル化する方法であり、Andrei Alexandrescuによって命名された。
 Rangeとかに使うと便利らしい。
-これには実行可能ファイルのサイズが大きくなる欠点があるらしく、それを防ぐためにHorcrux（分霊箱） Methodというのがあるようだが、ちょっとそれはまた今度。</p>
-
-<hr />
-
-<p>追記: オブジェクトファイルが大きくなる問題は<a href="/2017/11/dmd-2-077-0-released">DMD 2.077.0で改善されたらしい</a>。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        名前を言ってはいけないあの型 - Voldemort Types
-    </h2>
-    <p>
-        <time>2017-02-12</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+これには実行可能ファイルのサイズが大きくなる欠点があるらしく、それを防ぐためにHorcrux（分霊箱） Methodというのがあるようだが、ちょっとそれはまた今度。</p><hr><p>追記: オブジェクトファイルが大きくなる問題は<a href=/2017/11/dmd-2-077-0-released>DMD 2.077.0で改善されたらしい</a>。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+名前を言ってはいけないあの型 - Voldemort Types</h2><p><time>2017-02-12</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

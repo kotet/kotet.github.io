@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs体験記 14:IPFSとDocker - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/01/ipfs-docker/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs体験記 14:IPFSとDocker - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" go-ipfsはdockerコンテナを提供している。 たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/01/ipfs-docker/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" go-ipfsはdockerコンテナを提供している。 たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="go-ipfsはdockerコンテナを提供している。 たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,88 +6,16 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>
-        
-        14:IPFSとDocker
-    </h2>
-    <p>
-        <time>2018-01-25</time>
-         <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>  <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    
-</aside>
-</header>
-<article><p><code>go-ipfs</code>は<a href="https://hub.docker.com/r/jbenet/go-ipfs/">dockerコンテナを提供している</a>。
-たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。</p>
-
-<pre><code>docker run -d --restart=always --name ipfs_host -v /home/kotet/Documents:/export -v /home/kotet/.ipfs/:/data/ipfs -p 4001:4001 -p 8080:8080 -p 5001:5001 ipfs/go-ipfs:latest
-</code></pre>
-
-<p>（パスなどを適切に置き換えて）これを実行するとIPFSデーモンが動き出し、ホストが再起動したときにも自動で起動される。
+</script><title>#ipfs体験記 14:IPFSとDocker - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/01/ipfs-docker/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 14:IPFSとDocker - Kotet's Personal Blog"><meta name=og:description content="go-ipfsはdockerコンテナを提供している。 たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/01/ipfs-docker/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+14:IPFSとDocker</h2><p><time>2018-01-25</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p></aside></header><article><p><code>go-ipfs</code>は<a href=https://hub.docker.com/r/jbenet/go-ipfs/>dockerコンテナを提供している</a>。
+たとえば以下のようにコマンド一つでIPFSデーモンが動かせる。</p><pre><code>docker run -d --restart=always --name ipfs_host -v /home/kotet/Documents:/export -v /home/kotet/.ipfs/:/data/ipfs -p 4001:4001 -p 8080:8080 -p 5001:5001 ipfs/go-ipfs:latest
+</code></pre><p>（パスなどを適切に置き換えて）これを実行するとIPFSデーモンが動き出し、ホストが再起動したときにも自動で起動される。
 ローカルIPFSリポジトリが存在しない場合どうなるのかは調べていない。
-<code>/export</code>は<code>ipfs add</code>などファイルを扱うときのルートだろうか。</p>
-
-<p>デーモンのログは標準出力に出しているので<code>docker logs ipfs_host</code>で見られる。
-また、コマンドも<code>docker exec ipfs_host ipfs version</code>のようにして実行できる。</p>
-
-<p>ただ、ローカルゲートウェイやAPIサーバがホストで利用できず、ブラウザ拡張などが動かない。
+<code>/export</code>は<code>ipfs add</code>などファイルを扱うときのルートだろうか。</p><p>デーモンのログは標準出力に出しているので<code>docker logs ipfs_host</code>で見られる。
+また、コマンドも<code>docker exec ipfs_host ipfs version</code>のようにして実行できる。</p><p>ただ、ローカルゲートウェイやAPIサーバがホストで利用できず、ブラウザ拡張などが動かない。
 他ノードとの接続等はちゃんとできているようなのでサーバとして使うぶんには問題ないが、自分はローカルゲートウェイを使うのでひとまず使用を断念した。
-前にも同じような理由でDockerの利用を諦めた気がするので、IPFSの前にまずDockerの知識をつけなければならない……</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>
-        
-        14:IPFSとDocker
-    </h2>
-    <p>
-        <time>2018-01-25</time>
-         <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>  <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+前にも同じような理由でDockerの利用を諦めた気がするので、IPFSの前にまずDockerの知識をつけなければならない……</p></article><footer><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+14:IPFSとDocker</h2><p><time>2018-01-25</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

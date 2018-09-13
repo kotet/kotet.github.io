@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs 非中央集権静的Gitホスティング - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/06/ipfs-git-readonly/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs 非中央集権静的Gitホスティング - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/06/ipfs-git-readonly/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,99 +6,24 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        非中央集権静的Gitホスティング
-    </h2>
-    <p>
-        <time>2018-06-04</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#git-http-s-サーバー">Git HTTP(S)サーバー</a></li>
-<li><a href="#ipfs上でgitリポジトリをホストする">IPFS上でGitリポジトリをホストする</a>
-<ul>
-<li><a href="#1-リポジトリの用意">1. リポジトリの用意</a></li>
-<li><a href="#2-info-refs-ファイルの生成">2. info/refs ファイルの生成</a></li>
-<li><a href="#3-ipfsにアップロード">3. IPFSにアップロード</a></li>
-<li><a href="#4-クローンしてみる">4. クローンしてみる</a></li>
-</ul></li>
-<li><a href="#pushは">Pushは?</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。
+</script><title>#ipfs 非中央集権静的Gitホスティング - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 非中央集権静的Gitホスティング - Kotet's Personal Blog"><meta name=og:description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+非中央集権静的Gitホスティング</h2><p><time>2018-06-04</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#git-http-s-サーバー>Git HTTP(S)サーバー</a></li><li><a href=#ipfs上でgitリポジトリをホストする>IPFS上でGitリポジトリをホストする</a><ul><li><a href=#1-リポジトリの用意>1. リポジトリの用意</a></li><li><a href=#2-info-refs-ファイルの生成>2. info/refs ファイルの生成</a></li><li><a href=#3-ipfsにアップロード>3. IPFSにアップロード</a></li><li><a href=#4-クローンしてみる>4. クローンしてみる</a></li></ul></li><li><a href=#pushは>Pushは?</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。
 最近IPFSの記事を書いていないしノードを動かしてもいなかったが、IPFSを使ったGitリポジトリのホスティング方法を思い出し、
-今試してみたところうまくいったので書く。</p>
-
-<h3 id="git-http-s-サーバー">Git HTTP(S)サーバー</h3>
-
-<p>Gitサーバーには<a href="https://git-scm.com/book/ja/v2/Git%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC-%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB">様々なプロトコルが使える</a>が、
+今試してみたところうまくいったので書く。</p><h3 id=git-http-s-サーバー>Git HTTP(S)サーバー</h3><p>Gitサーバーには<a href=https://git-scm.com/book/ja/v2/Git%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC-%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB>様々なプロトコルが使える</a>が、
 外部に公開するときに一番気軽なのはHTTP/HTTPSを使った方法だと思う。
 <code>git clone http://...</code>とコマンドを入力したとき、GitクライアントはHTTPを使った&rdquo;smart&rdquo; HTTPプロトコルでの通信を試みる。
 認証が求められたりするのはこっち。
 サーバーがSmartプロトコルに反応しなかった場合、Gitクライアントは&rdquo;dumb&rdquo; HTTPプロトコルへフォールバックする。
 これは非常に単純で、サーバーは通常のWebサーバーのように静的ファイルの配信をするだけでいい。
-Gitクライアントは勝手に<code>info/refs</code>ファイルを読んで、それに沿ってファイルをダウンロードしていく<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。</p>
-
-<h3 id="ipfs上でgitリポジトリをホストする">IPFS上でGitリポジトリをホストする</h3>
-
-<p>そういうわけで一般的なWebサーバーがあれば認証なし &amp; 読み込み専用のGitリポジトリは簡単に作ることができる。
-IPFSを使えば中央集権的サーバーを用意することなくホスティングができる。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>
+Gitクライアントは勝手に<code>info/refs</code>ファイルを読んで、それに沿ってファイルをダウンロードしていく<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup>。</p><h3 id=ipfs上でgitリポジトリをホストする>IPFS上でGitリポジトリをホストする</h3><p>そういうわけで一般的なWebサーバーがあれば認証なし &amp; 読み込み専用のGitリポジトリは簡単に作ることができる。
+IPFSを使えば中央集権的サーバーを用意することなくホスティングができる。<sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup>
 それなりに人気のあるハッシュはアップロード者が落ちても有効であり続けるだろう。
-なお今回作ったハッシュは自分がいつもノードを動かしているわけではないしPCの移行のときに維持したりもしないのでたぶん高確率でアクセスできなくなる。</p>
-
-<h4 id="1-リポジトリの用意">1. リポジトリの用意</h4>
-
-<p>好きな方法でベアリポジトリ(作業ディレクトリのないリポジトリ)を作る。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ git clone --bare git@github.com:kotet/kotet.github.io.git</code></pre></div>
-<h4 id="2-info-refs-ファイルの生成">2. info/refs ファイルの生成</h4>
-
-<p><code>git update-server-info</code>で<code>info/refs</code>を生成する。
-自分の環境だと補完も働かないし実行してもなにも出力されないしで本当にうまく行ったのか不安だった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cd kotet.github.io.git/
-$ git update-server-info</code></pre></div>
-<p>確認してみるとちゃんとファイルが生成されているのがわかる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat info/refs 
-2e7df24a1aea2df87604ab14ff417a55c4936259	refs/heads/master</code></pre></div>
-<h4 id="3-ipfsにアップロード">3. IPFSにアップロード</h4>
-
-<p>ディレクトリ全体をまとめて追加する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs add -r .
+なお今回作ったハッシュは自分がいつもノードを動かしているわけではないしPCの移行のときに維持したりもしないのでたぶん高確率でアクセスできなくなる。</p><h4 id=1-リポジトリの用意>1. リポジトリの用意</h4><p>好きな方法でベアリポジトリ(作業ディレクトリのないリポジトリ)を作る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone --bare git@github.com:kotet/kotet.github.io.git</code></pre></div><h4 id=2-info-refs-ファイルの生成>2. info/refs ファイルの生成</h4><p><code>git update-server-info</code>で<code>info/refs</code>を生成する。
+自分の環境だと補完も働かないし実行してもなにも出力されないしで本当にうまく行ったのか不安だった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cd kotet.github.io.git/
+$ git update-server-info</code></pre></div><p>確認してみるとちゃんとファイルが生成されているのがわかる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat info/refs 
+2e7df24a1aea2df87604ab14ff417a55c4936259	refs/heads/master</code></pre></div><h4 id=3-ipfsにアップロード>3. IPFSにアップロード</h4><p>ディレクトリ全体をまとめて追加する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs add -r .
 added QmWeKwYTKwBwVd7AKioXTmtpLFxTk3MBBk2ef2JtwCccAi kotet.github.io.git/HEAD
 added Qmf7tR49yWCra16eNFVuAv4guxxaugbpmhBRrE8SAESmiJ kotet.github.io.git/config
 added Qmdy135ZFG4kUALkaMhr6Cy3VhhkxyAh264kyg3725x8be kotet.github.io.git/description
@@ -171,67 +53,17 @@ added Qmd17UPVXHwasLs9H8DJ5khce9LN1xKHjtVpnYE5yGK25s kotet.github.io.git/objects
 added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn kotet.github.io.git/refs/heads
 added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn kotet.github.io.git/refs/tags
 added QmWYtSEta2Fzgy4u4ttdwwiKMUikwZrFHxa5quWXMVyBhy kotet.github.io.git/refs
-added QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS kotet.github.io.git</code></pre></div>
-<h4 id="4-クローンしてみる">4. クローンしてみる</h4>
-
-<p>とりあえずローカルのゲートウェイからクローンしてみる。
-一瞬で終わる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ git clone http://localhost:8080/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
-Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div>
-<p>次にパブリックゲートウェイからクローンしてみる。
+added QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS kotet.github.io.git</code></pre></div><h4 id=4-クローンしてみる>4. クローンしてみる</h4><p>とりあえずローカルのゲートウェイからクローンしてみる。
+一瞬で終わる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone http://localhost:8080/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
+Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div><p>次にパブリックゲートウェイからクローンしてみる。
 こちらは初回はパブリックゲートウェイのノードがこちらのノードを見つけ出してコンテンツを取りに来るぶん遅かったりタイムアウトしたりする。
 初回クローンのあとしばらく、パブリックゲートウェイのノードでGCが走るまでは高速にクローンできる。
-記事の最初のほうでGitHubからクローンしてきたときより速いかもしれない……</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ git clone https://ipfs.io/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
-Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div>
-<h3 id="pushは">Pushは?</h3>
-
-<p>当たり前だが今回はただファイルをアップロードしただけなので更新とかはできない。
+記事の最初のほうでGitHubからクローンしてきたときより速いかもしれない……</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone https://ipfs.io/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
+Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div><h3 id=pushは>Pushは?</h3><p>当たり前だが今回はただファイルをアップロードしただけなので更新とかはできない。
 一応上記の手順を毎回やって、IPNSと組み合わせることでリポジトリを最新の状態に保つことができるがめんどくさいので多分誰もやらない。
 IPFSでそういうことをするためにはクライアント側で工夫が必要で、そういうツールがちゃんと存在するのだがそれはまたそのうち書く。
-たぶん。</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1"><a href="https://git-scm.com/book/ja/v2/Git%E3%81%AE%E5%86%85%E5%81%B4-%E8%BB%A2%E9%80%81%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB">Git - 転送プロトコル</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="https://ipfs.io/docs/examples/example-viewer/example#../git/readme.md">ipfs example | Git, even more distributed</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-</ol>
-</div>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        非中央集権静的Gitホスティング
-    </h2>
-    <p>
-        <time>2018-06-04</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+たぶん。</p><div class=footnotes><hr><ol><li id=fn:1><a href=https://git-scm.com/book/ja/v2/Git%E3%81%AE%E5%86%85%E5%81%B4-%E8%BB%A2%E9%80%81%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB>Git - 転送プロトコル</a>
+<a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li><li id=fn:2><a href=https://ipfs.io/docs/examples/example-viewer/example#../git/readme.md>ipfs example | Git, even more distributed</a>
+<a class=footnote-return href=#fnref:2><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+非中央集権静的Gitホスティング</h2><p><time>2018-06-04</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

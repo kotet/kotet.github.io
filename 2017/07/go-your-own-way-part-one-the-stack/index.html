@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,118 +6,44 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】
-    </h2>
-    <p>
-        <time>2017-07-15</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#スタックアロケーション">スタックアロケーション</a></li>
-<li><a href="#静的配列">静的配列</a></li>
-<li><a href="#構造体とクラス">構造体とクラス</a></li>
-<li><a href="#alloca">alloca</a></li>
-<li><a href="#シンプルな例">シンプルな例</a></li>
-<li><a href="#結論">結論</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事は、</p>
-
-<p><a href="http://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/">Go Your Own Way (Part One: The Stack) – The D Blog</a><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
-<p>を自分用に翻訳したものを
-<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
-公開するものである。</p>
-
-<p>誤字や誤訳などを見つけたら今すぐ
-<a href="https://github.com/kotet/blog.kotet.jp">Pull request</a>だ!</p>
-
-<hr />
-
-<p>これは<a href="https://dlang.org/blog/category/gc/">GCシリーズ</a>
-(訳注: <a href="/tags/#dlang_gc_series">翻訳版</a>)の3番めの投稿です。
-<a href="https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/">最初の投稿</a>
-(訳注: <a href="/2017/04/dont-fear-the-reaper">翻訳版</a>)で、
+</script><title>#dlang オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事は、 Go Your Own Way (Part One: The Stack) – The D Blog1 を自分用に翻訳したものを 許可を得て 公開するものである。 誤字や誤訳などを見つけたら今すぐ Pull requestだ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/07/go-your-own-way-part-one-the-stack/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</h2><p><time>2017-07-15</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#スタックアロケーション>スタックアロケーション</a></li><li><a href=#静的配列>静的配列</a></li><li><a href=#構造体とクラス>構造体とクラス</a></li><li><a href=#alloca>alloca</a></li><li><a href=#シンプルな例>シンプルな例</a></li><li><a href=#結論>結論</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=http://dlang.org/blog/2017/07/07/go-your-own-way-part-one-the-stack/>Go Your Own Way (Part One: The Stack) – The D Blog</a><sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></p><p>を自分用に翻訳したものを
+<a href=http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631>許可を得て</a>
+公開するものである。</p><p>誤字や誤訳などを見つけたら今すぐ
+<a href=https://github.com/kotet/blog.kotet.jp>Pull request</a>だ!</p><hr><p>これは<a href=https://dlang.org/blog/category/gc/>GCシリーズ</a>
+(訳注: <a href=/tags/#dlang_gc_series>翻訳版</a>)の3番めの投稿です。
+<a href=https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/>最初の投稿</a>
+(訳注: <a href=/2017/04/dont-fear-the-reaper>翻訳版</a>)で、
 私はDのガベージコレクタとそれを必要とする言語機能を紹介し、
 それを効率的に使うシンプルな戦略に触れました。
-<a href="https://dlang.org/blog/2017/06/16/life-in-the-fast-lane/">2番めの投稿</a>
-(訳注: <a href="/2017/06/life-in-the-fast-lane">翻訳版</a>)では、
+<a href=https://dlang.org/blog/2017/06/16/life-in-the-fast-lane/>2番めの投稿</a>
+(訳注: <a href=/2017/06/life-in-the-fast-lane>翻訳版</a>)では、
 言語機能とライブラリによって提供される、コードベースの特定の部分でGCを無効にしたり禁止したりするツールや、
 そのような努力の助けになるコンパイラの使い方を紹介し、
 また最初からGCを含むようDプログラムを書き、その影響を軽減するためのシンプルな戦略を利用し、
 プロファイリングがそれを正当化する結果を示した時にはじめてGCを避けるよう調整したり、
-その使い方を深く最適化することを推奨しました。</p>
-
-<p>ガベージコレクションが<code>GC.disable</code>によって切られたり<code>@nogc</code>関数アノテーションによて防がれた時でも、
+その使い方を深く最適化することを推奨しました。</p><p>ガベージコレクションが<code>GC.disable</code>によって切られたり<code>@nogc</code>関数アノテーションによて防がれた時でも、
 メモリはどこからかアロケートする必要があります。
 GCを完全に含む時であっても、GCヒープアロケーションのサイズと回数を減らすのは望ましいことです。
 つまりスタックか、非GCヒープからアロケーティングをするということです。
 この投稿では前者に注目します。
-非GCヒープアロケーションはシリーズの次の投稿でカバーします。</p>
-
-<h3 id="スタックアロケーション">スタックアロケーション</h3>
-
-<p>Dにおける最もシンプルなアロケーション戦略はCのそれと同じものです:
+非GCヒープアロケーションはシリーズの次の投稿でカバーします。</p><h3 id=スタックアロケーション>スタックアロケーション</h3><p>Dにおける最もシンプルなアロケーション戦略はCのそれと同じものです:
 ヒープを避け、可能な限りスタックを使う。
 ローカル配列が必要でそのサイズがコンパイル時にわかっている場合は、動的配列よりも静的配列を使ってください。
 値型でありデフォルトではスタックからアロケートされる構造体は、可能であれば、
 参照型であり通常はヒープからアロケートされるクラスなどよりも好ましいものです。
-ここでDのコンパイル時言語機能はそれがなければできなかった可能性を与えてくれます。</p>
-
-<h3 id="静的配列">静的配列</h3>
-
-<p>Dの静的配列の宣言にはコンパイル時にわかる長さが必要です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// OK
+ここでDのコンパイル時言語機能はそれがなければできなかった可能性を与えてくれます。</p><h3 id=静的配列>静的配列</h3><p>Dの静的配列の宣言にはコンパイル時にわかる長さが必要です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// OK
 int[10] nums;
 
 // Error: variable x cannot be read at compile time
 int x = 10;
-int[x] err;</code></pre></div>
-<p>動的配列とは違い、静的配列はGCヒープからのアロケーションなしに配列リテラルで初期化可能です。
-その長さはぴったり合っていなければならず、そうでなければコンパイラはエラーを送出します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">@nogc void main() {
+int[x] err;</code></pre></div><p>動的配列とは違い、静的配列はGCヒープからのアロケーションなしに配列リテラルで初期化可能です。
+その長さはぴったり合っていなければならず、そうでなければコンパイラはエラーを送出します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@nogc void main() {
     int[3] nums = [1, 2, 3];
-}</code></pre></div>
-<p>静的配列はスライスをパラメータにとる関数に渡される時に自動的にスライスされ、
-動的配列と交換可能です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void printNums(int[] nums) {
+}</code></pre></div><p>静的配列はスライスをパラメータにとる関数に渡される時に自動的にスライスされ、
+動的配列と交換可能です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void printNums(int[] nums) {
     import std.stdio : writeln;
     writeln(nums);
 }
@@ -170,26 +53,20 @@ void main() {
     int[3] snums = [0, 1, 2];
     printNums(dnums);
     printNums(snums);
-}</code></pre></div>
-<p><code>-vgc</code>でコンパイルするとプログラム中の潜在的GCアロケーションがわかり、
+}</code></pre></div><p><code>-vgc</code>でコンパイルするとプログラム中の潜在的GCアロケーションがわかり、
 なくせるところはなくす、これは非常に簡単なことです。
-以下のようなシチュエーションを注意深く見てください:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int[] foo() {
+以下のようなシチュエーションを注意深く見てください:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int[] foo() {
     auto nums = [0, 1, 2];
 
     // numsでなにかしらをする...
 
     return nums;
-}</code></pre></div>
-<p>この例の<code>nums</code>を静的配列に変換するのは間違いでしょう。
+}</code></pre></div><p>この例の<code>nums</code>を静的配列に変換するのは間違いでしょう。
 このケースでreturn文はスタックからアロケートされた配列のスライスを返す可能性があり、それはプログラミングエラーです。
-幸い、このようなことをするとコンパイルエラーが生成されます。</p>
-
-<p>一方で、returnが条件つきである場合、関数が呼び出されるたびに毎回、ではなく、
+幸い、このようなことをするとコンパイルエラーが生成されます。</p><p>一方で、returnが条件つきである場合、関数が呼び出されるたびに毎回、ではなく、
 絶対に必要なときのみ配列をヒープアロケートすることが望ましいかもしれません。
 その場合、静的配列をローカルに宣言して、returnで動的コピーをすることができます。
-<code>.dup</code>プロパティを入力しましょう:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int[] foo() {
+<code>.dup</code>プロパティを入力しましょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int[] foo() {
     int[3] nums = [0, 1, 2];
     
     // Let x = numsでの何かしらの作業の結果
@@ -197,16 +74,10 @@ void main() {
 
     if(condition) return nums.dup;
     else return [];
-}</code></pre></div>
-<p>この関数はGCを<code>.dup</code>で使いますが、する必要があるときのみアロケートをし、そうでない時はアロケーションを避けます。
-<code>[]</code>はこのケースで<code>null</code>と等価で、<code>.length</code>が<code>0</code>で<code>.ptr</code>が<code>null</code>のスライス(または動的配列)です。</p>
-
-<h3 id="構造体とクラス">構造体とクラス</h3>
-
-<p>Dでは構造体のインスタンスはデフォルトでスタックにアロケートされますが、それが望ましい時はヒープにアロケートできます。
+}</code></pre></div><p>この関数はGCを<code>.dup</code>で使いますが、する必要があるときのみアロケートをし、そうでない時はアロケーションを避けます。
+<code>[]</code>はこのケースで<code>null</code>と等価で、<code>.length</code>が<code>0</code>で<code>.ptr</code>が<code>null</code>のスライス(または動的配列)です。</p><h3 id=構造体とクラス>構造体とクラス</h3><p>Dでは構造体のインスタンスはデフォルトでスタックにアロケートされますが、それが望ましい時はヒープにアロケートできます。
 スタックにアロケートされた構造体はデストラクトが保証されており(have deterministic destruction)、
-デストラクタは囲まれているスコープから出ると即座に呼ばれます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Foo {
+デストラクタは囲まれているスコープから出ると即座に呼ばれます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Foo {
     int x;
     ~this() {
         import std.stdio;
@@ -217,21 +88,15 @@ void main() {
     Foo f1 = Foo(1);
     Foo f2 = Foo(2);
     Foo f3 = Foo(3);
-}</code></pre></div>
-<p>予想通り、これはこう出力します:</p>
-
-<pre><code>#3 says bye!
+}</code></pre></div><p>予想通り、これはこう出力します:</p><pre><code>#3 says bye!
 #2 says bye!
 #1 says bye!
-</code></pre>
-
-<p>参照型であるクラスはほぼ常にヒープからアロケートされます。
+</code></pre><p>参照型であるクラスはほぼ常にヒープからアロケートされます。
 ふつうそれは<code>new</code>によるGCヒープなのですが、カスタムアロケータによる非GCヒープにもできます。
 しかしクラスがスタックからアロケートできないというルールはありません。
 標準ライブラリのテンプレート
-<a href="https://dlang.org/phobos/std_typecons.html#.scoped">std.typecons.scoped</a>
-で簡単にそれを行うことができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">class Foo {
+<a href=https://dlang.org/phobos/std_typecons.html#.scoped>std.typecons.scoped</a>
+で簡単にそれを行うことができます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>class Foo {
     int x;
 
     this(int x) { 
@@ -248,35 +113,23 @@ void main() {
     auto f1 = scoped!Foo(1);
     auto f2 = scoped!Foo(2);
     auto f3 = scoped!Foo(3);
-}</code></pre></div>
-<p>機能的に、これは上の<code>struct</code>の例と全く同じです;
+}</code></pre></div><p>機能的に、これは上の<code>struct</code>の例と全く同じです;
 同じ結果が出力されます。
 デストラクトの保証は、デストラクタがGCコレクションの外側で呼ばれるようにする
-<code>core.object.destroy</code>関数によってなされています。</p>
-
-<p>現時点では<code>scoped</code>も<code>destroy</code>も<code>@nogc</code>関数内で使えないことに注意してください。
+<code>core.object.destroy</code>関数によってなされています。</p><p>現時点では<code>scoped</code>も<code>destroy</code>も<code>@nogc</code>関数内で使えないことに注意してください。
 GCを避けるために関数にアノテートする必要はないので、これは必ずしも問題にはなりませんが、
 すべてを<code>@nogc</code>コールツリーにすべてを入れようとするときには頭痛の種になりえます。
-将来の投稿で、<code>@nogc</code>を使用する時に現れる設計上の問題とその回避法を見ていきます。</p>
-
-<p>一般的に、Dでカスタム型を実装するときには、
+将来の投稿で、<code>@nogc</code>を使用する時に現れる設計上の問題とその回避法を見ていきます。</p><p>一般的に、Dでカスタム型を実装するときには、
 それを使用する意図によって<code>struct</code>と<code>class</code>のどちらを選ぶか決めます。
-POD<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>型は明らかに<code>struct</code>が候補になるのに対して、</p>
-
-<p>GUIシステム等の、継承ヒエラルキーやランタイムインタフェースが極めて役に立つ場面では、
+POD<sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup>型は明らかに<code>struct</code>が候補になるのに対して、</p><p>GUIシステム等の、継承ヒエラルキーやランタイムインタフェースが極めて役に立つ場面では、
 <code>class</code>がより適した選択になります。
 これらの明らかなケース以外にも、そのトピックのために別の記事が書けるようなたくさんの考慮事項があります。
 我々の目的には、型を<code>struct</code>と<code>class</code>どちらで実装するかは必ずしもインスタンスがスタックにアロケートされうるかどうかでは決まらない、
-ということだけ覚えておいてください。</p>
-
-<h3 id="alloca">alloca</h3>
-
-<p>DがDruntimeで標準Cライブラリを使えるようにしていることを考えれば、
+ということだけ覚えておいてください。</p><h3 id=alloca>alloca</h3><p>DがDruntimeで標準Cライブラリを使えるようにしていることを考えれば、
 <code>alloca</code>もスタックアロケーションの選択肢です。
 これは特にローカルGCアロケーションを避けたり取り除いたりしたいけれど、
 配列のサイズが実行時にしかわからない時に候補になります。
-下記の例はスタックから動的配列を実行時のサイズでアロケートします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.stdc.stdlib : alloca;
+下記の例はスタックから動的配列を実行時のサイズでアロケートします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdlib : alloca;
 
 void main() {
     size_t size = 10;
@@ -284,36 +137,28 @@ void main() {
 
     // メモリブロックをスライス
     int[] arr = cast(int[])mem[0 .. size];
-}</code></pre></div>
-<p>Cで<code>alloca</code>を使う時と同じ注意事項がここでも言えます:
+}</code></pre></div><p>Cで<code>alloca</code>を使う時と同じ注意事項がここでも言えます:
 スタックを爆発させないよう気をつけてください。
 そして静的配列と同様に、<code>arr</code>のスライスを返り値にしないでください。
-かわりに<code>arr.dup</code>を返すようにしてください。</p>
-
-<h3 id="シンプルな例">シンプルな例</h3>
-
-<p><code>Queue</code>データ型の実装を考えてみましょう。
+かわりに<code>arr.dup</code>を返すようにしてください。</p><h3 id=シンプルな例>シンプルな例</h3><p><code>Queue</code>データ型の実装を考えてみましょう。
 Dにおける慣用的な実装は内部に含む型でテンプレート化された構造体になります。
 Javaでは、コレクションの使用はインタフェースが重く、
 インスタンスを実装型ではなくインタフェース型で宣言することが推奨されています。
 Dの構造体はインタフェースを実装できませんが、多くのケースでは
-<a href="https://youtu.be/es6U7WAlKpQ">イントロスペクションによる設計</a>(DbI)
+<a href=https://youtu.be/es6U7WAlKpQ>イントロスペクションによる設計</a>(DbI)
 によってインタフェースのプログラムに使えます。
 これによってインタフェース型の必要なしに、
 コンパイル時イントロスペクションによって保証された、
 構造体、クラス、
-そして<a href="http://www.drdobbs.com/cpp/uniform-function-call-syntax/232700394">統一関数呼び出し構文</a>
+そして<a href=http://www.drdobbs.com/cpp/uniform-function-call-syntax/232700394>統一関数呼び出し構文</a>
 (UFCS)によって、自由な関数でさえも動く(関数がスコープ内にある場合)、
-一般的なインタフェースのプログラミングを可能にします。</p>
-
-<p><code>Queue</code>の実装のバックの格納場所としてDの配列は明らかな選択肢です。
+一般的なインタフェースのプログラミングを可能にします。</p><p><code>Queue</code>の実装のバックの格納場所としてDの配列は明らかな選択肢です。
 その上、キューが一定のサイズに限られるなら、
 バックの格納場所を静的配列にできます。
 すでにそれがテンプレート化された型の場合、追加のデフォルト値つきの
-<a href="http://dlang.org/spec/template.html#TemplateValueParameter">テンプレート値パラメータ</a>
+<a href=http://dlang.org/spec/template.html#TemplateValueParameter>テンプレート値パラメータ</a>
 を、配列を静的にすべきか否か、
-静的にするならどれくらいのスペースが必要かをコンパイル時に決めるために簡単に追加できます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">// デフォルトのサイズである0はバックの格納場所に
+静的にするならどれくらいのスペースが必要かをコンパイル時に決めるために簡単に追加できます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// デフォルトのサイズである0はバックの格納場所に
 // 動的配列を使うことを意味します;非ゼロは静的配列を表します。
 struct Queue(T, size_t Size = 0) 
 {
@@ -375,11 +220,8 @@ private:
         void ensureCapacity() { /* 必要に応じてメモリをアロケートします */ }
         void ensurePacked() { /* 必要に応じて配列を縮小します */}
     }
-}</code></pre></div>
-<p>これによって、クライアントはインスタンスをこのように宣言できます:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">Queue!Foo qUnbounded;
-Queue!(Foo, 128) qBounded;</code></pre></div>
-<p><code>qBounded</code>はヒープアロケーションを必要としません。
+}</code></pre></div><p>これによって、クライアントはインスタンスをこのように宣言できます:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>Queue!Foo qUnbounded;
+Queue!(Foo, 128) qBounded;</code></pre></div><p><code>qBounded</code>はヒープアロケーションを必要としません。
 <code>qUnbounded</code>で何が起こるかは実装によります。
 さらに、インスタンスのサイズが固定かそうでないか、
 コンパイル時イントロスペクションを使ってテストできます。
@@ -387,66 +229,18 @@ Queue!(Foo, 128) qBounded;</code></pre></div>
 クライアントはかわりに組み込みの<code>__traits(hasMember, T, &quot;reserve&quot;)</code>
 や標準ライブラリの関数<code>std.traits.hasMember!T(&quot;reserve&quot;)</code>
 をコンパイル時構築などに使うこともできます
-(<a href="https://dlang.org/spec/traits.html">__traits</a>と
-<a href="https://dlang.org/phobos/std_traits.html">std.traits</a>
+(<a href=https://dlang.org/spec/traits.html>__traits</a>と
+<a href=https://dlang.org/phobos/std_traits.html>std.traits</a>
 はDbIに最適で、同じ機能を提供するなら後者がより好ましいです)が、
-その型の中の定数を含むほうが便利です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void doSomethingWithQueueInterface(T)(T queue)
+その型の中の定数を含むほうが便利です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void doSomethingWithQueueInterface(T)(T queue)
 {
     static if(T.isFixedSize) { ... }
     else { ... }
-}</code></pre></div>
-<h3 id="結論">結論</h3>
-
-<p>これがGCヒープからのアロケーションを避けるための、
+}</code></pre></div><h3 id=結論>結論</h3><p>これがGCヒープからのアロケーションを避けるための、
 Dにおけるスタックアロケーションの選択肢のかいつまんだ概要です。
 可能な時にこれらを使うことはGCアロケーションのサイズと回数を最小化する簡単な方法であり、
-ガベージコレクションによるパフォーマンスへの潜在的悪影響を軽減する先を見越した戦略です。</p>
-
-<p>このシリーズの次の投稿では非GCヒープアロケーションを可能にするいくつかの選択肢をカバーします。</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1"><p>おそらく<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%82%A6%E3%83%83%E3%83%89%E3%83%BB%E3%83%9E%E3%83%83%E3%82%AF">フリートウッド・マック</a>
-の同名の曲が題の元ネタと思われる</p>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">Plain old data structure - Cの構造体と互換性をもつデータ構造
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-</ol>
-</div>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】
-    </h2>
-    <p>
-        <time>2017-07-15</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+ガベージコレクションによるパフォーマンスへの潜在的悪影響を軽減する先を見越した戦略です。</p><p>このシリーズの次の投稿では非GCヒープアロケーションを可能にするいくつかの選択肢をカバーします。</p><div class=footnotes><hr><ol><li id=fn:1><p>おそらく<a href=https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%82%A6%E3%83%83%E3%83%89%E3%83%BB%E3%83%9E%E3%83%83%E3%82%AF>フリートウッド・マック</a>
+の同名の曲が題の元ネタと思われる</p><a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li><li id=fn:2>Plain old data structure - Cの構造体と互換性をもつデータ構造
+<a class=footnote-return href=#fnref:2><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+オウン・ウェイ - GCを避けたアロケーション (Part1: スタック)【翻訳】</h2><p><time>2017-07-15</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

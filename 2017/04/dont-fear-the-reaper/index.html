@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 死神を恐れないで - GCについて知る【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 死神を恐れないで - GCについて知る【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" ‪&#34;Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬&#34;  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/04/dont-fear-the-reaper/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" ‪&#34;Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬&#34; ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content='‪"Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬"'><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,93 +6,42 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        死神を恐れないで - GCについて知る【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-16</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    
-</aside>
-</header>
-<article><p>この記事は</p>
-
-<p><a href="http://dlang.org/blog/2017/03/20/dont-fear-the-reaper/">Don’t Fear the Reaper – The D Blog</a></p>
-
-<p>の翻訳である。
+</script><title>#dlang 死神を恐れないで - GCについて知る【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/dont-fear-the-reaper/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 死神を恐れないで - GCについて知る【翻訳】 - Kotet's Personal Blog"><meta name=og:description content='‪"Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。‬‪GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。‬しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。‬"'><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/dont-fear-the-reaper/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+死神を恐れないで - GCについて知る【翻訳】</h2><p><time>2017-04-16</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p></aside></header><article><p>この記事は</p><p><a href=http://dlang.org/blog/2017/03/20/dont-fear-the-reaper/>Don’t Fear the Reaper – The D Blog</a></p><p>の翻訳である。
 翻訳したものを公開する
-<a href="http://dlang.org/blog/2017/03/20/dont-fear-the-reaper/#comment-1355">許可をもらえた</a>
+<a href=http://dlang.org/blog/2017/03/20/dont-fear-the-reaper/#comment-1355>許可をもらえた</a>
 ので、ここに公開する。
 誤字や誤訳などを見つけたら今すぐ
-<a href="https://github.com/kotet/blog.kotet.jp">Pull request</a>だ!</p>
-
-<hr />
-
-<p>Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。
+<a href=https://github.com/kotet/blog.kotet.jp>Pull request</a>だ!</p><hr><p>Dには、こんにち使用されている多くの言語と同じように、すぐに使えるガベージコレクタがあります。
 GCのことを心配せずにかけて、それを最大限活用できるタイプのソフトウェアが多くあります。
 しかしGCは不利な点を持ち、ガベージコレクションが望ましくないシナリオがたしかにあります。
-そのようなシチュエーションで、言語はそれを一時的に無効化したり、完全に回避する方法を提供します。</p>
-
-<p>ガベージコレクションのポジティブな影響を最大化し、ネガティブな面を最小化するために、
+そのようなシチュエーションで、言語はそれを一時的に無効化したり、完全に回避する方法を提供します。</p><p>ガベージコレクションのポジティブな影響を最大化し、ネガティブな面を最小化するために、
 DでGCがどのように動作するかの下地を持つことが必要です。
 スタート地点として最適なのは
-<a href="http://dlang.org/spec/garbage.html">dlang.orgのガベージコレクションのページ</a>
+<a href=http://dlang.org/spec/garbage.html>dlang.orgのガベージコレクションのページ</a>
 でしょう、DのGCの原理を概説し、それを使うためのヒントを提供します。
-この投稿はそのページで提供されている情報を拡大するシリーズの最初にするつもりです。</p>
-
-<p>今回は、非常に基本的なこと、GCアロケーションを引き起こす言語機能にフォーカスしていきます。
+この投稿はそのページで提供されている情報を拡大するシリーズの最初にするつもりです。</p><p>今回は、非常に基本的なこと、GCアロケーションを引き起こす言語機能にフォーカスしていきます。
 将来の投稿で必要な時にGCを無効化する方法や、非決定論的性質に対処するのに役立つイディオムを紹介します
-(GCで管理されたオブジェクトのデストラクタのリソースの管理など)。</p>
-
-<p>まず、Dのガベージコレクタについて理解することは、それがアロケーション中の、
+(GCで管理されたオブジェクトのデストラクタのリソースの管理など)。</p><p>まず、Dのガベージコレクタについて理解することは、それがアロケーション中の、
 アロケートに利用できるメモリがないときのみ動作するということです。
 それは後ろで居座ったりせず、ちらほらヒープをスキャンしゴミ集めをしたりしません。
 この知識はGC管理されたメモリを効率的に使うコードを書くことにおいての基本です。
-下の例を見てみましょう:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main() {
+下の例を見てみましょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
     int[] ints;
     foreach(i; 0..100) {
         ints ~= i;
     }
-}</code></pre></div>
-<p>これは<code>int</code>の動的配列を宣言し、
-<a href="https://dlang.org/spec/statement.html#foreach-range-statement">foreachレンジループ</a>
+}</code></pre></div><p>これは<code>int</code>の動的配列を宣言し、
+<a href=https://dlang.org/spec/statement.html#foreach-range-statement>foreachレンジループ</a>
 内で0から99までの数字を追加するためにDの追加演算子を使っています。
-素人目には追加演算子が配列に追加する値のスペースをアロケートするためにGCヒープを使用していることはわかりません。</p>
-
-<p>DRuntimeの配列の実装は馬鹿ではありません。
+素人目には追加演算子が配列に追加する値のスペースをアロケートするためにGCヒープを使用していることはわかりません。</p><p>DRuntimeの配列の実装は馬鹿ではありません。
 この例の中では、それぞれの値でいちいち100回のアロケーションは行われません。
 さらなるメモリが必要なとき、実装は要求されたのより多くのスペースをアロケートします。
 この特殊なケースで、実際にどれくらいのアロケーションが行われたかをDの動的配列とスライスの
-<a href="https://dlang.org/phobos/object.html#.capacity"><code>capacity</code></a>プロパティを使って特定できます。
-これはアロケーションが必要になる前に配列が持つことができる要素の合計値を返します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main() {
+<a href=https://dlang.org/phobos/object.html#.capacity><code>capacity</code></a>プロパティを使って特定できます。
+これはアロケーションが必要になる前に配列が持つことができる要素の合計値を返します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
     import std.stdio : writefln;
     int[] ints;
     size_t before, after;
@@ -148,114 +54,81 @@ DでGCがどのように動作するかの下地を持つことが必要です�
                 before, after);
         }
     }
-}</code></pre></div>
-<p><strong>DMD 2.073.2</strong>でコンパイルしてこれを実行した時、メッセージは6回プリントされ、
+}</code></pre></div><p><strong>DMD 2.073.2</strong>でコンパイルしてこれを実行した時、メッセージは6回プリントされ、
 これは合計6回のGCアロケーションがループの中であったことを意味します。
 つまりGCがゴミを収集する機会が6回あったということです。
 この小さな例では、それはほぼ確実に起こりません。
-もしこのループがもっと大きなプログラムの一部だった場合、全体にGCのアロケーションがあれば、確実に起こるでしょう。</p>
-
-<p>付け加えると、これは<code>事前</code>と<code>事後</code>の値を調べることの参考になります。
+もしこのループがもっと大きなプログラムの一部だった場合、全体にGCのアロケーションがあれば、確実に起こるでしょう。</p><p>付け加えると、これは<code>事前</code>と<code>事後</code>の値を調べることの参考になります。
 これを行うと0、3、7、15、31、63、127というシーケンスが見られます。
 最終的に、<code>ints</code>には100の値が入り、次のアロケーションの前に27以上の追加できるスペースを持ち、
 シーケンスの値から推定するに、255になるでしょう。
 これはDRuntimeの実装の詳細ですが、リリースで微調整や変更され得ます。
 配列やスライスがGCによってどのように管理されるかのさらなる詳細は、Steven Schveighofferの
-このトピックに関する<a href="https://dlang.org/d-array-article.html">素晴らしいアーティクル</a>を見てください。</p>
-
-<p>それで、6回のアロケーションは、単純で小さなループにおいてもGCがそれを予測不能な長さ休止させる6回の機会です。
+このトピックに関する<a href=https://dlang.org/d-array-article.html>素晴らしいアーティクル</a>を見てください。</p><p>それで、6回のアロケーションは、単純で小さなループにおいてもGCがそれを予測不能な長さ休止させる6回の機会です。
 一般的に、それはループがコードのホットパートかと、GCヒープから合計どれくらいのメモリが
 アロケートされているかに依存する問題になりえます。
-しかし、それは必ずしもコードのその部分でGCを無効化する理由にはなりません。</p>
-
-<p>CやC++のような、独創的なストックGCのついていない言語と同じように、
+しかし、それは必ずしもコードのその部分でGCを無効化する理由にはなりません。</p><p>CやC++のような、独創的なストックGCのついていない言語と同じように、
 出来る限り前方でアロケートすることによって全体のパフォーマンスをより良くしたり、
 内側のループでのアロケーションを最小化することを多くのプログラマは学びます。
 それは本当の諸悪の根源ではなく、<strong>ベストプラクティス</strong>と呼ばれる傾向のある時期尚早な最適化のタイプの1つです。
 DのGCがメモリがアロケートされるときにのみ走ることを考えると、
 パフォーマンスへの潜在的影響を軽減するシンプルな方法として同じ戦略が適用できます。
-こちらは例を書き換えたひとつです:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main() {
+こちらは例を書き換えたひとつです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
     int[] ints = new int[](100);
     foreach(i; 0..100) {
         ints[i] = i;
     }
-}</code></pre></div>
-<p>今や6つのアロケーションは1つになりました。
+}</code></pre></div><p>今や6つのアロケーションは1つになりました。
 GCが実行される唯一の機会は内側のループの前です。
 これは実際にループに入る前に少なくとも100の値のスペースをアロケートし、それらすべてを0で初期化します。
-<code>new</code>のあと配列の長さは100になりますが、ほとんど確実に追加のキャパシティがあります。</p>
-
-<p>配列の<code>new</code>する代わりの方法があります:<code>reserve</code>関数です:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main() {
+<code>new</code>のあと配列の長さは100になりますが、ほとんど確実に追加のキャパシティがあります。</p><p>配列の<code>new</code>する代わりの方法があります:<code>reserve</code>関数です:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
     int[] ints;
     ints.reserve(100);
     foreach(i; 0..100) {
         ints ~= i;
     }
-}</code></pre></div>
-<p>これは少なくとも100の値のメモリをアロケートしますが、返した時点で配列はまだ空(<code>length</code>プロパティは0を返す)
+}</code></pre></div><p>これは少なくとも100の値のメモリをアロケートしますが、返した時点で配列はまだ空(<code>length</code>プロパティは0を返す)
 で、デフォルトの初期化はされません。
-ループが100個の値のみを追加することを考えると、アロケートが行われないことが保証されます。</p>
-
-<p><code>new</code>と<code>reserve</code>に加えて、明示的なアロケーションのために<code>GC.malloc</code>を呼ぶことができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.memory;
+ループが100個の値のみを追加することを考えると、アロケートが行われないことが保証されます。</p><p><code>new</code>と<code>reserve</code>に加えて、明示的なアロケーションのために<code>GC.malloc</code>を呼ぶことができます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.memory;
 void* intsPtr = GC.malloc(int.sizeof * 100);
-auto ints = (cast(int*)intsPtr)[0 .. 100];</code></pre></div>
-<p><a href="https://dlang.org/spec/arrays.html#dynamic-arrays">配列リテラル</a>
-はたいていアロケートをします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">auto ints = [0, 1, 2];</code></pre></div>
-<p>これは配列リテラル<code>enum</code>が使われた時にもいえます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">enum intsLiteral = [0, 1, 2];
+auto ints = (cast(int*)intsPtr)[0 .. 100];</code></pre></div><p><a href=https://dlang.org/spec/arrays.html#dynamic-arrays>配列リテラル</a>
+はたいていアロケートをします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto ints = [0, 1, 2];</code></pre></div><p>これは配列リテラル<code>enum</code>が使われた時にもいえます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>enum intsLiteral = [0, 1, 2];
 auto ints1 = intsLiteral;
-auto ints2 = intsLiteral;</code></pre></div>
-<p><code>enum</code>はコンパイル時にのみ存在し、メモリアドレスを持ちません。
+auto ints2 = intsLiteral;</code></pre></div><p><code>enum</code>はコンパイル時にのみ存在し、メモリアドレスを持ちません。
 その名前はその値の同義語です。
 それをどこで使っても、その値をその場にコピペするようなものです。
-<code>ints1</code>と<code>ints2</code>の両方がそのように宣言されたのとちょうど同じようにアロケーションを引き起こします:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">auto ints1 = [0, 1, 2];
-auto ints2 = [0, 1, 2];</code></pre></div>
-<p>ターゲットが
-<a href="http://dlang.org/spec/arrays.html#static-arrays">静的配列</a>
+<code>ints1</code>と<code>ints2</code>の両方がそのように宣言されたのとちょうど同じようにアロケーションを引き起こします:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto ints1 = [0, 1, 2];
+auto ints2 = [0, 1, 2];</code></pre></div><p>ターゲットが
+<a href=http://dlang.org/spec/arrays.html#static-arrays>静的配列</a>
 の場合配列リテラルはアロケートをしません。
-また、文字列リテラル(Dで文字列は内部では配列です)はルールの例外です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int[3] noAlloc1 = [0, 1, 2];
-auto noAlloc2 = &#34;No Allocation!&#34;;</code></pre></div>
-<p>連結演算子は常にアロケートをします:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">auto a1 = [0, 1, 2];
+また、文字列リテラル(Dで文字列は内部では配列です)はルールの例外です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int[3] noAlloc1 = [0, 1, 2];
+auto noAlloc2 = &#34;No Allocation!&#34;;</code></pre></div><p>連結演算子は常にアロケートをします:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto a1 = [0, 1, 2];
 auto a2 = [3, 4, 5];
-auto a3 = a1 ~ a2;</code></pre></div>
-<p>Dの<a href="https://dlang.org/spec/hash-map.html">連想配列</a>は独自のアロケーション戦略をもちますが、
+auto a3 = a1 ~ a2;</code></pre></div><p>Dの<a href=https://dlang.org/spec/hash-map.html>連想配列</a>は独自のアロケーション戦略をもちますが、
 あなたはアイテムが追加されたり潜在的に削除されたりした時にアロケートされることを期待します。
 連想配列は2つのプロパティ、<code>key</code>と<code>value</code>を公開し、これらは配列をアロケートし、
 それぞれのアイテムのコピーで埋めるものです。
 イテレーション中にもとの連想配列を変更することを望む場合、
 またはそのアイテムがソートされている必要があるとき、
 または連想配列と独立して操作されるとき、これらのプロパティはまさにちょうど必要なものです。
-そうでなければ、これらはGCに過度の負荷をかける余計なアロケーションです。</p>
-
-<p>GCが走るとき、スキャンが必要なメモリの合計の量はそのガベージコレクションがどれだけかかるかを決めます。
+そうでなければ、これらはGCに過度の負荷をかける余計なアロケーションです。</p><p>GCが走るとき、スキャンが必要なメモリの合計の量はそのガベージコレクションがどれだけかかるかを決めます。
 小さいことは、良いことです。
 不必要なアロケーションを避けることは誰にも害を及ぼさず、別の良い軽減戦略です。
 そのようなことをするために
-<a href="http://dlang.org/spec/hash-map.html#properties">Dの連想配列は3つのプロパティを提供します</a>:
+<a href=http://dlang.org/spec/hash-map.html#properties>Dの連想配列は3つのプロパティを提供します</a>:
 <code>byKey</code>、<code>byValue</code>、<code>byKeyValue</code>です。
 これらはそれぞれlazyにイテレートされるforwardレンジを返します。
 これらは実際に連想配列のアイテムを参照し、それがイテレート中に変更されないためアロケートを行いません。
 レンジの詳細については、Ali Çehreliの
-<a href="http://ddili.org/ders/d.en/index.html">Programming in D</a>の
-<a href="http://ddili.org/ders/d.en/ranges.html">Ranges</a>と
-<a href="http://ddili.org/ders/d.en/ranges_more.html">More Ranges</a>のチャプターを見てください。</p>
-
-<p>ローカルスタックフレームのポインタを持ち歩く必要があるデリゲートまたは関数リテラルである
-<a href="https://dlang.org/spec/function.html#closures">クロージャ</a>は、アロケートをすることがあります。
-<a href="http://dlang.org/spec/garbage.html">Garbage Collectionのページ</a>
+<a href=http://ddili.org/ders/d.en/index.html>Programming in D</a>の
+<a href=http://ddili.org/ders/d.en/ranges.html>Ranges</a>と
+<a href=http://ddili.org/ders/d.en/ranges_more.html>More Ranges</a>のチャプターを見てください。</p><p>ローカルスタックフレームのポインタを持ち歩く必要があるデリゲートまたは関数リテラルである
+<a href=https://dlang.org/spec/function.html#closures>クロージャ</a>は、アロケートをすることがあります。
+<a href=http://dlang.org/spec/garbage.html>Garbage Collectionのページ</a>
 の最後にリストアップされているアロケートをする言語機能は
-<a href="http://dlang.org/spec/expression.html#AssertExpression">アサーション</a>です。
+<a href=http://dlang.org/spec/expression.html#AssertExpression>アサーション</a>です。
 アサーションはDのクラスベースヒエラルキーの一部である<code>AssertError</code>を投げる必要があるため、
-それが失敗した時アロケートします(今後の投稿でクラスがGCとどのようにやり取りをするか見ていきます)。</p>
-
-<p>ところで、Dの標準ライブラリの<a href="https://dlang.org/phobos/index.html">Phobos</a>というのがあります。
+それが失敗した時アロケートします(今後の投稿でクラスがGCとどのようにやり取りをするか見ていきます)。</p><p>ところで、Dの標準ライブラリの<a href=https://dlang.org/phobos/index.html>Phobos</a>というのがあります。
 かつて、PhobosのほとんどはGCアロケーションをほぼ気にせず実装されており、
 それがGCアロケーションが望ましくないシチュエーションでのPhobosの使用を難しくしていました。
 しかし、GCの使用についてより保守的にする大きな取り組みが開始されました。
@@ -264,43 +137,7 @@ auto a3 = a1 ~ a2;</code></pre></div>
 さらにいくつかは内部的に不必要なアロケーションを避けるよう再実装されました。
 結果として標準ライブラリはよりGCフリーのコードに対して素直になりました
 (が、おそらくまだライブラリの隅にまだ改装されていないものがあります
- — <a href="https://github.com/dlang/phobos">PRを受け付けています</a>)。</p>
-
-<p>GCの使用の基礎を見てきたので、このシリーズの次の投稿ではGCをオフにし特定のセクションがGCフリーである
-ことを確かめる、言語とコンパイラが提供するツールについて紹介します。</p>
-
-<p>この記事について協力してくれたGuillaume PiolatとSteven Schveighofferに感謝します。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        死神を恐れないで - GCについて知る【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-16</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/dlang_gc_series">#dlang_gc_series</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+— <a href=https://github.com/dlang/phobos>PRを受け付けています</a>)。</p><p>GCの使用の基礎を見てきたので、このシリーズの次の投稿ではGCをオフにし特定のセクションがGCフリーである
+ことを確かめる、言語とコンパイラが提供するツールについて紹介します。</p><p>この記事について協力してくれたGuillaume PiolatとSteven Schveighofferに感謝します。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+死神を恐れないで - GCについて知る【翻訳】</h2><p><time>2017-04-16</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

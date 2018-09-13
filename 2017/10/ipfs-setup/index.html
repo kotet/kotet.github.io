@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs 惑星間ファイルシステムIPFS体験記1:セットアップ - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/10/ipfs-setup/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs 惑星間ファイルシステムIPFS体験記1:セットアップ - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" “InterPlanetary File System“というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。 今後「IPFS体験記」として投稿するのは、その記録である。 試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。  " />
-
-<meta name="og:image" content="https://blog.kotet.jp2017/10/18/twitter.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/10/ipfs-setup/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" “InterPlanetary File System“というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。 今後「IPFS体験記」として投稿するのは、その記録である。 試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="“InterPlanetary File System“というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。 今後「IPFS体験記」として投稿するのは、その記録である。 試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,76 +6,16 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        惑星間ファイルシステムIPFS体験記1:セットアップ
-    </h2>
-    <p>
-        <time>2017-10-18</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#インストール">インストール</a></li>
-<li><a href="#ipfs-init"><code>ipfs init</code></a></li>
-<li><a href="#readmeを読む">readmeを読む</a></li>
-<li><a href="#デーモンの起動">デーモンの起動</a>
-<ul>
-<li><a href="#config-systemd-user-ipfs-service"><code>~/.config/systemd/user/ipfs.service</code></a></li>
-</ul></li>
-<li><a href="#読んだもの">読んだもの</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>&ldquo;<a href="https://ipfs.io/">InterPlanetary File System</a>&ldquo;というあまりにも魅力的な名前から、
+</script><title>#ipfs 惑星間ファイルシステムIPFS体験記1:セットアップ - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-setup/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 惑星間ファイルシステムIPFS体験記1:セットアップ - Kotet's Personal Blog"><meta name=og:description content="“InterPlanetary File System“というあまりにも魅力的な名前から、 以前よりIPFSを試してみたかった。 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。 今後「IPFS体験記」として投稿するのは、その記録である。 試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。"><meta name=og:image content=https://blog.kotet.jp2017/10/18/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-setup/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+惑星間ファイルシステムIPFS体験記1:セットアップ</h2><p><time>2017-10-18</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#インストール>インストール</a></li><li><a href=#ipfs-init><code>ipfs init</code></a></li><li><a href=#readmeを読む>readmeを読む</a></li><li><a href=#デーモンの起動>デーモンの起動</a><ul><li><a href=#config-systemd-user-ipfs-service><code>~/.config/systemd/user/ipfs.service</code></a></li></ul></li><li><a href=#読んだもの>読んだもの</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>&ldquo;<a href=https://ipfs.io/>InterPlanetary File System</a>&ldquo;というあまりにも魅力的な名前から、
 以前よりIPFSを試してみたかった。
 やってみたいなーとずっと言っているだけなのもアレなので、少しづつ触っていこうと思う。
 今後「IPFS体験記」として投稿するのは、その記録である。
-試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。</p>
-
-<p>とりあえずこのサイトをIPFS上でホスティング、更新を自動化するまでを当面の目標にする。
-今回はインストールからWebUIを開くまでである。</p>
-
-<h3 id="インストール">インストール</h3>
-
-<p><code>ipfs</code>をインストール、更新するために<code>ipfs-update</code>というツールが用意されているようなのでそれを使う。</p>
-
-<p><a href="https://ipfs.io/ipns/dist.ipfs.io/#ipfs-update">IPFS Distributions</a>からバイナリをダウンロードしてきて、
-適当なところに置く。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ sudo cp ipfs-update /usr/bin/
+試したことをただ時系列順に書くだけなので、参考にするには読みづらいかもしれない。</p><p>とりあえずこのサイトをIPFS上でホスティング、更新を自動化するまでを当面の目標にする。
+今回はインストールからWebUIを開くまでである。</p><h3 id=インストール>インストール</h3><p><code>ipfs</code>をインストール、更新するために<code>ipfs-update</code>というツールが用意されているようなのでそれを使う。</p><p><a href=https://ipfs.io/ipns/dist.ipfs.io/#ipfs-update>IPFS Distributions</a>からバイナリをダウンロードしてきて、
+適当なところに置く。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ sudo cp ipfs-update /usr/bin/
 $ ipfs-update -h
 NAME:
    ipfs-update - Update ipfs.
@@ -142,9 +39,7 @@ GLOBAL OPTIONS:
    --verbose         Print verbose output.
    --distpath value  specify the distributions build to use
    --help, -h        show help
-   --version, -v     print the version</code></pre></div>
-<p><code>ipfs-update versions</code>でインストール可能なバージョンを一覧できる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs-update versions
+   --version, -v     print the version</code></pre></div><p><code>ipfs-update versions</code>でインストール可能なバージョンを一覧できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs-update versions
 v0.3.2
 v0.3.4
 v0.3.5
@@ -165,12 +60,10 @@ v0.4.7
 v0.4.8
 v0.4.9
 v0.4.10
-v0.4.11</code></pre></div>
-<p>できるだけ最新のバージョンをインストールする。
+v0.4.11</code></pre></div><p>できるだけ最新のバージョンをインストールする。
 <code>ipfs-update install latest</code>でも最新版が得られるようだが、
 <code>v0.4.7-rc1</code>のような安定版でないものをインストールしてくることがあるため、
-明示的にバージョンを指定することが推奨されている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs-update install v0.4.11
+明示的にバージョンを指定することが推奨されている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs-update install v0.4.11
 fetching go-ipfs version v0.4.11
 binary downloaded, verifying...
 success! tests all passed.
@@ -188,24 +81,14 @@ checking if repo migration is needed...
 
 Installation complete!
 $ ipfs version
-ipfs version 0.4.11</code></pre></div>
-<p><code>~/bin</code>があるとそこにインストールしてくれるようだ。</p>
-
-<h3 id="ipfs-init"><code>ipfs init</code></h3>
-
-<p>&ldquo;global local object repository&rdquo;なるものを作ってくれるらしい。
-globalなのかlocalなのかはっきりしてほしい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs init
+ipfs version 0.4.11</code></pre></div><p><code>~/bin</code>があるとそこにインストールしてくれるようだ。</p><h3 id=ipfs-init><code>ipfs init</code></h3><p>&ldquo;global local object repository&rdquo;なるものを作ってくれるらしい。
+globalなのかlocalなのかはっきりしてほしい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs init
 initializing IPFS node at /home/kotet/.ipfs
 generating 2048-bit RSA keypair...done
 peer identity: QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg
 to get started, enter:
 
-	ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme</code></pre></div>
-<h3 id="readmeを読む">readmeを読む</h3>
-
-<p>先ほど言われたとおりにしてみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme
+	ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme</code></pre></div><h3 id=readmeを読む>readmeを読む</h3><p>先ほど言われたとおりにしてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme
 Hello and Welcome to IPFS!
 
 ██╗██████╗ ███████╗███████╗
@@ -231,18 +114,7 @@ Check out some of the other files in this directory:
   ./help
   ./quick-start     &lt;-- usage examples
   ./readme          &lt;-- this file
-  ./security-notes</code></pre></div>
-<p>ここに貼り付けたものは表示が崩れてしまっているかもしれないが、自分の環境ではちゃんといい感じになっている。</p>
-
-<p><img src="/assets/2017/10/18/ipfs-logo.png" alt="logo" /></p>
-
-<h3 id="デーモンの起動">デーモンの起動</h3>
-
-<p>ログイン時に<code>ipfs daemon</code>してくれるようにする。</p>
-
-<h4 id="config-systemd-user-ipfs-service"><code>~/.config/systemd/user/ipfs.service</code></h4>
-
-<pre><code>[Unit]
+  ./security-notes</code></pre></div><p>ここに貼り付けたものは表示が崩れてしまっているかもしれないが、自分の環境ではちゃんといい感じになっている。</p><p><img src=/assets/2017/10/18/ipfs-logo.png alt=logo></p><h3 id=デーモンの起動>デーモンの起動</h3><p>ログイン時に<code>ipfs daemon</code>してくれるようにする。</p><h4 id=config-systemd-user-ipfs-service><code>~/.config/systemd/user/ipfs.service</code></h4><pre><code>[Unit]
 Description=IPFS daemon
 After=network.target
 
@@ -252,56 +124,11 @@ Restart=on-failure
 
 [Install]
 WantedBy=default.target
-</code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ systemctl --user enable --now ipfs
-Created symlink from /home/kotet/.config/systemd/user/default.target.wants/ipfs.service to /home/kotet/.config/systemd/user/ipfs.service.</code></pre></div>
-<p><code>http://localhost:5001/webui</code>をブラウザで開く。</p>
-
-<p><img src="/assets/2017/10/18/webui.png" alt="webui" /></p>
-
-<p>無事に&rdquo;Fancy Web Console&rdquo;を開くことができた。
+</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ systemctl --user enable --now ipfs
+Created symlink from /home/kotet/.config/systemd/user/default.target.wants/ipfs.service to /home/kotet/.config/systemd/user/ipfs.service.</code></pre></div><p><code>http://localhost:5001/webui</code>をブラウザで開く。</p><p><img src=/assets/2017/10/18/webui.png alt=webui></p><p>無事に&rdquo;Fancy Web Console&rdquo;を開くことができた。
 &ldquo;Connections&rdquo;を見ると、接続中のPEERの数が100から500くらいの間で増えたり減ったりしている。
 しかしコンピュータのファンの音が少し大きくなり、ちょっとリソースを使い過ぎな気もする。
 今日はここまでにする。
-次回は設定を確認してみようと思う。</p>
-
-<h3 id="読んだもの">読んだもの</h3>
-
-<ul>
-<li><a href="https://ipfs.io/ipns/ipfs.io/docs/">IPFS Docs</a></li>
-<li><a href="https://wiki.archlinux.jp/index.php/IPFS#.E3.82.B5.E3.83.BC.E3.83.93.E3.82.B9.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.A6.E3.83.87.E3.83.BC.E3.83.A2.E3.83.B3.E3.82.92.E8.B5.B7.E5.8B.95">IPFS - ArchWiki</a></li>
-</ul>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        惑星間ファイルシステムIPFS体験記1:セットアップ
-    </h2>
-    <p>
-        <time>2017-10-18</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+次回は設定を確認してみようと思う。</p><h3 id=読んだもの>読んだもの</h3><ul><li><a href=https://ipfs.io/ipns/ipfs.io/docs/>IPFS Docs</a></li><li><a href=https://wiki.archlinux.jp/index.php/IPFS#.E3.82.B5.E3.83.BC.E3.83.93.E3.82.B9.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.A6.E3.83.87.E3.83.BC.E3.83.A2.E3.83.B3.E3.82.92.E8.B5.B7.E5.8B.95>IPFS - ArchWiki</a></li></ul></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+惑星間ファイルシステムIPFS体験記1:セットアップ</h2><p><time>2017-10-18</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

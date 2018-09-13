@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang ローカルのdubプロジェクトに依存するdubプロジェクト - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang ローカルのdubプロジェクトに依存するdubプロジェクト - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか?  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか? ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか?><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,47 +6,10 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        ローカルのdubプロジェクトに依存するdubプロジェクト
-    </h2>
-    <p>
-        <time>2016-11-27</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    
-</aside>
-</header>
-<article><p>この記事はQiitaに投稿されたものの転載です。</p>
-
-<hr />
-
-<p>自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ tree
+</script><title>#dlang ローカルのdubプロジェクトに依存するdubプロジェクト - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang ローカルのdubプロジェクトに依存するdubプロジェクト - Kotet's Personal Blog"><meta name=og:description content=自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか?><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/11/4ef5039d17c521ec5dc7/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+ローカルのdubプロジェクトに依存するdubプロジェクト</h2><p><time>2016-11-27</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>自作のライブラリを別のdubプロジェクトにしたかったので調べたけどすぐには見つからなかったので書く。わかれば簡単なことだった。タイトルはこれで適切なんだろうか?</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ tree
 .
 ├── app
 │   ├── dub.json
@@ -98,41 +18,29 @@
 └── lib
     ├── dub.json
     └── source
-        └── lib.d</code></pre></div>
-<p>lib/source/lib.d:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">module lib;
+        └── lib.d</code></pre></div><p>lib/source/lib.d:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module lib;
 
 import std.stdio;
 
 void func()
 {
     writeln(&#34;hello!&#34;);
-}</code></pre></div>
-<p>app/source/app.d:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import lib;
+}</code></pre></div><p>app/source/app.d:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import lib;
 
 void main()
 {
     func();//モジュールlibの関数
-}</code></pre></div>
-<p>lib/dub.json:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;lib&#34;</span>,
-    <span style="color:#f92672">&#34;targetType&#34;</span>:<span style="color:#e6db74">&#34;library&#34;</span>
-}</code></pre></div>
-<p>app/dub.json:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;app&#34;</span>,
-    <span style="color:#f92672">&#34;dependencies&#34;</span>:{
-        <span style="color:#f92672">&#34;lib&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+}</code></pre></div><p>lib/dub.json:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;lib&#34;</span>,
+    <span style=color:#f92672>&#34;targetType&#34;</span>:<span style=color:#e6db74>&#34;library&#34;</span>
+}</code></pre></div><p>app/dub.json:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;app&#34;</span>,
+    <span style=color:#f92672>&#34;dependencies&#34;</span>:{
+        <span style=color:#f92672>&#34;lib&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>
     }
-}</code></pre></div>
-<p>このままではlibが見つからないので実行できない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">run</span>
-<span style="color:#a6e22e">Selected</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">lib</span> <span style="color:#960050;background-color:#1e0010">~</span><span style="color:#a6e22e">master</span> <span style="color:#a6e22e">doesn</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">exist</span>. <span style="color:#a6e22e">Using</span> <span style="color:#a6e22e">latest</span> <span style="color:#a6e22e">matching</span> <span style="color:#a6e22e">version</span> <span style="color:#a6e22e">instead</span>.
-<span style="color:#a6e22e">Root</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">app</span> <span style="color:#a6e22e">references</span> <span style="color:#a6e22e">unknown</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">lib</span></code></pre></div>
-<p><code>dub add-local &lt;プロジェクトのディレクトリのパス&gt;</code> してやるとパッケージのリストに追加される。このプロジェクトにだけ……みたいなことは<del>できないのかな?</del>できる。下に追記</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dub add-local lib
+}</code></pre></div><p>このままではlibが見つからないので実行できない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>run</span>
+<span style=color:#a6e22e>Selected</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>lib</span> <span style=color:#960050;background-color:#1e0010>~</span><span style=color:#a6e22e>master</span> <span style=color:#a6e22e>doesn</span><span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#a6e22e>t</span> <span style=color:#a6e22e>exist</span>. <span style=color:#a6e22e>Using</span> <span style=color:#a6e22e>latest</span> <span style=color:#a6e22e>matching</span> <span style=color:#a6e22e>version</span> <span style=color:#a6e22e>instead</span>.
+<span style=color:#a6e22e>Root</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>app</span> <span style=color:#a6e22e>references</span> <span style=color:#a6e22e>unknown</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>lib</span></code></pre></div><p><code>dub add-local &lt;プロジェクトのディレクトリのパス&gt;</code> してやるとパッケージのリストに追加される。このプロジェクトにだけ……みたいなことは<del>できないのかな?</del>できる。下に追記</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dub add-local lib
 Registered package: lib (version: ~master)
 $ cd app &amp;&amp; dub run
 Performing &#34;debug&#34; build using dmd for x86_64.
@@ -140,54 +48,15 @@ lib ~master: building configuration &#34;library&#34;...
 app ~master: building configuration &#34;application&#34;...
 Linking...
 Running ./app 
-hello!</code></pre></div>
-<hr />
-
-<p><a href="http://qiita.com/kotet/items/4ef5039d17c521ec5dc7#comment-0ee42a51bbeae9ecc2aa">コメントをもらった</a>ので追記。dependenciesで指定してやる方法もある。</p>
-
-<p>app/dub.json:</p>
-
-<p><code>json
+hello!</code></pre></div><hr><p><a href=http://qiita.com/kotet/items/4ef5039d17c521ec5dc7#comment-0ee42a51bbeae9ecc2aa>コメントをもらった</a>ので追記。dependenciesで指定してやる方法もある。</p><p>app/dub.json:</p><p><code>json
 {
-    &quot;name&quot;: &quot;app&quot;,
-    &quot;dependencies&quot;: {
-        &quot;lib&quot;: {
-            &quot;path&quot;: &quot;../lib/&quot;
-        }
-    }
+&quot;name&quot;: &quot;app&quot;,
+&quot;dependencies&quot;: {
+&quot;lib&quot;: {
+&quot;path&quot;: &quot;../lib/&quot;
 }
-</code>`</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        ローカルのdubプロジェクトに依存するdubプロジェクト
-    </h2>
-    <p>
-        <time>2016-11-27</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+}
+}
+</code>`</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+ローカルのdubプロジェクトに依存するdubプロジェクト</h2><p><time>2016-11-27</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

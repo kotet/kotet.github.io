@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs体験記 16:fs-repo-migrationsをつかった最新版への移行 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/08/ipfs-migration/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs体験記 16:fs-repo-migrationsをつかった最新版への移行 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。 今回はそれを初めてやることになったので記録する。 いきさつ ノー  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/08/ipfs-migration/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。 今回はそれを初めてやることになったので記録する。 いきさつ ノー ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。 今回はそれを初めてやることになったので記録する。 いきさつ ノー"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,228 +6,50 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>
-        
-        16:fs-repo-migrationsをつかった最新版への移行
-    </h2>
-    <p>
-        <time>2018-08-02</time>
-         <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>  <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#いきさつ">いきさつ</a></li>
-<li><a href="#fs-repo-migrations">fs-repo-migrations</a></li>
-<li><a href="#移行">移行</a>
-<ul>
-<li><a href="#fs-repo-migrations-のインストール">fs-repo-migrations のインストール</a></li>
-<li><a href="#バックアップ">バックアップ</a></li>
-<li><a href="#移行-1">移行</a></li>
-</ul></li>
-<li><a href="#確認">確認</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。
-今回はそれを初めてやることになったので記録する。</p>
-
-<h3 id="いきさつ">いきさつ</h3>
-
-<p>ノートPCは色んな所に持ち運ぶ。
+</script><title>#ipfs体験記 16:fs-repo-migrationsをつかった最新版への移行 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/08/ipfs-migration/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 16:fs-repo-migrationsをつかった最新版への移行 - Kotet's Personal Blog"><meta name=og:description content="IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。 今回はそれを初めてやることになったので記録する。 いきさつ ノー"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/08/ipfs-migration/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+16:fs-repo-migrationsをつかった最新版への移行</h2><p><time>2018-08-02</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#いきさつ>いきさつ</a></li><li><a href=#fs-repo-migrations>fs-repo-migrations</a></li><li><a href=#移行>移行</a><ul><li><a href=#fs-repo-migrations-のインストール>fs-repo-migrations のインストール</a></li><li><a href=#バックアップ>バックアップ</a></li><li><a href=#移行-1>移行</a></li></ul></li><li><a href=#確認>確認</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>IPFSを動かし続けているとバージョンアップに伴いリポジトリの移行が必要になる。
+今回はそれを初めてやることになったので記録する。</p><h3 id=いきさつ>いきさつ</h3><p>ノートPCは色んな所に持ち運ぶ。
 P2Pソフトを動かしてほしくない場所もあるので、
 最近はIPFSデーモンは基本的に停止して必要なときだけ起動するようにしている。
 しかしIPFSが必要なときというのも今のところない
 (仮にどこかでIPFSが使われていたとしてもほぼ必ずフォールバックが用意されている)
-ので、ずっと切ったままになっていた。</p>
-
-<p>今日、ふと思いついてIPFSデーモンを起動してみることにした。
+ので、ずっと切ったままになっていた。</p><p>今日、ふと思いついてIPFSデーモンを起動してみることにした。
 しかしうまく起動しない。
-適当にコマンドを入力してみたところ以下のようなメッセージが出た。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs repo stat
-Error: ipfs repo needs migration</code></pre></div>
-<p>どうやら動かしていない間にローカルリポジトリのバージョンが古くなっていたようだ。</p>
-
-<h3 id="fs-repo-migrations">fs-repo-migrations</h3>
-
-<p>もちろんローカルリポジトリが古くなるたびにリポジトリをカラにして作り直す必要はない。
-そのためのツール、fs-repo-migrations というものが用意されている。</p>
-
-<p><a href="https://github.com/ipfs/fs-repo-migrations">ipfs/fs-repo-migrations: Migrations for the filesystem repository of ipfs clients</a></p>
-
-<p>READMEに書いてあるように、リポジトリのバージョンと go-ipfs
-のバージョンの対応は以下のようになっている。</p>
-
-<table>
-<thead>
-<tr>
-<th align="right">リポジトリのバージョン</th>
-<th>go-ipfs のバージョン</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="right">1</td>
-<td>0.0.0 - 0.2.3</td>
-</tr>
-
-<tr>
-<td align="right">2</td>
-<td>0.3.0 - 0.3.11</td>
-</tr>
-
-<tr>
-<td align="right">3</td>
-<td>0.4.0 - 0.4.2</td>
-</tr>
-
-<tr>
-<td align="right">4</td>
-<td>0.4.3 - 0.4.5</td>
-</tr>
-
-<tr>
-<td align="right">5</td>
-<td>0.4.6 - 0.4.10</td>
-</tr>
-
-<tr>
-<td align="right">6</td>
-<td>0.4.11 - 0.4.15</td>
-</tr>
-
-<tr>
-<td align="right">7</td>
-<td>0.4.16 - 最新版</td>
-</tr>
-</tbody>
-</table>
-
-<p>今自分のPCに入っている go-ipfs のバージョンは <code>0.4.16</code> なので、
-ちょうど前回のアップデートでバージョンが合わなくなったようだ。</p>
-
-<h3 id="移行">移行</h3>
-
-<p>というわけで移行作業をやってみる。</p>
-
-<h4 id="fs-repo-migrations-のインストール">fs-repo-migrations のインストール</h4>
-
-<p>go がインストール済みなので導入は速い。
-go のない人は <a href="https://dist.ipfs.io/#fs-repo-migrations">dist.ipfs.io</a>
+適当にコマンドを入力してみたところ以下のようなメッセージが出た。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs repo stat
+Error: ipfs repo needs migration</code></pre></div><p>どうやら動かしていない間にローカルリポジトリのバージョンが古くなっていたようだ。</p><h3 id=fs-repo-migrations>fs-repo-migrations</h3><p>もちろんローカルリポジトリが古くなるたびにリポジトリをカラにして作り直す必要はない。
+そのためのツール、fs-repo-migrations というものが用意されている。</p><p><a href=https://github.com/ipfs/fs-repo-migrations>ipfs/fs-repo-migrations: Migrations for the filesystem repository of ipfs clients</a></p><p>READMEに書いてあるように、リポジトリのバージョンと go-ipfs
+のバージョンの対応は以下のようになっている。</p><table><thead><tr><th align=right>リポジトリのバージョン</th><th>go-ipfs のバージョン</th></tr></thead><tbody><tr><td align=right>1</td><td>0.0.0 - 0.2.3</td></tr><tr><td align=right>2</td><td>0.3.0 - 0.3.11</td></tr><tr><td align=right>3</td><td>0.4.0 - 0.4.2</td></tr><tr><td align=right>4</td><td>0.4.3 - 0.4.5</td></tr><tr><td align=right>5</td><td>0.4.6 - 0.4.10</td></tr><tr><td align=right>6</td><td>0.4.11 - 0.4.15</td></tr><tr><td align=right>7</td><td>0.4.16 - 最新版</td></tr></tbody></table><p>今自分のPCに入っている go-ipfs のバージョンは <code>0.4.16</code> なので、
+ちょうど前回のアップデートでバージョンが合わなくなったようだ。</p><h3 id=移行>移行</h3><p>というわけで移行作業をやってみる。</p><h4 id=fs-repo-migrations-のインストール>fs-repo-migrations のインストール</h4><p>go がインストール済みなので導入は速い。
+go のない人は <a href=https://dist.ipfs.io/#fs-repo-migrations>dist.ipfs.io</a>
 とかでバイナリをダウンロードしてくる。
 今回はIPFSデーモンが動かないので仕方がないが、
 IPFSからダウンロードする
-(<a href="https://ipfs.io/ipns/dist.ipfs.io/#fs-repo-migrations">/ipns/dist.ipfs.io</a>)
-とIPFSに対する貢献になるかもしれない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ go get -u github.com/ipfs/fs-repo-migrations</code></pre></div>
-<p>リポジトリのバージョンがまた新しくなったら再度 <code>go get -u</code> すれば良いと思う。</p>
-
-<h4 id="バックアップ">バックアップ</h4>
-
-<p>書く必要もない気がするが念のため。
-何かあったときのためにリポジトリのコピーを作っておく。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cp -r ~/.ipfs{,.backup}</code></pre></div>
-<p>自分のリポジトリは10ギガバイトくらいあるのでけっこう時間がかかった。</p>
-
-<h4 id="移行-1">移行</h4>
-
-<p>準備ができたので fs-repo-migrations を動かしてみる。
-オプションは以下のとおり。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ fs-repo-migrations -h
+(<a href=https://ipfs.io/ipns/dist.ipfs.io/#fs-repo-migrations>/ipns/dist.ipfs.io</a>)
+とIPFSに対する貢献になるかもしれない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ go get -u github.com/ipfs/fs-repo-migrations</code></pre></div><p>リポジトリのバージョンがまた新しくなったら再度 <code>go get -u</code> すれば良いと思う。</p><h4 id=バックアップ>バックアップ</h4><p>書く必要もない気がするが念のため。
+何かあったときのためにリポジトリのコピーを作っておく。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cp -r ~/.ipfs{,.backup}</code></pre></div><p>自分のリポジトリは10ギガバイトくらいあるのでけっこう時間がかかった。</p><h4 id=移行-1>移行</h4><p>準備ができたので fs-repo-migrations を動かしてみる。
+オプションは以下のとおり。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ fs-repo-migrations -h
 Usage of fs-repo-migrations:
   -to int
     	specify version to upgrade to (default 7)
   -v	print highest repo version and exit
-  -y	answer yes to all prompts</code></pre></div>
-<p>古いバージョンへダウングレードしたりもできるっぽい。</p>
-
-<p>実行してみると移行対象のディレクトリの確認を求められた。
+  -y	answer yes to all prompts</code></pre></div><p>古いバージョンへダウングレードしたりもできるっぽい。</p><p>実行してみると移行対象のディレクトリの確認を求められた。
 確認すると移行作業が始まる。
 今回は一瞬で終わった。
-バージョンが遠いと時間がかかったりするのだろうか?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ fs-repo-migrations
+バージョンが遠いと時間がかかったりするのだろうか?</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ fs-repo-migrations
 Found fs-repo version 6 at /home/kotet/.ipfs
 Do you want to upgrade this to version 7? [y/n] y
 ===&gt; Running migration 6 to 7...
 applying 6-to-7 repo migration
 migrating IPNS record for key: self
 updated version file
-===&gt; Migration 6 to 7 succeeded!</code></pre></div>
-<h3 id="確認">確認</h3>
-
-<p>ちゃんと移行できただろうか。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs repo stat
+===&gt; Migration 6 to 7 succeeded!</code></pre></div><h3 id=確認>確認</h3><p>ちゃんと移行できただろうか。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs repo stat
 Calculating datastore size. This might take 5m0s at most and will happen only once
 NumObjects: 708065
 RepoSize:   8216006954
 StorageMax: 53687091200
 RepoPath:   /home/kotet/.ipfs
-Version:    fs-repo@7</code></pre></div>
-<p>大丈夫そう。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>
-        
-        16:fs-repo-migrationsをつかった最新版への移行
-    </h2>
-    <p>
-        <time>2018-08-02</time>
-         <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a>  <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+Version:    fs-repo@7</code></pre></div><p>大丈夫そう。</p></article><footer><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+16:fs-repo-migrationsをつかった最新版への移行</h2><p><time>2018-08-02</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

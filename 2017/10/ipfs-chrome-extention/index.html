@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs 非中央集権型Web、IPFS体験記4:ブラウザ拡張2 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/10/ipfs-chrome-extention/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs 非中央集権型Web、IPFS体験記4:ブラウザ拡張2 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 引き続き公式ブラウザ拡張の機能を見ていく。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/10/ipfs-chrome-extention/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 引き続き公式ブラウザ拡張の機能を見ていく。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=引き続き公式ブラウザ拡張の機能を見ていく。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,135 +6,26 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        非中央集権型Web、IPFS体験記4:ブラウザ拡張2
-    </h2>
-    <p>
-        <time>2017-10-24</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#webuiを開く">WebUIを開く</a></li>
-<li><a href="#接続ノード数表示">接続ノード数表示</a></li>
-<li><a href="#リソースのpin-unpin">リソースのpin/unpin</a></li>
-<li><a href="#quick-upload">Quick Upload</a></li>
-<li><a href="#ipfsプロトコルのサポート">IPFSプロトコルのサポート</a></li>
-<li><a href="#ipfsアドレスのリンク化">IPFSアドレスのリンク化</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>引き続き公式ブラウザ拡張の機能を見ていく。</p>
-
-<h3 id="webuiを開く">WebUIを開く</h3>
-
-<p>シンプルながら地味に便利。</p>
-
-<h3 id="接続ノード数表示">接続ノード数表示</h3>
-
-<p>異常が起きてたらすぐわかるかもしれない。</p>
-
-<h3 id="リソースのpin-unpin">リソースのpin/unpin</h3>
-
-<p>ネットワーク上で誰もリソースを持っている人がいないと、そのリソースにはアクセスできなくなる。
+</script><title>#ipfs 非中央集権型Web、IPFS体験記4:ブラウザ拡張2 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-chrome-extention/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 非中央集権型Web、IPFS体験記4:ブラウザ拡張2 - Kotet's Personal Blog"><meta name=og:description content=引き続き公式ブラウザ拡張の機能を見ていく。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-chrome-extention/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+非中央集権型Web、IPFS体験記4:ブラウザ拡張2</h2><p><time>2017-10-24</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#webuiを開く>WebUIを開く</a></li><li><a href=#接続ノード数表示>接続ノード数表示</a></li><li><a href=#リソースのpin-unpin>リソースのpin/unpin</a></li><li><a href=#quick-upload>Quick Upload</a></li><li><a href=#ipfsプロトコルのサポート>IPFSプロトコルのサポート</a></li><li><a href=#ipfsアドレスのリンク化>IPFSアドレスのリンク化</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>引き続き公式ブラウザ拡張の機能を見ていく。</p><h3 id=webuiを開く>WebUIを開く</h3><p>シンプルながら地味に便利。</p><h3 id=接続ノード数表示>接続ノード数表示</h3><p>異常が起きてたらすぐわかるかもしれない。</p><h3 id=リソースのpin-unpin>リソースのpin/unpin</h3><p>ネットワーク上で誰もリソースを持っている人がいないと、そのリソースにはアクセスできなくなる。
 IPFSリソースにアクセスすると一時的にそれがローカルに保存され(、おそらくそのリソースの配信者にな)るが、GCの動作時に削除される。
-リソースをpinするとリソースをずっと消さずにとっておくことができる。</p>
-
-<p>現状他人のリソースをpinするインセンティブがないので、基本的にリソースの配信者はリソースを追加した人自身か、
+リソースをpinするとリソースをずっと消さずにとっておくことができる。</p><p>現状他人のリソースをpinするインセンティブがないので、基本的にリソースの配信者はリソースを追加した人自身か、
 公式パブリックゲートウェイか、ボランティア精神でなんでもpinしている人か、
 偶然ビットレベルで全く同じリソースを追加した人のみである。
 とりあえず自分がアクセスしたものは全部Pinしておこうと思う。
-インセンティブづくりについてはFilecoinなどが関係しているようだが、まだよくわからない。</p>
-
-<h3 id="quick-upload">Quick Upload</h3>
-
-<p><code>ipfs add</code>のGUI版。
+インセンティブづくりについてはFilecoinなどが関係しているようだが、まだよくわからない。</p><h3 id=quick-upload>Quick Upload</h3><p><code>ipfs add</code>のGUI版。
 やっぱり簡素でもGUIがあるととっつきやすさが違うと思う。
-ディレクトリには対応していないようだ。</p>
-
-<h3 id="ipfsプロトコルのサポート">IPFSプロトコルのサポート</h3>
-
-<p>これは設定画面ではExperimentalの項目にあるが、デフォルトで有効になっている。
+ディレクトリには対応していないようだ。</p><h3 id=ipfsプロトコルのサポート>IPFSプロトコルのサポート</h3><p>これは設定画面ではExperimentalの項目にあるが、デフォルトで有効になっている。
 <code>ipfs://</code>や<code>ipns://</code>、<code>dweb:/ipfs/</code>という形式のリンクやリクエストをサポートするらしい。
 この形式を使っている人は少ないし、
-このExtentionを入れた人でないとアクセスできないので利用機会は少ないかもしれない。</p>
-
-<h3 id="ipfsアドレスのリンク化">IPFSアドレスのリンク化</h3>
-
-<p>こちらもExperimental。
+このExtentionを入れた人でないとアクセスできないので利用機会は少ないかもしれない。</p><h3 id=ipfsアドレスのリンク化>IPFSアドレスのリンク化</h3><p>こちらもExperimental。
 デフォルトで無効。
 <code>/ipfs/</code>形式の文字列をリンクに置き換える。
 コマンドなどから得たアドレスをそのままコピペできるのか！？
 と思ったがアドレスバーにコピペしても何も起きなかった。
-大抵の場合ipfsアドレスは最初からゲートウェイへのリンクにする配慮がされているので、使うときはすくないかもしれない。</p>
-
-<p>以上でだいたいの機能は挙げられたと思う。
-次回は実際にいろいろ試そうと思う。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        非中央集権型Web、IPFS体験記4:ブラウザ拡張2
-    </h2>
-    <p>
-        <time>2017-10-24</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+大抵の場合ipfsアドレスは最初からゲートウェイへのリンクにする配慮がされているので、使うときはすくないかもしれない。</p><p>以上でだいたいの機能は挙げられたと思う。
+次回は実際にいろいろ試そうと思う。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+非中央集権型Web、IPFS体験記4:ブラウザ拡張2</h2><p><time>2017-10-24</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

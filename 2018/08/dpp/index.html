@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang dppでCのヘッダファイルを自動変換 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/08/dpp/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang dppでCのヘッダファイルを自動変換 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。 自分はいまのところ C と連携するようなプログラムを書く予定はないが、 興  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/08/dpp/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。 自分はいまのところ C と連携するようなプログラムを書く予定はないが、 興 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。 自分はいまのところ C と連携するようなプログラムを書く予定はないが、 興"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,199 +6,70 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        dppでCのヘッダファイルを自動変換
-    </h2>
-    <p>
-        <time>2018-08-08</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#d-include-c-and-c-headers-in-d-files">d++ - #include C and C++ headers in D files</a></li>
-<li><a href="#使ってみる">使ってみる</a>
-<ul>
-<li><a href="#c-h">c.h</a></li>
-<li><a href="#c-c">c.c</a></li>
-<li><a href="#foo-dpp">foo.dpp</a></li>
-</ul></li>
-<li><a href="#他にも試してみる">他にも試してみる</a>
-<ul>
-<li><a href="#app-dpp">app.dpp</a></li>
-</ul></li>
-<li><a href="#c">C++</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。
+</script><title>#dlang dppでCのヘッダファイルを自動変換 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/08/dpp/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang dppでCのヘッダファイルを自動変換 - Kotet's Personal Blog"><meta name=og:description content="dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。 自分はいまのところ C と連携するようなプログラムを書く予定はないが、 興"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/08/dpp/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+dppでCのヘッダファイルを自動変換</h2><p><time>2018-08-08</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#d-include-c-and-c-headers-in-d-files>d++ - #include C and C++ headers in D files</a></li><li><a href=#使ってみる>使ってみる</a><ul><li><a href=#c-h>c.h</a></li><li><a href=#c-c>c.c</a></li><li><a href=#foo-dpp>foo.dpp</a></li></ul></li><li><a href=#他にも試してみる>他にも試してみる</a><ul><li><a href=#app-dpp>app.dpp</a></li></ul></li><li><a href=#c>C++</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>dpp というパッケージが登場し、使った人の好意的な声をよく聞くようになった。
 自分はいまのところ C と連携するようなプログラムを書く予定はないが、
-興味が出たので使ってみることにした。</p>
-
-<h3 id="d-include-c-and-c-headers-in-d-files">d++ - #include C and C++ headers in D files</h3>
-
-<p>D言語で書かれたプログラムは C のプログラムと互換性があり、リンクすることができる。
+興味が出たので使ってみることにした。</p><h3 id=d-include-c-and-c-headers-in-d-files>d++ - #include C and C++ headers in D files</h3><p>D言語で書かれたプログラムは C のプログラムと互換性があり、リンクすることができる。
 しかしそのためにはヘッダファイルを変換した D プログラムを用意する必要があり、
 それが手間である。
-ここを自動化できればとても嬉しく、D言語くんのO脚も治る(慣用句)。</p>
+ここを自動化できればとても嬉しく、D言語くんのO脚も治る(慣用句)。</p><p>dpp はそのためのソフトウェアである。</p><p><a href=https://code.dlang.org/packages/dpp>Package dpp version 0.0.2 - DUB - The D package registry</a></p><h3 id=使ってみる>使ってみる</h3><p>さっそくREADMEの例を試してみる。</p><h4 id=c-h>c.h</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>#ifndef C_H
+</span><span style=color:#75715e>#define C_H
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#define FOO_ID(x) (x*3)
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>twice</span>(<span style=color:#66d9ef>int</span> i);
 
-<p>dpp はそのためのソフトウェアである。</p>
-
-<p><a href="https://code.dlang.org/packages/dpp">Package dpp version 0.0.2 - DUB - The D package registry</a></p>
-
-<h3 id="使ってみる">使ってみる</h3>
-
-<p>さっそくREADMEの例を試してみる。</p>
-
-<h4 id="c-h">c.h</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#ifndef C_H
-</span><span style="color:#75715e">#define C_H
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define FOO_ID(x) (x*3)
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">twice</span>(<span style="color:#66d9ef">int</span> i);
-
-<span style="color:#75715e">#endif</span></code></pre></div>
-<h4 id="c-c">c.c</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">twice</span>(<span style="color:#66d9ef">int</span> i) { <span style="color:#66d9ef">return</span> i <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>; }</code></pre></div>
-<h4 id="foo-dpp">foo.dpp</h4>
-
-<pre><code>#include &quot;c.h&quot;
+<span style=color:#75715e>#endif</span></code></pre></div><h4 id=c-c>c.c</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>twice</span>(<span style=color:#66d9ef>int</span> i) { <span style=color:#66d9ef>return</span> i <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>; }</code></pre></div><h4 id=foo-dpp>foo.dpp</h4><pre><code>#include &quot;c.h&quot;
 void main() {
     import std.stdio;
     writeln(twice(FOO_ID(5)));  // yes, it's using a C macro here!
 }
-</code></pre>
-
-<p>D プログラムの拡張子は<code>.dpp</code>にする。
+</code></pre><p>D プログラムの拡張子は<code>.dpp</code>にする。
 C と同じように<code>#include</code>してやる。
-D のフォーマッター等が動かなくなるのがちょっとつらい。</p>
-
-<p>dpp は<code>.dpp</code>ファイルを<code>.d</code>プログラムに変換して dmd などに渡すラッパーである。
+D のフォーマッター等が動かなくなるのがちょっとつらい。</p><p>dpp は<code>.dpp</code>ファイルを<code>.d</code>プログラムに変換して dmd などに渡すラッパーである。
 READMEではビルドしてできる<code>d++</code>という実行ファイルを使っているが、
 <code>dub run</code>でも動かせる。
-clang をインストールしておく必要があるので注意。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">fetch</span> <span style="color:#a6e22e">dpp</span>
-<span style="color:#a6e22e">Fetching</span> <span style="color:#a6e22e">dpp</span> <span style="color:#ae81ff">0.0.2</span><span style="color:#f92672">...</span>
-<span style="color:#a6e22e">Please</span> <span style="color:#a6e22e">note</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span> <span style="color:#e6db74">`dub run &lt;pkgname&gt;`</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">add</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">dependencies</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">your</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">actually</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">/</span><span style="color:#a6e22e">run</span> <span style="color:#a6e22e">it</span>. <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">do</span> <span style="color:#a6e22e">actual</span> <span style="color:#a6e22e">installation</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">outside</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">own</span> <span style="color:#a6e22e">ecosystem</span>.
-<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dpp</span> <span style="color:#f92672">--</span> <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">dpp</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">o</span>
-<span style="color:#a6e22e">Building</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">dpp</span> <span style="color:#a6e22e">in</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">home</span><span style="color:#f92672">/</span><span style="color:#a6e22e">kotet</span><span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.0.2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">/</span>
-<span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">unit</span><span style="color:#f92672">-</span><span style="color:#a6e22e">threaded</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">upgraded</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0.7.46</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">0.7.47</span>.
-<span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">libclang</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">upgraded</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0.0.6</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">0.0.7</span>.
-<span style="color:#a6e22e">Use</span> <span style="color:#e6db74">&#34;dub upgrade&#34;</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">perform</span> <span style="color:#a6e22e">those</span> <span style="color:#a6e22e">changes</span>.
-<span style="color:#a6e22e">Performing</span> <span style="color:#e6db74">&#34;debug&#34;</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">using</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">usr</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dmd</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x86_64</span>.
-<span style="color:#a6e22e">libclang</span> <span style="color:#ae81ff">0.0.6</span>: <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;library&#34;</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">date</span>.
-<span style="color:#a6e22e">dpp</span> <span style="color:#ae81ff">0.0.2</span>: <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;executable&#34;</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">date</span>.
-<span style="color:#a6e22e">To</span> <span style="color:#a6e22e">force</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">rebuild</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">up</span><span style="color:#f92672">-</span><span style="color:#a6e22e">to</span><span style="color:#f92672">-</span><span style="color:#a6e22e">date</span> <span style="color:#a6e22e">targets</span>, <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">again</span> <span style="color:#a6e22e">with</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">force</span>.
-<span style="color:#a6e22e">Running</span> ..<span style="color:#f92672">/</span>..<span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.0.2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">d</span><span style="color:#f92672">++</span> <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">dpp</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">o</span>
-<span style="color:#960050;background-color:#1e0010">$</span> .<span style="color:#f92672">/</span><span style="color:#a6e22e">foo</span> 
-<span style="color:#ae81ff">30</span></code></pre></div>
-<p><code>c.d</code> を書かずに C プログラムのリンクができた。</p>
-
-<h3 id="他にも試してみる">他にも試してみる</h3>
-
-<p>すでに<code>stdio.h</code>など複数のヘッダファイルが完全に変換できるようになっているらしい。
+clang をインストールしておく必要があるので注意。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>fetch</span> <span style=color:#a6e22e>dpp</span>
+<span style=color:#a6e22e>Fetching</span> <span style=color:#a6e22e>dpp</span> <span style=color:#ae81ff>0.0.2</span><span style=color:#f92672>...</span>
+<span style=color:#a6e22e>Please</span> <span style=color:#a6e22e>note</span> <span style=color:#a6e22e>that</span> <span style=color:#a6e22e>you</span> <span style=color:#a6e22e>need</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>use</span> <span style=color:#e6db74>`dub run &lt;pkgname&gt;`</span> <span style=color:#a6e22e>or</span> <span style=color:#a6e22e>add</span> <span style=color:#a6e22e>it</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>dependencies</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>your</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>actually</span> <span style=color:#a6e22e>use</span><span style=color:#f92672>/</span><span style=color:#a6e22e>run</span> <span style=color:#a6e22e>it</span>. <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>do</span> <span style=color:#a6e22e>actual</span> <span style=color:#a6e22e>installation</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>packages</span> <span style=color:#a6e22e>outside</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>its</span> <span style=color:#a6e22e>own</span> <span style=color:#a6e22e>ecosystem</span>.
+<span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>dpp</span> <span style=color:#f92672>--</span> <span style=color:#a6e22e>foo</span>.<span style=color:#a6e22e>dpp</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>o</span>
+<span style=color:#a6e22e>Building</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>dpp</span> <span style=color:#a6e22e>in</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>kotet</span><span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>-</span><span style=color:#ae81ff>0.0.2</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>/</span>
+<span style=color:#a6e22e>Package</span> <span style=color:#a6e22e>unit</span><span style=color:#f92672>-</span><span style=color:#a6e22e>threaded</span> <span style=color:#a6e22e>can</span> <span style=color:#a6e22e>be</span> <span style=color:#a6e22e>upgraded</span> <span style=color:#a6e22e>from</span> <span style=color:#ae81ff>0.7.46</span> <span style=color:#a6e22e>to</span> <span style=color:#ae81ff>0.7.47</span>.
+<span style=color:#a6e22e>Package</span> <span style=color:#a6e22e>libclang</span> <span style=color:#a6e22e>can</span> <span style=color:#a6e22e>be</span> <span style=color:#a6e22e>upgraded</span> <span style=color:#a6e22e>from</span> <span style=color:#ae81ff>0.0.6</span> <span style=color:#a6e22e>to</span> <span style=color:#ae81ff>0.0.7</span>.
+<span style=color:#a6e22e>Use</span> <span style=color:#e6db74>&#34;dub upgrade&#34;</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>perform</span> <span style=color:#a6e22e>those</span> <span style=color:#a6e22e>changes</span>.
+<span style=color:#a6e22e>Performing</span> <span style=color:#e6db74>&#34;debug&#34;</span> <span style=color:#a6e22e>build</span> <span style=color:#a6e22e>using</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>usr</span><span style=color:#f92672>/</span><span style=color:#a6e22e>bin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dmd</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>x86_64</span>.
+<span style=color:#a6e22e>libclang</span> <span style=color:#ae81ff>0.0.6</span>: <span style=color:#a6e22e>target</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;library&#34;</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>up</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>date</span>.
+<span style=color:#a6e22e>dpp</span> <span style=color:#ae81ff>0.0.2</span>: <span style=color:#a6e22e>target</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;executable&#34;</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>up</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>date</span>.
+<span style=color:#a6e22e>To</span> <span style=color:#a6e22e>force</span> <span style=color:#a6e22e>a</span> <span style=color:#a6e22e>rebuild</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>up</span><span style=color:#f92672>-</span><span style=color:#a6e22e>to</span><span style=color:#f92672>-</span><span style=color:#a6e22e>date</span> <span style=color:#a6e22e>targets</span>, <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>again</span> <span style=color:#a6e22e>with</span> <span style=color:#f92672>--</span><span style=color:#a6e22e>force</span>.
+<span style=color:#a6e22e>Running</span> ..<span style=color:#f92672>/</span>..<span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>-</span><span style=color:#ae81ff>0.0.2</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>/</span><span style=color:#a6e22e>bin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>d</span><span style=color:#f92672>++</span> <span style=color:#a6e22e>foo</span>.<span style=color:#a6e22e>dpp</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>o</span>
+<span style=color:#960050;background-color:#1e0010>$</span> .<span style=color:#f92672>/</span><span style=color:#a6e22e>foo</span> 
+<span style=color:#ae81ff>30</span></code></pre></div><p><code>c.d</code> を書かずに C プログラムのリンクができた。</p><h3 id=他にも試してみる>他にも試してみる</h3><p>すでに<code>stdio.h</code>など複数のヘッダファイルが完全に変換できるようになっているらしい。
 以前やった
-<a href="/2017/04/use-c-stdio-in-d">C の標準ライブラリの利用</a>
-と同じことを dpp でやってみる。</p>
-
-<h4 id="app-dpp">app.dpp</h4>
-
-<pre><code>#include &quot;/usr/include/stdio.h&quot;
+<a href=/2017/04/use-c-stdio-in-d>C の標準ライブラリの利用</a>
+と同じことを dpp でやってみる。</p><h4 id=app-dpp>app.dpp</h4><pre><code>#include &quot;/usr/include/stdio.h&quot;
 import std.string : toStringz;
 
 void main()
 {
 	puts(&quot;hello&quot;.toStringz);
 }
-</code></pre>
-
-<p>C の標準ライブラリは自動的にリンクされるので<code>app.dpp</code>だけを渡せばいい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dpp</span> <span style="color:#f92672">--</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">dpp</span>
-<span style="color:#a6e22e">Building</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">dpp</span> <span style="color:#a6e22e">in</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">home</span><span style="color:#f92672">/</span><span style="color:#a6e22e">kotet</span><span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.0.2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">/</span>
-<span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">unit</span><span style="color:#f92672">-</span><span style="color:#a6e22e">threaded</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">upgraded</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0.7.46</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">0.7.47</span>.
-<span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">libclang</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">upgraded</span> <span style="color:#a6e22e">from</span> <span style="color:#ae81ff">0.0.6</span> <span style="color:#a6e22e">to</span> <span style="color:#ae81ff">0.0.7</span>.
-<span style="color:#a6e22e">Use</span> <span style="color:#e6db74">&#34;dub upgrade&#34;</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">perform</span> <span style="color:#a6e22e">those</span> <span style="color:#a6e22e">changes</span>.
-<span style="color:#a6e22e">Performing</span> <span style="color:#e6db74">&#34;debug&#34;</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">using</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">usr</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dmd</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x86_64</span>.
-<span style="color:#a6e22e">libclang</span> <span style="color:#ae81ff">0.0.6</span>: <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;library&#34;</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">date</span>.
-<span style="color:#a6e22e">dpp</span> <span style="color:#ae81ff">0.0.2</span>: <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;executable&#34;</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">date</span>.
-<span style="color:#a6e22e">To</span> <span style="color:#a6e22e">force</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">rebuild</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">up</span><span style="color:#f92672">-</span><span style="color:#a6e22e">to</span><span style="color:#f92672">-</span><span style="color:#a6e22e">date</span> <span style="color:#a6e22e">targets</span>, <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">again</span> <span style="color:#a6e22e">with</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">force</span>.
-<span style="color:#a6e22e">Running</span> ..<span style="color:#f92672">/</span>..<span style="color:#f92672">/</span>..<span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.0.2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dpp</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">d</span><span style="color:#f92672">++</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">dpp</span>
-<span style="color:#960050;background-color:#1e0010">$</span> .<span style="color:#f92672">/</span><span style="color:#a6e22e">app</span>
-<span style="color:#a6e22e">hello</span></code></pre></div>
-<p>今回の場合は必要な行数が変わってないのであまりうまみがないが、
-そうでない状況があることは容易に想像できる。</p>
-
-<h3 id="c">C++</h3>
-
-<p>dpp は今のところ C のヘッダーファイルにしか対応していないが、
+</code></pre><p>C の標準ライブラリは自動的にリンクされるので<code>app.dpp</code>だけを渡せばいい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>dpp</span> <span style=color:#f92672>--</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>dpp</span>
+<span style=color:#a6e22e>Building</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>dpp</span> <span style=color:#a6e22e>in</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>kotet</span><span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>-</span><span style=color:#ae81ff>0.0.2</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>/</span>
+<span style=color:#a6e22e>Package</span> <span style=color:#a6e22e>unit</span><span style=color:#f92672>-</span><span style=color:#a6e22e>threaded</span> <span style=color:#a6e22e>can</span> <span style=color:#a6e22e>be</span> <span style=color:#a6e22e>upgraded</span> <span style=color:#a6e22e>from</span> <span style=color:#ae81ff>0.7.46</span> <span style=color:#a6e22e>to</span> <span style=color:#ae81ff>0.7.47</span>.
+<span style=color:#a6e22e>Package</span> <span style=color:#a6e22e>libclang</span> <span style=color:#a6e22e>can</span> <span style=color:#a6e22e>be</span> <span style=color:#a6e22e>upgraded</span> <span style=color:#a6e22e>from</span> <span style=color:#ae81ff>0.0.6</span> <span style=color:#a6e22e>to</span> <span style=color:#ae81ff>0.0.7</span>.
+<span style=color:#a6e22e>Use</span> <span style=color:#e6db74>&#34;dub upgrade&#34;</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>perform</span> <span style=color:#a6e22e>those</span> <span style=color:#a6e22e>changes</span>.
+<span style=color:#a6e22e>Performing</span> <span style=color:#e6db74>&#34;debug&#34;</span> <span style=color:#a6e22e>build</span> <span style=color:#a6e22e>using</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>usr</span><span style=color:#f92672>/</span><span style=color:#a6e22e>bin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dmd</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>x86_64</span>.
+<span style=color:#a6e22e>libclang</span> <span style=color:#ae81ff>0.0.6</span>: <span style=color:#a6e22e>target</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;library&#34;</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>up</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>date</span>.
+<span style=color:#a6e22e>dpp</span> <span style=color:#ae81ff>0.0.2</span>: <span style=color:#a6e22e>target</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;executable&#34;</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>up</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>date</span>.
+<span style=color:#a6e22e>To</span> <span style=color:#a6e22e>force</span> <span style=color:#a6e22e>a</span> <span style=color:#a6e22e>rebuild</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>up</span><span style=color:#f92672>-</span><span style=color:#a6e22e>to</span><span style=color:#f92672>-</span><span style=color:#a6e22e>date</span> <span style=color:#a6e22e>targets</span>, <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>again</span> <span style=color:#a6e22e>with</span> <span style=color:#f92672>--</span><span style=color:#a6e22e>force</span>.
+<span style=color:#a6e22e>Running</span> ..<span style=color:#f92672>/</span>..<span style=color:#f92672>/</span>..<span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>-</span><span style=color:#ae81ff>0.0.2</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dpp</span><span style=color:#f92672>/</span><span style=color:#a6e22e>bin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>d</span><span style=color:#f92672>++</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>dpp</span>
+<span style=color:#960050;background-color:#1e0010>$</span> .<span style=color:#f92672>/</span><span style=color:#a6e22e>app</span>
+<span style=color:#a6e22e>hello</span></code></pre></div><p>今回の場合は必要な行数が変わってないのであまりうまみがないが、
+そうでない状況があることは容易に想像できる。</p><h3 id=c>C++</h3><p>dpp は今のところ C のヘッダーファイルにしか対応していないが、
 将来的には C++ のヘッダーファイルへの対応も予定しているそうだ。
 まだバージョン 0.0.2 で問題も多いが、使えるようになれば
-D を使った開発がより簡単になると思うのでうまくいくといいなと思った。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        dppでCのヘッダファイルを自動変換
-    </h2>
-    <p>
-        <time>2018-08-08</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+D を使った開発がより簡単になると思うのでうまくいくといいなと思った。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+dppでCのヘッダファイルを自動変換</h2><p><time>2018-08-08</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

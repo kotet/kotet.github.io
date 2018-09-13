@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#regexp 同じ文字の繰り返しが3回続く単語にマッチする正規表現 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/05/grep-literacy/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#regexp 同じ文字の繰り返しが3回続く単語にマッチする正規表現 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 内向けの記事を書く。 正規表現の問題の解説記事である。 解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/05/grep-literacy/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 内向けの記事を書く。 正規表現の問題の解説記事である。 解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="内向けの記事を書く。 正規表現の問題の解説記事である。 解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,110 +6,20 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/regexp">#regexp</a>
-        
-        同じ文字の繰り返しが3回続く単語にマッチする正規表現
-    </h2>
-    <p>
-        <time>2018-05-10</time>
-         <a href="/tags/regexp">#regexp</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#問題文">問題文</a></li>
-<li><a href="#複数の解釈">複数の解釈</a>
-<ul>
-<li><a href="#1-kotetの解釈-agreeeth">1: Kotetの解釈 - &ldquo;agreeeth&rdquo;</a>
-<ul>
-<li><a href="#ドット">ドット ( <code>.</code> )</a></li>
-<li><a href="#カッコ">カッコ ( <code>()</code> )</a></li>
-<li><a href="#波括弧">波括弧 ( <code>{}</code> )</a></li>
-<li><a href="#不具合-4文字以上の繰り返しは不正か">不具合: 4文字以上の繰り返しは不正か?</a></li>
-</ul></li>
-<li><a href="#2-jjjohn-son-https-twitter-com-jjjohn-son-の解釈-bookkeep">2: <a href="https://twitter.com/jjjohn_son">@jjjohn_son</a>の解釈 - &ldquo;bookkeep&rdquo;</a>
-<ul>
-<li><a href="#4文字の連続した文字が2つの連続として扱われる不具合">4文字の連続した文字が2つの連続として扱われる不具合</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>内向けの記事を書く。
+</script><title>#regexp 同じ文字の繰り返しが3回続く単語にマッチする正規表現 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/05/grep-literacy/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#regexp 同じ文字の繰り返しが3回続く単語にマッチする正規表現 - Kotet's Personal Blog"><meta name=og:description content="内向けの記事を書く。 正規表現の問題の解説記事である。 解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/05/grep-literacy/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/regexp>#regexp</a>
+同じ文字の繰り返しが3回続く単語にマッチする正規表現</h2><p><time>2018-05-10</time>
+<a href=/tags/regexp>#regexp</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#問題文>問題文</a></li><li><a href=#複数の解釈>複数の解釈</a><ul><li><a href=#1-kotetの解釈-agreeeth>1: Kotetの解釈 - &ldquo;agreeeth&rdquo;</a><ul><li><a href=#ドット>ドット ( <code>.</code> )</a></li><li><a href=#カッコ>カッコ ( <code>()</code> )</a></li><li><a href=#波括弧>波括弧 ( <code>{}</code> )</a></li><li><a href=#不具合-4文字以上の繰り返しは不正か>不具合: 4文字以上の繰り返しは不正か?</a></li></ul></li><li><a href=#2-jjjohn-son-https-twitter-com-jjjohn-son-の解釈-bookkeep>2: <a href=https://twitter.com/jjjohn_son>@jjjohn_son</a>の解釈 - &ldquo;bookkeep&rdquo;</a><ul><li><a href=#4文字の連続した文字が2つの連続として扱われる不具合>4文字の連続した文字が2つの連続として扱われる不具合</a></li></ul></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>内向けの記事を書く。
 正規表現の問題の解説記事である。
-解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に達してしまった……</p>
-
-<h3 id="問題文">問題文</h3>
-
-<p>以下の単語にマッチする正規表現を書いてgrepで使うという問題である。</p>
-
-<blockquote>
-<p>同じ文字の繰り返しが3回続く単語(2回であればballoon, coffee, succeedなど多数存在する)</p>
-</blockquote>
-
-<p>この問題には複数の解釈があり、それぞれの解釈ごとにまた複数の解法がある。
-なお、この記事内では問題のファイルではなくKotetのPCの<code>/usr/share/dict/cracklib-small</code>の中身に対してgrepをかけているので注意である。</p>
-
-<h3 id="複数の解釈">複数の解釈</h3>
-
-<h4 id="1-kotetの解釈-agreeeth">1: Kotetの解釈 - &ldquo;agreeeth&rdquo;</h4>
-
-<p>同じ文字が3回ということで自分が考えたもの。
-自分はすでにこの解釈で提出してしまっているのでもし出題意図が違っても修正できない。</p>
-
-<p>ここでは後方参照という概念が必要になる。
-まず自分の書いた正規表現を書いておく。</p>
-
-<pre><code>(.)\1{2}
-</code></pre>
-
-<p>以降構成要素を一つづつ取り上げていく。</p>
-
-<h5 id="ドット">ドット ( <code>.</code> )</h5>
-
-<p>&ldquo;<code>.</code>&rdquo; は任意の1文字にマッチする。
-<code>ABC</code>という文字列の場合<code>A</code>と<code>B</code>と<code>C</code>がマッチする。</p>
-
-<h5 id="カッコ">カッコ ( <code>()</code> )</h5>
-
-<p>&ldquo;<code>()</code>&ldquo;はグループ化をする。
+解説記事と言いつつ複数の解を提示してしかも結局どれも正解ではないというとんでもない結論に達してしまった……</p><h3 id=問題文>問題文</h3><p>以下の単語にマッチする正規表現を書いてgrepで使うという問題である。</p><blockquote><p>同じ文字の繰り返しが3回続く単語(2回であればballoon, coffee, succeedなど多数存在する)</p></blockquote><p>この問題には複数の解釈があり、それぞれの解釈ごとにまた複数の解法がある。
+なお、この記事内では問題のファイルではなくKotetのPCの<code>/usr/share/dict/cracklib-small</code>の中身に対してgrepをかけているので注意である。</p><h3 id=複数の解釈>複数の解釈</h3><h4 id=1-kotetの解釈-agreeeth>1: Kotetの解釈 - &ldquo;agreeeth&rdquo;</h4><p>同じ文字が3回ということで自分が考えたもの。
+自分はすでにこの解釈で提出してしまっているのでもし出題意図が違っても修正できない。</p><p>ここでは後方参照という概念が必要になる。
+まず自分の書いた正規表現を書いておく。</p><pre><code>(.)\1{2}
+</code></pre><p>以降構成要素を一つづつ取り上げていく。</p><h5 id=ドット>ドット ( <code>.</code> )</h5><p>&ldquo;<code>.</code>&rdquo; は任意の1文字にマッチする。
+<code>ABC</code>という文字列の場合<code>A</code>と<code>B</code>と<code>C</code>がマッチする。</p><h5 id=カッコ>カッコ ( <code>()</code> )</h5><p>&ldquo;<code>()</code>&ldquo;はグループ化をする。
 例えば<code>(AB)</code>という正規表現は<code>ABC</code>の<code>AB</code>の部分にマッチする。
 また、ここでマッチしたパターンをあとで再利用できる。
-これを後方参照という。</p>
-
-<p>たとえば<code>(.)\1</code>という正規表現を考えてみる。
+これを後方参照という。</p><p>たとえば<code>(.)\1</code>という正規表現を考えてみる。
 まず最初に&rdquo;<code>.</code>&ldquo;があるので任意の1文字にマッチする。
 <code>ABC</code>の場合<code>A</code>である。
 そしてこのマッチ結果が1から始まる番号の振られたバッファに保存される。
@@ -162,12 +29,9 @@
 <code>ABC</code>の場合2文字目は<code>B</code>なのでマッチしない。
 以降も<code>(B)(B)</code>、<code>(C)(C)</code>と続き、結局この正規表現は<code>ABC</code>のどの部分ともマッチしない。
 ここまでくればおわかりだろう……というほど自分の説明能力に自身がないが、つまり<code>(.)\1</code>は同じ文字が2回続いた場合にマッチする正規表現である。
-たぶんもっとわかりやすい説明がたくさんあるのでわからなかったら後方参照でググってみてほしい。</p>
-
-<p>ここまでの知識でも問題を解くことができる。
+たぶんもっとわかりやすい説明がたくさんあるのでわからなかったら後方参照でググってみてほしい。</p><p>ここまでの知識でも問題を解くことができる。
 先程の例に1つ継ぎ足して<code>(.)\1\1</code>とすれば答えである。
-これは拡張正規表現なので <code>-E</code> オプションをつけて、さらに正規表現をクオート( <code>'</code> )で囲っておくと確実である。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ grep -E &#39;(.)\1\1&#39; &lt; /usr/share/dict/cracklib-small
+これは拡張正規表現なので <code>-E</code> オプションをつけて、さらに正規表現をクオート( <code>'</code> )で囲っておくと確実である。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ grep -E &#39;(.)\1\1&#39; &lt; /usr/share/dict/cracklib-small
 aaa
 aaas
 death666
@@ -178,31 +42,17 @@ ieee
 iii
 postov1000
 satan666
-viii</code></pre></div>
-<h5 id="波括弧">波括弧 ( <code>{}</code> )</h5>
-
-<p>&ldquo;<code>{}</code>&rdquo; は &ldquo;<code>*</code>&rdquo; や &ldquo;<code>+</code>&rdquo; のように繰り返しを表す。
+viii</code></pre></div><h5 id=波括弧>波括弧 ( <code>{}</code> )</h5><p>&ldquo;<code>{}</code>&rdquo; は &ldquo;<code>*</code>&rdquo; や &ldquo;<code>+</code>&rdquo; のように繰り返しを表す。
 &ldquo;<code>*</code>&rdquo; や &ldquo;<code>+</code>&rdquo; はそれぞれ0回以上と1回以上の繰り返しにマッチするが (たとえば<code>A+</code>は<code>A</code>、<code>AA</code>、<code>AAA</code>などにマッチする) 、<code>{}</code>を使えば繰り返しの回数を細かく指定できる。
-<code>{2}</code>はちょうど2回、<code>{2,}</code>は2回以上、<code>{2,3}</code>は2回以上3回以下を意味する。</p>
-
-<p>ここまでの要素をすべて使ったのが自分の書いた正規表現である。
+<code>{2}</code>はちょうど2回、<code>{2,}</code>は2回以上、<code>{2,3}</code>は2回以上3回以下を意味する。</p><p>ここまでの要素をすべて使ったのが自分の書いた正規表現である。
 まず任意の文字列にマッチし、その後最初にマッチしたパターンが2回続く、という意味になる。
-繰り返しは2回同じことを書くのが嫌で使ったが、むしろ文字数は増えているし再利用するような正規表現でもないので素直に2回書いたほうが良かったかもしれない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ grep -E &#39;(.)\1{2}&#39; &lt; /usr/share/dict/cracklib-small</code></pre></div>
-<p>ちなみに拡張正規表現を使わないとこんな感じになる。
-バックスラッシュがいっぱいで読みにくいので素直に <code>-E</code> をつけたほうがいいと思う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ grep &#39;\(.\)\1\{2\}&#39; &lt; /usr/share/dict/cracklib-small</code></pre></div>
-<h5 id="不具合-4文字以上の繰り返しは不正か">不具合: 4文字以上の繰り返しは不正か?</h5>
-
-<p>この正規表現は3文字の繰り返しがあったらそれ以上先は見ないので、<code>aaaa</code>などの4文字以上の繰り返しの行も残ってしまう。
+繰り返しは2回同じことを書くのが嫌で使ったが、むしろ文字数は増えているし再利用するような正規表現でもないので素直に2回書いたほうが良かったかもしれない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ grep -E &#39;(.)\1{2}&#39; &lt; /usr/share/dict/cracklib-small</code></pre></div><p>ちなみに拡張正規表現を使わないとこんな感じになる。
+バックスラッシュがいっぱいで読みにくいので素直に <code>-E</code> をつけたほうがいいと思う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ grep &#39;\(.\)\1\{2\}&#39; &lt; /usr/share/dict/cracklib-small</code></pre></div><h5 id=不具合-4文字以上の繰り返しは不正か>不具合: 4文字以上の繰り返しは不正か?</h5><p>この正規表現は3文字の繰り返しがあったらそれ以上先は見ないので、<code>aaaa</code>などの4文字以上の繰り返しの行も残ってしまう。
 これを回避できないかちょっと試してみたが、どうも思うようにいかない。
-だれか正規表現に詳しい人がいたら教えてほしい。</p>
-
-<p><strong>追記:</strong> 上記の問題を解決することができたのでここに書く。
+だれか正規表現に詳しい人がいたら教えてほしい。</p><p><strong>追記:</strong> 上記の問題を解決することができたのでここに書く。
 解決はできたがこれは拡張正規表現ではなくPerl互換正規表現(PCRE)である。
 仕組みを知りたい人は否定先読みでググってほしい。
-やたら複雑になって可読性が低下した上に、たぶんこういう答えは求められていない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ cat test.txt 
+やたら複雑になって可読性が低下した上に、たぶんこういう答えは求められていない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat test.txt 
 a
 aa
 aaa
@@ -219,59 +69,16 @@ aaa
 abbb
 aaab
 abbbc
-aaaabbb</code></pre></div>
-<h4 id="2-jjjohn-son-https-twitter-com-jjjohn-son-の解釈-bookkeep">2: <a href="https://twitter.com/jjjohn_son">@jjjohn_son</a>の解釈 - &ldquo;bookkeep&rdquo;</h4>
-
-<p>「繰り返し」が3回続く、という解釈。
-これに基づいた回答を見るまで全くこの解釈ができることに気づかなかった。</p>
-
-<p>こちらも同じ要素を使って解くことができる。
+aaaabbb</code></pre></div><h4 id=2-jjjohn-son-https-twitter-com-jjjohn-son-の解釈-bookkeep>2: <a href=https://twitter.com/jjjohn_son>@jjjohn_son</a>の解釈 - &ldquo;bookkeep&rdquo;</h4><p>「繰り返し」が3回続く、という解釈。
+これに基づいた回答を見るまで全くこの解釈ができることに気づかなかった。</p><p>こちらも同じ要素を使って解くことができる。
 グループ化を多重に使うのでどのカッコが何番かちょっとわかりづらい。
 どうも開きカッコが出現した順に番号が振られるようだ。
-一番外側のカッコ(1番)は単にグループ化のためだけに使っているもので、後方参照は内側のカッコ(2番)でのみ使われていることに注意である。</p>
-
-<p>この解釈の場合繰り返しの文字数については言及されていない(<code>aaabbbbcc</code>などもマッチする)ということになるのでそれも考慮した正規表現を書こうとしてみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ grep -E &#39;((.)\2+){3}&#39; &lt; /usr/share/dict/cracklib-small
+一番外側のカッコ(1番)は単にグループ化のためだけに使っているもので、後方参照は内側のカッコ(2番)でのみ使われていることに注意である。</p><p>この解釈の場合繰り返しの文字数については言及されていない(<code>aaabbbbcc</code>などもマッチする)ということになるのでそれも考慮した正規表現を書こうとしてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ grep -E &#39;((.)\2+){3}&#39; &lt; /usr/share/dict/cracklib-small
 bookkeep
 bookkeeper
 bookkeeper&#39;s
 bookkeepers
-bookkeeping</code></pre></div>
-<h5 id="4文字の連続した文字が2つの連続として扱われる不具合">4文字の連続した文字が2つの連続として扱われる不具合</h5>
-
-<p>じつはこれだと<code>aabbbb</code>などでもマッチしてしまう。
-それを回避するバージョンも今の所思いついていないので誰かできたら教えてほしい。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/regexp">#regexp</a>
-        
-        同じ文字の繰り返しが3回続く単語にマッチする正規表現
-    </h2>
-    <p>
-        <time>2018-05-10</time>
-         <a href="/tags/regexp">#regexp</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+bookkeeping</code></pre></div><h5 id=4文字の連続した文字が2つの連続として扱われる不具合>4文字の連続した文字が2つの連続として扱われる不具合</h5><p>じつはこれだと<code>aabbbb</code>などでもマッチしてしまう。
+それを回避するバージョンも今の所思いついていないので誰かできたら教えてほしい。</p></article><footer><h2><a href=/tags/regexp>#regexp</a>
+同じ文字の繰り返しが3回続く単語にマッチする正規表現</h2><p><time>2018-05-10</time>
+<a href=/tags/regexp>#regexp</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

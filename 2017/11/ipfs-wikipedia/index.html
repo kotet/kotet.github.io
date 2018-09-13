@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs IPFS体験記9:Wikipediaミラープロジェクト - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/11/ipfs-wikipedia/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs IPFS体験記9:Wikipediaミラープロジェクト - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/11/ipfs-wikipedia/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,127 +6,16 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記9:Wikipediaミラープロジェクト
-    </h2>
-    <p>
-        <time>2017-11-29</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#リポジトリの拡張">リポジトリの拡張</a>
-<ul>
-<li><a href="#config">config</a></li>
-</ul></li>
-<li><a href="#保存する">保存する</a></li>
-<li><a href="#見てみる">見てみる</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。</p>
-
-<p><a href="https://ipfs.io/blog/24-uncensorable-wikipedia/">Uncensorable Wikipedia on IPFS</a></p>
-
-<p>今回はそれに参加してみる。</p>
-
-<h3 id="リポジトリの拡張">リポジトリの拡張</h3>
-
-<p>それなりに大きなディスク容量（トルコ版で10ギガバイト、英語版で250ギガバイト）が必要なので、少しリポジトリを拡張する。
-29ギガバイトのストレージが落ちていたのでそれを使う。</p>
-
-<h4 id="config">config</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">-     &#34;StorageMax&#34;: &#34;2GB&#34;
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+     &#34;StorageMax&#34;: &#34;29GB&#34;
-</span><span style="color:#a6e22e"></span></code></pre></div>
-<h3 id="保存する">保存する</h3>
-
-<p>早速Pinしてみる。
-最新版のハッシュは<a href="https://github.com/ipfs/distributed-wikipedia-mirror/blob/master/snapshot-hashes.yml">こちら</a>にある。
-執筆時点でトルコ語版のハッシュは<code>/ipfs/QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX</code>である。</p>
-
-<p>Pin前にサイズを知る方法はないのだろうか？</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipfs pin add QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX --progress</code></pre></div>
-<p>ディスクがすごく遅いのと、提供ノードがあまり多くないのが原因でかなり時間がかかる。</p>
-
-<h3 id="見てみる">見てみる</h3>
-
-<p>執筆時点でも終わっていないが閲覧は問題なく行える。</p>
-
-<p>ページ右上に検索窓があるので、とりあえず日本を検索してみる。</p>
-
-<p><img src="/assets/2017/11/29/search.png" alt="スクショ" /></p>
-
-<p>初回は少し時間がかかるが問題なく使用できる。
-どうもJavascriptを使い完全にクライアントサイドで動いているように見える。</p>
-
-<p>自分はトルコ語を使えないので特に何もできることがない。
-というわけでこの記事はここで終わりである。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記9:Wikipediaミラープロジェクト
-    </h2>
-    <p>
-        <time>2017-11-29</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+</script><title>#ipfs IPFS体験記9:Wikipediaミラープロジェクト - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/ipfs-wikipedia/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記9:Wikipediaミラープロジェクト - Kotet's Personal Blog"><meta name=og:description content=IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。今回はそれに参加してみる。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/ipfs-wikipedia/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記9:Wikipediaミラープロジェクト</h2><p><time>2017-11-29</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#リポジトリの拡張>リポジトリの拡張</a><ul><li><a href=#config>config</a></li></ul></li><li><a href=#保存する>保存する</a></li><li><a href=#見てみる>見てみる</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>IPFS上にWikipediaを構築することにより政府がWikipediaをブロックするのを妨害するというプロジェクトがある。</p><p><a href=https://ipfs.io/blog/24-uncensorable-wikipedia/>Uncensorable Wikipedia on IPFS</a></p><p>今回はそれに参加してみる。</p><h3 id=リポジトリの拡張>リポジトリの拡張</h3><p>それなりに大きなディスク容量（トルコ版で10ギガバイト、英語版で250ギガバイト）が必要なので、少しリポジトリを拡張する。
+29ギガバイトのストレージが落ちていたのでそれを使う。</p><h4 id=config>config</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=color:#f92672>-     &#34;StorageMax&#34;: &#34;2GB&#34;
+</span><span style=color:#f92672></span><span style=color:#a6e22e>+     &#34;StorageMax&#34;: &#34;29GB&#34;
+</span><span style=color:#a6e22e></span></code></pre></div><h3 id=保存する>保存する</h3><p>早速Pinしてみる。
+最新版のハッシュは<a href=https://github.com/ipfs/distributed-wikipedia-mirror/blob/master/snapshot-hashes.yml>こちら</a>にある。
+執筆時点でトルコ語版のハッシュは<code>/ipfs/QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX</code>である。</p><p>Pin前にサイズを知る方法はないのだろうか？</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs pin add QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX --progress</code></pre></div><p>ディスクがすごく遅いのと、提供ノードがあまり多くないのが原因でかなり時間がかかる。</p><h3 id=見てみる>見てみる</h3><p>執筆時点でも終わっていないが閲覧は問題なく行える。</p><p>ページ右上に検索窓があるので、とりあえず日本を検索してみる。</p><p><img src=/assets/2017/11/29/search.png alt=スクショ></p><p>初回は少し時間がかかるが問題なく使用できる。
+どうもJavascriptを使い完全にクライアントサイドで動いているように見える。</p><p>自分はトルコ語を使えないので特に何もできることがない。
+というわけでこの記事はここで終わりである。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記9:Wikipediaミラープロジェクト</h2><p><time>2017-11-29</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

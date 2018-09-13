@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang テキストページャをPythonからDに移植する【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang テキストページャをPythonからDに移植する【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,86 +6,16 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        テキストページャをPythonからDに移植する【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-23</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#追記">追記</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事は、</p>
-
-<p><a href="https://jugad2.blogspot.jp/2017/04/porting-text-pager-from-python-to-d.html">jugad2 - Vasudev Ram on software innovation: Porting the text pager from Python to D (DLang)</a></p>
-
-<p>を自分用に翻訳したものを
+</script><title>#dlang テキストページャをPythonからDに移植する【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang テキストページャをPythonからDに移植する【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/porting-text-pager-from-python-to-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+テキストページャをPythonからDに移植する【翻訳】</h2><p><time>2017-04-23</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#追記>追記</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=https://jugad2.blogspot.jp/2017/04/porting-text-pager-from-python-to-d.html>jugad2 - Vasudev Ram on software innovation: Porting the text pager from Python to D (DLang)</a></p><p>を自分用に翻訳したものを
 <a href="https://jugad2.blogspot.com/2017/04/porting-text-pager-from-python-to-d.html?showComment=1492862188174#c3380262533412109352">許可を得て</a>
 公開するものである。
 誤字や誤訳などを見つけたら今すぐ
-<a href="https://github.com/kotet/blog.kotet.jp">Pull request</a>だ!</p>
-
-<hr />
-
-<p><big>
- $ tp file.txt<br />
- $ dir /s | tp
-</big></p>
-
-<p>数週間前、私はこのような記事を書きました:</p>
-
-<p><a href="https://jugad2.blogspot.in/2017/02/tp-simple-text-pager-in-python.html">tp, a simple text pager in Python</a></p>
-
-<p>数日前、私はこのページャをPythonから<a href="https://dlang.org/">D</a>
-<a href="https://en.wikipedia.org/wiki/D_(programming_language)">言語</a>として知られるDに移植しようと思いたち、そして実行しました。</p>
-
-<p>DについてのWikipediaの記事にはこうあります:</p>
-
-<blockquote>
-<p>C++のリエンジニアリングとして始まったものですが、Dは他の言語、特にJava、Python、Ruby、C#、やEiffelからもインスピレーションを得て、
-Cのコア機能をリデザインした独自の言語です。</p>
-</blockquote>
-
-<p>こちらがtp.dのコードです</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">/*
+<a href=https://github.com/kotet/blog.kotet.jp>Pull request</a>だ!</p><hr><p><big>$ tp file.txt<br>$ dir /s | tp</big></p><p>数週間前、私はこのような記事を書きました:</p><p><a href=https://jugad2.blogspot.in/2017/02/tp-simple-text-pager-in-python.html>tp, a simple text pager in Python</a></p><p>数日前、私はこのページャをPythonから<a href=https://dlang.org/>D</a>
+<a href=https://en.wikipedia.org/wiki/D_(programming_language)>言語</a>として知られるDに移植しようと思いたち、そして実行しました。</p><p>DについてのWikipediaの記事にはこうあります:</p><blockquote><p>C++のリエンジニアリングとして始まったものですが、Dは他の言語、特にJava、Python、Ruby、C#、やEiffelからもインスピレーションを得て、
+Cのコア機能をリデザインした独自の言語です。</p></blockquote><p>こちらがtp.dのコードです</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>/*
 File: tp.d
 Purpose: A simple text pager.
 Version: 0.1
@@ -202,105 +89,27 @@ int main(string[] args) {
         in_fil.close();
     }
     return 0;
-}</code></pre></div>
-<p>これをこのような一般的な方法でコンパイルし:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">dmd tp.d</code></pre></div>
-<p>tp.exeを生成します。<br />
-これはPythonバージョンと同じように、2つの方法(ファイル呼び出し、または標準入力)いずれかで実行することができます。
-これら2つの方法を、</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">tp tp.d</code></pre></div>
-<p>または</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">type tp.d | tp</code></pre></div>
-<p>と<strong>ドッグフーディング(試用)</strong>することができます。</p>
-
-<p>Pythonページャの場合(それ自身を実行するとき)のように、出力はそれ自身のソースプログラムと同じ為、ここには載せません。
-これで、tpはless以下(<em>tp</em> is less than <em>less</em>)と言うことができます :) <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> <sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
-
-<p>このDページャを書いた後、私は簡単にPythonバージョンとの視覚的な比較をし、PythonとDバージョンと、
+}</code></pre></div><p>これをこのような一般的な方法でコンパイルし:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>dmd tp.d</code></pre></div><p>tp.exeを生成します。<br>これはPythonバージョンと同じように、2つの方法(ファイル呼び出し、または標準入力)いずれかで実行することができます。
+これら2つの方法を、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>tp tp.d</code></pre></div><p>または</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>type tp.d | tp</code></pre></div><p>と<strong>ドッグフーディング(試用)</strong>することができます。</p><p>Pythonページャの場合(それ自身を実行するとき)のように、出力はそれ自身のソースプログラムと同じ為、ここには載せません。
+これで、tpはless以下(<em>tp</em> is less than <em>less</em>)と言うことができます :) <sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup> <sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup></p><p>このDページャを書いた後、私は簡単にPythonバージョンとの視覚的な比較をし、PythonとDバージョンと、
 だいたい同じコードの全体の構造を見るのは興味深いものでした。
 ファイルを開き(または標準入力を使い)、そこから各行を読み込み、ファイルを閉じ、キーボードから文字を得る。
 すべてが振る舞いにおいてだいたい同じでした。
-私の推察ではこれは少なくとも部分的にはPythonとDの両方共がCの遺産を共有しているためです。</p>
+私の推察ではこれは少なくとも部分的にはPythonとDの両方共がCの遺産を共有しているためです。</p><p>実際、Dのコードでも:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>foreach (line; in_fil.byLine()) {</code></pre></div><p>少し斜め読みすれば、Pythonのコードとして読むことができます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()</code></pre></div><p>必ずしも有効なPythonではないですが、byLineメソッドがfileオブジェクトにあるとすれば、読めないことはないです :)</p><p>興味のある方は、最近HNでDについての良いディスカッションがありました。こちらです:</p><p><a href="https://news.ycombinator.com/item?id=14060846">The reference D compiler is now open source (dlang.org)</a></p><p>スレッドのタイトルにかかわらず、ライセンスの側面よりもD言語の機能についてのものです。</p><p>楽しんでください。</p><hr><h3 id=追記>追記</h3><p>これについてコメント:</p><blockquote><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()
+<span style=color:#f92672>&gt;</span> <span style=color:#e6db74>``</span><span style=color:#960050;background-color:#1e0010>`</span>
+<span style=color:#f92672>&gt;</span>
+<span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>必ずしも有効な</span>Pythonではないですが<span style=color:#960050;background-color:#1e0010>、</span>byLineメソッドがfileオブジェクトにあるとすれば<span style=color:#960050;background-color:#1e0010>、読めないことはないです</span> :)
 
-<p>実際、Dのコードでも:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">foreach (line; in_fil.byLine()) {</code></pre></div>
-<p>少し斜め読みすれば、Pythonのコードとして読むことができます</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> lin <span style="color:#f92672">in</span> fil<span style="color:#f92672">.</span>byLine()</code></pre></div>
-<p>必ずしも有効なPythonではないですが、byLineメソッドがfileオブジェクトにあるとすれば、読めないことはないです :)</p>
+<span style=color:#960050;background-color:#1e0010>もちろん、実際の</span>Pythonバージョンはもっとシンプルです:
 
-<p>興味のある方は、最近HNでDについての良いディスカッションがありました。こちらです:</p>
-
-<p><a href="https://news.ycombinator.com/item?id=14060846">The reference D compiler is now open source (dlang.org)</a></p>
-
-<p>スレッドのタイトルにかかわらず、ライセンスの側面よりもD言語の機能についてのものです。</p>
-
-<p>楽しんでください。</p>
-
-<hr />
-
-<h3 id="追記">追記</h3>
-
-<p>これについてコメント:</p>
-
-<blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> lin <span style="color:#f92672">in</span> fil<span style="color:#f92672">.</span>byLine()
-<span style="color:#f92672">&gt;</span> <span style="color:#e6db74">``</span><span style="color:#960050;background-color:#1e0010">`</span>
-<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">必ずしも有効な</span>Pythonではないですが<span style="color:#960050;background-color:#1e0010">、</span>byLineメソッドがfileオブジェクトにあるとすれば<span style="color:#960050;background-color:#1e0010">、読めないことはないです</span> :)
-
-<span style="color:#960050;background-color:#1e0010">もちろん、実際の</span>Pythonバージョンはもっとシンプルです:
-
-<span style="color:#e6db74">``</span><span style="color:#960050;background-color:#1e0010">`</span>python
-<span style="color:#66d9ef">for</span> lin <span style="color:#f92672">in</span> in_fil:</code></pre></div></blockquote>
-
-<p>これは、Dのそれがそうするように、lazyに(つまりオンデマンドに)ファイルの行をイテレーションします
+<span style=color:#e6db74>``</span><span style=color:#960050;background-color:#1e0010>`</span>python
+<span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> in_fil:</code></pre></div></blockquote><p>これは、Dのそれがそうするように、lazyに(つまりオンデマンドに)ファイルの行をイテレーションします
 (Pythonのファイルオブジェクトがイテレータプロトコルで実装されているためです)。
 言い換えると、メモリ上に一度にすべての行をロードしたりしません。
 それぞれ要求があるたびに読み込みます。
 だから速く、少ないメモリしか使いません。
-Dバージョンにも同じことが言えます。</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1"><a href="https://en.wikipedia.org/wiki/Less_(Unix)#History">less is more</a>のように
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">2つの意味でLessです: 少ない機能と、短い名前。
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-</ol>
-</div>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        テキストページャをPythonからDに移植する【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-23</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+Dバージョンにも同じことが言えます。</p><div class=footnotes><hr><ol><li id=fn:1><a href=https://en.wikipedia.org/wiki/Less_(Unix)#History>less is more</a>のように
+<a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li><li id=fn:2>2つの意味でLessです: 少ない機能と、短い名前。
+<a class=footnote-return href=#fnref:2><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+テキストページャをPythonからDに移植する【翻訳】</h2><p><time>2017-04-23</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs 永続Web、IPFS体験記3:ブラウザ拡張1 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/10/ipfs-browser-extention/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs 永続Web、IPFS体験記3:ブラウザ拡張1 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。 公式のものはFirefoxにも対応しているようだが、ここではChrome版についてのみ述べる。 今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/10/ipfs-browser-extention/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。 公式のものはFirefoxにも対応しているようだが、ここではChrome版についてのみ述べる。 今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。 公式のものはFirefoxにも対応しているようだが、ここではChrome版についてのみ述べる。 今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,136 +6,23 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        永続Web、IPFS体験記3:ブラウザ拡張1
-    </h2>
-    <p>
-        <time>2017-10-20</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#リダイレクト">リダイレクト</a></li>
-<li><a href="#アドレスのコピー">アドレスのコピー</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。
+</script><title>#ipfs 永続Web、IPFS体験記3:ブラウザ拡張1 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-browser-extention/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 永続Web、IPFS体験記3:ブラウザ拡張1 - Kotet's Personal Blog"><meta name=og:description content="ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。 公式のものはFirefoxにも対応しているようだが、ここではChrome版についてのみ述べる。 今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-browser-extention/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+永続Web、IPFS体験記3:ブラウザ拡張1</h2><p><time>2017-10-20</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#リダイレクト>リダイレクト</a></li><li><a href=#アドレスのコピー>アドレスのコピー</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>ブラウザ上でのIPFSの使用を補助する目的で作られたブラウザ拡張が存在する。
 公式のものはFirefoxにも対応しているようだが、ここではChrome版についてのみ述べる。
-今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。</p>
-
-<p>まず、Chrome ウェブストアで&rdquo;ipfs&rdquo;と検索すると執筆時点で3つほどのChrome Extentionが出てくる。
-そのうち<a href="https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch">IPFS Companion</a>
-というのが公式の拡張機能である。</p>
-
-<p>以下、機能を見ていく。</p>
-
-<h3 id="リダイレクト">リダイレクト</h3>
-
-<p>IPFSパブリックゲートウェイへのリンクがあると、自動的にローカルゲートウェイにリダイレクトしてくれる。
-たとえば<a href="https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme">最初に見たreadme</a>は次のようなURLをしている。</p>
-
-<pre><code>https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-</code></pre>
-
-<p>上記のURLにアクセスすると次のようにローカルのゲートウェイを使うよう書き換えられる。</p>
-
-<pre><code>http://127.0.0.1:8080/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-</code></pre>
-
-<p>IPFSのゲートウェイのURLは必ず<code>&lt;ゲートウェイのアドレス&gt;/ip[nf]s/...</code>という形を取るため、機械的な書き換えも容易なのだ。
+今日はあまり体調が良くないが、だからこそあまり頭が記憶を整理してくれないため、記憶を外に書き出しておかないとそれだけで一杯になってしまうので少しだけ書く。</p><p>まず、Chrome ウェブストアで&rdquo;ipfs&rdquo;と検索すると執筆時点で3つほどのChrome Extentionが出てくる。
+そのうち<a href=https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch>IPFS Companion</a>
+というのが公式の拡張機能である。</p><p>以下、機能を見ていく。</p><h3 id=リダイレクト>リダイレクト</h3><p>IPFSパブリックゲートウェイへのリンクがあると、自動的にローカルゲートウェイにリダイレクトしてくれる。
+たとえば<a href=https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme>最初に見たreadme</a>は次のようなURLをしている。</p><pre><code>https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+</code></pre><p>上記のURLにアクセスすると次のようにローカルのゲートウェイを使うよう書き換えられる。</p><pre><code>http://127.0.0.1:8080/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+</code></pre><p>IPFSのゲートウェイのURLは必ず<code>&lt;ゲートウェイのアドレス&gt;/ip[nf]s/...</code>という形を取るため、機械的な書き換えも容易なのだ。
 これならパブリックゲートウェイが閉鎖されてもリンク切れを起こすことはないだろう。
-これからIPFS内にあるコンテンツへのリンクは普通にパブリックゲートウェイを使ったものを書くことにする。</p>
-
-<p>逆にIPFSデーモンを使っていない人ならば、この拡張機能を使ってローカルゲートウェイ用のURLを適当なパブリックゲートウェイに書き換えるように設定することもできるのだろうか？</p>
-
-<h3 id="アドレスのコピー">アドレスのコピー</h3>
-
-<p>アドレスバーのアドレスは上記の機能によって書き換えられるため、そのままコピペするとローカルゲートウェイや書き換えの拡張機能を使っている人しかアクセスできない。
-そこでアドレスのコピー機能がある。</p>
-
-<p>アドレスの形式には2種類あり、まず1つはCanonical Adressである。</p>
-
-<pre><code>/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-</code></pre>
-
-<p>現在はこの形式のアドレスに対応しているのはコマンドラインツールくらいだが、最終的にはこの形式で様々なツールがIPFSのリソースにアクセスできるようにする予定なのだろうか。</p>
-
-<p>もうひとつはPublic Gateway URLである。</p>
-
-<pre><code>https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-</code></pre>
-
-<p>この形式ならIPFSに対応していないツールを使用している人でもアクセスできる。
+これからIPFS内にあるコンテンツへのリンクは普通にパブリックゲートウェイを使ったものを書くことにする。</p><p>逆にIPFSデーモンを使っていない人ならば、この拡張機能を使ってローカルゲートウェイ用のURLを適当なパブリックゲートウェイに書き換えるように設定することもできるのだろうか？</p><h3 id=アドレスのコピー>アドレスのコピー</h3><p>アドレスバーのアドレスは上記の機能によって書き換えられるため、そのままコピペするとローカルゲートウェイや書き換えの拡張機能を使っている人しかアクセスできない。
+そこでアドレスのコピー機能がある。</p><p>アドレスの形式には2種類あり、まず1つはCanonical Adressである。</p><pre><code>/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+</code></pre><p>現在はこの形式のアドレスに対応しているのはコマンドラインツールくらいだが、最終的にはこの形式で様々なツールがIPFSのリソースにアクセスできるようにする予定なのだろうか。</p><p>もうひとつはPublic Gateway URLである。</p><pre><code>https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+</code></pre><p>この形式ならIPFSに対応していないツールを使用している人でもアクセスできる。
 しかしあまりアクセスする人が多いとパブリックゲートウェイの負荷が大きくなってしまうので、ローカルゲートウェイを使いたい人はツールで書き換えることもできる。
-現状ではこの形式を使うのが最良の選択だろう。</p>
-
-<p>次回に続く。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        永続Web、IPFS体験記3:ブラウザ拡張1
-    </h2>
-    <p>
-        <time>2017-10-20</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+現状ではこの形式を使うのが最良の選択だろう。</p><p>次回に続く。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+永続Web、IPFS体験記3:ブラウザ拡張1</h2><p><time>2017-10-20</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

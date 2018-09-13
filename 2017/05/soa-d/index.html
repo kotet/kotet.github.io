@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang なぜ、どういう時にSOAを使うべきなのか【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/05/soa-d/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang なぜ、どういう時にSOAを使うべきなのか【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" この記事は Why and when you should use SoA · を自分用に訳したものを 許可を得て 公開するものである。 コードのコメントも一部翻訳されている。 ところどころ訳が怪しいと  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/05/soa-d/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" この記事は Why and when you should use SoA · を自分用に訳したものを 許可を得て 公開するものである。 コードのコメントも一部翻訳されている。 ところどころ訳が怪しいと ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事は Why and when you should use SoA · を自分用に訳したものを 許可を得て 公開するものである。 コードのコメントも一部翻訳されている。 ところどころ訳が怪しいと"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,131 +6,61 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        なぜ、どういう時にSOAを使うべきなのか【翻訳】
-    </h2>
-    <p>
-        <time>2017-05-19</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#soaとは何か">SoAとは何か?</a></li>
-<li><a href="#なぜsoaは便利なのか">なぜSoAは便利なのか?</a></li>
-<li><a href="#soaは使いにくくないのか">SoAは使いにくくないのか?</a></li>
-<li><a href="#dでのsoaの実装">DでのSoAの実装</a></li>
-<li><a href="#soaを使うときはいつか">SoAを使うときはいつか</a></li>
-<li><a href="#soaは-時期尚早な最適化-ではないのか">SoAは「時期尚早な最適化」ではないのか?</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事は</p>
-
-<p><a href="https://maikklein.github.io/post/soa-d/">Why and when you should use SoA ·</a></p>
-
-<p>を自分用に訳したものを
-<a href="https://maikklein.github.io/post/soa-d/#comment-3309967000">許可を得て</a>
+</script><title>#dlang なぜ、どういう時にSOAを使うべきなのか【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/05/soa-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang なぜ、どういう時にSOAを使うべきなのか【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事は Why and when you should use SoA · を自分用に訳したものを 許可を得て 公開するものである。 コードのコメントも一部翻訳されている。 ところどころ訳が怪しいと"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/05/soa-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+なぜ、どういう時にSOAを使うべきなのか【翻訳】</h2><p><time>2017-05-19</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#soaとは何か>SoAとは何か?</a></li><li><a href=#なぜsoaは便利なのか>なぜSoAは便利なのか?</a></li><li><a href=#soaは使いにくくないのか>SoAは使いにくくないのか?</a></li><li><a href=#dでのsoaの実装>DでのSoAの実装</a></li><li><a href=#soaを使うときはいつか>SoAを使うときはいつか</a></li><li><a href=#soaは-時期尚早な最適化-ではないのか>SoAは「時期尚早な最適化」ではないのか?</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は</p><p><a href=https://maikklein.github.io/post/soa-d/>Why and when you should use SoA ·</a></p><p>を自分用に訳したものを
+<a href=https://maikklein.github.io/post/soa-d/#comment-3309967000>許可を得て</a>
 公開するものである。
 コードのコメントも一部翻訳されている。
-ところどころ訳が怪しいところがあるので、なにか見つけた人は<a href="https://github.com/kotet/blog.kotet.jp">contribute</a>だ!</p>
-
-<hr />
-
-<h3 id="soaとは何か">SoAとは何か?</h3>
-
-<p>SoAとは単に<code>配列の構造体(Structure of arrays)</code>を意味します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">//AoS: 構造体の配列(Array of structures)
+ところどころ訳が怪しいところがあるので、なにか見つけた人は<a href=https://github.com/kotet/blog.kotet.jp>contribute</a>だ!</p><hr><h3 id=soaとは何か>SoAとは何か?</h3><p>SoAとは単に<code>配列の構造体(Structure of arrays)</code>を意味します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>//AoS: 構造体の配列(Array of structures)
 struct Vec2{
     float x;
     float y;
 }
-Array!Vec2 vectors;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">//SoA: 配列の構造体
+Array!Vec2 vectors;</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>//SoA: 配列の構造体
 struct Vec2{
     float[] x;
     float[] y;
-}</code></pre></div>
-<h3 id="なぜsoaは便利なのか">なぜSoAは便利なのか?</h3>
-
-<p><code>クライアント・サーバー・アーキテクチャー</code>で小さな<code>udpゲームサーバー</code>を書くことを想像してみてください。
+}</code></pre></div><h3 id=なぜsoaは便利なのか>なぜSoAは便利なのか?</h3><p><code>クライアント・サーバー・アーキテクチャー</code>で小さな<code>udpゲームサーバー</code>を書くことを想像してみてください。
 あなたにはクライアントが接続できるサーバーがあります。
 <code>サーバー</code>は現在接続しているクライアントたちを覚えておく必要があります。
 サーバーはメッセージを<code>recvfrom</code>でポールし、あなたがudpをよく知らない場合、
-<code>recvfrom</code>はソケットにバインドされたポートとアドレスへ送られるパケットを返します。</p>
-
-<p>パケットが来たとき、最初に知りたいのはパケットが接続しているクライアントから来たかどうかかもしれません。
-あなたにはそれをこのように書く傾向があることでしょう:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> Server{
-    <span style="color:#66d9ef">struct</span> RemoteClient{
+<code>recvfrom</code>はソケットにバインドされたポートとアドレスへ送られるパケットを返します。</p><p>パケットが来たとき、最初に知りたいのはパケットが接続しているクライアントから来たかどうかかもしれません。
+あなたにはそれをこのように書く傾向があることでしょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> Server{
+    <span style=color:#66d9ef>struct</span> RemoteClient{
         Address address;
         SysTime lastReceivedPacket;
-        <span style="color:#75715e">//more data
-</span><span style="color:#75715e"></span>    }
-    Array<span style="color:#f92672">!</span>RemoteClient remoteClients;
+        <span style=color:#75715e>//more data
+</span><span style=color:#75715e></span>    }
+    Array<span style=color:#f92672>!</span>RemoteClient remoteClients;
 
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">poll</span>(){
-        <span style="color:#75715e">//Address address
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//recvfrom(buffer, address);
-</span><span style="color:#75715e"></span>    }
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>poll</span>(){
+        <span style=color:#75715e>//Address address
+</span><span style=color:#75715e></span>        <span style=color:#75715e>//recvfrom(buffer, address);
+</span><span style=color:#75715e></span>    }
 }
-</code></pre></div>
-<p>どのクライアントがパッケージを送ったのか知りたい時、正しい<code>remoteClient</code>を探すために単に<code>remoteClients</code>配列を使うことができます。
+</code></pre></div><p>どのクライアントがパッケージを送ったのか知りたい時、正しい<code>remoteClient</code>を探すために単に<code>remoteClients</code>配列を使うことができます。
 問題はアドレスフィールドにしか興味がないが、<code>RemoteClient</code>をイテレートする必要があるということです。
-これはそれが必要ないとしても、<code>lastReceivedPacket</code>のような他のすべてのデータを不必要にロードしているということを意味します。</p>
-
-<p>そして実際のアプリケーションで<code>RemoteClient</code>の中にどれくらいのデータがありうるか知りたいなら、
-こちらが<a href="https://github.com/lsalzman/enet/blob/master/include/enet/enet.h#L258">Enet Peer</a>の構造体です。
+これはそれが必要ないとしても、<code>lastReceivedPacket</code>のような他のすべてのデータを不必要にロードしているということを意味します。</p><p>そして実際のアプリケーションで<code>RemoteClient</code>の中にどれくらいのデータがありうるか知りたいなら、
+こちらが<a href=https://github.com/lsalzman/enet/blob/master/include/enet/enet.h#L258>Enet Peer</a>の構造体です。
 これは<code>Peer</code>であり<code>RemoteClient</code>ではないためフェアな比較ではないかもしれませんが、
-これはデータがかなり大きくなるかもしれないということを示しています。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _ENetPeer
+これはデータがかなり大きくなるかもしれないということを示しています。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>struct</span> _ENetPeer
 { 
    ENetListNode  dispatchList;
-   <span style="color:#66d9ef">struct</span> _ENetHost <span style="color:#f92672">*</span> host;
+   <span style=color:#66d9ef>struct</span> _ENetHost <span style=color:#f92672>*</span> host;
    enet_uint16   outgoingPeerID;
    enet_uint16   incomingPeerID;
    enet_uint32   connectID;
    enet_uint8    outgoingSessionID;
    enet_uint8    incomingSessionID;
-   ENetAddress   address;            <span style="color:#75715e">/**&lt; Internet address of the peer */</span>
-   <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>        data;               <span style="color:#75715e">/**&lt; Application private data, may be freely modified */</span>
+   ENetAddress   address;            <span style=color:#75715e>/**&lt; Internet address of the peer */</span>
+   <span style=color:#66d9ef>void</span> <span style=color:#f92672>*</span>        data;               <span style=color:#75715e>/**&lt; Application private data, may be freely modified */</span>
    ENetPeerState state;
-   ENetChannel <span style="color:#f92672">*</span> channels;
-   size_t        channelCount;       <span style="color:#75715e">/**&lt; Number of channels allocated for communication with peer */</span>
-   enet_uint32   incomingBandwidth;  <span style="color:#75715e">/**&lt; Downstream bandwidth of the client in bytes/second */</span>
-   enet_uint32   outgoingBandwidth;  <span style="color:#75715e">/**&lt; Upstream bandwidth of the client in bytes/second */</span>
+   ENetChannel <span style=color:#f92672>*</span> channels;
+   size_t        channelCount;       <span style=color:#75715e>/**&lt; Number of channels allocated for communication with peer */</span>
+   enet_uint32   incomingBandwidth;  <span style=color:#75715e>/**&lt; Downstream bandwidth of the client in bytes/second */</span>
+   enet_uint32   outgoingBandwidth;  <span style=color:#75715e>/**&lt; Upstream bandwidth of the client in bytes/second */</span>
    enet_uint32   incomingBandwidthThrottleEpoch;
    enet_uint32   outgoingBandwidthThrottleEpoch;
    enet_uint32   incomingDataTotal;
@@ -185,7 +72,7 @@ struct Vec2{
    enet_uint32   packetLossEpoch;
    enet_uint32   packetsSent;
    enet_uint32   packetsLost;
-   enet_uint32   packetLoss;          <span style="color:#75715e">/**&lt; mean packet loss of reliable packets as a ratio with respect to the constant ENET_PEER_PACKET_LOSS_SCALE */</span>
+   enet_uint32   packetLoss;          <span style=color:#75715e>/**&lt; mean packet loss of reliable packets as a ratio with respect to the constant ENET_PEER_PACKET_LOSS_SCALE */</span>
    enet_uint32   packetLossVariance;
    enet_uint32   packetThrottle;
    enet_uint32   packetThrottleLimit;
@@ -214,52 +101,38 @@ struct Vec2{
    ENetList      outgoingReliableCommands;
    ENetList      outgoingUnreliableCommands;
    ENetList      dispatchedCommands;
-   <span style="color:#66d9ef">int</span>           needsDispatch;
+   <span style=color:#66d9ef>int</span>           needsDispatch;
    enet_uint16   incomingUnsequencedGroup;
    enet_uint16   outgoingUnsequencedGroup;
-   enet_uint32   unsequencedWindow [ENET_PEER_UNSEQUENCED_WINDOW_SIZE <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>]; 
+   enet_uint32   unsequencedWindow [ENET_PEER_UNSEQUENCED_WINDOW_SIZE <span style=color:#f92672>/</span> <span style=color:#ae81ff>32</span>]; 
    enet_uint32   eventData;
    size_t        totalWaitingData;
-} ENetPeer;</code></pre></div>
-<p>では<code>SoA</code>ではどのようになるか見てみましょう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> Server{
-    <span style="color:#66d9ef">struct</span> RemoteClients{
+} ENetPeer;</code></pre></div><p>では<code>SoA</code>ではどのようになるか見てみましょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> Server{
+    <span style=color:#66d9ef>struct</span> RemoteClients{
         size_t length;
         Address[] address;
         SysTime[] lastReceivedPacket;
-        <span style="color:#75715e">//more data
-</span><span style="color:#75715e"></span>    }
+        <span style=color:#75715e>//more data
+</span><span style=color:#75715e></span>    }
     RemoteClients remoteClients;
 
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">poll</span>(){
-        <span style="color:#75715e">//Address address
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//recvfrom(buffer, address);
-</span><span style="color:#75715e"></span>    }
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>poll</span>(){
+        <span style=color:#75715e>//Address address
+</span><span style=color:#75715e></span>        <span style=color:#75715e>//recvfrom(buffer, address);
+</span><span style=color:#75715e></span>    }
 }
-</code></pre></div>
-<p>すべての<code>remoteClients.address</code>のアドレスにアクセスでき、不必要なデータをキャッシュにロードする必要はありません。</p>
-
-<h3 id="soaは使いにくくないのか">SoAは使いにくくないのか?</h3>
-
-<p>多くの言語ではそのとおりです。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> RemoteClients{
+</code></pre></div><p>すべての<code>remoteClients.address</code>のアドレスにアクセスでき、不必要なデータをキャッシュにロードする必要はありません。</p><h3 id=soaは使いにくくないのか>SoAは使いにくくないのか?</h3><p>多くの言語ではそのとおりです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> RemoteClients{
     size_t length;
     Address[] address;
     SysTime[] lastReceivedPacket;
-    <span style="color:#75715e">//more data
-</span><span style="color:#75715e"></span>}
-</code></pre></div>
-<p>配列を割り当て、それが動的配列の場合は拡張しなければならないために定義は単純化されています。
+    <span style=color:#75715e>//more data
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>配列を割り当て、それが動的配列の場合は拡張しなければならないために定義は単純化されています。
 要素の挿入と削除についても気にかける必要もあります、
 <code>lastReceivedPacket</code>を追加せずにアドレスだけを<code>RemoteClients</code>に追加するようなことがあってはいけません。
 データはゆるく対になっているためです。
 以前の<code>AoS</code>の時は<code>RemoteClient</code>に<code>remoteClients[index]</code>でアクセスできましたが、
-今は<code>RemoteClient</code>にその要素<code>remoteClients.addresses[index]</code>や<code>remoteClients.lastReceivedPacket[index]</code>でアクセスします。</p>
-
-<h3 id="dでのsoaの実装">DでのSoAの実装</h3>
-
-<p>まずデモンストレーションから始めましょう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Vec2{
+今は<code>RemoteClient</code>にその要素<code>remoteClients.addresses[index]</code>や<code>remoteClients.lastReceivedPacket[index]</code>でアクセスします。</p><h3 id=dでのsoaの実装>DでのSoAの実装</h3><p>まずデモンストレーションから始めましょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Vec2{
     float x;
     float y;
 }
@@ -268,14 +141,10 @@ auto s = SOA!(Vec2)();
 s.insertBack(1.0f, 2.0f);
 s.insertBack(Vec2(1.0, 2.0f));
 writeln(s.x); // [1, 1]
-writeln(s.y); // [2, 2]</code></pre></div>
-<p>データで構造体を作ることができ、<code>SOA</code>は構造体をみて内部的に適切な配列を作ります。
+writeln(s.y); // [2, 2]</code></pre></div><p>データで構造体を作ることができ、<code>SOA</code>は構造体をみて内部的に適切な配列を作ります。
 持っているフィールドと同じ数の配列があるため、<code>insertBack</code>はちょっと普通の配列と異なります。
 これは<code>insertBack</code>が可変長である必要があることを意味します。
-<code>insertBack</code>はかわりにそれ自身の構造体も受け入れます。</p>
-
-<p><strong>以下のコードは実際に使うことを意図して書かれたコードではなく、単なる概念実証です。</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct SOA(T){
+<code>insertBack</code>はかわりにそれ自身の構造体も受け入れます。</p><p><strong>以下のコードは実際に使うことを意図して書かれたコードではなく、単なる概念実証です。</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct SOA(T){
     import std.experimental.allocator;
     import std.experimental.allocator.mallocator;
 
@@ -366,78 +235,52 @@ private:
         }
         size = newSize;
     }
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">alias toArray(T) = T[];
+}</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>alias toArray(T) = T[];
 alias toType(string s) = typeof(__traits(getMember, T, s));
 
 alias MemberNames = FieldNameTuple!T;
 alias Types = staticMap!(toType, MemberNames);
-alias ArrayTypes = staticMap!(toArray, Types);</code></pre></div>
-<p><code>MemberNames</code>は単なるフィールドの名前群です。
+alias ArrayTypes = staticMap!(toArray, Types);</code></pre></div><p><code>MemberNames</code>は単なるフィールドの名前群です。
 たとえば<code>構造体 Vec2{float x; float y}</code>は型<code>AliasSeq!(&quot;x&quot;, &quot;y&quot;)</code>になります。
 <code>toType</code>はメンバ名をとり実際の型にします。
-例として上の<code>toType!(&quot;x&quot;)</code>は型<code>float</code>を返します。</p>
-
-<p><code>staticMap</code>の助けを得てメンバ名を実際の型に変換することができます。
-たとえば上の<code>AliasSeq!(&quot;x&quot;, &quot;y&quot;)</code>は<code>AliasSeq!(float, float)</code>に変わります。</p>
-
-<p>もうすぐ型を配列に変換する必要が出てきます。
+例として上の<code>toType!(&quot;x&quot;)</code>は型<code>float</code>を返します。</p><p><code>staticMap</code>の助けを得てメンバ名を実際の型に変換することができます。
+たとえば上の<code>AliasSeq!(&quot;x&quot;, &quot;y&quot;)</code>は<code>AliasSeq!(float, float)</code>に変わります。</p><p>もうすぐ型を配列に変換する必要が出てきます。
 <code>AliasSeq!(float, float)</code>を<code>AliasSeq!(float[], float[])</code>にです。
-それを<code>toArray</code>と<code>staticMap</code>でします。</p>
-
-<p>その後配列のタプルを作ることができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">Tuple!ArrayTypes containers;</code></pre></div>
-<p>要素の挿入はかなり簡単です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void insertBack()(Types types){
+それを<code>toArray</code>と<code>staticMap</code>でします。</p><p>その後配列のタプルを作ることができます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>Tuple!ArrayTypes containers;</code></pre></div><p>要素の挿入はかなり簡単です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void insertBack()(Types types){
     if(length == size) grow;
     foreach(index, ref container; containers){
         container[length] = types[index];
     }
     length = length + 1;
-}</code></pre></div>
-<p><code>insertBack</code>が受け入れるべき型はすでにわかっています。
+}</code></pre></div><p><code>insertBack</code>が受け入れるべき型はすでにわかっています。
 構造体のフィールド郡の型をうけいれるべきです。
-そして配列のタプルである<code>containers</code>をコンパイル時にイテレートします。</p>
-
-<p>それから適切な<code>argument</code>に<code>types[index]</code>でアクセスし、それを配列に挿入するだけです。</p>
-
-<p>構造体そのものを挿入することもできます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void insertBack(T t){
+そして配列のタプルである<code>containers</code>をコンパイル時にイテレートします。</p><p>それから適切な<code>argument</code>に<code>types[index]</code>でアクセスし、それを配列に挿入するだけです。</p><p>構造体そのものを挿入することもできます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void insertBack(T t){
     if(length == size) grow;
     foreach(index, _; Types){
         containers[index][length] = __traits(getMember, t, MemberNames[index]);
     }
     length = length + 1;
-}</code></pre></div>
-<p><code>index</code>を取得するために型をイテレートします。
+}</code></pre></div><p><code>index</code>を取得するために型をイテレートします。
 <code>index</code>を適切なコンテナを得るためと、構造体の適切なフィールド名を見つけるために使います。
-順序は常に同じためこれは動作します。</p>
-
-<p>上のコードを<code>Vec2</code>ようにするとだいたいこんなふうになります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void insertBack(Vec2 t){
+順序は常に同じためこれは動作します。</p><p>上のコードを<code>Vec2</code>ようにするとだいたいこんなふうになります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void insertBack(Vec2 t){
     if(length == size) grow;
     containers[0][length] = t.x;
     containers[1][length] = t.y;
     length = length + 1;
-}</code></pre></div>
-<p>配列にフィールド名でアクセスできます。
-Dでこれは<code>opDispatch</code>によって非常に簡単にできます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">ref auto opDispatch(string name)(){
+}</code></pre></div><p>配列にフィールド名でアクセスできます。
+Dでこれは<code>opDispatch</code>によって非常に簡単にできます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>ref auto opDispatch(string name)(){
     import std.meta: staticIndexOf;
     alias index = staticIndexOf!(name, MemberNames);
     static assert(index &gt;= 0);
     return containers[index];
-}</code></pre></div>
-<p>上のサンプルを<code>Vec2</code>用にした場合ではすべてのxの配列を<code>s.x</code>、すべてのyの配列を<code>s.y</code>で得ることができます。
-<code>s.x</code>を呼んだ場合<code>opDispatch</code>はコンパイル時にこんな感じになります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">ref auto opDispatch(){
+}</code></pre></div><p>上のサンプルを<code>Vec2</code>用にした場合ではすべてのxの配列を<code>s.x</code>、すべてのyの配列を<code>s.y</code>で得ることができます。
+<code>s.x</code>を呼んだ場合<code>opDispatch</code>はコンパイル時にこんな感じになります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>ref auto opDispatch(){
     import std.meta: staticIndexOf;
     alias index = staticIndexOf!(&#34;x&#34;, MemberNames);
     static assert(index &gt;= 0);
     return containers[index];
-}</code></pre></div>
-<p><code>MemberNames opDispatch</code>内が失敗しなかった場合、<code>opDispatch name</code>のインデックスを<code>MemberNames</code>から取得します。
-<code>MemberNames</code>内にあればそのインデックスで適切なコンテナにアクセスします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Server{
+}</code></pre></div><p><code>MemberNames opDispatch</code>内が失敗しなかった場合、<code>opDispatch name</code>のインデックスを<code>MemberNames</code>から取得します。
+<code>MemberNames</code>内にあればそのインデックスで適切なコンテナにアクセスします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Server{
     struct RemoteClients{
         Address address;
         SysTime lastReceivedPacket;
@@ -449,28 +292,13 @@ Dでこれは<code>opDispatch</code>によって非常に簡単にできます�
         //Address address
         //recvfrom(buffer, address);
     }
-}</code></pre></div>
-<h3 id="soaを使うときはいつか">SoAを使うときはいつか</h3>
-
-<p>まず第一に<code>SoA</code>は銀の弾丸ではなく、あなたのコードベースのすべての<code>AoS</code>を<code>SoA</code>に置き換えるべきというわけではありません。</p>
-
-<p><code>SoA</code>に意味があるのはこのような時です:</p>
-
-<ul>
-<li>データを1つの配列に保持したくなるとわかっているとき</li>
-<li>部分的にデータにアクセスしたいとき</li>
-</ul>
-
-<p>しかし時にはデータのすべてのコンポーネントにアクセスしたい時もあるでしょう。
-例としてベクトルが挙げられます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Vec3{
+}</code></pre></div><h3 id=soaを使うときはいつか>SoAを使うときはいつか</h3><p>まず第一に<code>SoA</code>は銀の弾丸ではなく、あなたのコードベースのすべての<code>AoS</code>を<code>SoA</code>に置き換えるべきというわけではありません。</p><p><code>SoA</code>に意味があるのはこのような時です:</p><ul><li>データを1つの配列に保持したくなるとわかっているとき</li><li>部分的にデータにアクセスしたいとき</li></ul><p>しかし時にはデータのすべてのコンポーネントにアクセスしたい時もあるでしょう。
+例としてベクトルが挙げられます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Vec3{
     float x;
     float y;
     float z;
-}</code></pre></div>
-<p>加算、減算、ドット積、距離その他いろいろのほとんどの操作はすべてのコンポーネントを使うでしょう。
-たとえ最終的に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Vec3{
+}</code></pre></div><p>加算、減算、ドット積、距離その他いろいろのほとんどの操作はすべてのコンポーネントを使うでしょう。
+たとえ最終的に</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Vec3{
     float x;
     float y;
     float z;
@@ -478,16 +306,10 @@ Dでこれは<code>opDispatch</code>によって非常に簡単にできます�
 
 Array!Vec3 positions;
 
-positions[].filter!(v =&gt; v.x &lt; 10.0f);</code></pre></div>
-<p><code>x コンポーネント</code>が<code>10.0f</code>より小さいすべてのベクトルをフィルタしたくなっても、2つのfloatが余分に読み込まれるだけです。
-<code>Vec3</code>は大きくならず、これ以外の他のデータ構造が成長し、将来のボトルネックになるかもしれません。</p>
-
-<h3 id="soaは-時期尚早な最適化-ではないのか">SoAは「時期尚早な最適化」ではないのか?</h3>
-
-<p>私の意見は違います。
+positions[].filter!(v =&gt; v.x &lt; 10.0f);</code></pre></div><p><code>x コンポーネント</code>が<code>10.0f</code>より小さいすべてのベクトルをフィルタしたくなっても、2つのfloatが余分に読み込まれるだけです。
+<code>Vec3</code>は大きくならず、これ以外の他のデータ構造が成長し、将来のボトルネックになるかもしれません。</p><h3 id=soaは-時期尚早な最適化-ではないのか>SoAは「時期尚早な最適化」ではないのか?</h3><p>私の意見は違います。
 <code>AoS</code>の問題は、それが将来パフォーマンスボトルネックになった場合、多くのコードをリファクタしなければならないというところです。
-たとえばあなたはこのように構造体hotとcoldにデータをパックするかもしれません:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">struct Bar{
+たとえばあなたはこのように構造体hotとcoldにデータをパックするかもしれません:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Bar{
     struct Hot{
         Data1 d1;
         Data2 d2;
@@ -501,53 +323,14 @@ positions[].filter!(v =&gt; v.x &lt; 10.0f);</code></pre></div>
 
     Hot* hot;
     Cold* cold;
-}</code></pre></div>
-<p>しかし言語によってはまだまだ多くのコードをリファクタしなければならないかもしれません。
-早い段階でデータアクセスについて考えることで手間が省けるかもしれません。</p>
-
-<p><a href="https://www.youtube.com/watch?v=ZHqFrNyLlpA">Jonathan Blow</a>には名無し変数とSoAをカバーする言語デモンストレーションがあります。
-Quick note:Jonathan BlowのやりかたはDの<code>alias this</code>とよく似ています。</p>
-
-<p>使う言語によっては、<code>SoA</code>は<code>AoS</code>と比べてそんなに悪くはありません。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">//AoS
+}</code></pre></div><p>しかし言語によってはまだまだ多くのコードをリファクタしなければならないかもしれません。
+早い段階でデータアクセスについて考えることで手間が省けるかもしれません。</p><p><a href="https://www.youtube.com/watch?v=ZHqFrNyLlpA">Jonathan Blow</a>には名無し変数とSoAをカバーする言語デモンストレーションがあります。
+Quick note:Jonathan BlowのやりかたはDの<code>alias this</code>とよく似ています。</p><p>使う言語によっては、<code>SoA</code>は<code>AoS</code>と比べてそんなに悪くはありません。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>//AoS
 remoteClients[index].address;
 
 //vs 
 
 //SoA
-remoteClients.address[index];</code></pre></div>
-<p>しかし<code>SoA</code>はキャッシュからの関係ない不必要なローディングなしにデータに部分的なアクセスができるため、よりスケールします。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        なぜ、どういう時にSOAを使うべきなのか【翻訳】
-    </h2>
-    <p>
-        <time>2017-05-19</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+remoteClients.address[index];</code></pre></div><p>しかし<code>SoA</code>はキャッシュからの関係ない不必要なローディングなしにデータに部分的なアクセスができるため、よりスケールします。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+なぜ、どういう時にSOAを使うべきなのか【翻訳】</h2><p><time>2017-05-19</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

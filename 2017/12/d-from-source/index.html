@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang DMDとDUBをソースからインストールする - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/12/d-from-source/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang DMDとDUBをソースからインストールする - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 最近D言語を書いていない。というかプログラミングらしいことをしていない。さらに今使っているコンピュータにはDMDがインストールされてすらいない。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/12/d-from-source/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 最近D言語を書いていない。というかプログラミングらしいことをしていない。さらに今使っているコンピュータにはDMDがインストールされてすらいない。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=最近D言語を書いていない。というかプログラミングらしいことをしていない。さらに今使っているコンピュータにはDMDがインストールされてすらいない。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,113 +6,30 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        DMDとDUBをソースからインストールする
-    </h2>
-    <p>
-        <time>2017-12-04</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/log">#log</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#dmd">DMD</a>
-<ul>
-<li><a href="#ソースのダウンロード">ソースのダウンロード</a></li>
-<li><a href="#dmdのビルド">DMDのビルド</a></li>
-<li><a href="#その他のビルド">その他のビルド</a></li>
-<li><a href="#動作確認">動作確認</a></li>
-<li><a href="#インストール">インストール</a></li>
-</ul></li>
-<li><a href="#dub">DUB</a>
-<ul>
-<li><a href="#ビルド">ビルド</a></li>
-<li><a href="#インストール-1">インストール</a></li>
-<li><a href="#動作確認-1">動作確認</a></li>
-</ul></li>
-<li><a href="#最新版のビルド">最新版のビルド</a>
-<ul>
-<li><a href="#dmd-1">DMD</a></li>
-<li><a href="#dub-1">DUB</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>最近D言語を書いていない。
+</script><title>#dlang DMDとDUBをソースからインストールする - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/d-from-source/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMDとDUBをソースからインストールする - Kotet's Personal Blog"><meta name=og:description content=最近D言語を書いていない。というかプログラミングらしいことをしていない。さらに今使っているコンピュータにはDMDがインストールされてすらいない。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/d-from-source/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+DMDとDUBをソースからインストールする</h2><p><time>2017-12-04</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/log>#log</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#dmd>DMD</a><ul><li><a href=#ソースのダウンロード>ソースのダウンロード</a></li><li><a href=#dmdのビルド>DMDのビルド</a></li><li><a href=#その他のビルド>その他のビルド</a></li><li><a href=#動作確認>動作確認</a></li><li><a href=#インストール>インストール</a></li></ul></li><li><a href=#dub>DUB</a><ul><li><a href=#ビルド>ビルド</a></li><li><a href=#インストール-1>インストール</a></li><li><a href=#動作確認-1>動作確認</a></li></ul></li><li><a href=#最新版のビルド>最新版のビルド</a><ul><li><a href=#dmd-1>DMD</a></li><li><a href=#dub-1>DUB</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>最近D言語を書いていない。
 というかプログラミングらしいことをしていない。
-さらに今使っているコンピュータにはDMDがインストールされてすらいない。</p>
-
-<p>以前いろいろと前提となる基礎知識が欠けていてDMDのソースからのインストールができなかったのを思い出したので、とりあえずDMDのビルドをしようと思った。
-<a href="https://qiita.com/advent-calendar/2017/dlang">D言語 Advent Calendar 2017</a>の4日目のこの記事はその時の記録である。</p>
-
-<p>出力はその場の気分で省略したりしなかったりしてある。
-ものすごくのんびりやったため実際の作業は数日にわかれている。</p>
-
-<p><code>v2.077.0</code>と最新版をインストールしたのだが、思っていたよりも遥かに簡単で時間もかからなかった。
-速すぎて冬場の暖房には使えないかもしれない。</p>
-
-<h3 id="dmd">DMD</h3>
-
-<h4 id="ソースのダウンロード">ソースのダウンロード</h4>
-
-<p>まずはソースをダウンロードしてくる。
-最初は最新版ではなくバージョンを<code>v2.077.0</code>に指定してやってみようと思う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~$ mkdir src/dlang-v2.077.0
+さらに今使っているコンピュータにはDMDがインストールされてすらいない。</p><p>以前いろいろと前提となる基礎知識が欠けていてDMDのソースからのインストールができなかったのを思い出したので、とりあえずDMDのビルドをしようと思った。
+<a href=https://qiita.com/advent-calendar/2017/dlang>D言語 Advent Calendar 2017</a>の4日目のこの記事はその時の記録である。</p><p>出力はその場の気分で省略したりしなかったりしてある。
+ものすごくのんびりやったため実際の作業は数日にわかれている。</p><p><code>v2.077.0</code>と最新版をインストールしたのだが、思っていたよりも遥かに簡単で時間もかからなかった。
+速すぎて冬場の暖房には使えないかもしれない。</p><h3 id=dmd>DMD</h3><h4 id=ソースのダウンロード>ソースのダウンロード</h4><p>まずはソースをダウンロードしてくる。
+最初は最新版ではなくバージョンを<code>v2.077.0</code>に指定してやってみようと思う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~$ mkdir src/dlang-v2.077.0
 ~$ cd src/dlang-v2.077.0/
 ~/src/dlang-v2.077.0$ git clone -b v2.077.0 https://github.com/dlang/dmd
 ~/src/dlang-v2.077.0$ git clone -b v2.077.0 https://github.com/dlang/druntime
 ~/src/dlang-v2.077.0$ git clone -b v2.077.0 https://github.com/dlang/phobos
-~/src/dlang-v2.077.0$ git clone -b v2.077.0 https://github.com/dlang/tools</code></pre></div>
-<h4 id="dmdのビルド">DMDのビルド</h4>
-
-<p>ある一定以上バージョンが上のDMDのビルドにはDMDが必要なので、
+~/src/dlang-v2.077.0$ git clone -b v2.077.0 https://github.com/dlang/tools</code></pre></div><h4 id=dmdのビルド>DMDのビルド</h4><p>ある一定以上バージョンが上のDMDのビルドにはDMDが必要なので、
 古いバージョンのDMDを自分でビルドするか、バイナリをダウンロードしてくる必要がある。
-……と思っていたのだが、どうもそのあたりも<a href="https://wiki.dlang.org/Building_under_Posix#Bootstrap_dmd">自分でやってくれる</a>らしい。
+……と思っていたのだが、どうもそのあたりも<a href=https://wiki.dlang.org/Building_under_Posix#Bootstrap_dmd>自分でやってくれる</a>らしい。
 もちろんPATHの通ったDMDがすでにあるならそちらを使ってビルドを高速化できる。
-しかしそんなことをしなくても割とあっという間に終わった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0/dmd$ make -f posix.mak -j8 AUTO_BOOTSTRAP=1</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0/dmd$ ./generated/linux/release/64/dmd --version
+しかしそんなことをしなくても割とあっという間に終わった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0/dmd$ make -f posix.mak -j8 AUTO_BOOTSTRAP=1</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0/dmd$ ./generated/linux/release/64/dmd --version
 DMD64 D Compiler v2.077.0
-Copyright (c) 1999-2017 by Digital Mars written by Walter Bright</code></pre></div>
-<h4 id="その他のビルド">その他のビルド</h4>
-
-<p>標準ライブラリのphobosをビルドする。
+Copyright (c) 1999-2017 by Digital Mars written by Walter Bright</code></pre></div><h4 id=その他のビルド>その他のビルド</h4><p>標準ライブラリのphobosをビルドする。
 PATHを通していないのに<code>../dmd/generated/linux/release/64/dmd</code>を使ってくれる。
-しかも<code>druntime</code>もいっしょにビルドされている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0$ cd phobos/
-~/src/dlang-v2.077.0/phobos$ make -f posix.mak -j8</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0$ tree phobos/generated/
+しかも<code>druntime</code>もいっしょにビルドされている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0$ cd phobos/
+~/src/dlang-v2.077.0/phobos$ make -f posix.mak -j8</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0$ tree phobos/generated/
 phobos/generated/
 └── linux
     └── release
@@ -197,11 +71,7 @@ druntime/generated/
             ├── libdruntime.so.o
             └── threadasm.o
 
-3 directories, 6 files</code></pre></div>
-<h4 id="動作確認">動作確認</h4>
-
-<p><code>static foreach</code>を使ったことがないので試してみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">/// test.d
+3 directories, 6 files</code></pre></div><h4 id=動作確認>動作確認</h4><p><code>static foreach</code>を使ったことがないので試してみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>/// test.d
 
 import std.stdio;
 
@@ -213,7 +83,7 @@ static foreach(i;0..10)
 void main()
 {
     writeln(&#34;hello&#34;);
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0$ dmd/generated/linux/release/64/dmd test.d
+}</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0$ dmd/generated/linux/release/64/dmd test.d
 0
 1
 2
@@ -225,25 +95,9 @@ void main()
 8
 9
 ~/src/dlang-v2.077.0$ ./test 
-hello</code></pre></div>
-<p>ちゃんと動いた。</p>
-
-<h4 id="インストール">インストール</h4>
-
-<p>適当な場所に置く。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0$ ln -s ~/src/dlang-v2.077.0/dmd/generated/linux/release/64/dmd ~/bin/ # ~/bin はPATHを通してあるディレクトリ</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-v2.077.0$ which dmd
-/home/kotet/bin/dmd</code></pre></div>
-<p>というわけで、これでDMD 2.077.0のインストールが完了した。
-思っていたよりも短い時間でできてびっくりした。</p>
-
-<h3 id="dub">DUB</h3>
-
-<p>せっかくなのでこの調子でDUBもインストールする。</p>
-
-<h4 id="ビルド">ビルド</h4>
-
-<p>DMDとlibcurlが必要らしいが両方あるのでそのまま<code>build.sh</code>を実行する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src$ git clone -b v1.6.0 https://github.com/dlang/dub.git dub-v1.6.0
+hello</code></pre></div><p>ちゃんと動いた。</p><h4 id=インストール>インストール</h4><p>適当な場所に置く。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0$ ln -s ~/src/dlang-v2.077.0/dmd/generated/linux/release/64/dmd ~/bin/ # ~/bin はPATHを通してあるディレクトリ</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-v2.077.0$ which dmd
+/home/kotet/bin/dmd</code></pre></div><p>というわけで、これでDMD 2.077.0のインストールが完了した。
+思っていたよりも短い時間でできてびっくりした。</p><h3 id=dub>DUB</h3><p>せっかくなのでこの調子でDUBもインストールする。</p><h4 id=ビルド>ビルド</h4><p>DMDとlibcurlが必要らしいが両方あるのでそのまま<code>build.sh</code>を実行する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src$ git clone -b v1.6.0 https://github.com/dlang/dub.git dub-v1.6.0
 ~/src$ cd dub-v1.6.0/
 ~/src/dub-v1.6.0$ ./build.sh 
 Generating version file...
@@ -255,69 +109,43 @@ DUB has been built as bin/dub.
 
 You may want to run
 sudo ln -s /home/kotet/src/dub-v1.6.0/bin/dub /usr/local/bin
-now.</code></pre></div>
-<h4 id="インストール-1">インストール</h4>
-
-<p><code>/usr/local/bin</code>へのインストールをおすすめされているが今回は<code>~/bin</code>にした。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dub-v1.6.0$ ln -s /home/kotet/src/dub-v1.6.0/bin/dub ~/bin</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dub-v1.6.0$ which dub
+now.</code></pre></div><h4 id=インストール-1>インストール</h4><p><code>/usr/local/bin</code>へのインストールをおすすめされているが今回は<code>~/bin</code>にした。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dub-v1.6.0$ ln -s /home/kotet/src/dub-v1.6.0/bin/dub ~/bin</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dub-v1.6.0$ which dub
 /home/kotet/bin/dub
 ~/src/dub-v1.6.0$ dub --version
-DUB version 1.6.0, built on Nov 15 2017</code></pre></div>
-<h4 id="動作確認-1">動作確認</h4>
-
-<p><a href="https://qiita.com/lempiji/items/03629cd46fcbd948ca41">D言語くんが走りだす</a>。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">fetch</span> <span style="color:#a6e22e">dl</span>
-<span style="color:#a6e22e">Fetching</span> <span style="color:#a6e22e">dl</span> <span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">...</span>
-<span style="color:#a6e22e">Please</span> <span style="color:#a6e22e">note</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span> <span style="color:#e6db74">`dub run &lt;pkgname&gt;`</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">add</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">dependencies</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">your</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">actually</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">/</span><span style="color:#a6e22e">run</span> <span style="color:#a6e22e">it</span>. <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">do</span> <span style="color:#a6e22e">actual</span> <span style="color:#a6e22e">installation</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">outside</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">own</span> <span style="color:#a6e22e">ecosystem</span>.
-<span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dl</span>
-<span style="color:#a6e22e">Building</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">dl</span> <span style="color:#a6e22e">in</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">home</span><span style="color:#f92672">/</span><span style="color:#a6e22e">kotet</span><span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">/</span>
-<span style="color:#a6e22e">Performing</span> <span style="color:#e6db74">&#34;debug&#34;</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">dmd</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x86_64</span>.
-<span style="color:#a6e22e">dl</span> <span style="color:#ae81ff">1.0.1</span>: <span style="color:#a6e22e">building</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;executable&#34;</span><span style="color:#f92672">...</span>
-<span style="color:#a6e22e">Linking</span><span style="color:#f92672">...</span>
-<span style="color:#a6e22e">Running</span> .<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span> 
+DUB version 1.6.0, built on Nov 15 2017</code></pre></div><h4 id=動作確認-1>動作確認</h4><p><a href=https://qiita.com/lempiji/items/03629cd46fcbd948ca41>D言語くんが走りだす</a>。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>fetch</span> <span style=color:#a6e22e>dl</span>
+<span style=color:#a6e22e>Fetching</span> <span style=color:#a6e22e>dl</span> <span style=color:#ae81ff>1.0.1</span><span style=color:#f92672>...</span>
+<span style=color:#a6e22e>Please</span> <span style=color:#a6e22e>note</span> <span style=color:#a6e22e>that</span> <span style=color:#a6e22e>you</span> <span style=color:#a6e22e>need</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>use</span> <span style=color:#e6db74>`dub run &lt;pkgname&gt;`</span> <span style=color:#a6e22e>or</span> <span style=color:#a6e22e>add</span> <span style=color:#a6e22e>it</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>dependencies</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>your</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>actually</span> <span style=color:#a6e22e>use</span><span style=color:#f92672>/</span><span style=color:#a6e22e>run</span> <span style=color:#a6e22e>it</span>. <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>do</span> <span style=color:#a6e22e>actual</span> <span style=color:#a6e22e>installation</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>packages</span> <span style=color:#a6e22e>outside</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>its</span> <span style=color:#a6e22e>own</span> <span style=color:#a6e22e>ecosystem</span>.
+<span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>dl</span>
+<span style=color:#a6e22e>Building</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>dl</span> <span style=color:#a6e22e>in</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>kotet</span><span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1.0.1</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>/</span>
+<span style=color:#a6e22e>Performing</span> <span style=color:#e6db74>&#34;debug&#34;</span> <span style=color:#a6e22e>build</span> <span style=color:#a6e22e>using</span> <span style=color:#a6e22e>dmd</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>x86_64</span>.
+<span style=color:#a6e22e>dl</span> <span style=color:#ae81ff>1.0.1</span>: <span style=color:#a6e22e>building</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;executable&#34;</span><span style=color:#f92672>...</span>
+<span style=color:#a6e22e>Linking</span><span style=color:#f92672>...</span>
+<span style=color:#a6e22e>Running</span> .<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1.0.1</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span> 
 
 
 
-  <span style="color:#a6e22e">_</span>   <span style="color:#a6e22e">_</span>
- (<span style="color:#a6e22e">_</span>) (<span style="color:#a6e22e">_</span>)
-<span style="color:#f92672">/</span><span style="color:#a6e22e">______</span> \
-<span style="color:#960050;background-color:#1e0010">\\</span>(<span style="color:#a6e22e">O</span>(<span style="color:#a6e22e">O</span> <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">/</span>
+  <span style=color:#a6e22e>_</span>   <span style=color:#a6e22e>_</span>
+ (<span style=color:#a6e22e>_</span>) (<span style=color:#a6e22e>_</span>)
+<span style=color:#f92672>/</span><span style=color:#a6e22e>______</span> \
+<span style=color:#960050;background-color:#1e0010>\\</span>(<span style=color:#a6e22e>O</span>(<span style=color:#a6e22e>O</span> <span style=color:#960050;background-color:#1e0010>\</span><span style=color:#f92672>/</span>
  | | | |
- | |<span style="color:#a6e22e">_</span>| |
-<span style="color:#f92672">/</span><span style="color:#a6e22e">______</span><span style="color:#f92672">/</span>
+ | |<span style=color:#a6e22e>_</span>| |
+<span style=color:#f92672>/</span><span style=color:#a6e22e>______</span><span style=color:#f92672>/</span>
   &lt;   &gt;
- (<span style="color:#a6e22e">_</span>) (<span style="color:#a6e22e">_</span>)</code></pre></div>
-<p>というわけでD言語の基本的なツールがインストールできた。
+ (<span style=color:#a6e22e>_</span>) (<span style=color:#a6e22e>_</span>)</code></pre></div><p>というわけでD言語の基本的なツールがインストールできた。
 想像以上に簡単だった。
-やはり何事もやってみることが大事ということだ。</p>
-
-<h3 id="最新版のビルド">最新版のビルド</h3>
-
-<p>せっかくなので最新版もビルドしてみる。
-全く同じようにインストールを行える。</p>
-
-<h4 id="dmd-1">DMD</h4>
-
-<p>同じようにダウンロード。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src$ mkdir dlang-$(date -I)
+やはり何事もやってみることが大事ということだ。</p><h3 id=最新版のビルド>最新版のビルド</h3><p>せっかくなので最新版もビルドしてみる。
+全く同じようにインストールを行える。</p><h4 id=dmd-1>DMD</h4><p>同じようにダウンロード。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src$ mkdir dlang-$(date -I)
 ~/src$ ls
 dlang-2017-11-22  dlang-v2.077.0  dub-v1.6.0
 ~/src$ cd dlang-2017-11-22/
 ~/src/dlang-2017-11-22$ git clone https://github.com/dlang/dmd
 ~/src/dlang-2017-11-22$ git clone https://github.com/dlang/druntime
 ~/src/dlang-2017-11-22$ git clone https://github.com/dlang/phobos
-~/src/dlang-2017-11-22$ git clone https://github.com/dlang/tools</code></pre></div>
-<p>すでにDMDをインストール済みなのでそれを使ってくれる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-2017-11-22/dmd$ make -f posix.mak -j8</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-2017-11-22/dmd$ ./generated/linux/release/64/dmd --version
+~/src/dlang-2017-11-22$ git clone https://github.com/dlang/tools</code></pre></div><p>すでにDMDをインストール済みなのでそれを使ってくれる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-2017-11-22/dmd$ make -f posix.mak -j8</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-2017-11-22/dmd$ ./generated/linux/release/64/dmd --version
 DMD64 D Compiler v2.077.0-251-g46fc949
-Copyright (c) 1999-2017 by Digital Mars written by Walter Bright</code></pre></div>
-<p>続けてPhobos等のビルド。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-2017-11-22/dmd$ cd ../phobos/
-~/src/dlang-2017-11-22/phobos$ make -f posix.mak -j8</code></pre></div>
-<p>インストール。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src/dlang-2017-11-22/phobos$ ln -s ~/src/dlang-2017-11-22/dmd/generated/linux/release/64/dmd ~/bin/dmd-latest</code></pre></div>
-<p>動作確認。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~$ which dmd-latest
+Copyright (c) 1999-2017 by Digital Mars written by Walter Bright</code></pre></div><p>続けてPhobos等のビルド。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-2017-11-22/dmd$ cd ../phobos/
+~/src/dlang-2017-11-22/phobos$ make -f posix.mak -j8</code></pre></div><p>インストール。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src/dlang-2017-11-22/phobos$ ln -s ~/src/dlang-2017-11-22/dmd/generated/linux/release/64/dmd ~/bin/dmd-latest</code></pre></div><p>動作確認。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~$ which dmd-latest
 /home/kotet/bin/dmd-latest
 ~$ dmd-latest --version
 DMD64 D Compiler v2.077.0-251-g46fc949
@@ -334,9 +162,7 @@ Copyright (c) 1999-2017 by Digital Mars written by Walter Bright
 8
 9
 ~$ ./test
-hello</code></pre></div>
-<p>ちゃんと最新版の方のPhobosが使われているか確認するのを忘れていた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~$ dmd-latest --help
+hello</code></pre></div><p>ちゃんと最新版の方のPhobosが使われているか確認するのを忘れていた。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~$ dmd-latest --help
 DMD64 D Compiler v2.077.0-251-g46fc949
 Copyright (c) 1999-2017 by Digital Mars written by Walter Bright
 
@@ -350,13 +176,7 @@ DFLAGS=-I%@P%/../../../../../druntime/import -I%@P%/../../../../../phobos -L-L%@
 [Environment64]
 DFLAGS=-I%@P%/../../../../../druntime/import -I%@P%/../../../../../phobos -L-L%@P%/../../../../../phobos/generated/linux/release/64 -L--export-dynamic -fPIC
 $ readlink -f /home/kotet/src/dlang-2017-11-22/dmd/generated/linux/release/64/../../../../../phobos/generated/linux/release/64
-/home/kotet/src/dlang-2017-11-22/phobos/generated/linux/release/64</code></pre></div>
-<p>大丈夫そう。</p>
-
-<h4 id="dub-1">DUB</h4>
-
-<p>せっかくなので先ほどの最新版を使ってビルドする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">~/src$ git clone https://github.com/dlang/dub.git dub-$(date -I)
+/home/kotet/src/dlang-2017-11-22/phobos/generated/linux/release/64</code></pre></div><p>大丈夫そう。</p><h4 id=dub-1>DUB</h4><p>せっかくなので先ほどの最新版を使ってビルドする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>~/src$ git clone https://github.com/dlang/dub.git dub-$(date -I)
 ~/src$ cd dub-2017-11-22/
 ~/src/dub-2017-11-22$ DMD=&#34;dmd-latest&#34; ./build.sh
 Generating version file...
@@ -369,62 +189,29 @@ DUB has been built as bin/dub.
 You may want to run
 sudo ln -s /home/kotet/src/dub-2017-11-22/bin/dub /usr/local/bin
 now.
-~/src/dub-2017-11-22$ ln -s /home/kotet/src/dub-2017-11-22/bin/dub ~/bin/dub-latest</code></pre></div>
-<p>動作確認。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">which</span> <span style="color:#a6e22e">dub</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span> 
-<span style="color:#f92672">/</span><span style="color:#a6e22e">home</span><span style="color:#f92672">/</span><span style="color:#a6e22e">kotet</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dub</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span>
-<span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">dub</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">version</span>
-<span style="color:#a6e22e">DUB</span> <span style="color:#a6e22e">version</span> <span style="color:#ae81ff">1.6.0</span><span style="color:#f92672">+</span><span style="color:#ae81ff">28</span><span style="color:#f92672">-</span><span style="color:#a6e22e">gf7d620b</span>, <span style="color:#a6e22e">built</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">Nov</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">2017</span>
-<span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">dub</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span> <span style="color:#a6e22e">fetch</span> <span style="color:#a6e22e">dl</span>
-<span style="color:#a6e22e">Please</span> <span style="color:#a6e22e">note</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span> <span style="color:#e6db74">`dub run &lt;pkgname&gt;`</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">add</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">dependencies</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">your</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">actually</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">/</span><span style="color:#a6e22e">run</span> <span style="color:#a6e22e">it</span>. <span style="color:#a6e22e">dub</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">do</span> <span style="color:#a6e22e">actual</span> <span style="color:#a6e22e">installation</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">outside</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">own</span> <span style="color:#a6e22e">ecosystem</span>.
-<span style="color:#960050;background-color:#1e0010">~$</span> <span style="color:#a6e22e">dub</span><span style="color:#f92672">-</span><span style="color:#a6e22e">latest</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dl</span>
-<span style="color:#a6e22e">Building</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">dl</span> <span style="color:#a6e22e">in</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">home</span><span style="color:#f92672">/</span><span style="color:#a6e22e">kotet</span><span style="color:#f92672">/</span>.<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">/</span>
-<span style="color:#a6e22e">Performing</span> <span style="color:#e6db74">&#34;debug&#34;</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">dmd</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x86_64</span>.
-<span style="color:#a6e22e">dl</span> <span style="color:#ae81ff">1.0.1</span>: <span style="color:#a6e22e">target</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">configuration</span> <span style="color:#e6db74">&#34;executable&#34;</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">date</span>.
-<span style="color:#a6e22e">To</span> <span style="color:#a6e22e">force</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">rebuild</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">up</span><span style="color:#f92672">-</span><span style="color:#a6e22e">to</span><span style="color:#f92672">-</span><span style="color:#a6e22e">date</span> <span style="color:#a6e22e">targets</span>, <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">again</span> <span style="color:#a6e22e">with</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">force</span>.
-<span style="color:#a6e22e">Running</span> .<span style="color:#a6e22e">dub</span><span style="color:#f92672">/</span><span style="color:#a6e22e">packages</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span><span style="color:#f92672">/</span><span style="color:#a6e22e">dl</span> 
+~/src/dub-2017-11-22$ ln -s /home/kotet/src/dub-2017-11-22/bin/dub ~/bin/dub-latest</code></pre></div><p>動作確認。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>which</span> <span style=color:#a6e22e>dub</span><span style=color:#f92672>-</span><span style=color:#a6e22e>latest</span> 
+<span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>kotet</span><span style=color:#f92672>/</span><span style=color:#a6e22e>bin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dub</span><span style=color:#f92672>-</span><span style=color:#a6e22e>latest</span>
+<span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>dub</span><span style=color:#f92672>-</span><span style=color:#a6e22e>latest</span> <span style=color:#f92672>--</span><span style=color:#a6e22e>version</span>
+<span style=color:#a6e22e>DUB</span> <span style=color:#a6e22e>version</span> <span style=color:#ae81ff>1.6.0</span><span style=color:#f92672>+</span><span style=color:#ae81ff>28</span><span style=color:#f92672>-</span><span style=color:#a6e22e>gf7d620b</span>, <span style=color:#a6e22e>built</span> <span style=color:#a6e22e>on</span> <span style=color:#a6e22e>Nov</span> <span style=color:#ae81ff>22</span> <span style=color:#ae81ff>2017</span>
+<span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>dub</span><span style=color:#f92672>-</span><span style=color:#a6e22e>latest</span> <span style=color:#a6e22e>fetch</span> <span style=color:#a6e22e>dl</span>
+<span style=color:#a6e22e>Please</span> <span style=color:#a6e22e>note</span> <span style=color:#a6e22e>that</span> <span style=color:#a6e22e>you</span> <span style=color:#a6e22e>need</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>use</span> <span style=color:#e6db74>`dub run &lt;pkgname&gt;`</span> <span style=color:#a6e22e>or</span> <span style=color:#a6e22e>add</span> <span style=color:#a6e22e>it</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>dependencies</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>your</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>actually</span> <span style=color:#a6e22e>use</span><span style=color:#f92672>/</span><span style=color:#a6e22e>run</span> <span style=color:#a6e22e>it</span>. <span style=color:#a6e22e>dub</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>do</span> <span style=color:#a6e22e>actual</span> <span style=color:#a6e22e>installation</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>packages</span> <span style=color:#a6e22e>outside</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>its</span> <span style=color:#a6e22e>own</span> <span style=color:#a6e22e>ecosystem</span>.
+<span style=color:#960050;background-color:#1e0010>~$</span> <span style=color:#a6e22e>dub</span><span style=color:#f92672>-</span><span style=color:#a6e22e>latest</span> <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>dl</span>
+<span style=color:#a6e22e>Building</span> <span style=color:#f92672>package</span> <span style=color:#a6e22e>dl</span> <span style=color:#a6e22e>in</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>kotet</span><span style=color:#f92672>/</span>.<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1.0.1</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>/</span>
+<span style=color:#a6e22e>Performing</span> <span style=color:#e6db74>&#34;debug&#34;</span> <span style=color:#a6e22e>build</span> <span style=color:#a6e22e>using</span> <span style=color:#a6e22e>dmd</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>x86_64</span>.
+<span style=color:#a6e22e>dl</span> <span style=color:#ae81ff>1.0.1</span>: <span style=color:#a6e22e>target</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>configuration</span> <span style=color:#e6db74>&#34;executable&#34;</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>up</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>date</span>.
+<span style=color:#a6e22e>To</span> <span style=color:#a6e22e>force</span> <span style=color:#a6e22e>a</span> <span style=color:#a6e22e>rebuild</span> <span style=color:#a6e22e>of</span> <span style=color:#a6e22e>up</span><span style=color:#f92672>-</span><span style=color:#a6e22e>to</span><span style=color:#f92672>-</span><span style=color:#a6e22e>date</span> <span style=color:#a6e22e>targets</span>, <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>again</span> <span style=color:#a6e22e>with</span> <span style=color:#f92672>--</span><span style=color:#a6e22e>force</span>.
+<span style=color:#a6e22e>Running</span> .<span style=color:#a6e22e>dub</span><span style=color:#f92672>/</span><span style=color:#a6e22e>packages</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1.0.1</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span><span style=color:#f92672>/</span><span style=color:#a6e22e>dl</span> 
 
 
 
-  <span style="color:#a6e22e">_</span>   <span style="color:#a6e22e">_</span>
- (<span style="color:#a6e22e">_</span>) (<span style="color:#a6e22e">_</span>)
-<span style="color:#f92672">/</span><span style="color:#a6e22e">______</span> \
-<span style="color:#960050;background-color:#1e0010">\\</span>(<span style="color:#a6e22e">O</span>(<span style="color:#a6e22e">O</span> <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">/</span>
+  <span style=color:#a6e22e>_</span>   <span style=color:#a6e22e>_</span>
+ (<span style=color:#a6e22e>_</span>) (<span style=color:#a6e22e>_</span>)
+<span style=color:#f92672>/</span><span style=color:#a6e22e>______</span> \
+<span style=color:#960050;background-color:#1e0010>\\</span>(<span style=color:#a6e22e>O</span>(<span style=color:#a6e22e>O</span> <span style=color:#960050;background-color:#1e0010>\</span><span style=color:#f92672>/</span>
  | | | |
- | |<span style="color:#a6e22e">_</span>| |
-<span style="color:#f92672">/</span><span style="color:#a6e22e">______</span><span style="color:#f92672">/</span>
+ | |<span style=color:#a6e22e>_</span>| |
+<span style=color:#f92672>/</span><span style=color:#a6e22e>______</span><span style=color:#f92672>/</span>
   &lt;   &gt;
- (<span style="color:#a6e22e">_</span>) (<span style="color:#a6e22e">_</span>)</code></pre></div></article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        DMDとDUBをソースからインストールする
-    </h2>
-    <p>
-        <time>2017-12-04</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/log">#log</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+ (<span style=color:#a6e22e>_</span>) (<span style=color:#a6e22e>_</span>)</code></pre></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+DMDとDUBをソースからインストールする</h2><p><time>2017-12-04</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/log>#log</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

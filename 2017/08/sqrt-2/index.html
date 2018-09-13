@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/08/sqrt-2/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/08/sqrt-2/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい…… ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,69 +6,16 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        2の平方根をDだけで1万桁求める
-    </h2>
-    <p>
-        <time>2017-08-14</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#sqrt-d"><code>sqrt.d</code></a></li>
-<li><a href="#出力">出力</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>かなり前に円周率をたくさん求めたくなって、
+</script><title>#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/08/sqrt-2/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 2の平方根をDだけで1万桁求める - Kotet's Personal Blog"><meta name=og:description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/08/sqrt-2/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+2の平方根をDだけで1万桁求める</h2><p><time>2017-08-14</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#sqrt-d><code>sqrt.d</code></a></li><li><a href=#出力>出力</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>かなり前に円周率をたくさん求めたくなって、
 せっかくだからD言語だけで書いてみようと思い、
-<a href="http://tanakh.jp/posts/pi.html">こちら</a>の記事を参考に<a href="https://github.com/kotet/bigfixed">bigfixed</a>というライブラリを作った。
+<a href=http://tanakh.jp/posts/pi.html>こちら</a>の記事を参考に<a href=https://github.com/kotet/bigfixed>bigfixed</a>というライブラリを作った。
 これは<code>std.bigint</code>を使って固定小数点計算をするものである。
 しかし作っているうちに飽きてしまい完成する頃には円周率はどうでも良くなってきた。
-とりあえず計算の簡単な平方根を求めてみることにした。</p>
-
-<p>以下がそのコードである。
-Single-file packageになっているので<code>dub run --single --build=release sqrt.d</code>などとしてやるとこのファイル単体で動く。</p>
-
-<h4 id="sqrt-d"><code>sqrt.d</code></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">#!/usr/bin/env dub
+とりあえず計算の簡単な平方根を求めてみることにした。</p><p>以下がそのコードである。
+Single-file packageになっているので<code>dub run --single --build=release sqrt.d</code>などとしてやるとこのファイル単体で動く。</p><h4 id=sqrt-d><code>sqrt.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>#!/usr/bin/env dub
 /+ dub.sdl:
 	name &#34;sqrt&#34;
     dependency &#34;bigfixed&#34; version=&#34;*&#34;
@@ -147,49 +51,10 @@ string sqrt(int n, size_t prec)
         }
     }
     return low.toDecimalString(prec);
-}</code></pre></div>
-<p>固定小数点数なので、整数と同じノリで二分法が使える。</p>
-
-<h4 id="出力">出力</h4>
-
-<pre><code>/// 前略
+}</code></pre></div><p>固定小数点数なので、整数と同じノリで二分法が使える。</p><h4 id=出力>出力</h4><pre><code>/// 前略
 9255474240448991887071069675242507745201229360810574142653234724064162141033353340551104521261750359028403745459186450472762434207177092979354010214096464502836834180407586081001407216192477179809859681115404464437285689592868319777977869346415984697451339177415379048778808300220583350467465553230285873258351
-</code></pre>
-
-<p><a href="http://www.h2.dion.ne.jp/~dra/suu/chi2/heihoukon/2.html">こちら</a>のサイトと値が一致した。
+</code></pre><p><a href=http://www.h2.dion.ne.jp/~dra/suu/chi2/heihoukon/2.html>こちら</a>のサイトと値が一致した。
 なお、実ははじめ100万桁を計算しようとしたのだが、8時間たっても終了しなかったので断念している。
-速度に問題がある……</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        2の平方根をDだけで1万桁求める
-    </h2>
-    <p>
-        <time>2017-08-14</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+速度に問題がある……</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+2の平方根をDだけで1万桁求める</h2><p><time>2017-08-14</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

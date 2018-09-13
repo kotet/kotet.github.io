@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang CTFEを強制するテンプレート - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/05/force-ctfe/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang CTFEを強制するテンプレート - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。 if (__traits(compiles, F(Args)))のところ、何か  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/05/force-ctfe/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。 if (__traits(compiles, F(Args)))のところ、何か ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。 if (__traits(compiles, F(Args)))のところ、何か"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,61 +6,14 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        CTFEを強制するテンプレート
-    </h2>
-    <p>
-        <time>2017-05-14</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#使用例">使用例:</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。
-<code>if (__traits(compiles, F(Args)))</code>のところ、何かもうすこしちゃんとした書き方がある気がする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">template CTFE(alias F, Args...) if (__traits(compiles, F(Args)))
+</script><title>#dlang CTFEを強制するテンプレート - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/05/force-ctfe/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang CTFEを強制するテンプレート - Kotet's Personal Blog"><meta name=og:description content="CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。 if (__traits(compiles, F(Args)))のところ、何か"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/05/force-ctfe/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+CTFEを強制するテンプレート</h2><p><time>2017-05-14</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#使用例>使用例:</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>CTFE可能な関数を確実にCTFEさせて、CTFEできないときはエラーを吐くようなテンプレートを作った。
+<code>if (__traits(compiles, F(Args)))</code>のところ、何かもうすこしちゃんとした書き方がある気がする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template CTFE(alias F, Args...) if (__traits(compiles, F(Args)))
 {
     enum CTFE = F(Args);
-}</code></pre></div>
-<h3 id="使用例">使用例:</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+}</code></pre></div><h3 id=使用例>使用例:</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main()
 {
     import std.stdio;
     import std.math;
@@ -113,9 +23,7 @@
 
     CTFE!(pow, 2, 3).writeln();
     pow(2, 3).writeln();
-}</code></pre></div>
-<p>普通に<code>sqrt</code>や<code>pow</code>を呼んだ場合はそのままになっているが、<code>CTFE</code>テンプレートを使うと実行結果に展開されている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+}</code></pre></div><p>普通に<code>sqrt</code>や<code>pow</code>を呼んだ場合はそのままになっているが、<code>CTFE</code>テンプレートを使うと実行結果に展開されている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main()
 {
 	import std.stdio;
 	import std.math;
@@ -124,9 +32,7 @@
 	writeln(8);
 	writeln(pow(2, 3));
 	return 0;
-}</code></pre></div>
-<p>もちろんCTFEできないものはエラーになる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+}</code></pre></div><p>もちろんCTFEできないものはエラーになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main()
 {
     import std.stdio;
     import std.math;
@@ -134,7 +40,7 @@
 
     CTFE!(sqrt, uniform(0.0, 1.0)).writeln();
     CTFE!(uniform, 0.0, 1.0).writeln();
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd test.d
+}</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd test.d
 /usr/include/dmd/phobos/std/random.d(1338): Error: static variable initialized cannot be read at compile time
 /usr/include/dmd/phobos/std/random.d(1372):        called from here: rndGen()
 /usr/include/dmd/phobos/std/random.d(1372):        called from here: uniform(a, b, rndGen())
@@ -143,37 +49,6 @@ test.d(12):        called from here: uniform(0.00000, 1.00000)
 /usr/include/dmd/phobos/std/random.d(1372):        called from here: rndGen()
 /usr/include/dmd/phobos/std/random.d(1372):        called from here: uniform(a, b, rndGen())
 test.d(3):        called from here: uniform(0.00000, 1.00000)
-test.d(13): Error: template instance test.CTFE!(uniform, 0.00000, 1.00000) error instantiating</code></pre></div></article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        CTFEを強制するテンプレート
-    </h2>
-    <p>
-        <time>2017-05-14</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+test.d(13): Error: template instance test.CTFE!(uniform, 0.00000, 1.00000) error instantiating</code></pre></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+CTFEを強制するテンプレート</h2><p><time>2017-05-14</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

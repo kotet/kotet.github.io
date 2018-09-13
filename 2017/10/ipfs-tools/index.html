@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs IPFS体験記6:ipget - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/10/ipfs-tools/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs IPFS体験記6:ipget - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。 今回はIPFS用に作られたツールを見ていこうと思う。 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/10/ipfs-tools/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。 今回はIPFS用に作られたツールを見ていこうと思う。 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。 今回はIPFS用に作られたツールを見ていこうと思う。 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,64 +6,13 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記6:ipget
-    </h2>
-    <p>
-        <time>2017-10-26</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#ipget">ipget</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。
+</script><title>#ipfs IPFS体験記6:ipget - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-tools/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記6:ipget - Kotet's Personal Blog"><meta name=og:description content="そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。 今回はIPFS用に作られたツールを見ていこうと思う。 いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-tools/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記6:ipget</h2><p><time>2017-10-26</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ipget>ipget</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>そろそろキャッチコピーを考えるのが辛くなってきたのでやめる。
 今回はIPFS用に作られたツールを見ていこうと思う。
-いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。</p>
-
-<h3 id="ipget">ipget</h3>
-
-<p>wgetのIPFS版。
-IPFSデーモン無しで動く。</p>
-
-<p>インストールにGoが必要なので、まずはGoをインストールした。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ go version
+いろいろ試したのだが、うまくインストールできたのはipgetだけだったのでそれだけ書く。</p><h3 id=ipget>ipget</h3><p>wgetのIPFS版。
+IPFSデーモン無しで動く。</p><p>インストールにGoが必要なので、まずはGoをインストールした。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ go version
 go version go1.9.2 linux/amd64
 $ go env
 GOARCH=&#34;amd64&#34;
@@ -129,55 +35,18 @@ CGO_CPPFLAGS=&#34;&#34;
 CGO_CXXFLAGS=&#34;-g -O2&#34;
 CGO_FFLAGS=&#34;-g -O2&#34;
 CGO_LDFLAGS=&#34;-g -O2&#34;
-PKG_CONFIG=&#34;pkg-config&#34;</code></pre></div>
-<p>Readmeの手順に従う。
-gxというIPFSを使ったパッケージマネージャを使っているので<code>go get</code>ではインストールできないようだ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">get</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">d</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipget</span>
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">gx</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">QmQa2wf1sLFKkjHCVEbna8y5qhdMjL8vtTJSAc48vZGTer</span><span style="color:#f92672">/</span><span style="color:#66d9ef">go</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">path</span>: <span style="color:#a6e22e">unrecognized</span> <span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#e6db74">&#34;gx/ipfs/QmQa2wf1sLFKkjHCVEbna8y5qhdMjL8vtTJSAc48vZGTer/go-ipfs/path&#34;</span> (<span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">begin</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">hostname</span>)
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">gx</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">QmVcLF2CgjQb5BWmYFWsDfxDjbzBfcChfdHRedxeL3dV4K</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cli</span>: <span style="color:#a6e22e">unrecognized</span> <span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#e6db74">&#34;gx/ipfs/QmVcLF2CgjQb5BWmYFWsDfxDjbzBfcChfdHRedxeL3dV4K/cli&#34;</span> (<span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">begin</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">hostname</span>)
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">gx</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Qmdk8Ea9GkbwHr7UNKVYaLRwwHSt69xBXuSvRVyNWZ9sZE</span><span style="color:#f92672">/</span><span style="color:#a6e22e">fallback</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">-</span><span style="color:#a6e22e">shell</span>: <span style="color:#a6e22e">unrecognized</span> <span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#e6db74">&#34;gx/ipfs/Qmdk8Ea9GkbwHr7UNKVYaLRwwHSt69xBXuSvRVyNWZ9sZE/fallback-ipfs-shell&#34;</span> (<span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">begin</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">hostname</span>)
-<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">cd</span> <span style="color:#960050;background-color:#1e0010">$</span>{<span style="color:#a6e22e">GOPATH</span>}<span style="color:#f92672">/</span><span style="color:#a6e22e">src</span><span style="color:#f92672">/</span><span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipfs</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ipget</span>
-<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">make</span> <span style="color:#a6e22e">install</span>
-<span style="color:#75715e">// 中略
-</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">ipget</span>
-<span style="color:#a6e22e">usage</span>: <span style="color:#a6e22e">ipget</span> &lt;<span style="color:#a6e22e">ipfs</span> <span style="color:#a6e22e">ref</span>&gt;</code></pre></div>
-<p>使ってみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ipget QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
+PKG_CONFIG=&#34;pkg-config&#34;</code></pre></div><p>Readmeの手順に従う。
+gxというIPFSを使ったパッケージマネージャを使っているので<code>go get</code>ではインストールできないようだ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#66d9ef>go</span> <span style=color:#a6e22e>get</span> <span style=color:#f92672>-</span><span style=color:#a6e22e>d</span> <span style=color:#a6e22e>github</span>.<span style=color:#a6e22e>com</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipget</span>
+<span style=color:#f92672>package</span> <span style=color:#a6e22e>gx</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>QmQa2wf1sLFKkjHCVEbna8y5qhdMjL8vtTJSAc48vZGTer</span><span style=color:#f92672>/</span><span style=color:#66d9ef>go</span><span style=color:#f92672>-</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>path</span>: <span style=color:#a6e22e>unrecognized</span> <span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#e6db74>&#34;gx/ipfs/QmQa2wf1sLFKkjHCVEbna8y5qhdMjL8vtTJSAc48vZGTer/go-ipfs/path&#34;</span> (<span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>begin</span> <span style=color:#a6e22e>with</span> <span style=color:#a6e22e>hostname</span>)
+<span style=color:#f92672>package</span> <span style=color:#a6e22e>gx</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>QmVcLF2CgjQb5BWmYFWsDfxDjbzBfcChfdHRedxeL3dV4K</span><span style=color:#f92672>/</span><span style=color:#a6e22e>cli</span>: <span style=color:#a6e22e>unrecognized</span> <span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#e6db74>&#34;gx/ipfs/QmVcLF2CgjQb5BWmYFWsDfxDjbzBfcChfdHRedxeL3dV4K/cli&#34;</span> (<span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>begin</span> <span style=color:#a6e22e>with</span> <span style=color:#a6e22e>hostname</span>)
+<span style=color:#f92672>package</span> <span style=color:#a6e22e>gx</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>Qmdk8Ea9GkbwHr7UNKVYaLRwwHSt69xBXuSvRVyNWZ9sZE</span><span style=color:#f92672>/</span><span style=color:#a6e22e>fallback</span><span style=color:#f92672>-</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>-</span><span style=color:#a6e22e>shell</span>: <span style=color:#a6e22e>unrecognized</span> <span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#e6db74>&#34;gx/ipfs/Qmdk8Ea9GkbwHr7UNKVYaLRwwHSt69xBXuSvRVyNWZ9sZE/fallback-ipfs-shell&#34;</span> (<span style=color:#f92672>import</span> <span style=color:#a6e22e>path</span> <span style=color:#a6e22e>does</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>begin</span> <span style=color:#a6e22e>with</span> <span style=color:#a6e22e>hostname</span>)
+<span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>cd</span> <span style=color:#960050;background-color:#1e0010>$</span>{<span style=color:#a6e22e>GOPATH</span>}<span style=color:#f92672>/</span><span style=color:#a6e22e>src</span><span style=color:#f92672>/</span><span style=color:#a6e22e>github</span>.<span style=color:#a6e22e>com</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipfs</span><span style=color:#f92672>/</span><span style=color:#a6e22e>ipget</span>
+<span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>make</span> <span style=color:#a6e22e>install</span>
+<span style=color:#75715e>// 中略
+</span><span style=color:#75715e></span><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#a6e22e>ipget</span>
+<span style=color:#a6e22e>usage</span>: <span style=color:#a6e22e>ipget</span> &lt;<span style=color:#a6e22e>ipfs</span> <span style=color:#a6e22e>ref</span>&gt;</code></pre></div><p>使ってみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipget QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
 $ cat QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
-hello world</code></pre></div>
-<p>なんだろう、あまり有り難みがない。
-なにかIPFSからファイルをダウンロードしてくるツールを作るときに使うのだろうか。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記6:ipget
-    </h2>
-    <p>
-        <time>2017-10-26</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/log">#log</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+hello world</code></pre></div><p>なんだろう、あまり有り難みがない。
+なにかIPFSからファイルをダウンロードしてくるツールを作るときに使うのだろうか。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記6:ipget</h2><p><time>2017-10-26</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

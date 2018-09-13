@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 整数閉区間のRange - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/08/closed-integer-interval/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 整数閉区間のRange - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" binary.h in Dで、 第二引数が含まれるiotaというか、そんな感じのRangeが欲しくなった。 つまり0と10が与えられたら[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]を返すようなやつである。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/08/closed-integer-interval/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" binary.h in Dで、 第二引数が含まれるiotaというか、そんな感じのRangeが欲しくなった。 つまり0と10が与えられたら[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]を返すようなやつである。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="binary.h in Dで、 第二引数が含まれるiotaというか、そんな感じのRangeが欲しくなった。 つまり0と10が与えられたら[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]を返すようなやつである。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,127 +6,30 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        整数閉区間のRange
-    </h2>
-    <p>
-        <time>2017-08-08</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#テンプレ">テンプレ</a></li>
-<li><a href="#パターン1">パターン1</a></li>
-<li><a href="#パターン2">パターン2</a></li>
-<li><a href="#パターン3">パターン3</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p><a href="/2017/07/binary-h-in-d">binary.h in D</a>で、
+</script><title>#dlang 整数閉区間のRange - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/08/closed-integer-interval/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 整数閉区間のRange - Kotet's Personal Blog"><meta name=og:description content="binary.h in Dで、 第二引数が含まれるiotaというか、そんな感じのRangeが欲しくなった。 つまり0と10が与えられたら[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]を返すようなやつである。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/08/closed-integer-interval/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+整数閉区間のRange</h2><p><time>2017-08-08</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#テンプレ>テンプレ</a></li><li><a href=#パターン1>パターン1</a></li><li><a href=#パターン2>パターン2</a></li><li><a href=#パターン3>パターン3</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><a href=/2017/07/binary-h-in-d>binary.h in D</a>で、
 第二引数が含まれる<code>iota</code>というか、そんな感じのRangeが欲しくなった。
-つまり<code>0</code>と<code>10</code>が与えられたら<code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code>を返すようなやつである。</p>
-
-<h3 id="テンプレ">テンプレ</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int min = 0, max = 10;
+つまり<code>0</code>と<code>10</code>が与えられたら<code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code>を返すようなやつである。</p><h3 id=テンプレ>テンプレ</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int min = 0, max = 10;
 
 // auto closedIntegerInterval = ...;
 
 import std.stdio : writeln;
-writeln(typeof(closedIntegerInterval).stringof, closedIntegerInterval);</code></pre></div>
-<h3 id="パターン1">パターン1</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.range : iota;
+writeln(typeof(closedIntegerInterval).stringof, closedIntegerInterval);</code></pre></div><h3 id=パターン1>パターン1</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.range : iota;
 import std.algorithm : map;
 
-auto closedIntegerInterval = iota(min - 1, max).map!(n =&gt; n + 1);</code></pre></div>
-<pre><code>MapResult!(__lambda1, Result)[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-</code></pre>
+auto closedIntegerInterval = iota(min - 1, max).map!(n =&gt; n + 1);</code></pre></div><pre><code>MapResult!(__lambda1, Result)[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre><h3 id=パターン2>パターン2</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.range : iota;
 
-<h3 id="パターン2">パターン2</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.range : iota;
-
-auto closedIntegerInterval = iota(min, max + 1);</code></pre></div>
-<pre><code>Result[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-</code></pre>
-
-<p>パターン1、2ともにちゃんと動いてるっぽいが、パターン1の方は<code>min == int.min</code>のときに、
+auto closedIntegerInterval = iota(min, max + 1);</code></pre></div><pre><code>Result[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre><p>パターン1、2ともにちゃんと動いてるっぽいが、パターン1の方は<code>min == int.min</code>のときに、
 パターン2の方は<code>max == int.max</code>の時にバグる。
-例の記事では型のすべての値を列挙したかったので、これではいけない。</p>
+例の記事では型のすべての値を列挙したかったので、これではいけない。</p><h3 id=パターン3>パターン3</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.range : chain, iota, only;
 
-<h3 id="パターン3">パターン3</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.range : chain, iota, only;
-
-auto closedIntegerInterval = iota(min, max).chain(only(max));</code></pre></div>
-<pre><code>Result[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-</code></pre>
-
-<p>採用した方法。
+auto closedIntegerInterval = iota(min, max).chain(only(max));</code></pre></div><pre><code>Result[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre><p>採用した方法。
 これならどんな値にも対応できる。
-もっとシンプルでわかりやすい書き方はないものか?</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        整数閉区間のRange
-    </h2>
-    <p>
-        <time>2017-08-08</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+もっとシンプルでわかりやすい書き方はないものか?</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+整数閉区間のRange</h2><p><time>2017-08-08</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

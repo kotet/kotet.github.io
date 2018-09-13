@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang Dでマンデルブロ集合を書く - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang Dでマンデルブロ集合を書く - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" なにか計算的なことをやってみたくてマンデルブロ集合を書く。 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。 マンデル  " />
-
-<meta name="og:image" content="https://blog.kotet.jp2017/04/12/twitter.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" なにか計算的なことをやってみたくてマンデルブロ集合を書く。 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。 マンデル ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="なにか計算的なことをやってみたくてマンデルブロ集合を書く。 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。 マンデル"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,78 +6,18 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        Dでマンデルブロ集合を書く
-    </h2>
-    <p>
-        <time>2017-04-12</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#マンデルブロ集合とは">マンデルブロ集合とは</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p><img src="/assets/2017/04/12/mandel.png" alt="書いたマンデルブロー集合" /></p>
-
-<p>なにか計算的なことをやってみたくてマンデルブロ集合を書く。
-「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。</p>
-
-<h3 id="マンデルブロ集合とは">マンデルブロ集合とは</h3>
-
-<p>いろいろなサイトで出尽くしているけど一応書く。</p>
-
-<p>\(z_{n+1}=z_n^2+c\)<br />
-\(z_1=0\)</p>
-
-<p>という漸化式が\(x \to \infty\)の極限で無限大に発散しない\(c\)の集合がマンデルブロ集合である。
+</script><title>#dlang Dでマンデルブロ集合を書く - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dでマンデルブロ集合を書く - Kotet's Personal Blog"><meta name=og:description content="なにか計算的なことをやってみたくてマンデルブロ集合を書く。 「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。 マンデル"><meta name=og:image content=https://blog.kotet.jp2017/04/12/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/mandelbrot-command-line-interface/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+Dでマンデルブロ集合を書く</h2><p><time>2017-04-12</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#マンデルブロ集合とは>マンデルブロ集合とは</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><img src=/assets/2017/04/12/mandel.png alt=書いたマンデルブロー集合></p><p>なにか計算的なことをやってみたくてマンデルブロ集合を書く。
+「描く」ではなく「書く」なのはコマンドライン上に文字で表現するからである。</p><h3 id=マンデルブロ集合とは>マンデルブロ集合とは</h3><p>いろいろなサイトで出尽くしているけど一応書く。</p><p>\(z_{n+1}=z_n^2+c\)<br>\(z_1=0\)</p><p>という漸化式が\(x \to \infty\)の極限で無限大に発散しない\(c\)の集合がマンデルブロ集合である。
 つまり一つ一つ\(c\)を設定して発散しないか確かめて、それをプロットしていけばいい。
 いろいろあって一度\(|z_n|&gt;2\)になると発散するので、適当にnを増やしていって判定する。
 一度も絶対値が2を超えなければ塗って、どこかで2を超えたら塗らない。
 場合によっては発散したところにも2を始めに超えた時のnで色分けしたりする。
 言語によっては実部と虚部を分けて実数計算に直したりするそうだが、Dには<code>std.complex</code>という複素数を表現できる
-標準ライブラリがある。とてもつよい。</p>
-
-<p><a href="https://github.com/kotet/mandelbrot-cli">kotet/mandelbrot-cli</a></p>
-
-<p>そういうわけでできたものがコチラである。<code>dub run -- --row 100 --column 400</code>で上の出力が得られる。
-文字で表現する程度のサイズだと一瞬で終わってしまうので、次は画像、動画を生成したい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import std.complex;
+標準ライブラリがある。とてもつよい。</p><p><a href=https://github.com/kotet/mandelbrot-cli>kotet/mandelbrot-cli</a></p><p>そういうわけでできたものがコチラである。<code>dub run -- --row 100 --column 400</code>で上の出力が得られる。
+文字で表現する程度のサイズだと一瞬で終わってしまうので、次は画像、動画を生成したい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.complex;
 
 void main(string[] args)
 {
@@ -192,37 +89,6 @@ bool isDiverge(Complex!real c, size_t judge_iter)
 			return true;
 	}
 	return false;
-}</code></pre></div></article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        Dでマンデルブロ集合を書く
-    </h2>
-    <p>
-        <time>2017-04-12</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+}</code></pre></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+Dでマンデルブロ集合を書く</h2><p><time>2017-04-12</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

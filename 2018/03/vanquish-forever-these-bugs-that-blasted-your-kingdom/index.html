@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 簡単に発生し、チェックが難しく、たいていテストにも引っかからず、 デプロイされるとあなたの城を粉砕する、 そんなバグに苦労したことはありませんか? そういうバグはあなたの時間と金銭を何度も奪ってゆきます。 自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう?  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 簡単に発生し、チェックが難しく、たいていテストにも引っかからず、 デプロイされるとあなたの城を粉砕する、 そんなバグに苦労したことはありませんか? そういうバグはあなたの時間と金銭を何度も奪ってゆきます。 自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう? ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="簡単に発生し、チェックが難しく、たいていテストにも引っかからず、 デプロイされるとあなたの城を粉砕する、 そんなバグに苦労したことはありませんか? そういうバグはあなたの時間と金銭を何度も奪ってゆきます。 自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう?"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,233 +6,65 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】
-    </h2>
-    <p>
-        <time>2018-03-04</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#配列のオーバーフロー">配列のオーバーフロー</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事は、
-<a href="https://dlang.org/blog/2018/02/07/vanquish-forever-these-bugs-that-blasted-your-kingdom/">Vanquish Forever These Bugs That Blasted Your Kingdom – The D Blog</a>
+</script><title>#dlang プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="簡単に発生し、チェックが難しく、たいていテストにも引っかからず、 デプロイされるとあなたの城を粉砕する、 そんなバグに苦労したことはありませんか? そういうバグはあなたの時間と金銭を何度も奪ってゆきます。 自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう?"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/03/vanquish-forever-these-bugs-that-blasted-your-kingdom/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】</h2><p><time>2018-03-04</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#配列のオーバーフロー>配列のオーバーフロー</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、
+<a href=https://dlang.org/blog/2018/02/07/vanquish-forever-these-bugs-that-blasted-your-kingdom/>Vanquish Forever These Bugs That Blasted Your Kingdom – The D Blog</a>
 を自分用に翻訳したものを
-<a href="http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631">許可を得て</a>
-公開するものである。</p>
-
-<p>ソース中にコメントの形で原文を残している。
+<a href=http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631>許可を得て</a>
+公開するものである。</p><p>ソース中にコメントの形で原文を残している。
 誤字や誤訳などを見つけたら今すぐ
-<a href="https://github.com/kotet/blog.kotet.jp">Pull request</a>だ!</p>
-
-<hr />
-
-<!-- _Walter Bright is the BDFL of the D Programming Language and founder of Digital Mars. He has decades of experience implementing compilers and interpreters for multiple languages, including Zortech C++, the first native C++ compiler. He also created Empire, the Wargame of the Century. This post is the first in a series on how [D’s BetterC mode](https://dlang.org/blog/2017/08/23/d-as-a-better-c/) can be used to exterminate and prevent bugs in existing C code._ -->
-
-<p>Walter BrightはD言語のBDFL<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>でありDigital Marsのファウンダーです。
+<a href=https://github.com/kotet/blog.kotet.jp>Pull request</a>だ!</p><hr><p>Walter BrightはD言語のBDFL<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup>でありDigital Marsのファウンダーです。
 彼は最初のネイティブC++コンパイラであるZortech C++などの様々な言語のコンパイラやインタプリタを実装した10年の経験があります。
-また、Empire, the Wargame of the Century<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup> <sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>の作者でもあります。
-この投稿は、<a href="https://dlang.org/blog/2017/08/23/d-as-a-better-c/">DのBetterCモード</a>を使うと既存のCのコードからいかにしてバグをなくし、回避することができるかについてのシリーズの最初のものです。</p>
-
-<hr />
-
-<!-- ![](https://i0.wp.com/dlang.org/blog/wp-content/uploads/2018/02/bug.jpg?resize=256%2C156) -->
-
-<p><img src="/assets/2018/03/bug.jpg" alt="Bug" /></p>
-
-<!-- Do you ever get tired of bugs that are easy to make, hard to check for, often don’t show up in testing, and [blast your kingdom](https://getyarn.io/yarn-clip/ac6765ca-f2c6-49ec-a1ba-a7e9b0f692bf) once they are widely deployed? They cost you time and money again and again. If you were only a better programmer, these things wouldn’t happen, right? -->
-
-<p>簡単に発生し、チェックが難しく、たいていテストにも引っかからず、
-デプロイされると<a href="https://getyarn.io/yarn-clip/ac6765ca-f2c6-49ec-a1ba-a7e9b0f692bf">あなたの城を粉砕する</a>、
+また、Empire, the Wargame of the Century<sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup> <sup class=footnote-ref id=fnref:3><a href=#fn:3>3</a></sup>の作者でもあります。
+この投稿は、<a href=https://dlang.org/blog/2017/08/23/d-as-a-better-c/>DのBetterCモード</a>を使うと既存のCのコードからいかにしてバグをなくし、回避することができるかについてのシリーズの最初のものです。</p><hr><p><img src=/assets/2018/03/bug.jpg alt=Bug></p><p>簡単に発生し、チェックが難しく、たいていテストにも引っかからず、
+デプロイされると<a href=https://getyarn.io/yarn-clip/ac6765ca-f2c6-49ec-a1ba-a7e9b0f692bf>あなたの城を粉砕する</a>、
 そんなバグに苦労したことはありませんか?
 そういうバグはあなたの時間と金銭を何度も奪ってゆきます。
-自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう?</p>
-
-<!-- Maybe it’s not you at all. I’ll show how these bugs are not your fault – they’re the tools’ fault, and by improving the tools you’ll never have your kingdom blasted by them again. -->
-
-<p>そうではありません。
-私はそれらのバグに二度とあなたの城が壊されないようにツールを改善することによって、バグがあなたのせいではなくツールのせいで起きているのだと証明します。</p>
-
-<!-- And you won’t have to compromise, either. -->
-
-<p>そして、あなたは妥協する必要もありません。</p>
-
-<!-- ### Array Overflow -->
-
-<h3 id="配列のオーバーフロー">配列のオーバーフロー</h3>
-
-<!-- Consider this conventional program to calculate the sum of an array: -->
-
-<p>このような配列の合計値を計算する伝統的プログラムを考えてみましょう:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define MAX 10
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sumArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p) {
-    <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span> i;
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> MAX; <span style="color:#f92672">++</span>i)
-        sum <span style="color:#f92672">+=</span> p[i];
-    <span style="color:#66d9ef">return</span> sum;
+自分がもっと優れたプログラマならこんなことは起こらないのに、そうでしょう?</p><p>そうではありません。
+私はそれらのバグに二度とあなたの城が壊されないようにツールを改善することによって、バグがあなたのせいではなくツールのせいで起きているのだと証明します。</p><p>そして、あなたは妥協する必要もありません。</p><h3 id=配列のオーバーフロー>配列のオーバーフロー</h3><p>このような配列の合計値を計算する伝統的プログラムを考えてみましょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#define MAX 10
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>sumArray</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> p) {
+    <span style=color:#66d9ef>int</span> sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>int</span> i;
+    <span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;=</span> MAX; <span style=color:#f92672>++</span>i)
+        sum <span style=color:#f92672>+=</span> p[i];
+    <span style=color:#66d9ef>return</span> sum;
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> values[MAX] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">58</span>,<span style="color:#ae81ff">62</span>,<span style="color:#ae81ff">93</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">17</span>,<span style="color:#ae81ff">77</span>,<span style="color:#ae81ff">17</span> };
-    printf(<span style="color:#e6db74">&#34;sum = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, sumArray(values));
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}</code></pre></div>
-<!-- The program should print: -->
-
-<p>このプログラムの出力は以下のようでなければなりません:</p>
-
-<pre><code>sum = 449
-</code></pre>
-
-<!-- And indeed it does, on my Ubuntu Linux system, with both `gcc` and `clang` and `-Wall`. I’m sure you already know what the bug is: -->
-
-<p>そして実際、私のUbuntu Linuxシステムで、<code>gcc</code>、<code>clang</code>、<code>-Wall</code>を使うとそのように出力されます。
-何がバグかもうおわかりでしょう:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> MAX; <span style="color:#f92672">++</span>i)
-               <span style="color:#f92672">^^</span></code></pre></div>
-<!-- This is the classic “[fencepost problem](https://en.wikipedia.org/wiki/Off-by-one_error#Fencepost_error)”. It goes through the loop 11 times instead of 10. It should properly be: -->
-
-<p>これは古典的な「<a href="https://ja.wikipedia.org/wiki/Off-by-one%E3%82%A8%E3%83%A9%E3%83%BC#%E6%A4%8D%E6%9C%A8%E7%AE%97%E3%82%A8%E3%83%A9%E3%83%BC">植木算問題</a>」です。
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> values[MAX] <span style=color:#f92672>=</span> { <span style=color:#ae81ff>7</span>,<span style=color:#ae81ff>10</span>,<span style=color:#ae81ff>58</span>,<span style=color:#ae81ff>62</span>,<span style=color:#ae81ff>93</span>,<span style=color:#ae81ff>100</span>,<span style=color:#ae81ff>8</span>,<span style=color:#ae81ff>17</span>,<span style=color:#ae81ff>77</span>,<span style=color:#ae81ff>17</span> };
+    printf(<span style=color:#e6db74>&#34;sum = %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, sumArray(values));
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}</code></pre></div><p>このプログラムの出力は以下のようでなければなりません:</p><pre><code>sum = 449
+</code></pre><p>そして実際、私のUbuntu Linuxシステムで、<code>gcc</code>、<code>clang</code>、<code>-Wall</code>を使うとそのように出力されます。
+何がバグかもうおわかりでしょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;=</span> MAX; <span style=color:#f92672>++</span>i)
+               <span style=color:#f92672>^^</span></code></pre></div><p>これは古典的な「<a href=https://ja.wikipedia.org/wiki/Off-by-one%E3%82%A8%E3%83%A9%E3%83%BC#%E6%A4%8D%E6%9C%A8%E7%AE%97%E3%82%A8%E3%83%A9%E3%83%BC>植木算問題</a>」です。
 ループは10回ではなく11回まわります。
-正しくはこうすべきです:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MAX; <span style="color:#f92672">++</span>i)</code></pre></div>
-<!-- Note that even with the bug, the program still produced the correct result! On my system, anyway. So I wouldn’t have detected it. On the customer’s system, well, then it mysteriously fails, and I have a remote [heisenbug](https://en.wikipedia.org/wiki/Heisenbug). I’m already tensing up anticipating the time and money this is going to cost me. -->
-
-<p>これはバグですが、それでもこのプログラムは正しい結果を返します!
+正しくはこうすべきです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> MAX; <span style=color:#f92672>++</span>i)</code></pre></div><p>これはバグですが、それでもこのプログラムは正しい結果を返します!
 とにかく、私のシステムにおいては。
 したがって私はこのバグに気づきません。
 顧客のシステムでは、えっと、なぜか動作せず、私はリモート
-<a href="https://ja.wikipedia.org/wiki/%E7%89%B9%E7%95%B0%E3%81%AA%E3%83%90%E3%82%B0#%E3%83%8F%E3%82%A4%E3%82%BC%E3%83%B3%E3%83%90%E3%82%B0_(Heisenbugs)">ハイゼンバグ</a>
+<a href=https://ja.wikipedia.org/wiki/%E7%89%B9%E7%95%B0%E3%81%AA%E3%83%90%E3%82%B0#%E3%83%8F%E3%82%A4%E3%82%BC%E3%83%B3%E3%83%90%E3%82%B0_(Heisenbugs)>ハイゼンバグ</a>
 を抱えてしまいました。
-どれほどの時間とお金が消えてゆくのか今からすでに心配です。</p>
-
-<!-- It’s such a rotten bug that over the years I have reprogrammed my brain to: -->
-
-<p>こういう不愉快なバグが何年もかけて私の脳を以下のようにリプログラミングしました:</p>
-
-<!-- 1.  Never, ever use “inclusive” upper bounds.
-2.  Never, ever use `<=` in a for loop condition. -->
-
-<ol>
-<li>絶対に「閉じた」終端を使わない</li>
-<li>絶対にループ条件に<code>&lt;=</code>を使わない</li>
-</ol>
-
-<!-- By making myself a better programmer, I have solved the problem! Or have I? Not really. Let’s look again at the code from the perspective of the poor schlub who has to review it. He wants to ensure that `sumArray()` is correct. He must: -->
-
-<p>私は優れたプログラマになることで問題を解決しました!
+どれほどの時間とお金が消えてゆくのか今からすでに心配です。</p><p>こういう不愉快なバグが何年もかけて私の脳を以下のようにリプログラミングしました:</p><ol><li>絶対に「閉じた」終端を使わない</li><li>絶対にループ条件に<code>&lt;=</code>を使わない</li></ol><p>私は優れたプログラマになることで問題を解決しました!
 でも、本当にそうでしょうか?
 実は問題は解決していません。
 コードをもう一度、それをレビューしなければならないかわいそうな無能の視点から見てみましょう。
-<code>sumArray()</code>に問題がないことを確かめるために、彼は以下のことをしなければなりません:</p>
-
-<!-- 1.  Look at all callers of `sumArray()` to see what kind of pointer is being passed.
-2.  Verify that the pointer actually is pointing to an array.
-3.  Verify that the size of the array is indeed `MAX`. -->
-
-<ol>
-<li>どのようなポインタが渡されるか、<code>sumArray()</code>のすべての呼び出し元を見に行く</li>
-<li>ポインタが配列を指していることを確認する</li>
-<li>配列の大きさが実際に<code>MAX</code>であるか確認する</li>
-</ol>
-
-<!-- While this is trivial for the trivial program as presented here, it doesn’t really scale as the program complexity goes up. The more callers there are of `sumArray`, and the more indirect the data structures being passed to `sumArray`, the harder it is to do what amounts to data flow analysis in your head to ensure it is correct. -->
-
-<p>これは今回のような小さなプログラムでは小さな作業ですが、実際のプログラムの複雑さの増加に対してはスケールしません。
-<code>sumArray</code>の呼び出し元が増え、<code>sumArray</code>に渡されるデータ構造が間接的になるに従って、この関数が正しいと証明するために頭の中で解析しなくてはならないデータフローは複雑になってゆきます。</p>
-
-<!-- Even if you get it right, are you sure? What about when someone else checks in a change, is it still right? Do you want to do that analysis again? I’m sure you have better things to do. This is a tooling problem. -->
-
-<p>それでもあなたはレビューをやり遂げました、しかし本当に?
+<code>sumArray()</code>に問題がないことを確かめるために、彼は以下のことをしなければなりません:</p><ol><li>どのようなポインタが渡されるか、<code>sumArray()</code>のすべての呼び出し元を見に行く</li><li>ポインタが配列を指していることを確認する</li><li>配列の大きさが実際に<code>MAX</code>であるか確認する</li></ol><p>これは今回のような小さなプログラムでは小さな作業ですが、実際のプログラムの複雑さの増加に対してはスケールしません。
+<code>sumArray</code>の呼び出し元が増え、<code>sumArray</code>に渡されるデータ構造が間接的になるに従って、この関数が正しいと証明するために頭の中で解析しなくてはならないデータフローは複雑になってゆきます。</p><p>それでもあなたはレビューをやり遂げました、しかし本当に?
 誰か他の人が変更をチェックしたとき、それもちゃんと行われるでしょうか?
 自分でチェックし直したくなりませんか?
 もっといい方法があります。
-これはツールの問題です。</p>
-
-<!-- The fundamental issue with this particular problem is that a C array decays to a pointer when it’s an argument to a function, even if the function parameter is declared to be an array. There’s just no escaping it. There’s no detecting it, either. (At least gcc and clang don’t detect it, maybe someone has developed an analyzer that does). -->
-
-<p>この問題の根本的な点は、Cにおいて関数のパラメータがたとえ配列として宣言されていても、配列が関数にポインタとして渡されることにあります。
-回避することも、検出することもできません(少なくともgccとclangは検出しませんが、誰かがアナライザを開発しているかもしれません)。</p>
-
-<!-- And so the tool to fix it is [D as a BetterC](https://dlang.org/blog/2017/08/23/d-as-a-better-c/) compiler. D has the notion of a _dynamic array_, which is simply a fat pointer, that is laid out like: -->
-
-<p>そしてこれを解決するのは<a href="https://dlang.org/blog/2017/08/23/d-as-a-better-c/">BetterC</a>コンパイラとしてのD言語です。
-Dは<strong>動的配列</strong>の概念を持ち、それはこんな感じのfatポインタです:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> DynamicArray {
-    T<span style="color:#f92672">*</span> ptr;
+これはツールの問題です。</p><p>この問題の根本的な点は、Cにおいて関数のパラメータがたとえ配列として宣言されていても、配列が関数にポインタとして渡されることにあります。
+回避することも、検出することもできません(少なくともgccとclangは検出しませんが、誰かがアナライザを開発しているかもしれません)。</p><p>そしてこれを解決するのは<a href=https://dlang.org/blog/2017/08/23/d-as-a-better-c/>BetterC</a>コンパイラとしてのD言語です。
+Dは<strong>動的配列</strong>の概念を持ち、それはこんな感じのfatポインタです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>struct</span> DynamicArray {
+    T<span style=color:#f92672>*</span> ptr;
     size_t length;
-}</code></pre></div>
-<!-- It’s declared like: -->
-
-<p>以下のように宣言し:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int[] a;</code></pre></div>
-<!-- and with that the example becomes: -->
-
-<p>例はこのようになります:</p>
-
-<!-- ```d
-import core.stdc.stdio;
-
-extern (C):   // use C ABI for declarations
-
-enum MAX = 10;
-
-int sumArray(int[] a) {
-    int sum = 0;
-    for (int i = 0; i <= MAX; ++i)
-        sum += a[i];
-    return sum;
-}
-
-int main() {
-    __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
-    printf("sum = %d\n", sumArray(values));
-    return 0;
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.stdc.stdio;
+}</code></pre></div><p>以下のように宣言し:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int[] a;</code></pre></div><p>例はこのようになります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdio;
 
 extern (C):   // 宣言のためにCのABIを使用
 
@@ -292,126 +81,37 @@ int main() {
     __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
     printf(&#34;sum = %d\n&#34;, sumArray(values));
     return 0;
-}</code></pre></div>
-<!-- Compiling: -->
-
-<p>コンパイルし:</p>
-
-<pre><code>dmd -betterC sum.d
-</code></pre>
-
-<!-- Running: -->
-
-<p>実行します:</p>
-
-<pre><code>./sum
+}</code></pre></div><p>コンパイルし:</p><pre><code>dmd -betterC sum.d
+</code></pre><p>実行します:</p><pre><code>./sum
 Assertion failure: 'array overflow' on line 11 in file 'sum.d'
-</code></pre>
-
-<!-- That’s more like it. Replacing the <= with < we get: -->
-
-<p>いいですね、&lt;= を &lt; に置き換えるとこうなります:</p>
-
-<pre><code>./sum
+</code></pre><p>いいですね、&lt;= を &lt; に置き換えるとこうなります:</p><pre><code>./sum
 sum = 449
-</code></pre>
-
-<!-- What’s happening is the dynamic array `a` is carrying its dimension along with it and the compiler inserts an array bounds overflow check. -->
-
-<p>動的配列 <code>a</code> はその範囲を持ち、コンパイラは配列の境界オーバーフローチェックを挿入します。</p>
-
-<!-- But wait, there’s more. -->
-
-<p>それだけではありません。</p>
-
-<!-- There’s that pesky `MAX` thing. Since the `a` is carrying its dimension, that can be used instead: -->
-
-<p>迷惑な<code>MAX</code>が残っています。
-<code>a</code>はその範囲を持っているため、代わりにそれを使えます:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">for (int i = 0; i &lt; a.length; ++i)</code></pre></div>
-<!-- This is such a common idiom, D has special syntax for it: -->
-
-<p>これは一般的なイディオムであり、Dにはそのための特殊な構文があります:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">foreach (value; a)
-    sum += value;</code></pre></div>
-<!-- The whole function `sumArray()` now looks like: -->
-
-<p>関数<code>sumArray()</code>全体は以下のようになります:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int sumArray(int[] a) {
+</code></pre><p>動的配列 <code>a</code> はその範囲を持ち、コンパイラは配列の境界オーバーフローチェックを挿入します。</p><p>それだけではありません。</p><p>迷惑な<code>MAX</code>が残っています。
+<code>a</code>はその範囲を持っているため、代わりにそれを使えます:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>for (int i = 0; i &lt; a.length; ++i)</code></pre></div><p>これは一般的なイディオムであり、Dにはそのための特殊な構文があります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>foreach (value; a)
+    sum += value;</code></pre></div><p>関数<code>sumArray()</code>全体は以下のようになります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int sumArray(int[] a) {
     int sum = 0;
     foreach (value; a)
         sum += value;
     return sum;
-}</code></pre></div>
-<!-- and now `sumArray()` can be reviewed in isolation from the rest of the program. You can get more done in less time with more reliability, and so can justify getting a pay raise. Or at least you won’t have to come in on weekends on an emergency call to fix the bug. -->
-
-<p>そして<code>sumArray()</code>はそれが置かれたプログラムと分離してレビューできるようになりました。
+}</code></pre></div><p>そして<code>sumArray()</code>はそれが置かれたプログラムと分離してレビューできるようになりました。
 あなたはより短時間で、より信頼性の高い方法で、より多くのことができるようになり、給料を上げてもらう理由ができました。
-給料は上がらなくても、少なくとも週末にバグ修正の緊急連絡が入ることはなくなったわけです。</p>
-
-<!-- “Objection!” you say. “Passing `a` to `sumArray()` requires two pushes to the stack, and passing `p` is only one. You said no compromise, but I’m losing speed here.” -->
-
-<p>「異議あり!」あなたはこう言います。
+給料は上がらなくても、少なくとも週末にバグ修正の緊急連絡が入ることはなくなったわけです。</p><p>「異議あり!」あなたはこう言います。
 「<code>a</code>を<code>sumArray()</code>に渡すためにはスタックをのプッシュが2回必要です。
 しかし<code>p</code>の場合1度で済みます。
-あなたは妥協は必要ないと言いましたが、私はここでスピードを失っています。」</p>
-
-<!-- Indeed you are, in cases where `MAX` is a manifest constant, and not itself passed to the function, as in: -->
-
-<p>確かに、<code>MAX</code>がマニフェスト定数であり、関数に渡されない場合、以下のようになります:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sumArray</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p, size_t length);</code></pre></div>
-<!-- But let’s get back to “no compromise.” D allows parameters to be passed by reference,   -->
-
-<!-- and that includes arrays of fixed length. So: -->
-
-<p>しかし「妥協」はさせません。
+あなたは妥協は必要ないと言いましたが、私はここでスピードを失っています。」</p><p>確かに、<code>MAX</code>がマニフェスト定数であり、関数に渡されない場合、以下のようになります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>sumArray</span>(<span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>p, size_t length);</code></pre></div><p>しかし「妥協」はさせません。
 Dはパラメータを参照として渡すことができ、配列の長さを固定することができます。
-つまり以下のようになります:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int sumArray(ref int[MAX] a) {
+つまり以下のようになります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int sumArray(ref int[MAX] a) {
     int sum = 0;
     foreach (value; a)
         sum += value;
     return sum;
-}</code></pre></div>
-<!-- What happens here is that `a`, being a `ref` parameter, is at runtime a mere pointer. It is typed, though, to be a pointer to an array of `MAX` elements, and so the accesses can be array bounds checked. You don’t need to go checking the callers, as the compiler’s type system will verify that, indeed, correctly sized arrays are being passed. -->
-
-<p><code>ref</code>パラメータになった<code>a</code>は実行時にただのポインタになります。
+}</code></pre></div><p><code>ref</code>パラメータになった<code>a</code>は実行時にただのポインタになります。
 これには<code>MAX</code>要素の配列という型があり、アクセスには配列境界チェックがなされます。
-コンパイラの型システムがやってくれるため呼び出し元をチェックする必要はなく、正しいサイズの配列が渡されます。</p>
-
-<!-- “Objection!” you say. “D supports pointers. Can’t I just write it the original way? What’s to stop that from happening? I thought you said this was a mechanical guarantee!” -->
-
-<p>「異議あり!」また言います。
+コンパイラの型システムがやってくれるため呼び出し元をチェックする必要はなく、正しいサイズの配列が渡されます。</p><p>「異議あり!」また言います。
 「Dはポインタをサポートしています。
 そのまま書くことはできないのですか?
 理由はなんですか?
-機械的保証が行われたというふうに聞こえましたが?」</p>
-
-<!-- Yes, you can write the code as: -->
-
-<p>そうです、以下のようにコードを書くこともできます:</p>
-
-<!-- ```d
-import core.stdc.stdio;
-
-extern (C):   // use C ABI for declarations
-
-enum MAX = 10;
-
-int sumArray(int* p) {
-    int sum = 0;
-    for (int i = 0; i <= MAX; ++i)
-        sum += p[i];
-    return sum;
-}
-
-int main() {
-    __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
-    printf("sum = %d\n", sumArray(&values[0]));
-    return 0;
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.stdc.stdio;
+機械的保証が行われたというふうに聞こえましたが?」</p><p>そうです、以下のようにコードを書くこともできます:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdio;
 
 extern (C):   // 宣言のためにCのABIを使用
 
@@ -428,45 +128,10 @@ int main() {
     __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
     printf(&#34;sum = %d\n&#34;, sumArray(&amp;values[0]));
     return 0;
-}</code></pre></div>
-<!-- It will compile without complaint, and the awful bug will still be there. Though this time I get: -->
-
-<p>恐ろしいバグが潜んでいるのにもかかわらず、これは何事もなくコンパイルされます。
-そして以下のような結果が得られます:</p>
-
-<pre><code>sum = 39479
-</code></pre>
-
-<!-- which looks suspicious, but it could have just as easily printed 449 and I’d be none the wiser. -->
-
-<p>不思議ですね、しかし誰も賢くならずとも簡単に449を印刷するようにできます。</p>
-
-<!-- How can this be guaranteed not to happen? By adding the attribute `@safe` to the code: -->
-
-<p>どのようにこれを阻止するのでしょうか?
-コードに<code>@safe</code>属性をつけるのです:</p>
-
-<!-- ```d
-import core.stdc.stdio;
-
-extern (C):   // use C ABI for declarations
-
-enum MAX = 10;
-
-@safe int sumArray(int* p) {
-    int sum = 0;
-    for (int i = 0; i <= MAX; ++i)
-        sum += p[i];
-    return sum;
-}
-
-int main() {
-    __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
-    printf("sum = %d\n", sumArray(&values[0]));
-    return 0;
-}
-``` -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import core.stdc.stdio;
+}</code></pre></div><p>恐ろしいバグが潜んでいるのにもかかわらず、これは何事もなくコンパイルされます。
+そして以下のような結果が得られます:</p><pre><code>sum = 39479
+</code></pre><p>不思議ですね、しかし誰も賢くならずとも簡単に449を印刷するようにできます。</p><p>どのようにこれを阻止するのでしょうか?
+コードに<code>@safe</code>属性をつけるのです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdio;
 
 extern (C):   // 宣言のためCのABIを使用
 
@@ -483,68 +148,13 @@ int main() {
     __gshared int[MAX] values = [ 7,10,58,62,93,100,8,17,77,17 ];
     printf(&#34;sum = %d\n&#34;, sumArray(&amp;values[0]));
     return 0;
-}</code></pre></div>
-<!-- Compiling it gives: -->
-
-<p>コンパイルすると以下のようになります:</p>
-
-<pre><code>sum.d(10): Error: safe function 'sum.sumArray' cannot index pointer 'p'
-</code></pre>
-
-<!-- Granted, a code review will need to include a grep to ensure `@safe` is being used, but that’s about it. -->
-
-<p><code>@safe</code>が使われていることを確かめるためのgrepをコードレビューに含めなくてはなりませんが、それだけです。</p>
-
-<!-- In summary, this bug is vanquished by preventing an array from decaying to a pointer when passed as an argument, and is vanquished forever by disallowing indirections after arithmetic is performed on a pointer. I’m sure a rare few of you have never been blasted by buffer overflow errors. Stay tuned for the next installment in this series. Maybe your moat got breached by the next bug! (Or maybe your tool doesn’t even have a moat.) -->
-
-<p>まとめると、このバグは引数として渡される際に配列がポインタになってしまうことを防ぐことで倒すことができ、ポインタへの間接的な演算を禁止することで永遠に亡きものにできます。
+}</code></pre></div><p>コンパイルすると以下のようになります:</p><pre><code>sum.d(10): Error: safe function 'sum.sumArray' cannot index pointer 'p'
+</code></pre><p><code>@safe</code>が使われていることを確かめるためのgrepをコードレビューに含めなくてはなりませんが、それだけです。</p><p>まとめると、このバグは引数として渡される際に配列がポインタになってしまうことを防ぐことで倒すことができ、ポインタへの間接的な演算を禁止することで永遠に亡きものにできます。
 バッファオーバーフローエラーによって台無しにされることはほぼなくなるでしょう。
 シリーズの次回作にご期待ください。
-次のバグが堀を超えてくるかもしれませんよ!(もしくは、あなたのツールには堀がないかもしれません。)</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1">訳注:<a href="https://ja.wikipedia.org/wiki/%E5%84%AA%E3%81%97%E3%81%84%E7%B5%82%E8%BA%AB%E3%81%AE%E7%8B%AC%E8%A3%81%E8%80%85">優しい終身の独裁者 - Wikipedia</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">訳注:<a href="https://en.wikipedia.org/wiki/Classic_Empire">Classic Empire - Wikipedia</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3">訳注:<a href="http://www.classicempire.com/">EMPIRE, Wargame of the Century &trade; index</a>
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-</ol>
-</div>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】
-    </h2>
-    <p>
-        <time>2018-03-04</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+次のバグが堀を超えてくるかもしれませんよ!(もしくは、あなたのツールには堀がないかもしれません。)</p><div class=footnotes><hr><ol><li id=fn:1>訳注:<a href=https://ja.wikipedia.org/wiki/%E5%84%AA%E3%81%97%E3%81%84%E7%B5%82%E8%BA%AB%E3%81%AE%E7%8B%AC%E8%A3%81%E8%80%85>優しい終身の独裁者 - Wikipedia</a>
+<a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li><li id=fn:2>訳注:<a href=https://en.wikipedia.org/wiki/Classic_Empire>Classic Empire - Wikipedia</a>
+<a class=footnote-return href=#fnref:2><sup>[return]</sup></a></li><li id=fn:3>訳注:<a href=http://www.classicempire.com/>EMPIRE, Wargame of the Century &trade; index</a>
+<a class=footnote-return href=#fnref:3><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+プログラムの城を粉々にしてしまうバグを永久に克服する【翻訳】</h2><p><time>2018-03-04</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

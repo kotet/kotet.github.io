@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#ipfs IPFS体験記10: `pacman -S go-ipfs` - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#ipfs IPFS体験記10: `pacman -S go-ipfs` - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,89 +6,15 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記10: `pacman -S go-ipfs`
-    </h2>
-    <p>
-        <time>2017-12-19</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    
-</aside>
-</header>
-<article><p>いままで<a href="https://www.ubuntu.com/">Ubuntu</a>を使っていたのだが、<a href="https://manjaro.org/">Manjaro Linux</a>に乗り換えて、こうして記事がかけるところまで環境構築ができた。
-ひとつ記事タイトルと関係ないことを言うと、vscodeのパッケージはvisual-studio-codeから<a href="https://aur.archlinux.org/packages/code/">code</a>という名前に変わっており、
-それをインストールすると<code>code-oss</code>が使えるようになる。</p>
-
-<p>軽いし、いろいろ設定しやすいし、やたらと日本語のWikiが充実してるし、今の所とてもいい感じである。
-慣れてきたら以前インストールすら満足にできなくて挫折した<a href="https://www.archlinux.org/">Arch Linux</a>を使ってみたい。</p>
-
-<p>ここから本題。
-ArchのCommunityリポジトリにはIPFSのパッケージが存在する。</p>
-
-<p><a href="https://www.archlinux.jp/packages/community/x86_64/go-ipfs/">Arch Linux JP Project - go-ipfs 0.4.13-1 (x86_64)</a></p>
-
-<p>なので<code>ipfs-update</code>とかを使うよりそれを使ったほうが簡単だと思う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ sudo pacman -S go-ipfs
+</script><title>#ipfs IPFS体験記10: `pacman -S go-ipfs` - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記10: `pacman -S go-ipfs` - Kotet's Personal Blog"><meta name=og:description content="いままでUbuntuを使っていたのだが、Manjaro Linuxに乗り換えて、こうして記事がかけるところまで環境構築ができた。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/ipfs-on-manjaro-linux/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記10: `pacman -S go-ipfs`</h2><p><time>2017-12-19</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p></aside></header><article><p>いままで<a href=https://www.ubuntu.com/>Ubuntu</a>を使っていたのだが、<a href=https://manjaro.org/>Manjaro Linux</a>に乗り換えて、こうして記事がかけるところまで環境構築ができた。
+ひとつ記事タイトルと関係ないことを言うと、vscodeのパッケージはvisual-studio-codeから<a href=https://aur.archlinux.org/packages/code/>code</a>という名前に変わっており、
+それをインストールすると<code>code-oss</code>が使えるようになる。</p><p>軽いし、いろいろ設定しやすいし、やたらと日本語のWikiが充実してるし、今の所とてもいい感じである。
+慣れてきたら以前インストールすら満足にできなくて挫折した<a href=https://www.archlinux.org/>Arch Linux</a>を使ってみたい。</p><p>ここから本題。
+ArchのCommunityリポジトリにはIPFSのパッケージが存在する。</p><p><a href=https://www.archlinux.jp/packages/community/x86_64/go-ipfs/>Arch Linux JP Project - go-ipfs 0.4.13-1 (x86_64)</a></p><p>なので<code>ipfs-update</code>とかを使うよりそれを使ったほうが簡単だと思う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ sudo pacman -S go-ipfs
 $ ipfs version
-ipfs version 0.4.13</code></pre></div>
-<p>ちゃんと現時点の最新版である<a href="https://github.com/ipfs/go-ipfs/blob/v0.4.13/CHANGELOG.md"><code>v0.4.13</code></a>がインストールされた。</p>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/ipfs">#ipfs</a>
-        
-        IPFS体験記10: `pacman -S go-ipfs`
-    </h2>
-    <p>
-        <time>2017-12-19</time>
-         <a href="/tags/ipfs">#ipfs</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98">#ipfs体験記</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+ipfs version 0.4.13</code></pre></div><p>ちゃんと現時点の最新版である<a href=https://github.com/ipfs/go-ipfs/blob/v0.4.13/CHANGELOG.md><code>v0.4.13</code></a>がインストールされた。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
+IPFS体験記10: `pacman -S go-ipfs`</h2><p><time>2017-12-19</time>
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

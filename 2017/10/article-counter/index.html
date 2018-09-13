@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#jekyll GitHub Pagesで総記事数を表示する - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/10/article-counter/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#jekyll GitHub Pagesで総記事数を表示する - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。ふと思い立ってトップページで総記事数を確認できるようにした。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/10/article-counter/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。ふと思い立ってトップページで総記事数を確認できるようにした。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。ふと思い立ってトップページで総記事数を確認できるようにした。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,101 +6,13 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/jekyll">#jekyll</a>
-        
-        GitHub Pagesで総記事数を表示する
-    </h2>
-    <p>
-        <time>2017-10-13</time>
-         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#size-liquid-fliter"><code>size</code> liquid fliter</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。
-ふと思い立ってトップページで総記事数を確認できるようにした。</p>
-
-<p>ところで「github pages 総記事数」とか「jekyll 総記事数」でググってもそれらしい記事がトップに出てこない。
-どんなに当たり前なことでも日本語化されていなければ記事を書いて、コピペプログラマを量産する邪悪な人間になるための第一歩として記事を書く。</p>
-
-<h3 id="size-liquid-fliter"><code>size</code> liquid fliter</h3>
-
-<p><code>site.posts</code> でPostのリストが取得できる。
-それに<a href="https://shopify.github.io/liquid/filters/size/"><code>size</code></a>フィルタをかけると長さが取得できる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;page-heading&#34;</span>&gt;{{ site.posts | size }} Posts&lt;/<span style="color:#f92672">h1</span>&gt;</code></pre></div>
-<p>すると総記事数を表示できる。</p>
-
-<p>記事執筆時点ではこの記事を含め90件だった。
-もうすぐ100件だ!</p>
-
-<p>以下のようにドット記法を使っても同じ結果が得られるが、なんだか普通のプロパティと区別がつかなくてバグを発生させそうなのでふつうにフィルタを使ったほうがいいと思う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;page-heading&#34;</span>&gt;{{ site.posts.size }} Posts&lt;/<span style="color:#f92672">h1</span>&gt;</code></pre></div></article>
-<footer>
-    <h2>
-        
-        <a href="/tags/jekyll">#jekyll</a>
-        
-        GitHub Pagesで総記事数を表示する
-    </h2>
-    <p>
-        <time>2017-10-13</time>
-         <a href="/tags/jekyll">#jekyll</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+</script><title>#jekyll GitHub Pagesで総記事数を表示する - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/article-counter/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#jekyll GitHub Pagesで総記事数を表示する - Kotet's Personal Blog"><meta name=og:description content=タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。ふと思い立ってトップページで総記事数を確認できるようにした。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/article-counter/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/jekyll>#jekyll</a>
+GitHub Pagesで総記事数を表示する</h2><p><time>2017-10-13</time>
+<a href=/tags/jekyll>#jekyll</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#size-liquid-fliter><code>size</code> liquid fliter</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>タグページではタグごとの記事数を見ることができるようになっているが、サイトの総記事数は確認できるようになっていなかった。
+ふと思い立ってトップページで総記事数を確認できるようにした。</p><p>ところで「github pages 総記事数」とか「jekyll 総記事数」でググってもそれらしい記事がトップに出てこない。
+どんなに当たり前なことでも日本語化されていなければ記事を書いて、コピペプログラマを量産する邪悪な人間になるための第一歩として記事を書く。</p><h3 id=size-liquid-fliter><code>size</code> liquid fliter</h3><p><code>site.posts</code> でPostのリストが取得できる。
+それに<a href=https://shopify.github.io/liquid/filters/size/><code>size</code></a>フィルタをかけると長さが取得できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>  &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-heading&#34;</span>&gt;{{ site.posts | size }} Posts&lt;/<span style=color:#f92672>h1</span>&gt;</code></pre></div><p>すると総記事数を表示できる。</p><p>記事執筆時点ではこの記事を含め90件だった。
+もうすぐ100件だ!</p><p>以下のようにドット記法を使っても同じ結果が得られるが、なんだか普通のプロパティと区別がつかなくてバグを発生させそうなのでふつうにフィルタを使ったほうがいいと思う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>  &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-heading&#34;</span>&gt;{{ site.posts.size }} Posts&lt;/<span style=color:#f92672>h1</span>&gt;</code></pre></div></article><footer><h2><a href=/tags/jekyll>#jekyll</a>
+GitHub Pagesで総記事数を表示する</h2><p><time>2017-10-13</time>
+<a href=/tags/jekyll>#jekyll</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

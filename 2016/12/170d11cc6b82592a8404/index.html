@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 改行とかのある文字列をエスケープしないで書きたい - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 改行とかのある文字列をエスケープしないで書きたい - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,90 +6,12 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        改行とかのある文字列をエスケープしないで書きたい
-    </h2>
-    <p>
-        <time>2016-12-06</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/dlangman">#dlangman</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#エスケープされ見るも無残な姿になってしまったd言語くん-1">エスケープされ見るも無残な姿になってしまったD言語くん<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></a></li>
-<li><a href="#このように出力される">このように出力される</a></li>
-<li><a href="#ソースコード中に降臨できてご満悦のd言語くん">ソースコード中に降臨できてご満悦のD言語くん</a></li>
-<li><a href="#出力">出力</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#追記">追記</a>
-<ul>
-<li>
-<ul>
-<li><a href="#リテラルを知らなかったことに死ぬほどキレてるd言語くん-3">``リテラルを知らなかったことに死ぬほどキレてるD言語くん<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p>この記事はQiitaに投稿されたものの転載です。</p>
-
-<hr />
-
-<p>AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。</p>
-
-<h4 id="エスケープされ見るも無残な姿になってしまったd言語くん-1">エスケープされ見るも無残な姿になってしまったD言語くん<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string dman = &#34;      ____\n      L__L|\n      /    \\\n    /        \\\n  / _______    \\\n  \\ \\#/  \\/ \\  /\n   \\|#| O| O|#\\\n    |#L _L__ #|\n    |###|  |##|\n    /###/  /##|\n   /###/   /##|\n  /###/___/###/\n /###########/\n /##########/\n    /     \\\n    \\     /\n   _ \\   /__\n  |__/  |__/&#34;;</code></pre></div>
-<p>Delimited Stringsというものがある。<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>デリミタ、文字列の終了を表す記号のある文字列である。それを使って以下のように書ける。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string s = q&#34;/123&#34;\n\n&#34;/&#34;;//string dman = &#34;123\&#34;\\n\\n\&#34;&#34;;
-writeln(s);</code></pre></div>
-<h4 id="このように出力される">このように出力される</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">123&#34;\n\n&#34;</code></pre></div>
-<p>通常エスケープしなければならない<code>&quot;</code>がそのまま出力され、改行を表すはずの<code>\n</code>がそのまま出力されている。うれしい。この場合<code>/</code>がデリミタとなって、それに囲まれた部分で自由に書ける。ただしデリミタである<code>/</code>は書けない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string s = q&#34;/a/a/&#34;;//エラーになる</code></pre></div>
-<p>ただしNesting Delimiterという特殊なデリミタもある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string s1 = q&#34;((a)())&#34;;//(a)()
-string s2 = q&#34;(a(a)&#34;;//これはだめ</code></pre></div>
-<p>たくさんのカッコで囲まれた文字列とかを書くときに必要かもしれない。</p>
-
-<p>好きな言葉をデリミタに使うこともできる。その場合デリミタのすぐ後に改行を入れる必要がある。</p>
-
-<h4 id="ソースコード中に降臨できてご満悦のd言語くん">ソースコード中に降臨できてご満悦のD言語くん</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string dman = q&#34;DmanisGod
+</script><title>#dlang 改行とかのある文字列をエスケープしないで書きたい - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 改行とかのある文字列をエスケープしないで書きたい - Kotet's Personal Blog"><meta name=og:description content=AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/170d11cc6b82592a8404/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+改行とかのある文字列をエスケープしないで書きたい</h2><p><time>2016-12-06</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#エスケープされ見るも無残な姿になってしまったd言語くん-1>エスケープされ見るも無残な姿になってしまったD言語くん<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></a></li><li><a href=#このように出力される>このように出力される</a></li><li><a href=#ソースコード中に降臨できてご満悦のd言語くん>ソースコード中に降臨できてご満悦のD言語くん</a></li><li><a href=#出力>出力</a></li></ul></li></ul></li><li><a href=#追記>追記</a><ul><li><ul><li><a href=#リテラルを知らなかったことに死ぬほどキレてるd言語くん-3>``リテラルを知らなかったことに死ぬほどキレてるD言語くん<sup class=footnote-ref id=fnref:3><a href=#fn:3>3</a></sup></a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>AAなどの文字列はエスケープすると超絶見難くなるのでそのまま書きたくなった。</p><h4 id=エスケープされ見るも無残な姿になってしまったd言語くん-1>エスケープされ見るも無残な姿になってしまったD言語くん<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string dman = &#34;      ____\n      L__L|\n      /    \\\n    /        \\\n  / _______    \\\n  \\ \\#/  \\/ \\  /\n   \\|#| O| O|#\\\n    |#L _L__ #|\n    |###|  |##|\n    /###/  /##|\n   /###/   /##|\n  /###/___/###/\n /###########/\n /##########/\n    /     \\\n    \\     /\n   _ \\   /__\n  |__/  |__/&#34;;</code></pre></div><p>Delimited Stringsというものがある。<sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup>デリミタ、文字列の終了を表す記号のある文字列である。それを使って以下のように書ける。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string s = q&#34;/123&#34;\n\n&#34;/&#34;;//string dman = &#34;123\&#34;\\n\\n\&#34;&#34;;
+writeln(s);</code></pre></div><h4 id=このように出力される>このように出力される</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>123&#34;\n\n&#34;</code></pre></div><p>通常エスケープしなければならない<code>&quot;</code>がそのまま出力され、改行を表すはずの<code>\n</code>がそのまま出力されている。うれしい。この場合<code>/</code>がデリミタとなって、それに囲まれた部分で自由に書ける。ただしデリミタである<code>/</code>は書けない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string s = q&#34;/a/a/&#34;;//エラーになる</code></pre></div><p>ただしNesting Delimiterという特殊なデリミタもある。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string s1 = q&#34;((a)())&#34;;//(a)()
+string s2 = q&#34;(a(a)&#34;;//これはだめ</code></pre></div><p>たくさんのカッコで囲まれた文字列とかを書くときに必要かもしれない。</p><p>好きな言葉をデリミタに使うこともできる。その場合デリミタのすぐ後に改行を入れる必要がある。</p><h4 id=ソースコード中に降臨できてご満悦のd言語くん>ソースコード中に降臨できてご満悦のD言語くん</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string dman = q&#34;DmanisGod
       ____ 
       L__L|
       /    \
@@ -152,9 +31,7 @@ string s2 = q&#34;(a(a)&#34;;//これはだめ</code></pre></div>
    _ \   /__
   |__/  |__/
 DmanisGod&#34;;
-writeln(dman);</code></pre></div>
-<h4 id="出力">出力</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">      ____
+writeln(dman);</code></pre></div><h4 id=出力>出力</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>      ____
       L__L|
       /    \
     /        \
@@ -171,17 +48,7 @@ writeln(dman);</code></pre></div>
     /     \
     \     /
    _ \   /__
-  |__/  |__/</code></pre></div>
-<p>最後に改行ができてしまうため注意が必要である。</p>
-
-<hr />
-
-<h2 id="追記">追記</h2>
-
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://t.co/vx1HqYqmqd">https://t.co/vx1HqYqmqd</a><br>`` リテラルでいいんじゃない？と思うんだけど、デリミタの指定込みのネタかな</p>&mdash; 黄前久美子さんと高坂麗奈さんの距離感 (@shitsyndrome) <a href="https://twitter.com/shitsyndrome/status/806079495685828608">2016年12月6日</a></blockquote>
-
-<h4 id="リテラルを知らなかったことに死ぬほどキレてるd言語くん-3">``リテラルを知らなかったことに死ぬほどキレてるD言語くん<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string s =
+  |__/  |__/</code></pre></div><p>最後に改行ができてしまうため注意が必要である。</p><hr><h2 id=追記>追記</h2><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr><a href=https://t.co/vx1HqYqmqd>https://t.co/vx1HqYqmqd</a><br>`` リテラルでいいんじゃない？と思うんだけど、デリミタの指定込みのネタかな</p>&mdash; 黄前久美子さんと高坂麗奈さんの距離感 (@shitsyndrome) <a href=https://twitter.com/shitsyndrome/status/806079495685828608>2016年12月6日</a></blockquote><h4 id=リテラルを知らなかったことに死ぬほどキレてるd言語くん-3>``リテラルを知らなかったことに死ぬほどキレてるD言語くん<sup class=footnote-ref id=fnref:3><a href=#fn:3>3</a></sup></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string s =
 `      ____
       L__L|
       /    \
@@ -199,52 +66,9 @@ writeln(dman);</code></pre></div>
     /     \
     \     /
    _ \   /__
-  |__/  |__/`;</code></pre></div>
-<p>こっちのほうがいいですね……</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1"><a href="http://qiita.com/kotet/items/a04955c206a2f56e16d8">http://qiita.com/kotet/items/a04955c206a2f56e16d8</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="http://dlang.org/spec/lex.html">http://dlang.org/spec/lex.html</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3"><a href="https://twitter.com/SagafroKichigai/status/805188096769736704">https://twitter.com/SagafroKichigai/status/805188096769736704</a>
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-</ol>
-</div>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        改行とかのある文字列をエスケープしないで書きたい
-    </h2>
-    <p>
-        <time>2016-12-06</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/qiita">#qiita</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/dlangman">#dlangman</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+  |__/  |__/`;</code></pre></div><p>こっちのほうがいいですね……</p><div class=footnotes><hr><ol><li id=fn:1><a href=http://qiita.com/kotet/items/a04955c206a2f56e16d8>http://qiita.com/kotet/items/a04955c206a2f56e16d8</a>
+<a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li><li id=fn:2><a href=http://dlang.org/spec/lex.html>http://dlang.org/spec/lex.html</a>
+<a class=footnote-return href=#fnref:2><sup>[return]</sup></a></li><li id=fn:3><a href=https://twitter.com/SagafroKichigai/status/805188096769736704>https://twitter.com/SagafroKichigai/status/805188096769736704</a>
+<a class=footnote-return href=#fnref:3><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+改行とかのある文字列をエスケープしないで書きたい</h2><p><time>2016-12-06</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

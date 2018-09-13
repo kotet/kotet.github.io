@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang 新・CTFEエンジンについて【翻訳】 - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/04/the-new-ctfe-engine/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang 新・CTFEエンジンについて【翻訳】 - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" 9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/04/the-new-ctfe-engine/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" 9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。 ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,76 +6,27 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        新・CTFEエンジンについて【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-13</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    
-</aside>
-</header>
-<article><p>この記事は</p>
-
-<p><a href="https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/">The New CTFE Engine – The D Blog</a></p>
-
-<p>の翻訳である。
+</script><title>#dlang 新・CTFEエンジンについて【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 新・CTFEエンジンについて【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+新・CTFEエンジンについて【翻訳】</h2><p><time>2017-04-13</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p></aside></header><article><p>この記事は</p><p><a href=https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/>The New CTFE Engine – The D Blog</a></p><p>の翻訳である。
 ぼーっと読んでたら途中でわけがわからなくなってきたので、しっかり翻訳しようと思って書いた。
-その後<a href="https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/#comment-1333">翻訳の公開の許可を取り、</a>
-<a href="https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/#comment-1335">無事承諾していただけた</a>
+その後<a href=https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/#comment-1333>翻訳の公開の許可を取り、</a>
+<a href=https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/#comment-1335>無事承諾していただけた</a>
 のでここに公開する。
 翻訳できていないところや訳の怪しいところがあるので、気になったら今すぐ
-<a href="https://github.com/kotet/blog.kotet.jp">Pull request</a>
-だ!</p>
-
-<hr />
-
-<p>Stefan KochはDのネイティヴな<a href="https://www.sqlite.org/">sqlite</a>リーダー、<a href="https://github.com/UplinkCoder/sqlite-d">sqlite-d</a>
-のメンテナーであり、<a href="https://github.com/SDC-Developers/SDC">SDC</a>(the Stupid D Compiler)や
-<a href="http://vibed.org/">vibe.d</a>のようなプロジェクトに貢献していました。
-彼はDの現在のCTFE実装の10%のパフォーマンス改善のかつての責任者でもあり、現在はこの投稿の対象である新CTFEエンジンを書いています。</p>
-
-<hr />
-
-<p>9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドの<a href="https://dlang.org/spec/function.html#interpretation">コンパイル時関数実行(CTFE)</a>
+<a href=https://github.com/kotet/blog.kotet.jp>Pull request</a>
+だ!</p><hr><p>Stefan KochはDのネイティヴな<a href=https://www.sqlite.org/>sqlite</a>リーダー、<a href=https://github.com/UplinkCoder/sqlite-d>sqlite-d</a>
+のメンテナーであり、<a href=https://github.com/SDC-Developers/SDC>SDC</a>(the Stupid D Compiler)や
+<a href=http://vibed.org/>vibe.d</a>のようなプロジェクトに貢献していました。
+彼はDの現在のCTFE実装の10%のパフォーマンス改善のかつての責任者でもあり、現在はこの投稿の対象である新CTFEエンジンを書いています。</p><hr><p>9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドの<a href=https://dlang.org/spec/function.html#interpretation>コンパイル時関数実行(CTFE)</a>
 機能の再実装のプロジェクトで作業をしていました。
-CTFEはDの革新的機能とされています。</p>
-
-<p>その名前が示すように、CTFEは関数が実装されているソースコードのコンパイル時にコンパイラが関数を実行できるようにします。
+CTFEはDの革新的機能とされています。</p><p>その名前が示すように、CTFEは関数が実装されているソースコードのコンパイル時にコンパイラが関数を実行できるようにします。
 関数のすべての引数がコンパイル時に利用可能で、関数が純粋(副作用を持たない)な限り、関数はCTFEの資格を持ちます。
-コンパイラは関数呼び出しをその結果で置き換えます。</p>
-
-<p>これは言語の切り離せない部分のため、コンパイル時定数の行くところどこでも純粋関数を実行できます。
-シンプルな例を<a href="https://dlang.org/phobos/index.html">標準ライブラリ</a>モジュール、
-<a href="https://dlang.org/phobos/std_uri.html"><code>std.uri</code></a>に見ることができ、ここでCTFEはルックアップテーブルを計算するために使われています。
-<a href="https://github.com/dlang/Phobos/blob/master/std/uri.d">このようなものです</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">private immutable ubyte[128] uri_flags = // indexed by character
+コンパイラは関数呼び出しをその結果で置き換えます。</p><p>これは言語の切り離せない部分のため、コンパイル時定数の行くところどこでも純粋関数を実行できます。
+シンプルな例を<a href=https://dlang.org/phobos/index.html>標準ライブラリ</a>モジュール、
+<a href=https://dlang.org/phobos/std_uri.html><code>std.uri</code></a>に見ることができ、ここでCTFEはルックアップテーブルを計算するために使われています。
+<a href=https://github.com/dlang/Phobos/blob/master/std/uri.d>このようなものです</a>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>private immutable ubyte[128] uri_flags = // indexed by character
 ({
 
     ubyte[128] uflags;
@@ -141,202 +49,40 @@ CTFEはDの革新的機能とされています。</p>
 
     return uflags;
 
-})();</code></pre></div>
-<p>テーブルにマジックバリューを入れる代わりに、シンプルで意味のある<a href="https://dlang.org/spec/expression.html#FunctionLiteral">関数リテラル</a>
+})();</code></pre></div><p>テーブルにマジックバリューを入れる代わりに、シンプルで意味のある<a href=https://dlang.org/spec/expression.html#FunctionLiteral>関数リテラル</a>
 が使われています。
 これは不透明な静的配列より理解とデバッグが簡単です。
 <code>({</code>で関数リテラルが始まり、<code>})</code>で閉じられます。
-最後の<code>()</code>は<code>uri_flags</code>がリテラルの結果になるようコンパイラにリテラルを即座に呼びださせます。</p>
-
-<p>関数は必要な時のみコンパイル時に実行されます。
+最後の<code>()</code>は<code>uri_flags</code>がリテラルの結果になるようコンパイラにリテラルを即座に呼びださせます。</p><p>関数は必要な時のみコンパイル時に実行されます。
 上のスニペットの<code>uri_flags</code>はモジュールスコープで宣言されています。
 このマナーの中でモジュールスコープ変数が初期化される時、初期化子はコンパイル時に利用可能でなければなりません。
 このケースで、初期化子は関数リテラルのため、CTFEの実行が試みられます。
-この独特なリテラルは引数を持たず純粋のため、試みは成功します。</p>
-
-<p>CTFEのより詳細な議論については、D wikiのH. S. Teohの
-<a href="https://wiki.dlang.org/User:Quickfur/Compile-time_vs._compile-time">このアーティクル</a>を見てください。</p>
-
-<p>もちろん、より複雑な問題にも同じテクニックが適用できます。
-たとえば、<a href="https://dlang.org/phobos/std_regex.html"><code>std.regex</code></a>は正規表現にスペシャライズされたオートマトンをCTFEを使いコンパイル時にビルドできます。
+この独特なリテラルは引数を持たず純粋のため、試みは成功します。</p><p>CTFEのより詳細な議論については、D wikiのH. S. Teohの
+<a href=https://wiki.dlang.org/User:Quickfur/Compile-time_vs._compile-time>このアーティクル</a>を見てください。</p><p>もちろん、より複雑な問題にも同じテクニックが適用できます。
+たとえば、<a href=https://dlang.org/phobos/std_regex.html><code>std.regex</code></a>は正規表現にスペシャライズされたオートマトンをCTFEを使いコンパイル時にビルドできます。
 しかし、<code>std.regex</code>が非自明なパターンのCTFEで使われるとすぐに、コンパイル時間が非常に長くなることがあります(Dではコンパイルに1秒以上かかるすべてがブロートウェアです:))。
-結局、パターンがより複雑になれば、コンパイラはメモリ不足になりすべてのシステムをダウンさせるかもしれません。</p>
-
-<p>これに対する責任は現在のCTFEインタプリタのアーキテクチャのものにできます。
+結局、パターンがより複雑になれば、コンパイラはメモリ不足になりすべてのシステムをダウンさせるかもしれません。</p><p>これに対する責任は現在のCTFEインタプリタのアーキテクチャのものにできます。
 それはASTインタプリタ、ASTをトラバースする間それを解釈するものです。
 解釈された式の結果を表現するために、DMDのASTノードクラスを使います。
 これは遭遇するすべての式が1つ以上のASTノードをアロケートすることを意味します。
 最奥ループ内で、インタプリタはたやすく<code>100_000_000</code>以上のノードを生成し、RAMの数ギガバイトを食いつぶします。
-それはメモリを非常に速く消耗させます。</p>
-
-<p><a href="https://issues.dlang.org/show_bug.cgi?id=12844">Issue 12844</a>は<code>std.regex</code>がRAMを16ギガバイト以上消費することについてのものです。
+それはメモリを非常に速く消耗させます。</p><p><a href="https://issues.dlang.org/show_bug.cgi?id=12844">Issue 12844</a>は<code>std.regex</code>がRAMを16ギガバイト以上消費することについてのものです。
 ひとつのパターンで、です。
-単純な<code>0</code>から<code>10_000_000</code>までのwhileループをCTFEで実行するとメモリ不足に陥る<a href="https://issues.dlang.org/show_bug.cgi?id=6498">Issue 6498</a>もあります。</p>
-
-<p>単純にノードを解放することは問題を解決しません。
+単純な<code>0</code>から<code>10_000_000</code>までのwhileループをCTFEで実行するとメモリ不足に陥る<a href="https://issues.dlang.org/show_bug.cgi?id=6498">Issue 6498</a>もあります。</p><p>単純にノードを解放することは問題を解決しません。
 どのノードがフリーかはわからず、ガベージコレクタを有効にするとコンパイラ全体が非常に遅くなります。
 幸いにも式に遭遇するたびに毎回アロケートしないという別のアプローチがあります。
 それは関数をバーチャルISA(命令セットアーキテクチャ)にコンパイルすることを含みます。
 バイトコードとしても知られるこのISAは、そのISAに向けて専門化されたインタプリタに渡されます
-(このケースで、バーチャルISAの中でホストのISAと同じことがおこり、それをJIT(Just in Time)インタプリタと呼びます)。</p>
-
-<p>NewCTFEプロジェクトはそのようなバイトコードインタプリタを扱うものです。
+(このケースで、バーチャルISAの中でホストのISAと同じことがおこり、それをJIT(Just in Time)インタプリタと呼びます)。</p><p>NewCTFEプロジェクトはそのようなバイトコードインタプリタを扱うものです。
 実際にインタプリタ(バーチャルCPU/ISA用CPUエミュレータ)を書くことは割とシンプルです。
 しかし、コードをバーチャルISAにコンパイルすることはリアルISAにコンパイルすることと同じ仕事量です
 (が、バーチャルISAは個別のニーズのために拡張できるという追加のベネフィットがあります。しかしそれにより後でJITをするのに困難が伴います)。
 それが最初のシンプルなサンプルが新CTFEエンジン上で走るだけで1ヶ月を要した理由で、ちょっと複雑なものは開発9ヶ月後まで動かなかった理由です。
-ポストの最後で、今までの仕事のおおよそのタイムラインを見ることができます。</p>
-
-<p>私は<a href="http://dconf.org/2017/index.html">DConf 2017</a>で<a href="http://dconf.org/2017/talks/koch.html">プレゼンテーション</a>を行い、
+ポストの最後で、今までの仕事のおおよそのタイムラインを見ることができます。</p><p>私は<a href=http://dconf.org/2017/index.html>DConf 2017</a>で<a href=http://dconf.org/2017/talks/koch.html>プレゼンテーション</a>を行い、
 エンジンの実装の経験について話し、技術的詳細、特に私が作ったトレードオフとデザインチョイスに関することを説明します。
-現在の見積もりでは1.0のゴールはその時には間に合いませんが、完了するまでコーディングを続けます。</p>
-
-<p>私の進捗を追うことに興味がある人は<a href="http://forum.dlang.org/thread/btqjnieachntljobzrho@forum.dlang.org">Dフォーラム</a>
+現在の見積もりでは1.0のゴールはその時には間に合いませんが、完了するまでコーディングを続けます。</p><p>私の進捗を追うことに興味がある人は<a href=http://forum.dlang.org/thread/btqjnieachntljobzrho@forum.dlang.org>Dフォーラム</a>
 で私のステータスアップデートをフォローできます。
 将来のある時点で、私は実装の技術的詳細について別のアーティクルを書きます。
-その間、下のリストがNewCTFEの実装にどれだけの作業をしているか明らかにしてくれるでしょう🙂</p>
-
-<ul>
-<li>5月 9日 2016<br />
-CTFE改善の計画のアナウンスメント。</li>
-<li>5月 27日 2016<br />
-新エンジンの作業が始まったことのアナウンスメント。</li>
-<li>5月 28日 2016<br />
-シンプルなメモリ管理の変更が失敗。</li>
-<li>6月 3rd 2016<br />
-バイトコードインタプリタの実装の決定。</li>
-<li>6月 30日 2016<br />
-単純な整数演算からなる最初のコード(<a href="https://issues.dlang.org/show_bug.cgi?id=6498">Issue 6498</a>より)が走る。</li>
-<li>7月 14日 2016<br />
-ASCII文字列インデクシングが動作。</li>
-<li>7月 15日 2016<br />
-初期の<code>struct</code>のサポート</li>
-<li>7月から8月の間のどこか<br />
-はじめてswitchが動作。</li>
-<li>8月 17日 2016<br />
-特殊なケース<code>if(__ctfe)</code> と <code>if(!__ctfe)</code>のサポート</li>
-<li>8月から9月の間のどこか<br />
-三項式がサポートされる</li>
-<li>9月 08日 2016<br />
-Phobosのユニットテストが初めて通る。</li>
-<li>9月 25日 2016<br />
-文字列と三項式を返すことのサポート。</li>
-<li>10月 16日 2016<br />
-最初のLLVMバックエンドのほとんど動作するバージョン。</li>
-<li>10月 30日 2016<br />
-最初の関数呼び出しのサポートの試みの失敗。</li>
-<li>11月 01日<br />
-DRuntimeのユニットテストが初めて通る。</li>
-<li>11月 10日 2016<br />
-文字列連結の実装の試みの失敗</li>
-<li>11月 14日 2016<br />
-<code>length</code>プロパティへの代入などによる配列の拡張がサポートされる。</li>
-<li>11月 14日 2016<br />
-配列インデックスへの代入がサポートされる。</li>
-<li>11月 18日 2016<br />
-関数パラメータとしての配列サポート。</li>
-<li>11月 19日 2016<br />
-パフォーマンスフィックス。</li>
-<li>11月 20日 2016<br />
-壊れた <code>while(true)</code> / <code>for (;;)</code> ループを修正; 今はぬけ出すことができます🙂</li>
-<li>11月 25日 2016<br />
-<code>goto</code>と<code>switch</code>のハンドリングを修正。</li>
-<li>11月 29日 2016<br />
-<code>continue</code>と<code>break</code>のハンドリングを修正。</li>
-<li>11月 30日 2016<br />
-<code>assert</code>の最初のサポート</li>
-<li>12月 02日 2016<br />
-<code>void</code>で初期化された値の救済(未定義動作に繋がる恐れがあるためです)。</li>
-<li>12月 03日 2016<br />
-<code>struct</code>リテラルを返すことのサポート。</li>
-<li>12月 05日 2016<br />
-バイトコードジェネレータのパフォーマンスフィックス。</li>
-<li>12月 07日 2016<br />
-<code>for</code>ステートメントの<code>continue</code>と<code>break</code>を修正(<code>continue</code>はインクリメントステップをスキップしてはいけません。)</li>
-<li>12月 08日 2016<br />
-変数入り配列リテラルがサポートされました: [1, n, 3]</li>
-<li>12月 08日 2016<br />
-<code>switch</code>ステートメントのバグを修正。</li>
-<li>12月 10日 2016<br />
-厄介な評価順序のバグを修正。</li>
-<li>12月 13日 2016<br />
-関数呼び出しに進捗あり。</li>
-<li>12月 14日 2016<br />
-switch内の文字列の最初のサポート。</li>
-<li>12月 15日 2016<br />
-静的配列の代入がサポートされました。</li>
-<li>12月 17日 2016<br />
-<code>goto</code>ステートメントの修正(ラベルへの最後の<code>goto</code>を無視していました:))。</li>
-<li>12月 17日 2016<br />
-De-macrofied string-equals.</li>
-<li>12月 20日 2016<br />
-ヌルポインタへのデリファレンスを防ぐチェックを実装(yes… that one was oh so fun)。</li>
-<li>12月 22日 2016<br />
-ポインタの最初のサポート。</li>
-<li>12月 25日 2016<br />
-<code>static immutable</code>変数にアクセスできます(yes the result is recomputed … who cares)。</li>
-<li>1月 02日 2017<br />
-最初の関数呼び出しがサポートされました!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</li>
-<li>1月 17日 2017<br />
-再帰的関数呼び出しは動作します🙂</li>
-<li>1月 23日 2017<br />
-<strong>interpret3.d</strong>のユニットテストが通りました。</li>
-<li>1月 24日 2017<br />
-64bitでグリーンです!</li>
-<li>1月 25日 2017<br />
-(ブラックリスト式ですが)すべてのプラットフォームでグリーンです!!!!!</li>
-<li>1月 26日 2017<br />
-特殊なケース<code>cast(void*) size_t.max</code>を修正(これは通常のポインタのサポートを経由することはできず、デリファレンスに有効ななにかを持っていると仮定します)。</li>
-<li>1月 26日 2017<br />
-メンバ関数呼び出しがサポートされました!</li>
-<li>1月 31日 2017<br />
-<code>switch</code>ハンドリングのバグを修正。</li>
-<li>2月 03日 2017<br />
-最初の関数ポインタサポート。</li>
-<li>2月の間 2017<br />
-<a href="https://issues.dlang.org/show_bug.cgi?id=17220">Issue #17220</a>についての骨折り損。</li>
-<li>3月 11日 2017<br />
-スライスの最初のサポート。</li>
-<li>3月 15日 2017<br />
-文字列スライスが動作します。</li>
-<li>3月 18日 2017<br />
-スライス式内の<code>$</code>がサポートされました。</li>
-<li>3月 19日 2017<br />
-結合演算子<code>(c = a ~ b)</code>が動作します。</li>
-<li>3月 22日 2017<br />
-<code>switch</code>のフォールスルーバグを修正。</li>
-</ul>
-</article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        新・CTFEエンジンについて【翻訳】
-    </h2>
-    <p>
-        <time>2017-04-13</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a>  <a href="/tags/translation">#translation</a>  <a href="/tags/d_blog">#d_blog</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+その間、下のリストがNewCTFEの実装にどれだけの作業をしているか明らかにしてくれるでしょう🙂</p><ul><li>5月 9日 2016<br>CTFE改善の計画のアナウンスメント。</li><li>5月 27日 2016<br>新エンジンの作業が始まったことのアナウンスメント。</li><li>5月 28日 2016<br>シンプルなメモリ管理の変更が失敗。</li><li>6月 3rd 2016<br>バイトコードインタプリタの実装の決定。</li><li>6月 30日 2016<br>単純な整数演算からなる最初のコード(<a href="https://issues.dlang.org/show_bug.cgi?id=6498">Issue 6498</a>より)が走る。</li><li>7月 14日 2016<br>ASCII文字列インデクシングが動作。</li><li>7月 15日 2016<br>初期の<code>struct</code>のサポート</li><li>7月から8月の間のどこか<br>はじめてswitchが動作。</li><li>8月 17日 2016<br>特殊なケース<code>if(__ctfe)</code> と <code>if(!__ctfe)</code>のサポート</li><li>8月から9月の間のどこか<br>三項式がサポートされる</li><li>9月 08日 2016<br>Phobosのユニットテストが初めて通る。</li><li>9月 25日 2016<br>文字列と三項式を返すことのサポート。</li><li>10月 16日 2016<br>最初のLLVMバックエンドのほとんど動作するバージョン。</li><li>10月 30日 2016<br>最初の関数呼び出しのサポートの試みの失敗。</li><li>11月 01日<br>DRuntimeのユニットテストが初めて通る。</li><li>11月 10日 2016<br>文字列連結の実装の試みの失敗</li><li>11月 14日 2016<br><code>length</code>プロパティへの代入などによる配列の拡張がサポートされる。</li><li>11月 14日 2016<br>配列インデックスへの代入がサポートされる。</li><li>11月 18日 2016<br>関数パラメータとしての配列サポート。</li><li>11月 19日 2016<br>パフォーマンスフィックス。</li><li>11月 20日 2016<br>壊れた <code>while(true)</code> / <code>for (;;)</code> ループを修正; 今はぬけ出すことができます🙂</li><li>11月 25日 2016<br><code>goto</code>と<code>switch</code>のハンドリングを修正。</li><li>11月 29日 2016<br><code>continue</code>と<code>break</code>のハンドリングを修正。</li><li>11月 30日 2016<br><code>assert</code>の最初のサポート</li><li>12月 02日 2016<br><code>void</code>で初期化された値の救済(未定義動作に繋がる恐れがあるためです)。</li><li>12月 03日 2016<br><code>struct</code>リテラルを返すことのサポート。</li><li>12月 05日 2016<br>バイトコードジェネレータのパフォーマンスフィックス。</li><li>12月 07日 2016<br><code>for</code>ステートメントの<code>continue</code>と<code>break</code>を修正(<code>continue</code>はインクリメントステップをスキップしてはいけません。)</li><li>12月 08日 2016<br>変数入り配列リテラルがサポートされました: [1, n, 3]</li><li>12月 08日 2016<br><code>switch</code>ステートメントのバグを修正。</li><li>12月 10日 2016<br>厄介な評価順序のバグを修正。</li><li>12月 13日 2016<br>関数呼び出しに進捗あり。</li><li>12月 14日 2016<br>switch内の文字列の最初のサポート。</li><li>12月 15日 2016<br>静的配列の代入がサポートされました。</li><li>12月 17日 2016<br><code>goto</code>ステートメントの修正(ラベルへの最後の<code>goto</code>を無視していました:))。</li><li>12月 17日 2016<br>De-macrofied string-equals.</li><li>12月 20日 2016<br>ヌルポインタへのデリファレンスを防ぐチェックを実装(yes… that one was oh so fun)。</li><li>12月 22日 2016<br>ポインタの最初のサポート。</li><li>12月 25日 2016<br><code>static immutable</code>変数にアクセスできます(yes the result is recomputed … who cares)。</li><li>1月 02日 2017<br>最初の関数呼び出しがサポートされました!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</li><li>1月 17日 2017<br>再帰的関数呼び出しは動作します🙂</li><li>1月 23日 2017<br><strong>interpret3.d</strong>のユニットテストが通りました。</li><li>1月 24日 2017<br>64bitでグリーンです!</li><li>1月 25日 2017<br>(ブラックリスト式ですが)すべてのプラットフォームでグリーンです!!!!!</li><li>1月 26日 2017<br>特殊なケース<code>cast(void*) size_t.max</code>を修正(これは通常のポインタのサポートを経由することはできず、デリファレンスに有効ななにかを持っていると仮定します)。</li><li>1月 26日 2017<br>メンバ関数呼び出しがサポートされました!</li><li>1月 31日 2017<br><code>switch</code>ハンドリングのバグを修正。</li><li>2月 03日 2017<br>最初の関数ポインタサポート。</li><li>2月の間 2017<br><a href="https://issues.dlang.org/show_bug.cgi?id=17220">Issue #17220</a>についての骨折り損。</li><li>3月 11日 2017<br>スライスの最初のサポート。</li><li>3月 15日 2017<br>文字列スライスが動作します。</li><li>3月 18日 2017<br>スライス式内の<code>$</code>がサポートされました。</li><li>3月 19日 2017<br>結合演算子<code>(c = a ~ b)</code>が動作します。</li><li>3月 22日 2017<br><code>switch</code>のフォールスルーバグを修正。</li></ul></article><footer><h2><a href=/tags/dlang>#dlang</a>
+新・CTFEエンジンについて【翻訳】</h2><p><time>2017-04-13</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

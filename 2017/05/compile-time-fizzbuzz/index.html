@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>#dlang コンパイル時fizzbuzzと謎のaliasSeqOf - Kotet&#39;s Personal Blog </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-    <link rel="canonical" href="https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/" />
-    
-<script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-88180620-1');
-</script>
-
-    
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8443812672116269",
-        enable_page_level_ads: true
-    });
-</script>
-
-    <link rel="icon" href="/favicon.ico">
-    <meta name="twitter:card" content="summary" />
-<meta name="og:title" content="#dlang コンパイル時fizzbuzzと謎のaliasSeqOf - Kotet&#39;s Personal Blog" />
-<meta name="og:description" content=" D言語のfizzbuzz - kubo39&rsquo;s blog を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにし  " />
-
-<meta name="twitter:image" content="https://blog.kotet.jp/assets/logo.png" />
-
-<meta name="twitter:url" content="https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/" />
-<meta name="twitter:site" content="@kotetttt" />
-<meta name="twitter:creator" content="@kotetttt" />
-    <meta name="generator" content="Hugo 0.49-DEV" />
-    
-<meta name="description" content=" D言語のfizzbuzz - kubo39&rsquo;s blog を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにし ">
-<link rel="stylesheet" type="text/css" href="/single.css" />
-<script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<script type="text/x-mathjax-config">
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語のfizzbuzz - kubo39&rsquo;s blog を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにし"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -49,59 +6,11 @@
         processEscapes: true
       }
     });
-</script>
-
-</head>
-
-<body>
-    <header class="site">
-        <nav>
-            <ul>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/products">PRODUCTS</a></li>
-                <li><a href="/tags">TAGS</a></li>
-                <li><a href="/index.xml">FEED</a></li>
-                
-            </ul>
-        </nav>
-        <h1><a href="/">KOTET'S PERSONAL BLOG</a></h1>
-    </header>
-    <main>
-        
-<header>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        コンパイル時fizzbuzzと謎のaliasSeqOf
-    </h2>
-    <p>
-        <time>2017-05-13</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-    <aside>
-    <p>Table of Contents</p>
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#自分の力で書いてみる">自分の力で書いてみる</a></li>
-<li><a href="#aliasseqof-を使ったバージョン"><code>aliasSeqOf</code>を使ったバージョン</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-</aside>
-</header>
-<article>
-
-<p><a href="http://kubo39.hatenablog.com/entry/2017/05/13/D%E8%A8%80%E8%AA%9E%E3%81%AEfizzbuzz">D言語のfizzbuzz - kubo39&rsquo;s blog</a>
-を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにした。</p>
-
-<h3 id="自分の力で書いてみる">自分の力で書いてみる</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int test(alias n)()
+</script><title>#dlang コンパイル時fizzbuzzと謎のaliasSeqOf - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang コンパイル時fizzbuzzと謎のaliasSeqOf - Kotet's Personal Blog"><meta name=og:description content="D言語のfizzbuzz - kubo39&rsquo;s blog を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにし"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/05/compile-time-fizzbuzz/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+コンパイル時fizzbuzzと謎のaliasSeqOf</h2><p><time>2017-05-13</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#自分の力で書いてみる>自分の力で書いてみる</a></li><li><a href=#aliasseqof-を使ったバージョン><code>aliasSeqOf</code>を使ったバージョン</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><a href=http://kubo39.hatenablog.com/entry/2017/05/13/D%E8%A8%80%E8%AA%9E%E3%81%AEfizzbuzz>D言語のfizzbuzz - kubo39&rsquo;s blog</a>
+を読んで、コンパイル時fizzbuzzはforeachを使えば短く書けるのでは?と思い実際に書いてみることにした。</p><h3 id=自分の力で書いてみる>自分の力で書いてみる</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int test(alias n)()
 {
     foreach (i; 0 .. n)
     {
@@ -111,13 +20,9 @@
     return 0;
 }
 
-enum foo = test!15;</code></pre></div>
-<p>まず上のようにforeach内でstaticなあれこれはできない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd -c fizzbuzz.d
+enum foo = test!15;</code></pre></div><p>まず上のようにforeach内でstaticなあれこれはできない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd -c fizzbuzz.d
 fizzbuzz.d(5): Error: variable i cannot be read at compile time
-fizzbuzz.d(11): Error: CTFE failed because of previous errors in test</code></pre></div>
-<p>以下のように計算の過程でforeachを使うのは大丈夫。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">auto test(alias n)()
+fizzbuzz.d(11): Error: CTFE failed because of previous errors in test</code></pre></div><p>以下のように計算の過程でforeachを使うのは大丈夫。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto test(alias n)()
 {
     int[] result;
     foreach (i; 0 .. n)
@@ -129,11 +34,9 @@ fizzbuzz.d(11): Error: CTFE failed because of previous errors in test</code></pr
 }
 
 enum foo = test!15;
-pragma(msg, foo);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd -c fizzbuzz.d
-[1, 2, 4, 5, 7, 8, 10, 11, 13, 14]</code></pre></div>
-<p>つまりこうすれば繰り返しを手で書かずに済む。
-ただし出力は1つずつ行わなければいけない、みたいなレギュレーションがあったらダメ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">string fizzbuzz(alias n)()
+pragma(msg, foo);</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd -c fizzbuzz.d
+[1, 2, 4, 5, 7, 8, 10, 11, 13, 14]</code></pre></div><p>つまりこうすれば繰り返しを手で書かずに済む。
+ただし出力は1つずつ行わなければいけない、みたいなレギュレーションがあったらダメ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string fizzbuzz(alias n)()
 {
     import std.algorithm : map;
     import std.conv : to;
@@ -146,7 +49,7 @@ pragma(msg, foo);</code></pre></div><div class="highlight"><pre style="color:#f8
     .to!string;
 }
 
-pragma(msg, fizzbuzz!15);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd -c fizzbuzz.d
+pragma(msg, fizzbuzz!15);</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd -c fizzbuzz.d
 1
 2
 fizz
@@ -161,11 +64,7 @@ buzz
 fizz
 13
 14
-fizzbuzz</code></pre></div>
-<h3 id="aliasseqof-を使ったバージョン"><code>aliasSeqOf</code>を使ったバージョン</h3>
-
-<p><a href="http://qiita.com/dragoon2014/items/2217ab9578c875ecdf69">lsを間違えて（中略）コンパイル時にD言語くんが通り過ぎるコマンド - Qiita</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">int fizzbuzz(alias n)()
+fizzbuzz</code></pre></div><h3 id=aliasseqof-を使ったバージョン><code>aliasSeqOf</code>を使ったバージョン</h3><p><a href=http://qiita.com/dragoon2014/items/2217ab9578c875ecdf69>lsを間違えて（中略）コンパイル時にD言語くんが通り過ぎるコマンド - Qiita</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int fizzbuzz(alias n)()
 {
     import std.meta : aliasSeqOf;
     import std.algorithm : map;
@@ -186,7 +85,7 @@ fizzbuzz</code></pre></div>
     return 0;
 }
 
-enum foo = fizzbuzz!15;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ dmd -c fizzbuzz.d
+enum foo = fizzbuzz!15;</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd -c fizzbuzz.d
 1
 2
 fizz
@@ -201,9 +100,7 @@ buzz
 fizz
 13
 14
-fizzbuzz</code></pre></div>
-<p>以下のコードを<code>$ dmd -c fizzbuzz.d -vcg-ast</code>すると</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">void main()
+fizzbuzz</code></pre></div><p>以下のコードを<code>$ dmd -c fizzbuzz.d -vcg-ast</code>すると</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main()
 {
     import std.meta : aliasSeqOf;
     import std.range : iota;
@@ -214,13 +111,11 @@ fizzbuzz</code></pre></div>
     foreach (i; aliasSeqOf!(iota(1, 6)))
         if (n == i)
             writeln(i ^^ 2);
-}</code></pre></div>
-<p>ifに展開されていた。
+}</code></pre></div><p>ifに展開されていた。
 <code>aliasSeqOf</code>はレンジを&rdquo;alias sequence&rdquo;に変換するもの……だそうだがちょっと何が起きているのか理解できていない。
 <code>aliasSeqOf!(iota(1, 6))</code>はいったいforeachに何を渡したことになるんだろう?
 <code>aliasSeqOf</code>を使わずに手書きで同じ現象を起こすにはどうしたら良いんだろう?
-今後の課題にしようと思う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-d" data-lang="d">import object;
+今後の課題にしようと思う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import object;
 void main()
 {
 	import std.meta : aliasSeqOf;
@@ -257,37 +152,6 @@ void main()
 	}
 	return 0;
 }
-// 以下略</code></pre></div></article>
-<footer>
-    <h2>
-        
-        <a href="/tags/dlang">#dlang</a>
-        
-        コンパイル時fizzbuzzと謎のaliasSeqOf
-    </h2>
-    <p>
-        <time>2017-05-13</time>
-         <a href="/tags/dlang">#dlang</a>  <a href="/tags/tech">#tech</a> 
-    </p>
-</footer>
-
-        <div class="ad-wrapper">
-            
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8443812672116269"
-     data-ad-slot="2914874272"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        </div>
-    </main>
-    <footer class="site">
-</footer>
-</body>
-
-</html>
+// 以下略</code></pre></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
+コンパイル時fizzbuzzと謎のaliasSeqOf</h2><p><time>2017-05-13</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
