@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="Cloudflare がIPFSゲートウェイを公開したようだ。この機会に自分のIPFSパブリックゲートウェイの使い方について書く。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true
+      }
+    });
+</script><title>#ipfs体験記 18:CloudflareがIPFSゲートウェイとホスティング支援サービスを提供 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/ipfs-gateway-cloudflare/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 18:CloudflareがIPFSゲートウェイとホスティング支援サービスを提供 - Kotet's Personal Blog"><meta name=og:description content="Cloudflare がIPFSゲートウェイを公開したようだ。この機会に自分のIPFSパブリックゲートウェイの使い方について書く。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/ipfs-gateway-cloudflare/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+18:CloudflareがIPFSゲートウェイとホスティング支援サービスを提供</h2><p><time>2018-09-18</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/log>#log</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#パブリックゲートウェイ>パブリックゲートウェイ</a></li><li><a href=#使用例>使用例</a></li><li><a href=#cloudflare-ipfs-comは何に使えばいいのか>cloudflare-ipfs.comは何に使えばいいのか</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>Cloudflare がIPFSゲートウェイを公開したようだ。</p><p><a href=https://blog.cloudflare.com/distributed-web-gateway/>Cloudflare goes InterPlanetary - Introducing Cloudflare’s IPFS Gateway</a></p><p>この機会に自分のIPFSパブリックゲートウェイの使い方について書く。</p><h3 id=パブリックゲートウェイ>パブリックゲートウェイ</h3><p>IPFSパブリックゲートウェイはhttpやhttpsを通して、
+通常のウェブページのようにIPFS上のコンテンツにアクセスするためのものである。
+モバイル環境やその他ネット環境の都合でP2Pが使えないときでもIPFSのコンテンツにアクセスできる。
+もちろん完全に1つのゲートウェイしか使わなくなってしまうと分散の意味がなくなってしまうので、
+できるなら自分のローカルゲートウェイを使わなければいけない。</p><p>主に自分が使うのは<a href=https://ipfs.io>ipfs.io</a>である。
+ドメイン名が短いので使い勝手が良い。</p><h3 id=使用例>使用例</h3><p>たとえばIPFSハッシュが与えられたとき、その内容をブラウザで見たいときはどうすればいいだろうか。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH</code></pre></div><p>まずはハッシュをアドレスバーにコピペして、それから<code>localhost:8080/ipfs/</code>と書き加える。
+このようにローカルゲートウェイに渡してやれば良いのだが、ちょっとURLが長いし、覚えにくかったりする。
+それに自分は時々IPFSネットワークに接続できなくなるので、
+せっかく長いURLを打ち終わってもアクセスできなかったりする。
+そういうときは結局パブリックゲートウェイのドメインを打ち直したりする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>localhost:8080/ipfs/QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH</code></pre></div><p>なので、自分は最初から<code>ipfs.io/ipfs/</code>と書く。
+短いし、覚えやすい。
+さらにローカルゲートウェイが動いているときは、
+ブラウザ拡張によって自動的にそちらにリダイレクトされる。
+いいことづくめというわけだ。</p><p>ちなみにこのハッシュはIPFS界のexample.com（今考えた）こと&rdquo;test&rdquo;である。</p><p><a href=https://cloudflare-ipfs.com/ipfs/QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH/>https://cloudflare-ipfs.com/ipfs/QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH/</a></p><h3 id=cloudflare-ipfs-comは何に使えばいいのか>cloudflare-ipfs.comは何に使えばいいのか</h3><p><a href=https://cloudflare-ipfs.com/>cloudflare-ipfs.com</a>は少々長いし、Typoもしやすそうだ。
+上に書いたような使い方には今回のゲートウェイは向いていないだろう。
+ただ、他人にURLを渡す場合、
+負荷分散のためにも先程のリンクのように複数のパブリックゲートウェイを使い分けたほうがいいだろうか。</p><p>そしてこちらが本題。
+どうもCloudflareはIPFSを使ったウェブサイトのホスティング支援サービスを行っているらしい。</p><blockquote><p>If you have content stored in IPFS that you want to serve from a custom domain name,
+you can do so in just a few minutes using this gateway. All you need is a domain name you own,
+access to your DNS records, and the hash of the content stored on IPFS. More in-depth
+instructions, including how to get your content onto IPFS in the first place,
+can be found in our developer documentation.</p><p><a href=https://www.cloudflare.com/distributed-web-gateway/>Distributed Web Gateway | Cloudflare</a></p></blockquote><p>独自ドメインかつHTTPSでサイトを運営するために証明書を発行してくれるようだ。
+これによりWebサーバーを運営する必要はなくなり、
+IPFSノードだけを動かすだけで通常通りサイトの公開ができるようになる！
+こちらはかなり便利そうだ。
+早く常時動かせるIPFSノードを用意して試してみたい……</p></article><footer><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+18:CloudflareがIPFSゲートウェイとホスティング支援サービスを提供</h2><p><time>2018-09-18</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/log>#log</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
