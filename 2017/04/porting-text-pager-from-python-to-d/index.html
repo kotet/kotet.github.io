@@ -1,8 +1,8 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="数週間前、私はこのような記事を書きました: tp, a simple text pager in Python 数日前、私はこのページャをPythonからD 言語として知られるDに移植しようと思いたち、そして実行しました。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3eeaf6ed1df267da88773748526a6bec7420ca30786c65a9be234645937d638d.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[','\]']],
+        displayMath: [['$$','$$']],
         processEscapes: true
       }
     });
@@ -95,15 +95,7 @@ int main(string[] args) {
 だいたい同じコードの全体の構造を見るのは興味深いものでした。
 ファイルを開き(または標準入力を使い)、そこから各行を読み込み、ファイルを閉じ、キーボードから文字を得る。
 すべてが振る舞いにおいてだいたい同じでした。
-私の推察ではこれは少なくとも部分的にはPythonとDの両方共がCの遺産を共有しているためです。</p><p>実際、Dのコードでも:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>foreach (line; in_fil.byLine()) {</code></pre></div><p>少し斜め読みすれば、Pythonのコードとして読むことができます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()</code></pre></div><p>必ずしも有効なPythonではないですが、byLineメソッドがfileオブジェクトにあるとすれば、読めないことはないです :)</p><p>興味のある方は、最近HNでDについての良いディスカッションがありました。こちらです:</p><p><a href="https://news.ycombinator.com/item?id=14060846">The reference D compiler is now open source (dlang.org)</a></p><p>スレッドのタイトルにかかわらず、ライセンスの側面よりもD言語の機能についてのものです。</p><p>楽しんでください。</p><hr><h3 id=追記>追記</h3><p>これについてコメント:</p><blockquote><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()
-<span style=color:#f92672>&gt;</span> <span style=color:#e6db74>``</span><span style=color:#960050;background-color:#1e0010>`</span>
-<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>必ずしも有効な</span>Pythonではないですが<span style=color:#960050;background-color:#1e0010>、</span>byLineメソッドがfileオブジェクトにあるとすれば<span style=color:#960050;background-color:#1e0010>、読めないことはないです</span> :)
-
-<span style=color:#960050;background-color:#1e0010>もちろん、実際の</span>Pythonバージョンはもっとシンプルです:
-
-<span style=color:#e6db74>``</span><span style=color:#960050;background-color:#1e0010>`</span>python
-<span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> in_fil:</code></pre></div></blockquote><p>これは、Dのそれがそうするように、lazyに(つまりオンデマンドに)ファイルの行をイテレーションします
+私の推察ではこれは少なくとも部分的にはPythonとDの両方共がCの遺産を共有しているためです。</p><p>実際、Dのコードでも:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>foreach (line; in_fil.byLine()) {</code></pre></div><p>少し斜め読みすれば、Pythonのコードとして読むことができます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()</code></pre></div><p>必ずしも有効なPythonではないですが、byLineメソッドがfileオブジェクトにあるとすれば、読めないことはないです :)</p><p>興味のある方は、最近HNでDについての良いディスカッションがありました。こちらです:</p><p><a href="https://news.ycombinator.com/item?id=14060846">The reference D compiler is now open source (dlang.org)</a></p><p>スレッドのタイトルにかかわらず、ライセンスの側面よりもD言語の機能についてのものです。</p><p>楽しんでください。</p><hr><h3 id=追記>追記</h3><p>これについてコメント:</p><blockquote><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> fil<span style=color:#f92672>.</span>byLine()</code></pre></div><p>必ずしも有効なPythonではないですが、byLineメソッドがfileオブジェクトにあるとすれば、読めないことはないです :)</p></blockquote><p>もちろん、実際のPythonバージョンはもっとシンプルです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>for</span> lin <span style=color:#f92672>in</span> in_fil:</code></pre></div><p>これは、Dのそれがそうするように、lazyに(つまりオンデマンドに)ファイルの行をイテレーションします
 (Pythonのファイルオブジェクトがイテレータプロトコルで実装されているためです)。
 言い換えると、メモリ上に一度にすべての行をロードしたりしません。
 それぞれ要求があるたびに読み込みます。

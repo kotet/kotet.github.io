@@ -1,15 +1,15 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="`a == b || a == c || a == d || a == e`のような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.c9d013014574db8d6be4e1768e32dd541f3431f611fecfcb824fed9a19b8fdd3.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="`a == b || a == c || a == d || a == e`のような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3eeaf6ed1df267da88773748526a6bec7420ca30786c65a9be234645937d638d.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[','\]']],
+        displayMath: [['$$','$$']],
         processEscapes: true
       }
     });
 </script><title>#dlang 「どれかと等しい」を簡潔に書く - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/std-algorithm-comparison-among/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 「どれかと等しい」を簡潔に書く - Kotet's Personal Blog"><meta name=og:description content="`a == b || a == c || a == d || a == e`のような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/std-algorithm-comparison-among/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.48"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 「どれかと等しい」を簡潔に書く</h2><p><time>2017-12-01</time>
-<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#いきさつ>いきさつ</a></li><li><a href=#実例>実例</a></li><li><a href=#感想>感想</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><code>a == b || a == c || a == d || a == e</code>のような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。</p><h3 id=いきさつ>いきさつ</h3><p>あれは今から6日……いや、8日前の出来事だったか。
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#いきさつ>いきさつ</a></li><li><a href=#実例>実例</a></li><li><a href=#std-algorithm-comparison-among><code>std.algorithm.comparison.among</code></a></li><li><a href=#感想>感想</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><code>a == b || a == c || a == d || a == e</code>のような同じ値に対して何度も同値比較をするコードを簡潔に書く方法を学んだので日記を兼ねて書く。</p><h3 id=いきさつ>いきさつ</h3><p>あれは今から6日……いや、8日前の出来事だったか。
 まあいい、このブログにおいては多分……4日後の出来事だ。
 自分は<code>static foreach</code>を使ったFizzBuzzを書いていた。</p><p>D言語を書くときはフォーマッターである<a href=https://github.com/dlang-community/dfmt>Dfmt</a>を定期的に走らせるのが癖になっているのだが、<code>static foreach</code>が正しく整形されないことに気がついた。
 以下のようにカッコのインデントが過剰に深くなってしまうのだ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>static foreach (/* ... */)
@@ -21,22 +21,9 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 <code>arr[i + 1]</code>に対して何度も同値比較をしてORでつないでいる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>if (arr[i] == tok!&#34;static&#34; &amp;&amp; (arr[i + 1] == tok!&#34;if&#34;
     || arr[i + 1] == tok!&#34;else&#34; || arr[i + 1] == tok!&#34;foreach&#34;
     || arr[i + 1] == tok!&#34;foreach_reverse&#34;) &amp;&amp; (i + 2 &gt;= index || arr[i + 2] != tok!&#34;{&#34;))
-// 後略</code></pre></div><p>それに対してこのようなレビューをもらった。</p><blockquote><p>I would <code>import std.algorithm : among</code> and make this</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>&gt; arr[i + 1].among!(tok!&#34;if&#34;, tok!&#34;else&#34;, tok!&#34;foreach&#34;, tok!&#34;foreach_reverse&#34;)
-&gt; ```
-&gt; because it has a lot of cases now [^1]
-
-ここまでケースが増えた場合は`among`を使うといい、ということらしい。
-
-### `std.algorithm.comparison.among`
-
-`std.algorithm.comparison.among`は複数の引数を取り、第1引数と等しい物があった場合は`1`から始まるインデックスを返す。
-等しい物がなかった場合`0`を返す。
-
-DはCと同じように`0`は`false`、それ以外は`true`とみなされる。
-そのため
-
-```d
-among(arr[i + 1], tok!&#34;if&#34;, tok!&#34;else&#34;, tok!&#34;foreach&#34;, tok!&#34;foreach_reverse&#34;)</code></pre></div></blockquote><p>は</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>(arr[i + 1] == tok!&#34;if&#34;
+// 後略</code></pre></div><p>それに対してこのようなレビューをもらった。</p><blockquote><p>I would <code>import std.algorithm : among</code> and make this</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>arr[i + 1].among!(tok!&#34;if&#34;, tok!&#34;else&#34;, tok!&#34;foreach&#34;, tok!&#34;foreach_reverse&#34;)</code></pre></div><p>because it has a lot of cases now [^1]</p></blockquote><p>[^1]: <a href=https://github.com/dlang-community/dfmt/pull/304#discussion_r153042727>github.com/dlang-community/dfmt/pull/304#discussion_r153042727</a></p><p>ここまでケースが増えた場合は<code>among</code>を使うといい、ということらしい。</p><h3 id=std-algorithm-comparison-among><code>std.algorithm.comparison.among</code></h3><p><code>std.algorithm.comparison.among</code>は複数の引数を取り、第1引数と等しい物があった場合は<code>1</code>から始まるインデックスを返す。
+等しい物がなかった場合<code>0</code>を返す。</p><p>DはCと同じように<code>0</code>は<code>false</code>、それ以外は<code>true</code>とみなされる。
+そのため</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>among(arr[i + 1], tok!&#34;if&#34;, tok!&#34;else&#34;, tok!&#34;foreach&#34;, tok!&#34;foreach_reverse&#34;)</code></pre></div><p>は</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>(arr[i + 1] == tok!&#34;if&#34;
     || arr[i + 1] == tok!&#34;else&#34; || arr[i + 1] == tok!&#34;foreach&#34;
     || arr[i + 1] == tok!&#34;foreach_reverse&#34;)</code></pre></div><p>と同じ効果をもつのだ。
 数値が<code>bool</code>扱いされる仕様は<a href=http://furutsuki.hatenablog.com/entry/2017/11/18/143014>バグの元になったりする</a>ので、
