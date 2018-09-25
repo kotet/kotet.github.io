@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="古すぎず、新しすぎでもないPCにはUSBポートが当然のようについているものだ。 自分のほぼLinux機としてしか使っていないDELL XPS 13 (9360)にもUSBポートが2つついている。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3eeaf6ed1df267da88773748526a6bec7420ca30786c65a9be234645937d638d.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#linux iPhoneが再接続できないときの対症療法 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/iphone-reconnect/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#linux iPhoneが再接続できないときの対症療法 - Kotet's Personal Blog"><meta name=og:description content="古すぎず、新しすぎでもないPCにはUSBポートが当然のようについているものだ。 自分のほぼLinux機としてしか使っていないDELL XPS 13 (9360)にもUSBポートが2つついている。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/iphone-reconnect/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.49"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/linux>#linux</a>
+iPhoneが再接続できないときの対症療法</h2><p><time>2018-09-25</time>
+<a href=/tags/linux>#linux</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#iphoneを再接続しても認識しない>iPhoneを再接続しても認識しない</a></li><li><a href=#usbmuxdの再起動>usbmuxdの再起動</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>古すぎず、新しすぎでもないPCにはUSBポートが当然のようについているものだ。
+自分のほぼLinux機としてしか使っていないDELL XPS 13 (9360)にもUSBポートが2つついている。
+このラップトップはバッテリー容量がかなりあるので、
+USBデバイスをつないだ程度ではほとんど残り使用時間に影響がない。
+というわけで最近は高級モバイルバッテリーとしても使われつつあるラップトップである。</p><h3 id=iphoneを再接続しても認識しない>iPhoneを再接続しても認識しない</h3><p>しかしひとつ問題がある。
+時々つなぎ直しても充電ができなくなるのだ。
+一度ケーブルから端末を外して、もう一度つなぐと反応がない。
+気づいたら全く充電されていないなんてことが多々あるので困っていた。</p><p>USBのオートサスペンド機能が悪さをしているのかと思って無効にしてみたりしたが効果がない。
+一度ケーブルを抜くと、再起動するまでそのポートが「つぶれて」しまうのだ。
+ずっと困っていたのだが、とりあえず再起動しなくていい解決法を見つけられたので書き残しておく。</p><h3 id=usbmuxdの再起動>usbmuxdの再起動</h3><p><a href=https://superuser.com/questions/1257911/connecting-iphone-to-linux-pc-via-usb-cable-works-only-once>Connecting iPhone to Linux PC via USB cable works only once - Super User</a></p><p><code>usbmuxd</code>を再起動すれば認識してくれる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ sudo systemctl restart usbmuxd.service</code></pre></div><p>完全に対症療法だが、毎回OS全体を再起動するよりはいいだろう。</p></article><footer><h2><a href=/tags/linux>#linux</a>
+iPhoneが再接続できないときの対症療法</h2><p><time>2018-09-25</time>
+<a href=/tags/linux>#linux</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
