@@ -1,0 +1,99 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="ipfs filesコマンドの使い方を理解したので書く。 これはIPFS上のディレクトリ構造の編集を支援するためのコマンドである。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a7c4753a258fdd0dc8447a06aa20e989cd35e9b537c1476dd5ed5ad606bda2d1.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#ipfs体験記 19:ipfs filesコマンドでディレクトリを構築する - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/ipfs-files/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 19:ipfs filesコマンドでディレクトリを構築する - Kotet's Personal Blog"><meta name=og:description content="ipfs filesコマンドの使い方を理解したので書く。 これはIPFS上のディレクトリ構造の編集を支援するためのコマンドである。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/ipfs-files/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.49"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+19:ipfs filesコマンドでディレクトリを構築する</h2><p><time>2018-09-26</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ipfs-files>ipfs files</a></li><li><a href=#使ってみる>使ってみる</a><ul><li><a href=#追加>追加</a></li><li><a href=#ディレクトリ作成-移動-削除>ディレクトリ作成、移動、削除</a></li><li><a href=#ipfs-files-flush>ipfs files flush</a></li><li><a href=#ipfs-files-chcid>ipfs files chcid</a></li><li><a href=#ipfs-files-stat>ipfs files stat</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p><code>ipfs files</code>コマンドの使い方を理解したので書く。
+これはIPFS上のディレクトリ構造の編集を支援するためのコマンドである。</p><h3 id=ipfs-files>ipfs files</h3><p>IPFS上のコンテンツはイミュータブルである。
+異なるものは異なるアドレスになる。
+ディレクトリの追加は<code>ipfs add -r</code>で可能だが、これでは不十分なときがある。
+たとえばIPFS上の大きなデータが入ったディレクトリを作りたい時。
+<code>ipfs add -r</code>を使う場合、いったん全データをローカルに落とすことになる。
+大規模なデータセットの共有を目的のひとつとしているIPFSでこれは困る。</p><p>そんなときに使うのが<code>ipfs files</code>コマンドである。
+このコマンドには独自の仮想的なディレクトリが存在し、
+そのディレクトリ構造をコマンドを使って書き換えることができる。
+内部的には構造が書き換えられるたびに新しいディレクトリのメタデータが生成され、ハッシュが更新される。
+あくまで小さなメタデータを扱っているだけなので更新を繰り返してもディスクが一杯になったりしないし、
+大きな更新も発生しないのだ。</p><h3 id=使ってみる>使ってみる</h3><h4 id=追加>追加</h4><p>とりあえずルートにファイルを追加してみる。
+ファイルの追加は<code>ipfs files write</code>や<code>ipfs files cp</code>でできる。
+<code>ipfs files write</code>は直接データを扱い、それをディレクトリに追加する。
+<code>ipfs files cp</code>はIPFS上にあるデータをディレクトリに追加する。</p><p><code>ipfs files write</code>はかなりプリミティブな「書き込み」をするようだ。</p><p><code>ipfs files cp</code>はメタデータを操作しているだけなので、大きなデータを操作しても時間はかからない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ echo test &gt; test.txt
+$ <span style=color:#75715e># -e または --create をつけるとファイルが存在しない場合作成してくれる
+</span><span style=color:#75715e></span>$ ipfs files write -e /test.txt test.txt
+$ ipfs files ls /
+test.txt
+$ ipfs files read /test.txt
+test
+$ <span style=color:#75715e># 標準入力からの書き込み
+</span><span style=color:#75715e></span>$ echo hello | ipfs files write /test.txt
+$ ipfs files read /test.txt
+hello
+$ echo test | ipfs files write /test.txt
+$ ipfs files read /test.txt
+test
+
+$ <span style=color:#75715e># オフセット指定
+</span><span style=color:#75715e></span>$ echo test | ipfs files write -o <span style=color:#ae81ff>3</span> /test.txt
+$ ipfs files read /test.txt
+testest
+$ ipfs add test.txt 
+added QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH test.txt
+ <span style=color:#ae81ff>5</span> B / <span style=color:#ae81ff>5</span> B <span style=color:#f92672>[===================================================================================================================]</span> <span style=color:#ae81ff>100</span>.00%
+$ <span style=color:#75715e># 既存のハッシュを追加
+</span><span style=color:#75715e></span>$ ipfs files cp /ipfs/QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH /test2.txt
+$ ipfs files ls /
+test.txt
+test2.txt
+$ <span style=color:#75715e># 英語版Wikipediaのバックアップ。250GBくらいあり、ローカルには保存されていない
+</span><span style=color:#75715e></span>$ ipfs files cp /ipfs/QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco /wikipedia
+$ ipfs files ls -l
+test.txt	Qmbb6dymZ5iDSraj6QPu5wrZ2BNjr7AX29McbH1PkNs9uY	<span style=color:#ae81ff>8</span>
+test2.txt	QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH	<span style=color:#ae81ff>5</span>
+wikipedia	QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco	<span style=color:#ae81ff>0</span>
+$ ipfs files ls -l /wikipedia/
+-	QmPQVLHXAcDLvdf6ni24YWgGwitVTwtpiFaKkMfzZKquUB	<span style=color:#ae81ff>0</span>
+I	QmNYBYYjwtCYXdA2KC68rX8RqXBu9ajBM6Gi8CBrXjvk1j	<span style=color:#ae81ff>0</span>
+M	QmaeP3RagknCH4gozhE6VfCzTZRU7U2tgEEfs8QMoexEeG	<span style=color:#ae81ff>0</span>
+index.html	QmdgiZFqdzUGa7vAFycnA5Xv2mbcdHSsPQHsMyhpuzm9xb	<span style=color:#ae81ff>154</span>
+wiki	QmehSxmTPRCr85Xjgzjut6uWQihoTfqg9VVihJ892bmZCp	<span style=color:#ae81ff>0</span></code></pre></div><h4 id=ディレクトリ作成-移動-削除>ディレクトリ作成、移動、削除</h4><p>コマンド名は基本的にUnixのファイルシステムを模した形になっている。
+先程から使っていた<code>cp</code>や<code>ls</code>はもちろん、<code>mkdir</code>、<code>mv</code>、<code>rm</code>もある。</p><p>ただし、ワイルドカードなどには対応していないようだ。
+移動元のパスを省略したときの挙動もあまり便利でないので、
+ちゃんとファイル名も含めたフルパスを使おう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ipfs files mkdir /tests
+$ ipfs files mv /test.txt /tests/test.txt
+$ ipfs files mv /test2.txt /tests/test2.txt
+$ ipfs files ls /
+tests
+wikipedia
+$ ipfs files ls /tests/
+test.txt
+test2.txt
+$ ipfs files rm /tests/test2.txt
+$ ipfs files ls /tests/
+test.txt
+$ ipfs files rm -r /tests/
+$ ipfs files ls /
+wikipedia</code></pre></div><h4 id=ipfs-files-flush>ipfs files flush</h4><p>ここまで行ってきた操作のたびに新しいディレクトリオブジェクトが作成され、
+おそらく各バージョンがすべてローカルのIPFSリポジトリに保存されている。
+サイズはそんなに大きくないのでまあ問題ないのだが、
+気になる場合は各コマンドを<code>--f=false</code>を付けて実行することで編集をオンメモリに行える。
+その場合編集の最後に<code>ipfs files flush</code>を実行してやらないと、
+作ったディレクトリオブジェクトは消えてしまう。
+ほぼ確実にディレクトリオブジェクトを持っているのは宇宙で自分ただ一人である。
+なので仮にそのオブジェクトを指すアドレスを持っていたとしても、
+一度ディレクトリオブジェクトが消えた時点でアクセスは永久にできなくなる。</p><h4 id=ipfs-files-chcid>ipfs files chcid</h4><p>ちょっとこのコマンドはよく分からなかった。
+たぶんアドレス生成に使うハッシュ関数などの変更に使う。
+オプション全部にexperimentalがついているので使わないほうがいいのだろう。</p><h4 id=ipfs-files-stat>ipfs files stat</h4><p>ここまでの操作で作ったディレクトリを公開するにはアドレスとなるハッシュ値が必要である。
+<code>ipfs files stat</code>でハッシュ値を含めた情報を参照する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ipfs files stat /
+QmckgmRuhpZFrpiPVULs5aUTdG8V8Cb4ZdMS83iEjUxSu7
+Size: <span style=color:#ae81ff>0</span>
+CumulativeSize: <span style=color:#ae81ff>658038834858</span>
+ChildBlocks: <span style=color:#ae81ff>1</span>
+Type: directory</code></pre></div></article><footer><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
+19:ipfs filesコマンドでディレクトリを構築する</h2><p><time>2018-09-26</time>
+<a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
