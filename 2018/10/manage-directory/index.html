@@ -19,25 +19,25 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 は日付で管理されたディレクトリ構造を<code>~/workspace</code>以下に構築するBash関数である。</p><p>引数なしで実行すると <code>~/workspace/&lt;年&gt;/&lt;月&gt;-&lt;日&gt;/space.&lt;ランダムなプレフィックス&gt;</code>
 という規則でディレクトリを作成する。
 プレフィックスのおかげで名前がかぶることを心配しなくて良くなり便利。
-そして、そこでシェルを開く（つまり作ったディレクトリに移動する）。
-作業が終わった後に <code>exit</code> を実行すると <code>mkws</code> を実行したディレクトリに戻ることができる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkws 
+そして、作ったディレクトリに移動する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkws 
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace&#39;</span>
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018&#39;</span>
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04&#39;</span>
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/space.bbjg&#39;</span>
 
-  New shell entered: Run <span style=color:#e6db74>&#34;exit&#34;</span> to back to previous directory.</code></pre></div><p>引数を与えると
+  /home/kotet/workspace/2018/10-04/space.bbjg</code></pre></div><p>引数を与えると
 <code>~/workspace/&lt;年&gt;/&lt;月&gt;-&lt;日&gt;/&lt;引数&gt;.&lt;ランダムなプレフィックス&gt;</code>
 というディレクトリが作られる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkws test
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/test.tbxr&#39;</span>
 
-  New shell entered: Run <span style=color:#e6db74>&#34;exit&#34;</span> to back to previous directory.
+  /home/kotet/workspace/2018/10-04/test.tbxr
 
 $ mkws kotet
 mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/kotet.stwe&#39;</span>
 
-  New shell entered: Run <span style=color:#e6db74>&#34;exit&#34;</span> to back to previous directory.</code></pre></div><h3 id=インストール方法>インストール方法</h3><h4 id=ワンライナー>ワンライナー</h4><p>一応コマンド一発でインストールできるようにしておく。
+  /home/kotet/workspace/2018/10-04/kotet.stwe</code></pre></div><h3 id=インストール方法>インストール方法</h3><h4 id=ワンライナー>ワンライナー</h4><p>一応コマンド一発でインストールできるようにしておく。
 以下のコマンドをコピペして実行すると<code>mkws</code>コマンドが使えるようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl https://gist.githubusercontent.com/kotet/965657d6966a888ad3bf90de73142820/raw/mkws.sh &gt;&gt; ~/.bashrc <span style=color:#f92672>&amp;&amp;</span> source ~/.bashrc</code></pre></div><h4 id=手動で追記>手動で追記</h4><p>Gistで公開されているものを<code>~/.bashrc</code> に追記すればインストールは完了である。
+この記事の初版を書いたあと、改変がしやすいように多少整理した。
 命名規則が気にいらなかったりする場合は自分で書き換えてほしい。</p><p><a href=https://gist.github.com/kotet/965657d6966a888ad3bf90de73142820>https://gist.github.com/kotet/965657d6966a888ad3bf90de73142820</a></p></article><footer><h2><a href=/tags/tech>#tech</a>
 ディレクトリを日付で管理するためのBash関数を作った</h2><p><time>2018-10-04</time>
 <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
