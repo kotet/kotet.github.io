@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="少し詰まったのでメモ。 講義でJavaを書くので、自分のラップトップにも開発環境を構築しようと思った。 しかしArch Linuxにおいては、 ただパッケージをインストールするだけではコンパイラ等のツールが使用できない。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a7c4753a258fdd0dc8447a06aa20e989cd35e9b537c1476dd5ed5ad606bda2d1.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#java Arch Linuxでjavacをインストールする - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/10/where-is-javac/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#java Arch Linuxでjavacをインストールする - Kotet's Personal Blog"><meta name=og:description content="少し詰まったのでメモ。 講義でJavaを書くので、自分のラップトップにも開発環境を構築しようと思った。 しかしArch Linuxにおいては、 ただパッケージをインストールするだけではコンパイラ等のツールが使用できない。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/10/where-is-javac/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.49"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/java>#java</a>
+Arch Linuxでjavacをインストールする</h2><p><time>2018-10-09</time>
+<a href=/tags/java>#java</a> <a href=/tags/linux>#linux</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#archlinux-java>archlinux-java</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>少し詰まったのでメモ。
+講義でJavaを書くので、自分のラップトップにも開発環境を構築しようと思った。
+しかしArch Linuxにおいては、
+ただパッケージをインストールするだけではコンパイラ等のツールが使用できない。</p><h3 id=archlinux-java>archlinux-java</h3><p>ArchWikiを見てみると記事がある。</p><p><a href=https://wiki.archlinux.jp/index.php/Java>Java - ArchWiki</a></p><p>この記事中にあるパッケージでJDKのインストールができるのだが、
+インストールしただけでは<code>PATH</code>が通っていないようで使えない。
+Arch LinuxのJavaには<code>archlinux-java</code>という専用の管理用コマンドが存在しており、
+インストールしたあとにそれで有効化するという仕組みになっているようだ。</p><p><code>archlinux-java</code>は<code>java-runtime-common</code>パッケージの中にある。
+通常のパッケージマネージャーでインストールされたパッケージは、
+<code>archlinux-java</code>をサポートしていれば<code>archlinux-java status</code>で一覧できるようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ yaourt -S jdk10-openjdk
+$  archlinux-java status
+Available Java environments:
+  java-10-openjdk
+  java-8-openjdk/jre <span style=color:#f92672>(</span>default<span style=color:#f92672>)</span></code></pre></div><p>名前を確認したら、<code>archlinux-java set &lt;環境名&gt;</code>で環境が利用可能になる。
+リンクの作成などをするため管理者権限が必要なので注意。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo archlinux-java set java-10-openjdk
+$ which javac
+/usr/bin/javac
+$ file /usr/bin/javac
+/usr/bin/javac: symbolic link to /usr/lib/jvm/default/bin/javac</code></pre></div></article><footer><h2><a href=/tags/java>#java</a>
+Arch Linuxでjavacをインストールする</h2><p><time>2018-10-09</time>
+<a href=/tags/java>#java</a> <a href=/tags/linux>#linux</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
