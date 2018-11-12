@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで`cowsay -f dman`でいつでもD言語くんを崇めることができるようにする。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで`cowsay -f dman`でいつでもD言語くんを崇めることができるようにする。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,17 +6,18 @@
         processEscapes: true
       }
     });
-</script><title>#dlang cowsay -f dman - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/a04955c206a2f56e16d8/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang cowsay -f dman - Kotet's Personal Blog"><meta name=og:description content="人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで`cowsay -f dman`でいつでもD言語くんを崇めることができるようにする。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/a04955c206a2f56e16d8/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang cowsay -f dman - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/a04955c206a2f56e16d8/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang cowsay -f dman - Kotet's Personal Blog"><meta name=og:description content="人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで`cowsay -f dman`でいつでもD言語くんを崇めることができるようにする。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/a04955c206a2f56e16d8/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 cowsay -f dman</h2><p><time>2016-12-04</time>
-<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#cowfileを書く>cowfileを書く</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで<code>cowsay -f dman</code>でいつでもD言語くんを崇めることができるようにする。<br><code>cowsay -l</code>で使えるcowfileの一覧が見られる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cowsay -l
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#cowfileを書く>cowfileを書く</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>人間生きていればD言語くんを降臨させないといけない場面に何度も遭遇する。そこで<code>cowsay -f dman</code>でいつでもD言語くんを崇めることができるようにする。<br><code>cowsay -l</code>で使えるcowfileの一覧が見られる。</p><pre><code class=language-console>$ cowsay -l
 Cow files in /usr/share/cowsay/cows:
 apt beavis.zen bong bud-frogs bunny calvin cheese cock cower daemon default
 dragon dragon-and-cow duck elephant elephant-in-snake eyes
 flaming-sheep ghostbusters gnu head-in hellokitty kiss kitty koala kosh
 luke-koala mech-and-cow meow milk moofasa moose mutilated pony pony-smaller
 ren sheep skeleton snowman sodomized-sheep stegosaurus stimpy suse
-three-eyes turkey turtle tux unipony unipony-smaller vader vader-koala www</code></pre></div><p>同時にcowfileのあるディレクトリもわかる。ここに自分のcowfileを追加すればどこでも<code>cowsay -f</code>できる。というわけでD言語くんのAAを作った。</p><p><a href=https://gist.github.com/kotet/33915fda0aedfaab597ea2d02f434b97>D-man AA</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat dman.txt
+three-eyes turkey turtle tux unipony unipony-smaller vader vader-koala www
+</code></pre><p>同時にcowfileのあるディレクトリもわかる。ここに自分のcowfileを追加すればどこでも<code>cowsay -f</code>できる。というわけでD言語くんのAAを作った。</p><p><a href=https://gist.github.com/kotet/33915fda0aedfaab597ea2d02f434b97>D-man AA</a></p><pre><code class=language-console>$ cat dman.txt
       ____
       L__L|
       /    \
@@ -34,29 +35,32 @@ three-eyes turkey turtle tux unipony unipony-smaller vader vader-koala www</code
     /     \
     \     /
    _ \   /__
-  |__/  |__/</code></pre></div><p><img src=/assets/qiita/0/57768/136097c9-d68a-2439-134e-d3e4f5a221a5.png alt="Screenshot from 2016-12-01 14-38-08.png"></p><h1 id=cowfileを書く>cowfileを書く</h1><p>cowfileは拡張子こそ<code>.cow</code>だがperlのコードである。<code>$the_cow</code>にAAを入れる。</p><ul><li>吹き出しの<code>\</code>は<code>$thoughts</code>と書く。</li><li>それ以外の<code>\</code>は<code>\\</code>とエスケープする必要がある。</li><li>吹き出しを伸ばすため左側にスペースを作る。</li><li><code>$eyes</code>とか<code>$tongue</code>というのもあるが今回は使わない。D言語くんが舌を出すとどうなるんだろう……</li></ul><p>そうしてできたものがこちら。</p><p><a href=https://gist.github.com/kotet/4be157150af024ea14e825f17c663940>Dman cow file</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-perl data-lang=perl><span style=color:#75715e>##</span>
-<span style=color:#75715e>## Dman</span>
-<span style=color:#75715e>##</span>
-$the_cow <span style=color:#f92672>=</span> <span style=color:#f92672>&lt;&lt;</span>EOC;
+  |__/  |__/
+</code></pre><p><img src=/assets/qiita/0/57768/136097c9-d68a-2439-134e-d3e4f5a221a5.png alt="Screenshot from 2016-12-01 14-38-08.png"></p><h1 id=cowfileを書く>cowfileを書く</h1><p>cowfileは拡張子こそ<code>.cow</code>だがperlのコードである。<code>$the_cow</code>にAAを入れる。</p><ul><li>吹き出しの<code>\</code>は<code>$thoughts</code>と書く。</li><li>それ以外の<code>\</code>は<code>\\</code>とエスケープする必要がある。</li><li>吹き出しを伸ばすため左側にスペースを作る。</li><li><code>$eyes</code>とか<code>$tongue</code>というのもあるが今回は使わない。D言語くんが舌を出すとどうなるんだろう……</li></ul><p>そうしてできたものがこちら。</p><p><a href=https://gist.github.com/kotet/4be157150af024ea14e825f17c663940>Dman cow file</a></p><pre><code class=language-perl>##
+## Dman
+##
+$the_cow = &lt;&lt;EOC;
         $thoughts     ____
-         $thoughts    L__L<span style=color:#f92672>|</span>
-            <span style=color:#f92672>/</span>       <span style=color:#f92672>\\</span>
-           <span style=color:#f92672>/</span>         <span style=color:#f92672>\\</span>
-          <span style=color:#f92672>/</span> _______   <span style=color:#f92672>\\</span>
-          <span style=color:#f92672>\\</span> <span style=color:#f92672>\\</span><span style=color:#75715e>#/  \\/ \\  /</span>
-           <span style=color:#f92672>\\|</span><span style=color:#75715e>#| O| O|#\\</span>
-            <span style=color:#f92672>|</span><span style=color:#75715e>#L _L__ #|</span>
-            <span style=color:#f92672>|</span><span style=color:#75715e>###|  |##|</span>
-            <span style=color:#e6db74>/###/</span>  <span style=color:#f92672>/</span><span style=color:#75715e>##|</span>
-           <span style=color:#e6db74>/###/</span>   <span style=color:#f92672>/</span><span style=color:#75715e>##|</span>
-          <span style=color:#e6db74>/###/</span>___<span style=color:#e6db74>/###/</span>
-         <span style=color:#e6db74>/###########/</span>
-         <span style=color:#e6db74>/##########/</span>
-            <span style=color:#f92672>/</span>     <span style=color:#f92672>\\</span>
-            <span style=color:#f92672>\\</span>     <span style=color:#f92672>/</span>
-           _ <span style=color:#f92672>\\</span>   <span style=color:#f92672>/</span>__
-          <span style=color:#f92672>|</span>__<span style=color:#e6db74>/  |__/</span>
-EOC</code></pre></div><p><img src=/assets/qiita/0/57768/38ecbb35-2940-be41-cc47-f2d4362433d0.png alt="Screenshot from 2016-12-01 14-49-05.png"></p><p>これを先ほどのディレクトリに入れてやればいい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ sudo cp dman.cow /usr/share/cowsay/cows/
-$ cowsay -f dman 唯一神Dを崇めよ</code></pre></div><p><img src=/assets/qiita/0/57768/6549a1a2-ae05-a4b2-271b-e3a142f0f0f2.png alt="Screenshot from 2016-12-01 14-51-38.png"></p><p>携帯性を持たせるため小さいバージョンも作った。@simd_nyan さんの<a href=https://gist.github.com/simdnyan/20e8fa2a2736c315e2c1>こちら</a>のAAを使わせてもらった。</p><p><a href=https://gist.github.com/kotet/1e200c8f004bdd9ef67871eebd9ed811>Mini Dman cow file</a></p><p><img src=/assets/qiita/0/57768/c3bd8169-52c1-7735-b4cd-9dd858a16ba0.png alt="Screenshot from 2016-12-01 15-18-23.png"></p><p>これでいつでもどこでもD言語くんのお告げが聞けるだろう。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+         $thoughts    L__L|
+            /       \\
+           /         \\
+          / _______   \\
+          \\ \\#/  \\/ \\  /
+           \\|#| O| O|#\\
+            |#L _L__ #|
+            |###|  |##|
+            /###/  /##|
+           /###/   /##|
+          /###/___/###/
+         /###########/
+         /##########/
+            /     \\
+            \\     /
+           _ \\   /__
+          |__/  |__/
+EOC
+</code></pre><p><img src=/assets/qiita/0/57768/38ecbb35-2940-be41-cc47-f2d4362433d0.png alt="Screenshot from 2016-12-01 14-49-05.png"></p><p>これを先ほどのディレクトリに入れてやればいい。</p><pre><code class=language-console>$ sudo cp dman.cow /usr/share/cowsay/cows/
+$ cowsay -f dman 唯一神Dを崇めよ
+</code></pre><p><img src=/assets/qiita/0/57768/6549a1a2-ae05-a4b2-271b-e3a142f0f0f2.png alt="Screenshot from 2016-12-01 14-51-38.png"></p><p>携帯性を持たせるため小さいバージョンも作った。@simd_nyan さんの<a href=https://gist.github.com/simdnyan/20e8fa2a2736c315e2c1>こちら</a>のAAを使わせてもらった。</p><p><a href=https://gist.github.com/kotet/1e200c8f004bdd9ef67871eebd9ed811>Mini Dman cow file</a></p><p><img src=/assets/qiita/0/57768/c3bd8169-52c1-7735-b4cd-9dd858a16ba0.png alt="Screenshot from 2016-12-01 15-18-23.png"></p><p>これでいつでもどこでもD言語くんのお告げが聞けるだろう。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 cowsay -f dman</h2><p><time>2016-12-04</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

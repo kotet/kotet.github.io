@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事はBlockchain train journalの3本目の記事です。まずこちらから読み始めましょう:"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事はBlockchain train journalの3本目の記事です。まずこちらから読み始めましょう:"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#blockchain_train_journal IPFSを理解する【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/getting-to-know-ipfs/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#blockchain_train_journal IPFSを理解する【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事はBlockchain train journalの3本目の記事です。まずこちらから読み始めましょう:"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/getting-to-know-ipfs/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#blockchain_train_journal IPFSを理解する【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/getting-to-know-ipfs/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#blockchain_train_journal IPFSを理解する【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事はBlockchain train journalの3本目の記事です。まずこちらから読み始めましょう:"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/getting-to-know-ipfs/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/blockchain_train_journal>#blockchain_train_journal</a>
 IPFSを理解する【翻訳】</h2><p><time>2017-11-09</time>
 <a href=/tags/blockchain_train_journal>#blockchain_train_journal</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/ipfs>#ipfs</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#読み込んでみましょう>読み込んでみましょう</a></li><li><a href=#ターミナルを使おう>ターミナルを使おう</a></li><li><a href=#非中央集権化-ついに進捗>非中央集権化！ついに進捗</a></li><li><a href=#ipnsによるこのブログの不変のアドレス>IPNSによるこのブログの不変のアドレス</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、
@@ -38,15 +38,18 @@ IPFSを理解する【翻訳】</h2><p><time>2017-11-09</time>
     ├── css
      ... // ...
             └── youtube.png
-</code></pre><p>ファイルを惑星間ファイルシステムに向けて打ち上げるには、このようにします:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs init # これはノードのピアIDを生成します
+</code></pre><p>ファイルを惑星間ファイルシステムに向けて打ち上げるには、このようにします:</p><pre><code class=language-console>$ ipfs init # これはノードのピアIDを生成します
 $ ipfs daemon # ローカルノードを開始します
 $ ipfs add catching-the-blockchain-train.html
-added QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4 catching-the-blockchain-train.html</code></pre></div><p>私のノードはこのファイルを配信できるようになり、ネットワークに向けて誰かが以下のハッシュを要求した場合に利用できるコンテンツ（私の最初のブログポストです！）があると発信します:</p><p><code>QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4</code></p><p>あなたのターミナルで:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>ipfs cat QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4</code></pre></div><p>は以下と同じ結果を返します（もちろん私がファイルをHTTPでホストしている間に限った話です）:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>curl http://decentralized.blog/catching-the-blockchain-train.html</code></pre></div><p>あなたのこのファイルをIPFSで2度リクエストした場合、結果は非常に早く返ってきます。
+added QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4 catching-the-blockchain-train.html
+</code></pre><p>私のノードはこのファイルを配信できるようになり、ネットワークに向けて誰かが以下のハッシュを要求した場合に利用できるコンテンツ（私の最初のブログポストです！）があると発信します:</p><p><code>QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4</code></p><p>あなたのターミナルで:</p><pre><code class=language-console>ipfs cat QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4
+</code></pre><p>は以下と同じ結果を返します（もちろん私がファイルをHTTPでホストしている間に限った話です）:</p><pre><code class=language-console>curl http://decentralized.blog/catching-the-blockchain-train.html
+</code></pre><p>あなたのこのファイルをIPFSで2度リクエストした場合、結果は非常に早く返ってきます。
 これはノードがコンテンツのコピーをローカルに保つためです。
 クールでしょう？</p><p>IPFSノードにはHTTPゲートウェイが付属しているため、ブラウザからもファイルにアクセスできます: <a href=http://decentralized.blog:8080/ipfs/QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4>http://decentralized.blog:8080/ipfs/QmXyZcrThrfWQSTKzPiNT4Nd2RcqcVQ3tr7rmFqHYZ3fq4</a></p><p>このようなことが起きています（getting startedより）:</p><blockquote><p>ゲートウェイはあなたのコンピュータからファイルを配信します。
 ゲートウェイはDHTにクエリを投げ、あなたのマシンを見つけ、ファイルを要求し、あなたのマシンはゲートウェイにそれを送り、ゲートウェイはあなたのブラウザにそのファイルを送ります。</p></blockquote><p>Note: これは明らかに中央サーバがありますが、少なくともゲートウェイは誰でも実行が可能です。
 なのでこれは非中央集権の一種です。
-あとでより良い何かが必要でしょう。</p><h3 id=非中央集権化-ついに進捗>非中央集権化！ついに進捗</h3><p>Webサイト全体を惑星間ファイルシステムにプッシュするのはこれ以上ないほど簡単で、<code>-r</code>フラグをつけてすべての静的ファイルを含むディレクトリを指定するだけです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs add -r ../../www/dcb
+あとでより良い何かが必要でしょう。</p><h3 id=非中央集権化-ついに進捗>非中央集権化！ついに進捗</h3><p>Webサイト全体を惑星間ファイルシステムにプッシュするのはこれ以上ないほど簡単で、<code>-r</code>フラグをつけてすべての静的ファイルを含むディレクトリを指定するだけです。</p><pre><code class=language-console>$ ipfs add -r ../../www/dcb
 added QmWu4hsywXoSrw5JRhjUadyMnDuxuvcgExwVD62cWeLVjb dcb/archives.html
 added QmUCJ6z2EfikXEDUYbxfjdkrX2zw62XCAM93HHC61Qrmwg dcb/author/mark-pors.html
 added QmV13vUiKU64oHoxbp5MN7bnehraW46de82PLvndbisn64 dcb/authors.html
@@ -68,7 +71,8 @@ added QmYUnPcDPcnKA3WFembvNYG48m1oUWa7QLNWZxrkLv1vcE dcb/theme/css
 added QmfBq8BDXxhu9cLAG4qhxqY6K5xDQCBWyoYqX5fTmQbfwW dcb/theme/images/icons
 added Qme4Dt6vQ1eAVcEs7dY55cAMhTsRJxTakANhZjX9EKvGfF dcb/theme/images
 added QmciTMAUiEqMpar2u9n1dJNJStmrP6fjMESyH6ZS5eo56H dcb/theme
-added QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ dcb</code></pre></div><p>Note: 私は最初シンボリックリンクをネットワークに追加しようとして失敗しました。</p><p><code>dcb/catching-the-blockchain-train.html</code>のハッシュは先程のものと同じです。これが重複排除です。</p><p>このリストから1番下のハッシュを取ってゲートウェイに送ると、ブログが閲覧できます:
+added QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ dcb
+</code></pre><p>Note: 私は最初シンボリックリンクをネットワークに追加しようとして失敗しました。</p><p><code>dcb/catching-the-blockchain-train.html</code>のハッシュは先程のものと同じです。これが重複排除です。</p><p>このリストから1番下のハッシュを取ってゲートウェイに送ると、ブログが閲覧できます:
 <a href=http://decentralized.blog:8080/ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ/>http://decentralized.blog:8080/ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ/</a>
 すべての相対リンクはちゃんと動作します。
 素晴らしい！</p><p>私のゲートウェイがダウンしている場合は、IPFSが提供しているもの: <a href=https://gateway.ipfs.io/ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ/>https://gateway.ipfs.io/ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ/</a>
@@ -78,8 +82,9 @@ added QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ dcb</code></pre></div><p>No
 まさにクールでしょう？</p><p>ちょっと問題があります:
 これはこのブログの古いバージョンです。
 私はこの記事を書いてアップロードしている途中であり、アップロードするとハッシュが変わり、そのハッシュは最新の記事には含まれることがないからです……</p><p>解決方法はあります:</p><h3 id=ipnsによるこのブログの不変のアドレス>IPNSによるこのブログの不変のアドレス</h3><p>IPNSの使い方はこちらで説明されています:
-<a href=https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md>The Inter-Planetary Naming System</a></p><p>私たちの、ノードが自分のサーバーで動いているケースでは、このようにします:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs name publish QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ
-Published to QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN: /ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ</code></pre></div><p>このブログのアドレスは変化しません:
+<a href=https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md>The Inter-Planetary Naming System</a></p><p>私たちの、ノードが自分のサーバーで動いているケースでは、このようにします:</p><pre><code class=language-console>$ ipfs name publish QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ
+Published to QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN: /ipfs/QmcPx9ZQboyHw8T7Afe4DbWFcJYocef5Pe4H3u7eK1osnQ
+</code></pre><p>このブログのアドレスは変化しません:
 <code>QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN</code></p><p>このアドレスは（私が先ほどのように実行した場合）静的ファイルを含むディレクトリを指し示します（index.htmlがそのディレクトリにある場合それが配信されます）。</p><p>あなたがこれを読んでいる時も、アドレス<code>QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN</code>はまだホームページアドレスですが、コンテンツは新しいものになっています（記事を書いたら<code>publish</code>しなおします）。</p><p>こうして、私たちの静的ブログは非中央集権化され、<a href=http://decentralized.blog:8080/ipns/QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN/>http://decentralized.blog:8080/ipns/QmRf4ERGvYpVo6HRa2VueZT8pWi8YvyLS3rW6ad2y83tdN/</a>で利用できるようになりました。
 今度は<code>ipfs</code>のかわりに<code>ipns</code>となっていることに注意してください。</p><p>IPFSは超クールであり、人生をより簡単にします。
 ブログを改善する前に、ちょっとIPFS（とIPNS）の内部動作について見ていきたいです。</p></article><footer><h2><a href=/tags/blockchain_train_journal>#blockchain_train_journal</a>

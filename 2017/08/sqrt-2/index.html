@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/08/sqrt-2/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 2の平方根をDだけで1万桁求める - Kotet's Personal Blog"><meta name=og:description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/08/sqrt-2/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang 2の平方根をDだけで1万桁求める - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/08/sqrt-2/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 2の平方根をDだけで1万桁求める - Kotet's Personal Blog"><meta name=og:description content="かなり前に円周率をたくさん求めたくなって、 せっかくだからD言語だけで書いてみようと思い、 こちらの記事を参考にbigfixedというライブラリを作った。 これはstd.bigintを使って固定小数点計算をするものである。 しかし作っているうちに飽きてしまい……"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/08/sqrt-2/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 2の平方根をDだけで1万桁求める</h2><p><time>2017-08-14</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#sqrt-d><code>sqrt.d</code></a></li><li><a href=#出力>出力</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>かなり前に円周率をたくさん求めたくなって、
@@ -15,10 +15,10 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 これは<code>std.bigint</code>を使って固定小数点計算をするものである。
 しかし作っているうちに飽きてしまい完成する頃には円周率はどうでも良くなってきた。
 とりあえず計算の簡単な平方根を求めてみることにした。</p><p>以下がそのコードである。
-Single-file packageになっているので<code>dub run --single --build=release sqrt.d</code>などとしてやるとこのファイル単体で動く。</p><h4 id=sqrt-d><code>sqrt.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>#!/usr/bin/env dub
+Single-file packageになっているので<code>dub run --single --build=release sqrt.d</code>などとしてやるとこのファイル単体で動く。</p><h4 id=sqrt-d><code>sqrt.d</code></h4><pre><code class=language-d>#!/usr/bin/env dub
 /+ dub.sdl:
-	name &#34;sqrt&#34;
-    dependency &#34;bigfixed&#34; version=&#34;*&#34;
+	name &quot;sqrt&quot;
+    dependency &quot;bigfixed&quot; version=&quot;*&quot;
 +/
 void main()
 {
@@ -51,7 +51,8 @@ string sqrt(int n, size_t prec)
         }
     }
     return low.toDecimalString(prec);
-}</code></pre></div><p>固定小数点数なので、整数と同じノリで二分法が使える。</p><h4 id=出力>出力</h4><pre><code>/// 前略
+}
+</code></pre><p>固定小数点数なので、整数と同じノリで二分法が使える。</p><h4 id=出力>出力</h4><pre><code>/// 前略
 9255474240448991887071069675242507745201229360810574142653234724064162141033353340551104521261750359028403745459186450472762434207177092979354010214096464502836834180407586081001407216192477179809859681115404464437285689592868319777977869346415984697451339177415379048778808300220583350467465553230285873258351
 </code></pre><p><a href=http://www.h2.dion.ne.jp/~dra/suu/chi2/heihoukon/2.html>こちら</a>のサイトと値が一致した。
 なお、実ははじめ100万桁を計算しようとしたのだが、8時間たっても終了しなかったので断念している。

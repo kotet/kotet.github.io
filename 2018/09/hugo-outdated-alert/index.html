@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="このブログには2016年から書いている様々な記事を集めている。 なかには必要な前提知識が不足した状態で手探りのまま書いた記事や、 具合が悪くて精"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="このブログには2016年から書いている様々な記事を集めている。 なかには必要な前提知識が不足した状態で手探りのまま書いた記事や、 具合が悪くて精"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#hugo 古い記事に警告を表示する - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/hugo-outdated-alert/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#hugo 古い記事に警告を表示する - Kotet's Personal Blog"><meta name=og:description content="このブログには2016年から書いている様々な記事を集めている。 なかには必要な前提知識が不足した状態で手探りのまま書いた記事や、 具合が悪くて精"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/hugo-outdated-alert/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#hugo 古い記事に警告を表示する - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/hugo-outdated-alert/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#hugo 古い記事に警告を表示する - Kotet's Personal Blog"><meta name=og:description content="このブログには2016年から書いている様々な記事を集めている。 なかには必要な前提知識が不足した状態で手探りのまま書いた記事や、 具合が悪くて精"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/hugo-outdated-alert/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/hugo>#hugo</a>
 古い記事に警告を表示する</h2><p><time>2018-09-19</time>
 <a href=/tags/hugo>#hugo</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#hugoテンプレート>Hugoテンプレート</a></li><li><a href=#hugoにおける日時の比較>Hugoにおける日時の比較</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>このブログには2016年から書いている様々な記事を集めている。
@@ -19,9 +19,10 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 をHugoで生成したサイトに付けたい人のための記事である。
 「hugo 古い記事 警告」とかでググってもこういう情報は出てこなかった。
 自分と同じググりセンスを持つ人がこの記事を読んで役立ててくれるとうれしい。</p><h3 id=hugoテンプレート>Hugoテンプレート</h3><p>以下は1年以上前の記事でのみ有効化されるテンプレートである。
-コードを直接埋め込むなり、partialテンプレートにするなりすればよい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{ if gt (now.AddDate -1 0 0) .Date }}
-<span style=color:#75715e>&lt;!-- ここにHTMLを好きなように書く --&gt;</span>
-{{ end }}</code></pre></div><h3 id=hugoにおける日時の比較>Hugoにおける日時の比較</h3><p>最初は「現在の日付と投稿日を引き算して、その差が1年以上」というif文を書こうと思ったのだが、
+コードを直接埋め込むなり、partialテンプレートにするなりすればよい。</p><pre><code class=language-html>{{ if gt (now.AddDate -1 0 0) .Date }}
+&lt;!-- ここにHTMLを好きなように書く --&gt;
+{{ end }}
+</code></pre><h3 id=hugoにおける日時の比較>Hugoにおける日時の比較</h3><p>最初は「現在の日付と投稿日を引き算して、その差が1年以上」というif文を書こうと思ったのだが、
 どうも調べた限り日時を1年とか1日とかの絶対量に変換する方法はないようだ。</p><p>しかし<code>AddDate</code>という関数があった。
 これは年月日を指定して与えられた日時から加算する関数である。
 <code>now.AddDate -1 0 0</code>とすることで現在日時にマイナス1年を加算、

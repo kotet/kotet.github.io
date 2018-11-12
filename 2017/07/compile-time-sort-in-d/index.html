@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang Dにおけるコンパイル時ソート【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/07/compile-time-sort-in-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dにおけるコンパイル時ソート【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/07/compile-time-sort-in-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang Dにおけるコンパイル時ソート【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/07/compile-time-sort-in-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dにおけるコンパイル時ソート【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」 彼はそう言って、コードを続けました"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/07/compile-time-sort-in-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 Dにおけるコンパイル時ソート【翻訳】</h2><p><time>2017-07-09</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#例1>例1</a></li></ul></li><li><a href=#コンパイル時コードは実行時コード>コンパイル時コードは実行時コード</a></li><li><a href=#コンパイル時ソートを分解する>コンパイル時ソートを分解する</a><ul><li><a href=#例2>例2</a></li><li><a href=#例3>例3</a></li><li><a href=#例4>例4</a></li></ul></li><li><a href=#ctfeかctfeでないか>CTFEかCTFEでないか</a><ul><li><a href=#例5>例5</a></li></ul></li><li><a href=#複雑なコンパイル時保証>複雑なコンパイル時保証</a><ul><li><a href=#例6>例6</a></li><li><a href=#例7>例7</a></li></ul></li><li><a href=#結論>結論</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=http://dlang.org/blog/2017/06/05/compile-time-sort-in-d/>Compile-Time Sort in D – The D Blog</a></p><p>を自分用に翻訳したものを
@@ -23,12 +23,13 @@ Dにおけるコンパイル時ソート【翻訳】</h2><p><time>2017-07-09</ti
 Björnの例から出発して、この記事はD言語におけるコンパイル時評価の興味深い側面をいくらか提示します。</p><p>Andrei Alexandrescuが&rdquo;No Story&rdquo;スタイルの答えで素早く解決した、
 DフォーラムでのRussel Winderの挑発的な問い、「きっとDならもっとうまくやる」が私の目にとまりました。
 「本当に何もする必要はありません。ただ標準ライブラリのソートを使ってください」
-彼はそう言って、コードを続けました:</p><h4 id=例1>例1</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+彼はそう言って、コードを続けました:</p><h4 id=例1>例1</h4><pre><code class=language-d>void main() {
     import std.algorithm, std.stdio;
     enum a = [ 3, 1, 2, 4, 0 ];
     static b = sort(a);
     writeln(b); // [0, 1, 2, 3, 4]
-}</code></pre></div><p>Dに疎い人にはわからないかもしれませんが、<code>sort</code>の呼び出しは確かにコンパイル時に起きています。
+}
+</code></pre><p>Dに疎い人にはわからないかもしれませんが、<code>sort</code>の呼び出しは確かにコンパイル時に起きています。
 なぜなのか見ていきましょう。</p><h3 id=コンパイル時コードは実行時コード>コンパイル時コードは実行時コード</h3><p>これは本当のことです。
 Dでコンパイル時に実行されるようにするために超えなければならないハードルはありません。
 あらゆるコンパイル時関数は実行時関数でもあり、両方のコンテキストで実行できます。
@@ -38,20 +39,22 @@ Dでコンパイル時に実行されるようにするために超えなけれ�
 そのうえで、関数がコンパイル時と実行時どちらで評価されるかを決めるのはそれが呼ばれたコンテキストです。</p><p><a href=http://dlang.org/spec/function.html#interpretation>CTFEドキュメント</a>には以下の文があります:</p><blockquote><p>処理をコンパイル時に走らせるには、関数呼び出しが、 コンパイル時に必ず評価されねばならない文脈に現れるようにします<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></p></blockquote><p>続けてそれが真となるいくつかの例を列挙しています。
 このように要約されるものです:
 コンパイル時に実行しなければならないコンテキストにある関数がコンパイル時に実行できるときは、そうします。
-実行できない時(たとえばCTFE要件に合わない時)は、コンパイラはエラーを送出します。</p><h3 id=コンパイル時ソートを分解する>コンパイル時ソートを分解する</h3><p>もう一度<strong>例1</strong>を見てみましょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+実行できない時(たとえばCTFE要件に合わない時)は、コンパイラはエラーを送出します。</p><h3 id=コンパイル時ソートを分解する>コンパイル時ソートを分解する</h3><p>もう一度<strong>例1</strong>を見てみましょう。</p><pre><code class=language-d>void main() {
     import std.algorithm, std.stdio;
     enum a = [ 3, 1, 2, 4, 0 ];
     static b = sort(a);
     writeln(b);
-}</code></pre></div><p>CTFEマジックを可能にするのに関係がある点は3行目と4行目です。
+}
+</code></pre><p>CTFEマジックを可能にするのに関係がある点は3行目と4行目です。
 3行目の<code>enum</code>は<a href=http://dlang.org/spec/enum.html#manifest_constants>記号定数</a>です。
 これはDの他の定数(<code>immutable</code>や<code>const</code>とマークされたもの)とは異なり、コンパイル時にのみ存在します。
 アドレスを取ろうとするあらゆる試みはエラーになります。
-それが全く使われなかった時、値はコード中に現れません。</p><p><code>enum</code>が使われた時、コンパイラは本質的に、シンボル名の場所にその値をペーストします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>enum xinit = 10;
+それが全く使われなかった時、値はコード中に現れません。</p><p><code>enum</code>が使われた時、コンパイラは本質的に、シンボル名の場所にその値をペーストします。</p><pre><code class=language-d>enum xinit = 10;
 int x = xinit;
 
 immutable yinit = 11;
-int y = yinit;</code></pre></div><p>ここで、<code>x</code>はリテラル<code>10</code>に初期化されます。
+int y = yinit;
+</code></pre><p>ここで、<code>x</code>はリテラル<code>10</code>に初期化されます。
 <code>int x = 10</code>と書くのと全く同じです。
 定数<code>yinit</code>は<code>int</code>リテラルで初期化されますが、コンパイル時にわかっているのにもかかわらず、
 <code>y</code>はリテラル自身ではなく<code>yinit</code>の値で初期化されます。
@@ -59,22 +62,25 @@ int y = yinit;</code></pre></div><p>ここで、<code>x</code>はリテラル<co
 <a href=http://dlang.org/spec/function.html#interpretation>CTFEドキュメント</a>に、
 これが関数がコンパイル時に評価されなければならないシナリオの例としてリストされています。
 関数内で宣言された静的変数はコンパイル時の値のみで初期化できます。
-これをコンパイルしようとした時:</p><h4 id=例2>例2</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+これをコンパイルしようとした時:</p><h4 id=例2>例2</h4><pre><code class=language-d>void main() {
     int x = 10;
     static y = x;
-}</code></pre></div><p>このような結果になります:</p><pre><code>Error: variable x cannot be read at compile time
+}
+</code></pre><p>このような結果になります:</p><pre><code>Error: variable x cannot be read at compile time
 </code></pre><p>静的変数の初期化に関数呼び出しを使うことは関数がコンパイル時に実行されなければならないことを意味し、
 従って、その資格があることを意味します。</p><p>パズルの2つのピース、記号定数と静的初期化子が、
 なぜ<strong>例1</strong>の<code>sort</code>の呼び出しがコンパイル時にメタプログラミングをこねくり回すこと無しに発生するかを説明します。
-実際、この例は1行短くすることができます:</p><h4 id=例3>例3</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+実際、この例は1行短くすることができます:</p><h4 id=例3>例3</h4><pre><code class=language-d>void main() {
     import std.algorithm, std.stdio;
     static b = sort([ 3, 1, 2, 4, 0 ]);
     writeln(b);
-}</code></pre></div><p>そして実行時に<code>b</code>をとどめておく必要がない場合、静的変数の代わりに<code>enum</code>にできます:</p><h4 id=例4>例4</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+}
+</code></pre><p>そして実行時に<code>b</code>をとどめておく必要がない場合、静的変数の代わりに<code>enum</code>にできます:</p><h4 id=例4>例4</h4><pre><code class=language-d>void main() {
     import std.algorithm, std.stdio;
     enum b = sort([ 3, 1, 2, 4, 0 ]);
     writeln(b);
-}</code></pre></div><p>両方のケースで、<code>sort</code>への呼び出しはコンパイル時に発生しますが、結果の扱いが異なります。
+}
+</code></pre><p>両方のケースで、<code>sort</code>への呼び出しはコンパイル時に発生しますが、結果の扱いが異なります。
 これを考慮すると、<code>enum</code>の性質上、この変更は以下に相当するものを生成します:
 <code>writeln([ 0, 1, 2, 3, 4 ])</code>
 <code>writeln</code>の呼び出しは実行時に発生するため、配列リテラルは
@@ -95,17 +101,18 @@ int y = yinit;</code></pre></div><p>ここで、<code>x</code>はリテラル<co
 配列はまだこの中にあり、強化されたAPIでラップされています。</p><h3 id=ctfeかctfeでないか>CTFEかCTFEでないか</h3><p>上で私はすべてのコンパイル時関数は実行時関数でもあると述べました。
 時々、関数から2つを区別できれば便利です。
 Dは<code>__ctfe</code>変数でそのようなことを可能にします。
-こちらは私の本「<a href=http://amzn.to/1IlQkZX>Learning D</a>」から持ってきた例です。</p><h4 id=例5>例5</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>string genDebugMsg(string msg) {
+こちらは私の本「<a href=http://amzn.to/1IlQkZX>Learning D</a>」から持ってきた例です。</p><h4 id=例5>例5</h4><pre><code class=language-d>string genDebugMsg(string msg) {
     if(__ctfe)
-        return &#34;CTFE_&#34; ~ msg;
+        return &quot;CTFE_&quot; ~ msg;
     else
-        return &#34;DBG_&#34; ~ msg;
+        return &quot;DBG_&quot; ~ msg;
 }
 
-pragma(msg, genDebugMsg(&#34;Running at compile-time.&#34;));
+pragma(msg, genDebugMsg(&quot;Running at compile-time.&quot;));
 void main() {
-    writeln(genDebugMsg(&#34;Running at runtime.&#34;));
-}</code></pre></div><p><a href=https://dlang.org/spec/pragma.html#msg><code>msg</code>プラグマ</a>はコンパイル時に<code>stderr</code>にメッセージをプリントします。
+    writeln(genDebugMsg(&quot;Running at runtime.&quot;));
+}
+</code></pre><p><a href=https://dlang.org/spec/pragma.html#msg><code>msg</code>プラグマ</a>はコンパイル時に<code>stderr</code>にメッセージをプリントします。
 <code>genDebugMsg</code>がこの2番めの引数として呼ばれた時、関数の中の変数<code>__ctfe</code>は<code>true</code>になります。
 関数が<code>writeln</code>の引数として呼ばれた時、それは実行時のコンテキストで発生し、<code>__ctfe</code>は<code>false</code>になります。</p><p>特に注意すべきこととして、<code>__ctfe</code>はコンパイル時の値<strong>ではありません。</strong>
 それがコンパイル時に実行されているか、実行時に実行されているか知っている関数はありません。
@@ -117,7 +124,7 @@ CTFEを説明するセクションで、彼は仮言的な
 に渡されるパラメータを検証するのに使える3つの関数を実装しました。
 アイデアは、パラメータが彼が本の中で示した(コメンタリのために買ってください &ndash; その価値があるものです)、
 可能ななかで最大の周期を生成する、一連の基準を満たしている必要があるというものです。
-ここでは、ユニットテストを除いてあります:</p><h4 id=例6>例6</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// ユークリッドの互除法の実装
+ここでは、ユニットテストを除いてあります:</p><h4 id=例6>例6</h4><pre><code class=language-d>// ユークリッドの互除法の実装
 ulong gcd(ulong a, ulong b) { 
     while (b) {
         auto t = b; b = a % b; a = t;
@@ -147,18 +154,20 @@ bool properLinearCongruentialParameters(ulong m, ulong a, ulong c) {
     if ((a - 1) % 4 == 0 &amp;&amp; m % 4) return false;
     // すべてのテストを通過
     return true;
-}</code></pre></div><p>このコードのキーポイントは以前私がこの記事中で作ったものと同じものを作ることを意図しています:
+}
+</code></pre><p>このコードのキーポイントは以前私がこの記事中で作ったものと同じものを作ることを意図しています:
 <code>properLinearCongruentialParameters</code>はコンパイル時のコンテキストと実行時のコンテキスト両方で使える関数です。
 それを動作させるために特殊な構文が要求されることはなく、2つの異なるバージョンを作る必要はありません。</p><p>渡されたRNGパラメータをテンプレート引数としてテンプレート化された構造体として線形合同法を実装したい?
 パラメータを検証するために<code>properLinearCongruentialParameters</code>を使ってください。
 引数を実行時にとるバージョンを実装したい?
 <code>properLinearCongruentialParameters</code>はそれも対象です。
 コンパイル時と実行時両方で使えるRNGを実装したい?
-もうわかるでしょう?</p><p>完全性の確認のため、ここに両方のコンテキストでパラメータを検証する例を示します。</p><h4 id=例7>例7</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+もうわかるでしょう?</p><p>完全性の確認のため、ここに両方のコンテキストでパラメータを検証する例を示します。</p><h4 id=例7>例7</h4><pre><code class=language-d>void main() {
     enum ulong m = 1UL &lt;&lt; 32, a = 1664525, c = 1013904223;
     static ctVal = properLinearCongruentialParameters(m, a, c);
     writeln(properLinearCongruentialParameters(m, a, c));
-}</code></pre></div><p>注意深く見たならば、<code>ctVal</code>がコンパイル時に初期化されなければならず、
+}
+</code></pre><p>注意深く見たならば、<code>ctVal</code>がコンパイル時に初期化されなければならず、
 したがって関数呼び出しにおいてCTFEが強制されることがわかるでしょう。
 そして<code>writeln</code>への引数としての同じ関数呼び出しは実行時に発生します。
 あなたが自分で同じようなことをすることもできます。</p><h3 id=結論>結論</h3><p>Dにおけるコンパイル時関数評価は便利で簡単です。

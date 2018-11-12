@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=IPFSのハッシュを自動的に収集できるのではないかということに気がついた。スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思い出してテンションが上がった。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=IPFSのハッシュを自動的に収集できるのではないかということに気がついた。スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思い出してテンションが上がった。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,79 +6,83 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs IPFS体験記8:IPFS網漁 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/ipfs-trap/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記8:IPFS網漁 - Kotet's Personal Blog"><meta name=og:description content=IPFSのハッシュを自動的に収集できるのではないかということに気がついた。スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思い出してテンションが上がった。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/ipfs-trap/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs IPFS体験記8:IPFS網漁 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/ipfs-trap/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記8:IPFS網漁 - Kotet's Personal Blog"><meta name=og:description content=IPFSのハッシュを自動的に収集できるのではないかということに気がついた。スイカネットを流れるデータを拾って集める横浜駅SFのワンシーンを思い出してテンションが上がった。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/ipfs-trap/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
 IPFS体験記8:IPFS網漁</h2><p><time>2017-11-10</time>
 <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ログを見る>ログを見る</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>IPFSのハッシュを自動的に収集できるのではないかということに気がついた。
 スイカネットを流れるデータを拾って集める<a href=https://kakuyomu.jp/works/4852201425154905871/episodes/4852201425154905928>横浜駅SFのワンシーン</a>を思い出してテンションが上がった。</p><h3 id=ログを見る>ログを見る</h3><p><code>ipfs log tail</code> でイベントのログを見ることができる。
-どのイベントが何を意味するのか、ドキュメントは見つけられなかった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs log tail
-{&#34;event&#34;:&#34;updatePeer&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.049612976Z&#34;}
-{&#34;event&#34;:&#34;handleFindPeerBegin&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.049723954Z&#34;}
-{&#34;duration&#34;:1341286,&#34;event&#34;:&#34;handleFindPeer&#34;,&#34;peerID&#34;:&#34;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:33.051066612Z&#34;}
-{&#34;event&#34;:&#34;updatePeer&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.674229585Z&#34;}
-{&#34;event&#34;:&#34;handleFindPeerBegin&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.674340168Z&#34;}
-{&#34;duration&#34;:1351836,&#34;event&#34;:&#34;handleFindPeer&#34;,&#34;peerID&#34;:&#34;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&#34;,&#34;session&#34;:&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;,&#34;system&#34;:&#34;dht&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:36.675678763Z&#34;}
-{&#34;duration&#34;:8996677675,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322662561Z&#34;}
-{&#34;duration&#34;:8996323673,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322712121Z&#34;}
-{&#34;duration&#34;:8996400695,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.322749876Z&#34;}
-{&#34;duration&#34;:9000177945,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.326684296Z&#34;}
-{&#34;duration&#34;:9000218920,&#34;error&#34;:&#34;no route to host&#34;,&#34;event&#34;:&#34;tptDialReusePort&#34;,&#34;raddr&#34;:{},&#34;system&#34;:&#34;tcp-tpt&#34;,&#34;time&#34;:&#34;2017-11-10T06:44:37.32671394Z&#34;}
-...</code></pre></div><p>イベント名を抽出してみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs log tail | jq &#34;.event&#34; | awk &#39;!colname[$1]++{print $1}&#39;
-&#34;updatePeer&#34;
-&#34;handleFindPeerBegin&#34;
-&#34;handleFindPeer&#34;
-&#34;Bitswap.Rebroadcast.idle&#34;
-&#34;handleAddProviderBegin&#34;
-&#34;handleAddProvider&#34;
-&#34;tptDialReusePort&#34;
-&#34;connDial&#34;
-&#34;swarmDialDo&#34;
-&#34;swarmDialBackoffAdd&#34;
-&#34;swarmDialAttemptStart&#34;
-&#34;swarmDialAttemptSync&#34;
-&#34;getClosestPeers&#34;
-&#34;swarmDialAttemptSyncBegin&#34;
-&#34;dhtSentMessage&#34;
-&#34;swarmDialAttemptStartBegin&#34;
-&#34;swarmDialDoBegin&#34;
-&#34;interfaceListenAddresses&#34;
-&#34;provide&#34;
-&#34;provideBegin&#34;
-&#34;getClosestPeersBegin&#34;
-&#34;findPeerSingleBegin&#34;
-&#34;dhtReceivedMessage&#34;
-&#34;findPeerSingle&#34;
-&#34;connDialBegin&#34;
-&#34;tptDialReusePortBegin&#34;
-&#34;connLifetime&#34;
-&#34;handleGetProvidersBegin&#34;
-&#34;handleGetProviders&#34;
-&#34;connDialZeroAddr&#34;
-&#34;handleGetValueBegin&#34;
-&#34;handleGetValue&#34;
-&#34;swarmDialBackoff&#34;
-&#34;connLifetimeBegin&#34;
-&#34;secureHandshakeBegin&#34;
-&#34;secureHandshake&#34;
-&#34;swarmDialDoSetupBegin&#34;
-&#34;swarmDialDoSetup&#34;
-&#34;swarmDialBackoffClear&#34;
-&#34;periodicBootstrapBegin&#34;
-&#34;bootstrapSkip&#34;
-&#34;periodicBootstrap&#34;</code></pre></div><p>このうち<code>handleGetProviders</code>というイベントは
+どのイベントが何を意味するのか、ドキュメントは見つけられなかった。</p><pre><code class=language-console>$ ipfs log tail
+{&quot;event&quot;:&quot;updatePeer&quot;,&quot;peerID&quot;:&quot;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:33.049612976Z&quot;}
+{&quot;event&quot;:&quot;handleFindPeerBegin&quot;,&quot;peerID&quot;:&quot;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:33.049723954Z&quot;}
+{&quot;duration&quot;:1341286,&quot;event&quot;:&quot;handleFindPeer&quot;,&quot;peerID&quot;:&quot;QmZY7MtK8ZbG1suwrxc7xEYZ2hQLf1dAWPRHhjxC8rjq8E&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:33.051066612Z&quot;}
+{&quot;event&quot;:&quot;updatePeer&quot;,&quot;peerID&quot;:&quot;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:36.674229585Z&quot;}
+{&quot;event&quot;:&quot;handleFindPeerBegin&quot;,&quot;peerID&quot;:&quot;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:36.674340168Z&quot;}
+{&quot;duration&quot;:1351836,&quot;event&quot;:&quot;handleFindPeer&quot;,&quot;peerID&quot;:&quot;QmUpKSoobhgcdLcR3rgusnPyRiRg2GCjuE4ekb79vhaLdK&quot;,&quot;session&quot;:&quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,&quot;system&quot;:&quot;dht&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:36.675678763Z&quot;}
+{&quot;duration&quot;:8996677675,&quot;error&quot;:&quot;no route to host&quot;,&quot;event&quot;:&quot;tptDialReusePort&quot;,&quot;raddr&quot;:{},&quot;system&quot;:&quot;tcp-tpt&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:37.322662561Z&quot;}
+{&quot;duration&quot;:8996323673,&quot;error&quot;:&quot;no route to host&quot;,&quot;event&quot;:&quot;tptDialReusePort&quot;,&quot;raddr&quot;:{},&quot;system&quot;:&quot;tcp-tpt&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:37.322712121Z&quot;}
+{&quot;duration&quot;:8996400695,&quot;error&quot;:&quot;no route to host&quot;,&quot;event&quot;:&quot;tptDialReusePort&quot;,&quot;raddr&quot;:{},&quot;system&quot;:&quot;tcp-tpt&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:37.322749876Z&quot;}
+{&quot;duration&quot;:9000177945,&quot;error&quot;:&quot;no route to host&quot;,&quot;event&quot;:&quot;tptDialReusePort&quot;,&quot;raddr&quot;:{},&quot;system&quot;:&quot;tcp-tpt&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:37.326684296Z&quot;}
+{&quot;duration&quot;:9000218920,&quot;error&quot;:&quot;no route to host&quot;,&quot;event&quot;:&quot;tptDialReusePort&quot;,&quot;raddr&quot;:{},&quot;system&quot;:&quot;tcp-tpt&quot;,&quot;time&quot;:&quot;2017-11-10T06:44:37.32671394Z&quot;}
+...
+</code></pre><p>イベント名を抽出してみる。</p><pre><code class=language-console>$ ipfs log tail | jq &quot;.event&quot; | awk '!colname[$1]++{print $1}'
+&quot;updatePeer&quot;
+&quot;handleFindPeerBegin&quot;
+&quot;handleFindPeer&quot;
+&quot;Bitswap.Rebroadcast.idle&quot;
+&quot;handleAddProviderBegin&quot;
+&quot;handleAddProvider&quot;
+&quot;tptDialReusePort&quot;
+&quot;connDial&quot;
+&quot;swarmDialDo&quot;
+&quot;swarmDialBackoffAdd&quot;
+&quot;swarmDialAttemptStart&quot;
+&quot;swarmDialAttemptSync&quot;
+&quot;getClosestPeers&quot;
+&quot;swarmDialAttemptSyncBegin&quot;
+&quot;dhtSentMessage&quot;
+&quot;swarmDialAttemptStartBegin&quot;
+&quot;swarmDialDoBegin&quot;
+&quot;interfaceListenAddresses&quot;
+&quot;provide&quot;
+&quot;provideBegin&quot;
+&quot;getClosestPeersBegin&quot;
+&quot;findPeerSingleBegin&quot;
+&quot;dhtReceivedMessage&quot;
+&quot;findPeerSingle&quot;
+&quot;connDialBegin&quot;
+&quot;tptDialReusePortBegin&quot;
+&quot;connLifetime&quot;
+&quot;handleGetProvidersBegin&quot;
+&quot;handleGetProviders&quot;
+&quot;connDialZeroAddr&quot;
+&quot;handleGetValueBegin&quot;
+&quot;handleGetValue&quot;
+&quot;swarmDialBackoff&quot;
+&quot;connLifetimeBegin&quot;
+&quot;secureHandshakeBegin&quot;
+&quot;secureHandshake&quot;
+&quot;swarmDialDoSetupBegin&quot;
+&quot;swarmDialDoSetup&quot;
+&quot;swarmDialBackoffClear&quot;
+&quot;periodicBootstrapBegin&quot;
+&quot;bootstrapSkip&quot;
+&quot;periodicBootstrap&quot;
+</code></pre><p>このうち<code>handleGetProviders</code>というイベントは
 「誰かが<code>ipfs dht findprov</code>したか、ゲートウェイ等で自動的に呼ばれたかで、ハッシュと対応したコンテンツを持っていないかを他のノードが聞いてきた」
 という意味のイベント（だと思う）。
-つまり、このイベントをキャッチすれば誰かがアクセスしようとしたハッシュを収集できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs log tail | grep &#39;&#34;handleGetProviders&#34;&#39; -m 1 --line-buffered | jq</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-  <span style=color:#f92672>&#34;duration&#34;</span>: <span style=color:#ae81ff>2045973</span>,
-  <span style=color:#f92672>&#34;event&#34;</span>: <span style=color:#e6db74>&#34;handleGetProviders&#34;</span>,
-  <span style=color:#f92672>&#34;key&#34;</span>: <span style=color:#e6db74>&#34;QmXLjNdoUETwAi8bErpc73FQEESTovBscu5XaC2wnpgfpY&#34;</span>,
-  <span style=color:#f92672>&#34;peer&#34;</span>: <span style=color:#e6db74>&#34;QmX9Nhr56k7K2JBQbu9JBpF2s1AQk8WpmZc6v4sqZERMRu&#34;</span>,
-  <span style=color:#f92672>&#34;session&#34;</span>: <span style=color:#e6db74>&#34;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&#34;</span>,
-  <span style=color:#f92672>&#34;system&#34;</span>: <span style=color:#e6db74>&#34;dht&#34;</span>,
-  <span style=color:#f92672>&#34;time&#34;</span>: <span style=color:#e6db74>&#34;2017-11-10T06:56:50.517580514Z&#34;</span>
-}</code></pre></div><p><code>key</code>が、誰かが探そうとしているハッシュだと思う。
+つまり、このイベントをキャッチすれば誰かがアクセスしようとしたハッシュを収集できる。</p><pre><code class=language-console>$ ipfs log tail | grep '&quot;handleGetProviders&quot;' -m 1 --line-buffered | jq
+</code></pre><pre><code class=language-json>{
+  &quot;duration&quot;: 2045973,
+  &quot;event&quot;: &quot;handleGetProviders&quot;,
+  &quot;key&quot;: &quot;QmXLjNdoUETwAi8bErpc73FQEESTovBscu5XaC2wnpgfpY&quot;,
+  &quot;peer&quot;: &quot;QmX9Nhr56k7K2JBQbu9JBpF2s1AQk8WpmZc6v4sqZERMRu&quot;,
+  &quot;session&quot;: &quot;8e57bece-9c9d-400f-b0ff-ab616dcdfe91&quot;,
+  &quot;system&quot;: &quot;dht&quot;,
+  &quot;time&quot;: &quot;2017-11-10T06:56:50.517580514Z&quot;
+}
+</code></pre><p><code>key</code>が、誰かが探そうとしているハッシュだと思う。
 とりあえず200件ほど集めてみる。
-それなりに時間がかかる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs log tail | grep &#39;&#34;handleGetProviders&#34;&#39; -m 200 --line-buffered | jq &#34;.key&#34; -r --unbuffered &gt;&gt; hashes.txt
+それなりに時間がかかる。</p><pre><code class=language-console>$ ipfs log tail | grep '&quot;handleGetProviders&quot;' -m 200 --line-buffered | jq &quot;.key&quot; -r --unbuffered &gt;&gt; hashes.txt
 $ cat hashes.txt 
 Qmd38FX6orV498CN1Z17997R26jZUwgicb1GXZ2kp9kAmq
 QmW9zpbtUnym5MrZFTqx1gqcRPBn7LYsQmYjGF6go3MKNy
@@ -279,9 +283,10 @@ QmZ6RcsQbfpjYG5eKLFged2oUQKDVwQyE9Rzvsj4oVRKbK
 QmZop9gkPTQJCr8RYDtoxzVc8okiMJRLtEVueZqTLW4G64
 QmT1xRnP52NjAT1JCXwfvMyjiidZ1CCtzBQxeXFz2XCKjA
 QmRKQjaybXLfnfcoDEGGfzcNa7qULQZcuVagVhHP2TjveX
-QmRBD7YZYdLPCvZdn8xQF3G8czkSbw3AET7WwFbMXs8SSW</code></pre></div><p>このなかでアクセスできるハッシュだけをフィルタする。
+QmRBD7YZYdLPCvZdn8xQF3G8czkSbw3AET7WwFbMXs8SSW
+</code></pre><p>このなかでアクセスできるハッシュだけをフィルタする。
 ゲートウェイでのアクセスに失敗した時に<code>ipfs resolve -r</code>のエラーメッセージが出ていた気がするので、それを使う。
-これまたものすごく時間がかかる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat hashes.txt | xargs -I hash timeout 60 ipfs resolve -r hash 2&gt;/dev/null | sed &#39;/^$/d&#39; &gt;&gt; resolve.txt
+これまたものすごく時間がかかる。</p><pre><code class=language-console>$ cat hashes.txt | xargs -I hash timeout 60 ipfs resolve -r hash 2&gt;/dev/null | sed '/^$/d' &gt;&gt; resolve.txt
 $ cat resolve.txt
 /ipfs/Qmd38FX6orV498CN1Z17997R26jZUwgicb1GXZ2kp9kAmq
 /ipfs/QmaUYFPjZE4Zttrd8bWUH5aXchWSNZsCdb9aXH4zMpjreL
@@ -322,7 +327,8 @@ $ cat resolve.txt
 /ipfs/QmPmJ44bxwoXw8SjPFRPZ8tia7GDxEaFVzHi7hsCCPBrr7
 /ipfs/QmZkSpqxiViGKrf1pCMVoVFJU7rvzoaYya96ZyFt7SatKL
 /ipfs/QmX1dCic7XsBPjR6q5hK7PDiLbnDUzJZFUgNcjpyfPvZ9w
-/ipfs/zb2rhYM79n5DCyojxo2MUfuLS3rLd1hh9KB6PSsYLfci8BRjs</code></pre></div><p>40件くらいに減ってしまった。
+/ipfs/zb2rhYM79n5DCyojxo2MUfuLS3rLd1hh9KB6PSsYLfci8BRjs
+</code></pre><p>40件くらいに減ってしまった。
 ファイル名が入っているが肝心の中身にアクセスできない<a href=https://ipfs.io/ipfs/QmX1dCic7XsBPjR6q5hK7PDiLbnDUzJZFUgNcjpyfPvZ9w>壊れたディレクトリオブジェクト</a>や、
 <a href=https://ipfs.io/ipfs/QmPtxs8Lgrxq2MtzGZT8DL65jwdkjT64B24NkmdVbteNwL>フォーマットのわからないバイナリ</a>がほとんどである。
 そもそものユーザ数が少ないため、読めるデータもだいたい

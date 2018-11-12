@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この投稿はD プログラミング言語のガベージコレクションについての進行中のシリーズの一部であり、 GCの外のメモリのアロケーションに関する2番目の投稿です。 パート1ではスタックアロケーションについて論じました。 今回は非GCヒープからのメモリのアロケーティングについて見て行きます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/09/go-your-own-way-part-two-the-heap/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 オウン・ウェイ - GCを避けたアロケーション (Part2: ヒープ)【翻訳】</h2><p><time>2017-09-30</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#遍在するc>遍在するC</a><ul><li><a href=#malloc-とゆかいななかまたち><code>malloc</code>とゆかいななかまたち</a></li><li><a href=#リークを防ぐ>リークを防ぐ</a></li><li><a href=#その他のapi>その他のAPI</a></li></ul></li><li><a href=#集約型>集約型</a></li><li><a href=#std-experimental-allocator>std.experimental.allocator</a></li><li><a href=#gcに情報を伝える>GCに情報を伝える</a><ul><li><a href=#忠告>忠告</a></li></ul></li><li><a href=#gcシリーズは進む>GCシリーズは進む</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=https://dlang.org/blog/2017/09/25/go-your-own-way-part-two-the-heap/>Go Your Own Way (Part Two: The Heap) – The D Blog</a></p><p>を自分用に翻訳したものを
@@ -41,11 +41,12 @@ Dも例外ではありません。
 <a href=https://github.com/dlang/druntime/tree/master/src/core/stdc><code>core.stdc</code>パッケージ</a>は、
 Cの標準ライブラリから変換したDのモジュールのコレクションです。
 Dの実行ファイルがリンクされる時、Cの標準ライブラリも一緒にリンクされます。
-アクセスに必要なことは、適切なモジュールのインポートだけです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdio : puts;
+アクセスに必要なことは、適切なモジュールのインポートだけです。</p><pre><code class=language-d>import core.stdc.stdio : puts;
 void main() 
 {
-    puts(&#34;Hello C standard library.&#34;);
-}</code></pre></div><p>Dに慣れていない人の中には、Cの関数を呼ぶ時は<code>extern(C)</code>アノテーションをつけたり、
+    puts(&quot;Hello C standard library.&quot;);
+}
+</code></pre><p>Dに慣れていない人の中には、Cの関数を呼ぶ時は<code>extern(C)</code>アノテーションをつけたり、
 Walter Brightの最新の‘<a href=https://dlang.org/blog/2017/08/23/d-as-a-better-c/>D as a Better C</a>’記事のように、
 コマンドラインから<code>-betterC</code>でコンパイルする必要があるという誤解により無駄な労力を払っている人がいます。
 そのどちらも正しくありません。
@@ -56,7 +57,7 @@ Walter Brightの最新の‘<a href=https://dlang.org/blog/2017/08/23/d-as-a-bet
 <a href=http://dblog-ext.info/>dblog-ext.info</a>にあるこの投稿の
 <a href=http://dblog-ext.info/articles/gc-part4.html>拡張コンテンツ</a>をご覧ください。)</p><h4 id=malloc-とゆかいななかまたち><code>malloc</code>とゆかいななかまたち</h4><p>DからCの標準ライブラリにアクセスできるという事は、つまり<code>malloc</code>、<code>calloc</code>、<code>realloc</code>、<code>free</code>などの関数にもアクセスできるという事です。
 これら全ては<code>core.stdc.stdlib</code>をインポートする事で利用できるようになります。
-また、Dのスライスマジックのおかげで、これらの関数を非GCメモリ管理戦略の基礎として使う事は非常に簡単になります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdlib;
+また、Dのスライスマジックのおかげで、これらの関数を非GCメモリ管理戦略の基礎として使う事は非常に簡単になります。</p><pre><code class=language-d>import core.stdc.stdlib;
 void main() 
 {
     enum totalInts = 10;
@@ -66,7 +67,7 @@ void main()
 
     // assert(0) (と assert(false))は常にバイナリの中に残り、
     // アサートが無効の場合でも、mallocの失敗をハンドリングできます
-    if(!intPtr) assert(0, &#34;Out of memory!&#34;);
+    if(!intPtr) assert(0, &quot;Out of memory!&quot;);
 
     // 関数を抜ける時に解放。この例では必要ありませんが、
     // main以外の関数での一時アロケーション戦略
@@ -75,14 +76,15 @@ void main()
 
     // より扱いやすい長さとポインタのペアを得るためDのポインタをスライス
     int[] intArray = intPtr[0 .. totalInts];
-}</code></pre></div><p>これはGCだけでなく、Dのデフォルトの初期化も回避します。
+}
+</code></pre><p>これはGCだけでなく、Dのデフォルトの初期化も回避します。
 GCによりアロケートされた型<code>T</code>の配列は全ての要素が<code>T.init</code>に初期化されます。
 <code>int</code>の場合<code>0</code>になります。
 Dのデフォルトの初期化と同じ振る舞いを望むなら、一手間必要です。
 この例では<code>malloc</code>を<code>calloc</code>に置き換えることで同じ効果が得られますが、これは整数型の場合だけの話です。
 例えば<code>float.init</code>は<code>0.0f</code>ではなく<code>float.nan</code>です。
 これについては後で述べます。</p><p>(メモリアロケーションの失敗のハンドリングについての詳細はこの投稿の<a href=http://dblog-ext.info/articles/gc-part4.html>拡張コンテンツ</a>を確認してください。)</p><p>もちろん、<code>malloc</code>と<code>free</code>をメモリのスライス用にラップしてよりイディオマティックにできます。
-単純な例です:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdlib;
+単純な例です:</p><pre><code class=language-d>import core.stdc.stdlib;
 
 // スライスとして管理できる型のないバイト列の
 // ブロックをアロケートします。
@@ -93,7 +95,7 @@ void[] allocate(size_t size)
     assert(size != 0);
 
     void* ptr = malloc(size);
-    if(!ptr) assert(0, &#34;Out of memory!&#34;);
+    if(!ptr) assert(0, &quot;Out of memory!&quot;);
     
     // メモリブロックのサイズと結びつけられたアドレスである
     // ポインタのスライスを返します。
@@ -130,7 +132,8 @@ void main() {
     foreach(i; ints[]) {
         writeln(i);
     }
-}</code></pre></div><p><code>void[]</code>はアロケートされたバイト数を<code>length</code>プロパティにもつため、
+}
+</code></pre><p><code>void[]</code>はアロケートされたバイト数を<code>length</code>プロパティにもつため、
 <code>allocate</code>は<code>void*</code>ではなく<code>void[]</code>を返します。
 今回の場合配列をアロケートするので、スライスを返す<code>allocArray</code>の代わりに直接ポインタを返すよう書き換えることもできますが、
 <code>allocate</code>を直接呼ぶ人はメモリのサイズを考慮し続けなければなりません。
@@ -141,19 +144,20 @@ Cにおいて配列とその長さの乖離は
 デフォルトでは動的配列とスライス組み込みの追加(<code>~=</code>)と結合(<code>~</code>)演算子はGCヒープからアロケートをします。
 結合は常に結合した結果の文字列のための新しいメモリブロックをアロケートします。
 通常、追加演算子は必要な時のみメモリ拡張のためアロケートをします。
-下記の例が示すように、非GCメモリのスライスが与えられた時は常にアロケーションが必要です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdlib : malloc;
+下記の例が示すように、非GCメモリのスライスが与えられた時は常にアロケーションが必要です。</p><pre><code class=language-d>import core.stdc.stdlib : malloc;
 import std.stdio : writeln;
 
 void main()
 {
     int[] ints = (cast(int*)malloc(int.sizeof * 10))[0 .. 10];
-    writeln(&#34;Capacity: &#34;, ints.capacity);
+    writeln(&quot;Capacity: &quot;, ints.capacity);
 
     // 比較のため配列ポインタを保存します
     int* ptr = ints.ptr;
     ints ~= 22;
     writeln(ptr == ints.ptr);
-}</code></pre></div><p>これは以下のような結果を出力します:</p><pre><code>Capacity: 0
+}
+</code></pre><p>これは以下のような結果を出力します:</p><pre><code>Capacity: 0
 false
 </code></pre><p>スライスのキャパシティが<code>0</code>というのは、次の追加はアロケーション引き起こす、ということを示しています。
 GCヒープからアロケートされた配列は通常要求されたよりも多い追加要素のためのスペースを持ち、追加は新しいアロケーションを伴わず起きることがあります。
@@ -162,7 +166,7 @@ GCからアロケートされたメモリは、メモリブロックがいくつ
 ここで、<code>ints</code>のメモリはGCからアロケートされたものでは無いため、実行時に存在するメモリブロックには計算が行われておらず、
 次の追加ではアロケートを<strong>しなければなりません</strong>(より詳しい情報はSteven Schveighofferの<a href=http://www.kmonos.net/alang/d/d-array-article.html>D言語のスライス機能</a><sup class=footnote-ref id=fnref:3><a href=#fn:3>3</a></sup>の記事を見てください)。</p><p>それが望ましい振る舞いの場合これは必ずしも悪いことではありませんが、そうでなかった場合、
 <code>malloc</code>されたメモリは二度とデアロケートされないがために起きるリークによってメモリ使用量は簡単に膨らんでいきます。
-こちらのような2つの関数を考えてみましょう:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void leaker(ref int[] arr)
+こちらのような2つの関数を考えてみましょう:</p><pre><code class=language-d>void leaker(ref int[] arr)
 {
     ...
     arr ~= 10;
@@ -174,7 +178,8 @@ void cleaner(int[] arr)
     ...
     arr ~= 10;
     ...
-}</code></pre></div><p>配列は参照型、つまり関数内で配列引数の既存の要素を変更するとオリジナルの配列の要素を変更される、
+}
+</code></pre><p>配列は参照型、つまり関数内で配列引数の既存の要素を変更するとオリジナルの配列の要素を変更される、
 にもかかわらずこれらは関数パラメータとして値渡しされます。
 <code>length</code>や<code>ptr</code>のような、配列引数の構造を変更するようなアクティビティは関数の中のローカル変数にのみ影響します。
 オリジナルは配列が参照渡しされない限り変更されません。</p><p>Cのヒープからなる配列が<code>leaker</code>に渡された場合、追加はGCヒープからの新しい配列のアロケートを引き起こします。
@@ -195,13 +200,14 @@ void cleaner(int[] arr)
 この議論では前者、構造体にのみ焦点を当てて行きます。
 以前の投稿で、私はスタックからクラスをアロケートする例を省略しました。
 今回のヒープの議論でもクラスには触れません。
-次回の投稿はクラスと、クラスをどのようにGCで、もしくはGCなしで管理するかのみを取り上げます。</p><p><code>struct</code>型の配列、または単一のインスタンスのアロケーティングは、大抵の場合型が<code>int</code>の時と変わりません。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Point { int x, y; }
+次回の投稿はクラスと、クラスをどのようにGCで、もしくはGCなしで管理するかのみを取り上げます。</p><p><code>struct</code>型の配列、または単一のインスタンスのアロケーティングは、大抵の場合型が<code>int</code>の時と変わりません。</p><pre><code class=language-d>struct Point { int x, y; }
 Point* onePoint = cast(Point*)malloc(Point.sizeof);
-Point* tenPoints = cast(Point*)malloc(Point.sizeof * 10);</code></pre></div><p>おかしくなるのはコンストラクタが入った時です。
+Point* tenPoints = cast(Point*)malloc(Point.sizeof * 10);
+</code></pre><p>おかしくなるのはコンストラクタが入った時です。
 <code>malloc</code>とその仲間はDのオブジェクトのインスタンスのコンストラクティングについて何も知りません。
 ありがたいことに、Phobosはそのための関数テンプレートを提供しています。</p><p><a href=https://dlang.org/phobos/std_conv.html#emplace><code>std.conv.emplace</code></a>は型付けされたメモリへのポインタ、
 または型のない<code>void[]</code>を任意の長さの引数とともにとり、その型の完全に初期化、構築されたインスタンスへのポインタを返します。
-これは<code>malloc</code>と上記の<code>allocate</code>関数テンプレートの使用例です:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Vertex4f 
+これは<code>malloc</code>と上記の<code>allocate</code>関数テンプレートの使用例です:</p><pre><code class=language-d>struct Vertex4f 
 { 
     float x, y, z, w; 
     this(float x, float y, float z, float w = 1.0f)
@@ -226,9 +232,10 @@ void main()
     void[] temp2 = allocate(Vertex4f.sizeof);
     Vertex4f* vert2 = emplace!Vertex4f(temp2, 10.0f, 9.0f, 8.0f);
     writeln(*vert2);
-}</code></pre></div><p><code>emplace</code>のもう一つの機能はデフォルトの初期化をハンドルすることです。
+}
+</code></pre><p><code>emplace</code>のもう一つの機能はデフォルトの初期化をハンドルすることです。
 Dでは<code>struct</code>型はコンストラクタを実装する必要がないことを思い出してください。
-<code>Vertex4f</code>の実装からコンストラクタを削除した時、このようなことが起こります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Vertex4f 
+<code>Vertex4f</code>の実装からコンストラクタを削除した時、このようなことが起こります:</p><pre><code class=language-d>struct Vertex4f 
 {
     // x, y, z はデフォルトのfloat.nanへの初期化がされます
     float x, y, z;
@@ -251,7 +258,8 @@ void main()
     auto vert4 = emplace!Vertex4f(allocate(Vertex4f.sizeof), 4.0f, 3.0f, 2.0f);
     writeln(*vert3);
     writeln(*vert4);
-}</code></pre></div><p>出力は以下のようになります:</p><pre><code>Vertex4f(nan, nan, nan, 1)
+}
+</code></pre><p>出力は以下のようになります:</p><pre><code>Vertex4f(nan, nan, nan, 1)
 Vertex4f(4, 3, 2, 1)
 Vertex4f(nan, nan, nan, 1)
 Vertex4f(4, 3, 2, 1)
@@ -269,13 +277,14 @@ Vertex4f(4, 3, 2, 1)
 他の<a href=https://dlang.org/phobos/std_experimental_allocator_building_blocks.html>ビルディングブロック</a>とまとめたりできます。
 実例は<a href=https://github.com/economicmodeling/containers>emsi-containers ライブラリ</a>をご覧ください。</p><h3 id=gcに情報を伝える>GCに情報を伝える</h3><p>GCの完全な無効化が推奨される事は稀なため、GCヒープの外からアロケートするDのプログラムの多くは同時にGCヒープからのメモリも使用します。
 そこでGCが適切に動作するために、GCヒープのメモリへの参照を含む、または潜在的に含む可能性がある非GCメモリを通知する必要があります。
-例えば、ノードが<code>malloc</code>でアロケートされた連結リストは<code>new</code>でアロケートされたクラスへの参照を含むことがあります。</p><p>GCは<code>GC.addRange</code>で情報を受け取ります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.memory;
+例えば、ノードが<code>malloc</code>でアロケートされた連結リストは<code>new</code>でアロケートされたクラスへの参照を含むことがあります。</p><p>GCは<code>GC.addRange</code>で情報を受け取ります。</p><pre><code class=language-d>import core.memory;
 enum size = int.sizeof * 10;
 void* p1 = malloc(size);
 GC.addRange(p1, size);
 
 void[] p2 = allocate!int(10);
-GC.addRange(p2.ptr, p2.length);</code></pre></div><p>メモリブロックが必要なくなった場合は、それに伴ってそのメモリブロックがスキャンされないように<code>GC.removeRange</code>を呼べます。
+GC.addRange(p2.ptr, p2.length);
+</code></pre><p>メモリブロックが必要なくなった場合は、それに伴ってそのメモリブロックがスキャンされないように<code>GC.removeRange</code>を呼べます。
 これはメモリブロックを<strong>デアロケートしません</strong>。
 それは<code>free</code>かメモリブロックをアロケートしたアロケータインタフェースを使い手動で行う必要があります。
 これらの関数を使う前には必ず<a href=https://dlang.org/phobos/core_memory.html#addRange>ドキュメントを読んでください</a>。</p><p>GCヒープの外からのアロケーティングの目的がGCのスキャンしなければならないメモリの量を減らすことだと言うことを考えると、これは自滅的なように思えます。
@@ -283,16 +292,19 @@ GC.addRange(p2.ptr, p2.length);</code></pre></div><p>メモリブロックが必
 非GCメモリがGCメモリへの参照を持つとき、GCはそれを知っていなければなりません。
 <code>addRange</code>はそのような場面のために設計されたツールです。
 <code>malloc</code> された頂点配列のように、非GCメモリブロックへのGCメモリの参照が無いと保証できる場合、<code>addRange</code>をメモリブロックに対して呼ぶ必要はありません。</p><h4 id=忠告>忠告</h4><p>型のあるポインタを<code>addRange</code>に渡す際は気をつけてください。
-この関数はCのようにメモリのブロックへのポインタとそのブロックが含むバイト数をとるやり方で実装されており、エラーを引き起こす可能性があります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>struct Item { SomeClass foo; }
+この関数はCのようにメモリのブロックへのポインタとそのブロックが含むバイト数をとるやり方で実装されており、エラーを引き起こす可能性があります。</p><pre><code class=language-d>struct Item { SomeClass foo; }
 auto items = (cast(Item*)malloc(Item.sizeof * 10))[0 .. 10];
-GC.addRange(items.ptr, items.length);</code></pre></div><p>ここで、GCはメモリブロックを10バイトしかスキャンしません。
+GC.addRange(items.ptr, items.length);
+</code></pre><p>ここで、GCはメモリブロックを10バイトしかスキャンしません。
 <code>length</code>プロパティはそのスライスが参照している要素の個数を返します。
 スライスが参照しているメモリブロックのサイズと<code>length</code>プロパティの値が等価になるのは、型が <code>void</code>(または<code>byte</code>や<code>ubyte</code>のように要素の長さが1バイト)の時のみです。
-正しい方法は:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>GC.addRange(items.ptr, items.length * Item.sizeof);</code></pre></div><p>DRuntimeが新しくアップデートされるまでは、<code>void[]</code>パラメータを受け取るラッパーを実装するのが良いでしょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void addRange(void[] mem) 
+正しい方法は:</p><pre><code class=language-d>GC.addRange(items.ptr, items.length * Item.sizeof);
+</code></pre><p>DRuntimeが新しくアップデートされるまでは、<code>void[]</code>パラメータを受け取るラッパーを実装するのが良いでしょう。</p><pre><code class=language-d>void addRange(void[] mem) 
 {
 	import core.memory;
 	GC.addRange(mem.ptr, mem.length);
-}</code></pre></div><p>そうして<code>addRange(items)</code>を呼ぶと良いでしょう。
+}
+</code></pre><p>そうして<code>addRange(items)</code>を呼ぶと良いでしょう。
 関数呼び出しでのスライスから<code>void[]</code>への暗黙の変換により<code>mem.length</code>は<code>items.length * Item.sizeof</code>と同じになります。</p><h3 id=gcシリーズは進む>GCシリーズは進む</h3><p>この投稿ではDのプログラムにおける非GCヒープの使い方を扱いました。
 <code>class</code>型に加えて、デストラクタについての記述も抜けています。
 それは関係の深いクラスについての投稿にとっておきます。

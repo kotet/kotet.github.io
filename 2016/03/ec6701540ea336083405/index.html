@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=こちらやこちらの手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=こちらやこちらの手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,15 +6,17 @@
         processEscapes: true
       }
     });
-</script><title>#qiita どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/03/ec6701540ea336083405/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#qiita どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順 - Kotet's Personal Blog"><meta name=og:description content=こちらやこちらの手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/03/ec6701540ea336083405/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#qiita どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/03/ec6701540ea336083405/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#qiita どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順 - Kotet's Personal Blog"><meta name=og:description content=こちらやこちらの手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/03/ec6701540ea336083405/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/qiita>#qiita</a>
 どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順</h2><p><time>2016-03-30</time>
-<a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#必要なものどもを取得>必要なものどもを取得</a></li><li><a href=#rubyのセットアップ>rubyのセットアップ</a></li><li><a href=#どどんとふのセットアップ>どどんとふのセットアップ</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p><a href=http://qiita.com/fusagiko/items/fd5aeb36f493319ab961>こちら</a>や<a href=http://qiita.com/Akagi/items/64d266df4d2320abb77b>こちら</a>の手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。CentOS7をminimumな感じでインストールしたあとから始める。</p><h1 id=必要なものどもを取得>必要なものどもを取得</h1><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ sudo yum update
-$ sudo yum install wget libyaml-devel gcc httpd unzip policycoreutils-python</code></pre></div><h1 id=rubyのセットアップ>rubyのセットアップ</h1><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.6.tar.gz
+<a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#必要なものどもを取得>必要なものどもを取得</a></li><li><a href=#rubyのセットアップ>rubyのセットアップ</a></li><li><a href=#どどんとふのセットアップ>どどんとふのセットアップ</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p><a href=http://qiita.com/fusagiko/items/fd5aeb36f493319ab961>こちら</a>や<a href=http://qiita.com/Akagi/items/64d266df4d2320abb77b>こちら</a>の手順にしたがってどどんとふのセットアップをしていたが、それだけでは動かなかったのでほんの少し追記したものを自分でもう一度まとめて書く。CentOS7をminimumな感じでインストールしたあとから始める。</p><h1 id=必要なものどもを取得>必要なものどもを取得</h1><pre><code class=language-console>$ sudo yum update
+$ sudo yum install wget libyaml-devel gcc httpd unzip policycoreutils-python
+</code></pre><h1 id=rubyのセットアップ>rubyのセットアップ</h1><pre><code class=language-console>$ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.6.tar.gz
 $ tar -zxvf ruby-2.1.6.tar.gz
 $ cd ruby-2.1.6
 $ ./configure
-$ sudo make install</code></pre></div><h1 id=どどんとふのセットアップ>どどんとふのセットアップ</h1><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>//どどんとふの取得&amp;展開
+$ sudo make install
+</code></pre><h1 id=どどんとふのセットアップ>どどんとふのセットアップ</h1><pre><code class=language-console>//どどんとふの取得&amp;展開
 $ cd ~
 $ wget http://www.dodontof.com/Download/DodontoF_release/DodontoF_Ver.1.46.00_MASTERPIECE.zip
 $ unzip DodontoF_Ver.1.46.00_MASTERPIECE.zip
@@ -29,20 +31,26 @@ $ sudo chmod -R 705 saveDataTempSpace fileUploadSpace replayDataUploadSpace ../.
 
 $ sudo chmod 700 DodontoF*.rb
 
-$ sudo chmod 600 log.txt*</code></pre></div><p>/etc/httpd/conf/httpd.conf を編集する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-httpd.conf data-lang=httpd.conf>- DocumentRoot &#34;/var/www/html&#34;
-+ DocumentRoot &#34;/var/www/public_html&#34;
+$ sudo chmod 600 log.txt*
+</code></pre><p>/etc/httpd/conf/httpd.conf を編集する。</p><pre><code class=language-httpd.conf>- DocumentRoot &quot;/var/www/html&quot;
++ DocumentRoot &quot;/var/www/public_html&quot;
 
 - #AddHandler cgi-script .cgi
 + AddHandler cgi-script .cgi .rb
 
-- &lt;Directory &#34;/var/www/html/&#34;&gt;
-+ &lt;Directory &#34;/var/www/public_html/&#34;&gt;
+- &lt;Directory &quot;/var/www/html/&quot;&gt;
++ &lt;Directory &quot;/var/www/public_html/&quot;&gt;
 
-+ &lt;Directory &#34;/var/www/public_html/DodontoF/&#34;&gt;
++ &lt;Directory &quot;/var/www/public_html/DodontoF/&quot;&gt;
 + DirectoryIndex DodontoF.swf
 + Options ExecCGI
-+ &lt;/Directory&gt;</code></pre></div><p>DodontoFServer.rbを編集する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rb:DodontoFServer.rb data-lang=rb:DodontoFServer.rb><span style=color:#f92672>-</span> <span style=color:#75715e>#!/user/local/bin/ruby -Ku</span>
-<span style=color:#f92672>+</span> <span style=color:#75715e>#!/user/local/bin/ruby -EUTF-8</span></code></pre></div><p>SELinuxを切る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-:/etc/selinux/config data-lang=:/etc/selinux/config>- SELINUX=enforcing
-+ SELINUX=disabled</code></pre></div><p>再起動しないと反映されないので注意。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>reboot</code></pre></div><p>httpdをstartする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ systemctl start httpd</code></pre></div><p>以上で動くようになる。このあとセキュリティとかの設定をする必要がある。</p></article><footer><h2><a href=/tags/qiita>#qiita</a>
++ &lt;/Directory&gt;
+</code></pre><p>DodontoFServer.rbを編集する。</p><pre><code class=language-rb:DodontoFServer.rb>- #!/user/local/bin/ruby -Ku
++ #!/user/local/bin/ruby -EUTF-8
+</code></pre><p>SELinuxを切る。</p><pre><code class=language-:/etc/selinux/config>- SELINUX=enforcing
++ SELINUX=disabled
+</code></pre><p>再起動しないと反映されないので注意。</p><pre><code class=language-console>reboot
+</code></pre><p>httpdをstartする。</p><pre><code class=language-console>$ systemctl start httpd
+</code></pre><p>以上で動くようになる。このあとセキュリティとかの設定をする必要がある。</p></article><footer><h2><a href=/tags/qiita>#qiita</a>
 どどんとふ1.46.00を最小構成のCentOS7から構築できた時の手順</h2><p><time>2016-03-30</time>
 <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

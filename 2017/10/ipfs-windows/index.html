@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,13 +6,13 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs IPFS体験記7:Windows - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-windows/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記7:Windows - Kotet's Personal Blog"><meta name=og:description content="今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-windows/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs IPFS体験記7:Windows - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-windows/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs IPFS体験記7:Windows - Kotet's Personal Blog"><meta name=og:description content="今回はWindowsでIPFSを使ってみる。 一応ローカルゲートウェイを動かすことに成功した。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-windows/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
 IPFS体験記7:Windows</h2><p><time>2017-10-30</time>
 <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ipfs-update>ipfs-update</a></li><li><a href=#手動>手動</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>今回はWindowsでIPFSを使ってみる。
 一応ローカルゲートウェイを動かすことに成功した。</p><h3 id=ipfs-update>ipfs-update</h3><p><a href=https://dist.ipfs.io/#ipfs-update>ipfs-update</a>をダウンロードして展開、めんどくさいのでPATHを通さずその場で実行してみる。
 <code>install.sh</code>は特に使うわけではないっぽい。
-以下Powershell。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update
+以下Powershell。</p><pre><code class=language-console>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update
 NAME:
    ipfs-update.exe - Update ipfs.
 
@@ -35,7 +35,8 @@ GLOBAL OPTIONS:
    --verbose         Print verbose output.
    --distpath value  specify the distributions build to use
    --help, -h        show help
-   --version, -v     print the version</code></pre></div><p>大丈夫そうに見える。さっそく最新の安定板をインストールする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update versions
+   --version, -v     print the version
+</code></pre><p>大丈夫そうに見える。さっそく最新の安定板をインストールする。</p><pre><code class=language-console>PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt; ./ipfs-update versions
 v0.3.2
 v0.3.4
 v0.3.5
@@ -62,10 +63,11 @@ PS C:\Users\kotet_000\Downloads\ipfs-update_v1.5.2_windows-amd64\ipfs-update&gt;
 fetching go-ipfs version v0.4.11
 binary downloaded, verifying...
 install failed, reverting changes...
-error initializing with new binary: exec: &#34;C:\\Users\\KOTET_~1\\AppData\\Local\\Temp\\ipfs-update124567527\\ipfs-new&#34;: file does not exist:</code></pre></div><p>どうも失敗したようだ。
+error initializing with new binary: exec: &quot;C:\\Users\\KOTET_~1\\AppData\\Local\\Temp\\ipfs-update124567527\\ipfs-new&quot;: file does not exist:
+</code></pre><p>どうも失敗したようだ。
 実はどうも現在バグがあるらしい。</p><p><a href=https://github.com/ipfs/ipfs-update/issues/32>ipfs-update doesn&rsquo;t work on Windows · Issue #32 · ipfs/ipfs-update</a></p><h3 id=手動>手動</h3><p>しかたがないので手動でインストールする。</p><p><a href=https://dist.ipfs.io/#go-ipfs>go-ipfs</a>をダウンロードして展開。
 READMEも改行コードがWindows仕様になってないし、やはりバイナリ以外は不要である。
-<code>ipfs.exe</code>をPATHの通っているところに置くのだがやはりめんどくさいのでデスクトップに置く。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>PS C:\Users\kotet_000\Desktop&gt; ./ipfs version
+<code>ipfs.exe</code>をPATHの通っているところに置くのだがやはりめんどくさいのでデスクトップに置く。</p><pre><code class=language-console>PS C:\Users\kotet_000\Desktop&gt; ./ipfs version
 ipfs version 0.4.11
 PS C:\Users\kotet_000\Desktop&gt; ./ipfs init
 initializing IPFS node at C:\Users\kotet_000\.ipfs
@@ -85,7 +87,7 @@ Hello and Welcome to IPFS!
 ██║██║     ██║     ███████║
 ╚═╝╚═╝     ╚═╝     ╚══════╝
 
-If you&#39;re seeing this, you have successfully installed
+If you're seeing this, you have successfully installed
 IPFS and are now interfacing with the ipfs merkledag!
 
  -------------------------------------------------------
@@ -101,9 +103,10 @@ Check out some of the other files in this directory:
   ./help
   ./quick-start     &lt;-- usage examples
   ./readme          &lt;-- this file
-  ./security-notes</code></pre></div><p>いい感じである。
+  ./security-notes
+</code></pre><p>いい感じである。
 デーモンも起動してみる。
-ファイアウォールで通信がブロックされ、ダイアログが出るのでアクセスを許可する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>PS C:\Users\kotet_000\Desktop&gt; ./ipfs daemon
+ファイアウォールで通信がブロックされ、ダイアログが出るのでアクセスを許可する。</p><pre><code class=language-console>PS C:\Users\kotet_000\Desktop&gt; ./ipfs daemon
 Initializing daemon...
 Swarm listening on /ip4/127.0.0.1/tcp/4001
 Swarm listening on /ip4/192.168.0.12/tcp/4001
@@ -119,7 +122,7 @@ API server listening on /ip4/127.0.0.1/tcp/5001
 Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
 19:12:55.646 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
-19:12:58.083 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:12:58.083 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
 19:12:59.319 ERROR core/serve: ipfs cat /ipns/ipfs.io/images/ipfs-illustrations-how-3.svg: Failed to get block for QmYrWgJ33ptegZS2coWTfSLnA6gBJmJ9jQBGMKBJdBStCZ: open C:\Users\kotet_000\.ipfs\blocks\KE\CIQJYOZWNOSPYJHT46H3GAMCAUPTUFQBDMBUJ4ECAUITI423B3BMKEQ.data: The process cannot access the file because it is being used by another process. gateway_handler.go:593
 19:12:59.321 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:12:59.322 ERROR core/serve: ipfs cat /ipns/ipfs.io/images/ipfs-illustrations-how-5.svg: Failed to get block for QmS2ZnyfFvUrYAnrQ9kJTzuVMNHq5eMKkQyGkxYatSqppC: open C:\Users\kotet_000\.ipfs\blocks\L7\CIQDNTF4BXBAAAHBHGNZPGUWBCIPRLGJWNOSDGFNM6LAFSHASKG4L7I.data: The process cannot access the file because it is being used by another process. gateway_handler.go:593
@@ -131,10 +134,10 @@ Daemon is ready
 19:12:59.756 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:14:25.015 ERROR        dht: checking dht client type: context canceled notif.go:81
 19:14:59.797 ERROR        dht: checking dht client type: context canceled notif.go:81
-19:18:29.629 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
-19:18:45.995 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &#34;blog&#34; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:18:29.629 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
+19:18:45.995 ERROR core/serve: ipfs resolve -r /ipns/ipfs.io/blog/index.json: no link named &quot;blog&quot; under QmPCawMTd7csXKf7QVr2B1QRDZxdPeWxtE4EpkDRYtJWty gateway_handler.go:593
 19:20:43.918 ERROR        dht: checking dht client type: context canceled notif.go:81
-19:21:04.290 ERROR core/serve: ipfs resolve -r /ipfs/QmPhnvn747LqwPYMJmQVorMaGbMSgA7mRRoyyZYz3DoZRQ/locale/webui-ja.json: no link named &#34;webui-ja.json&#34; under Qmc6bAsXTFFdvV3RoLuf6jjV3jzsRLntfsivWQZ75s8QaL gateway_handler.go:593
+19:21:04.290 ERROR core/serve: ipfs resolve -r /ipfs/QmPhnvn747LqwPYMJmQVorMaGbMSgA7mRRoyyZYz3DoZRQ/locale/webui-ja.json: no link named &quot;webui-ja.json&quot; under Qmc6bAsXTFFdvV3RoLuf6jjV3jzsRLntfsivWQZ75s8QaL gateway_handler.go:593
 19:21:09.050 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:36.324 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:36.354 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
@@ -173,7 +176,8 @@ Daemon is ready
 19:21:51.468 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:51.468 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
 19:21:51.469 ERROR    bitswap: Error writing block to datastore: Access is denied. bitswap.go:317
-// 後略</code></pre></div><p>早速利用してみたが、エラーがものすごい勢いで出ている。
+// 後略
+</code></pre><p>早速利用してみたが、エラーがものすごい勢いで出ている。
 しかしとりあえず利用できる程度には動いているので今日のところは良しとする。</p></article><footer><h2><a href=/tags/ipfs>#ipfs</a>
 IPFS体験記7:Windows</h2><p><time>2017-10-30</time>
 <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

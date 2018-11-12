@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs 非中央集権静的Gitホスティング - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 非中央集権静的Gitホスティング - Kotet's Personal Blog"><meta name=og:description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs 非中央集権静的Gitホスティング - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 非中央集権静的Gitホスティング - Kotet's Personal Blog"><meta name=og:description content="GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。 最近IPFSの記事を書"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/06/ipfs-git-readonly/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
 非中央集権静的Gitホスティング</h2><p><time>2018-06-04</time>
 <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#git-http-s-サーバー>Git HTTP(S)サーバー</a></li><li><a href=#ipfs上でgitリポジトリをホストする>IPFS上でGitリポジトリをホストする</a><ul><li><a href=#1-リポジトリの用意>1. リポジトリの用意</a></li><li><a href=#2-info-refs-ファイルの生成>2. info/refs ファイルの生成</a></li><li><a href=#3-ipfsにアップロード>3. IPFSにアップロード</a></li><li><a href=#4-クローンしてみる>4. クローンしてみる</a></li></ul></li><li><a href=#pushは>Pushは?</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>GitHubがMSに買収されたとかでなにやら騒がしいが、Gitリポジトリをホスティングするだけなら方法はいっぱいある。
@@ -20,10 +20,13 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 Gitクライアントは勝手に<code>info/refs</code>ファイルを読んで、それに沿ってファイルをダウンロードしていく<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup>。</p><h3 id=ipfs上でgitリポジトリをホストする>IPFS上でGitリポジトリをホストする</h3><p>そういうわけで一般的なWebサーバーがあれば認証なし &amp; 読み込み専用のGitリポジトリは簡単に作ることができる。
 IPFSを使えば中央集権的サーバーを用意することなくホスティングができる。<sup class=footnote-ref id=fnref:2><a href=#fn:2>2</a></sup>
 それなりに人気のあるハッシュはアップロード者が落ちても有効であり続けるだろう。
-なお今回作ったハッシュは自分がいつもノードを動かしているわけではないしPCの移行のときに維持したりもしないのでたぶん高確率でアクセスできなくなる。</p><h4 id=1-リポジトリの用意>1. リポジトリの用意</h4><p>好きな方法でベアリポジトリ(作業ディレクトリのないリポジトリ)を作る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone --bare git@github.com:kotet/kotet.github.io.git</code></pre></div><h4 id=2-info-refs-ファイルの生成>2. info/refs ファイルの生成</h4><p><code>git update-server-info</code>で<code>info/refs</code>を生成する。
-自分の環境だと補完も働かないし実行してもなにも出力されないしで本当にうまく行ったのか不安だった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cd kotet.github.io.git/
-$ git update-server-info</code></pre></div><p>確認してみるとちゃんとファイルが生成されているのがわかる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat info/refs 
-2e7df24a1aea2df87604ab14ff417a55c4936259	refs/heads/master</code></pre></div><h4 id=3-ipfsにアップロード>3. IPFSにアップロード</h4><p>ディレクトリ全体をまとめて追加する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs add -r .
+なお今回作ったハッシュは自分がいつもノードを動かしているわけではないしPCの移行のときに維持したりもしないのでたぶん高確率でアクセスできなくなる。</p><h4 id=1-リポジトリの用意>1. リポジトリの用意</h4><p>好きな方法でベアリポジトリ(作業ディレクトリのないリポジトリ)を作る。</p><pre><code class=language-console>$ git clone --bare git@github.com:kotet/kotet.github.io.git
+</code></pre><h4 id=2-info-refs-ファイルの生成>2. info/refs ファイルの生成</h4><p><code>git update-server-info</code>で<code>info/refs</code>を生成する。
+自分の環境だと補完も働かないし実行してもなにも出力されないしで本当にうまく行ったのか不安だった。</p><pre><code class=language-console>$ cd kotet.github.io.git/
+$ git update-server-info
+</code></pre><p>確認してみるとちゃんとファイルが生成されているのがわかる。</p><pre><code class=language-console>$ cat info/refs 
+2e7df24a1aea2df87604ab14ff417a55c4936259	refs/heads/master
+</code></pre><h4 id=3-ipfsにアップロード>3. IPFSにアップロード</h4><p>ディレクトリ全体をまとめて追加する。</p><pre><code class=language-console>$ ipfs add -r .
 added QmWeKwYTKwBwVd7AKioXTmtpLFxTk3MBBk2ef2JtwCccAi kotet.github.io.git/HEAD
 added Qmf7tR49yWCra16eNFVuAv4guxxaugbpmhBRrE8SAESmiJ kotet.github.io.git/config
 added Qmdy135ZFG4kUALkaMhr6Cy3VhhkxyAh264kyg3725x8be kotet.github.io.git/description
@@ -53,13 +56,16 @@ added Qmd17UPVXHwasLs9H8DJ5khce9LN1xKHjtVpnYE5yGK25s kotet.github.io.git/objects
 added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn kotet.github.io.git/refs/heads
 added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn kotet.github.io.git/refs/tags
 added QmWYtSEta2Fzgy4u4ttdwwiKMUikwZrFHxa5quWXMVyBhy kotet.github.io.git/refs
-added QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS kotet.github.io.git</code></pre></div><h4 id=4-クローンしてみる>4. クローンしてみる</h4><p>とりあえずローカルのゲートウェイからクローンしてみる。
-一瞬で終わる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone http://localhost:8080/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
-Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div><p>次にパブリックゲートウェイからクローンしてみる。
+added QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS kotet.github.io.git
+</code></pre><h4 id=4-クローンしてみる>4. クローンしてみる</h4><p>とりあえずローカルのゲートウェイからクローンしてみる。
+一瞬で終わる。</p><pre><code class=language-console>$ git clone http://localhost:8080/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
+Cloning into 'QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS'...
+</code></pre><p>次にパブリックゲートウェイからクローンしてみる。
 こちらは初回はパブリックゲートウェイのノードがこちらのノードを見つけ出してコンテンツを取りに来るぶん遅かったりタイムアウトしたりする。
 初回クローンのあとしばらく、パブリックゲートウェイのノードでGCが走るまでは高速にクローンできる。
-記事の最初のほうでGitHubからクローンしてきたときより速いかもしれない……</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone https://ipfs.io/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
-Cloning into &#39;QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS&#39;...</code></pre></div><h3 id=pushは>Pushは?</h3><p>当たり前だが今回はただファイルをアップロードしただけなので更新とかはできない。
+記事の最初のほうでGitHubからクローンしてきたときより速いかもしれない……</p><pre><code class=language-console>$ git clone https://ipfs.io/ipfs/QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS
+Cloning into 'QmZFk1QBuEfxqhY5n5Ez2ReSuGa3EoMURVMFxprJfX6mqS'...
+</code></pre><h3 id=pushは>Pushは?</h3><p>当たり前だが今回はただファイルをアップロードしただけなので更新とかはできない。
 一応上記の手順を毎回やって、IPNSと組み合わせることでリポジトリを最新の状態に保つことができるがめんどくさいので多分誰もやらない。
 IPFSでそういうことをするためにはクライアント側で工夫が必要で、そういうツールがちゃんと存在するのだがそれはまたそのうち書く。
 たぶん。</p><div class=footnotes><hr><ol><li id=fn:1><a href=https://git-scm.com/book/ja/v2/Git%E3%81%AE%E5%86%85%E5%81%B4-%E8%BB%A2%E9%80%81%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB>Git - 転送プロトコル</a>

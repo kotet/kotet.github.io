@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="週末、DMD 2.082.0 がリリースされました。 このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、 76の Bugzilla issues のクローズが含まれます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="週末、DMD 2.082.0 がリリースされました。 このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、 76の Bugzilla issues のクローズが含まれます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang DMD 2.082.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/dmd-2-082-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.082.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="週末、DMD 2.082.0 がリリースされました。 このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、 76の Bugzilla issues のクローズが含まれます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/dmd-2-082-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang DMD 2.082.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/dmd-2-082-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.082.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="週末、DMD 2.082.0 がリリースされました。 このリリースには歓迎すべきツールチェインの改善を含む28の主要な変更と、 76の Bugzilla issues のクローズが含まれます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/dmd-2-082-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 DMD 2.082.0 Released【翻訳】</h2><p><time>2018-09-06</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ツールの改善>ツールの改善</a><ul><li><a href=#dub-の改善>DUB の改善</a></li><li><a href=#windows向け署名済みバイナリー>Windows向け署名済みバイナリー</a></li></ul></li><li><a href=#コンパイラとライブラリ>コンパイラとライブラリ</a><ul><li><a href=#コンパイラ>コンパイラ</a></li><li><a href=#druntime>DRuntime</a></li><li><a href=#phobos>Phobos</a></li></ul></li><li><a href=#september-pumpkin-spice>September pumpkin spice</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、
@@ -45,7 +45,7 @@ DMD 2.082.0 Released【翻訳】</h2><p><time>2018-09-06</time>
 からの最初の支出はこの証明書に使われました。</p><h3 id=コンパイラとライブラリ>コンパイラとライブラリ</h3><p>コンパイラとライブラリ部で行われた更新や変更の多くは屋根の上で叫ばずにはいられない、
 というものではありませんが、しかしいくらか注目に値するものがあります。</p><h4 id=コンパイラ>コンパイラ</h4><p>ひとつは<a href=https://dlang.org/spec/attribute.html#uda>ユーザー定義属性構文</a>です。
 以前まで、これは宣言部以外で書くことができませんでした。
-いまやそれらは<a href=https://dlang.org/changelog/2.082.0.html#uda-function-parameters>関数パラメータにも適用できます</a>。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// 以前は、UDAを関数パラメーターに適用することは違法（illegal）でした
+いまやそれらは<a href=https://dlang.org/changelog/2.082.0.html#uda-function-parameters>関数パラメータにも適用できます</a>。</p><pre><code class=language-d>// 以前は、UDAを関数パラメーターに適用することは違法（illegal）でした
 
 void example(@(22) string param)
 
@@ -59,8 +59,9 @@ void example(@(22) string param)
 
     pragma(msg, [__traits(getAttributes, param)] == [22]);
 
-}</code></pre></div><p><em><a href=https://run.dlang.io/is/Hu4csb>この例をオンラインで実行する</a></em></p><p>列挙体のメンバーも同じことができます（これはチェンジログ上部のハイライトにはリストされていませんが、
-<a href=https://dlang.org/changelog/2.082.0.html#bugfix-list>Bugfix リスト上では言及されています</a>）:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>enum Foo {
+}
+</code></pre><p><em><a href=https://run.dlang.io/is/Hu4csb>この例をオンラインで実行する</a></em></p><p>列挙体のメンバーも同じことができます（これはチェンジログ上部のハイライトにはリストされていませんが、
+<a href=https://dlang.org/changelog/2.082.0.html#bugfix-list>Bugfix リスト上では言及されています</a>）:</p><pre><code class=language-d>enum Foo {
 
 @(10) one,
 
@@ -76,14 +77,15 @@ pragma(msg, [__traits(getAttributes, Foo.one)] == [10]);
 
 pragma(msg, [__traits(getAttributes, Foo.two)] == [20]);
 
-}</code></pre></div><p><em><a href=https://run.dlang.io/is/B2H73i>この例をオンラインで実行する</a></em></p><p><a href=http://dlang.org/blog/2018/06/11/dasbetterc-converting-make-c-to-d/>D の DasBetterC サブセット</a>
+}
+</code></pre><p><em><a href=https://run.dlang.io/is/B2H73i>この例をオンラインで実行する</a></em></p><p><a href=http://dlang.org/blog/2018/06/11/dasbetterc-converting-make-c-to-d/>D の DasBetterC サブセット</a>
 は
 <a href=https://dlang.org/changelog/2.082.0.html#betterc_cmp_types>このリリースのいくつかの改善により強化されています</a>
 。
 初期化子に配列リテラルを使うことができるようになりました。
 以前まで、配列リテラルは <code>TypeInfo</code> を必要としており、
 <code>TypeInfo</code> は DRuntime の一部であり <code>-betterC</code> モードでは使えませんでした。
-さらに、構造体の配列の比較がサポートされ、1バイト型の配列の比較もリンカエラーを起こさなくなりました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import core.stdc.stdio;
+さらに、構造体の配列の比較がサポートされ、1バイト型の配列の比較もリンカエラーを起こさなくなりました。</p><pre><code class=language-d>import core.stdc.stdio;
 struct Sint
 {
     int x;
@@ -94,18 +96,18 @@ extern(C) void main()
 {
     // この初期化子では TypeInfo エラーが起きません
     Sint[6] a1 = [Sint(1), Sint(2), Sint(3), Sint(1), Sint(2), Sint(3)];
-    foreach(si; a1) printf(&#34;%i\n&#34;, si.x);
+    foreach(si; a1) printf(&quot;%i\n&quot;, si.x);
 
     // 構造体の配列 / スライスが比較可能になりました
     assert(a1[0..3] == a1[3..$]);
 
     // 文字列の比較はリンカエラーを起こさなくなりました。
     // 明示的にも、 switch のように暗黙的にも。
-    auto s = &#34;abc&#34;;
+    auto s = &quot;abc&quot;;
     switch(s)
     {
-        case &#34;abc&#34;:
-            puts(&#34;Got a match!&#34;);
+        case &quot;abc&quot;:
+            puts(&quot;Got a match!&quot;);
             break;
         default:
             break;
@@ -115,8 +117,9 @@ extern(C) void main()
     char[6] a = [1,2,3,1,2,3];
     assert(a[0..3] &gt;= a[3..$]);
 
-    puts(&#34;All the asserts passed!&#34;);
-}</code></pre></div><p><em><a href=https://run.dlang.io/is/FiuBop>この例をオンラインで実行する</a></em></p><h4 id=druntime>DRuntime</h4><p>もうひとつの QOL フィックス、これはデバッグ体験に関わるものです。
+    puts(&quot;All the asserts passed!&quot;);
+}
+</code></pre><p><em><a href=https://run.dlang.io/is/FiuBop>この例をオンラインで実行する</a></em></p><h4 id=druntime>DRuntime</h4><p>もうひとつの QOL フィックス、これはデバッグ体験に関わるものです。
 2.082 以降のランタイムのリリースに対してコンパイルされた
 <a href=https://dlang.org/changelog/2.082.0.html#exceptions-opt>D プログラムに新たなランタイムフラグを渡せるようになりました</a>。
 <code>--DRT-trapException=0</code> です。
@@ -133,7 +136,7 @@ extern(C) void main()
 このリリースで <a href=https://dlang.org/changelog/2.082.0.html#std-array-asStatic>このモジュールに <code>staticArray</code> 関数が追加されました</a>。
 これで Input range に限り（他の配列を含む）、同じことが静的配列でも可能になります。
 レンジの長さがコンパイル時にわからない場合、テンプレート引数としてそれを渡す必要があります。
-そうでないなら、レンジそれ自身がテンプレート引数として渡せます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import std.stdio;
+そうでないなら、レンジそれ自身がテンプレート引数として渡せます。</p><pre><code class=language-d>import std.stdio;
 void main()
 {
     import std.range : iota;
@@ -146,7 +149,8 @@ void main()
     auto b = input.staticArray!(long[4]);
     pragma(msg, is(typeof(b) == long[4]));
     writeln(b);
-}</code></pre></div><p><em><a href=https://run.dlang.io/is/7dpxJM>この例をオンラインで実行する</a></em></p><h3 id=september-pumpkin-spice>September pumpkin spice</h3><p>今サイクルの<a href=https://dlang.org/blog/2018/02/03/the-dbugfix-campaign/> #dbugfix キャンペーンの参加状況</a>は、
+}
+</code></pre><p><em><a href=https://run.dlang.io/is/7dpxJM>この例をオンラインで実行する</a></em></p><h3 id=september-pumpkin-spice>September pumpkin spice</h3><p>今サイクルの<a href=https://dlang.org/blog/2018/02/03/the-dbugfix-campaign/> #dbugfix キャンペーンの参加状況</a>は、
 前サイクルと同様に、どちらかというと芳しくありません。
 しかし、今月後半にこのトピックに関するアップデートの記事があります。</p><p>志願者のうち8分の3が9月1日に始まった
 <a href=https://dlang.org/blog/symmetry-autumn-of-code/>the Symmetry Autumn of Code</a>

@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=今回は普通に使ってみようと思う。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=今回は普通に使ってみようと思う。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,19 +6,22 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs P2PプロトコルIPFS体験記5:アップロード - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-add/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs P2PプロトコルIPFS体験記5:アップロード - Kotet's Personal Blog"><meta name=og:description content=今回は普通に使ってみようと思う。><meta name=og:image content=https://blog.kotet.jp2017/10/25/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-add/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs P2PプロトコルIPFS体験記5:アップロード - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-add/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs P2PプロトコルIPFS体験記5:アップロード - Kotet's Personal Blog"><meta name=og:description content=今回は普通に使ってみようと思う。><meta name=og:image content=https://blog.kotet.jp2017/10/25/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-add/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
 P2PプロトコルIPFS体験記5:アップロード</h2><p><time>2017-10-25</time>
-<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ファイルの追加>ファイルの追加</a></li><li><a href=#閲覧>閲覧</a></li><li><a href=#所持ノードの確認>所持ノードの確認</a></li><li><a href=#ファイル名込みで追加-そして永続性について>ファイル名込みで追加、そして永続性について</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>今回は普通に使ってみようと思う。</p><h3 id=ファイルの追加>ファイルの追加</h3><p>ファイルの追加は<code>ipfs add</code>でできる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ echo &#34;hello world&#34; &gt; test
+<a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ファイルの追加>ファイルの追加</a></li><li><a href=#閲覧>閲覧</a></li><li><a href=#所持ノードの確認>所持ノードの確認</a></li><li><a href=#ファイル名込みで追加-そして永続性について>ファイル名込みで追加、そして永続性について</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>今回は普通に使ってみようと思う。</p><h3 id=ファイルの追加>ファイルの追加</h3><p>ファイルの追加は<code>ipfs add</code>でできる。</p><pre><code class=language-console>$ echo &quot;hello world&quot; &gt; test
 $ ipfs add test
-added QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o test</code></pre></div><p>アドレスはファイルの中身のハッシュ値できまるので、初心者の&rdquo;hello world&rdquo;ファイルでネットワークが埋め尽くされることはない。
-<code>test</code>というファイル名は保持されないので注意である。</p><h3 id=閲覧>閲覧</h3><p>ファイルの中身は<code>ipfs cat</code>で見ることができる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs cat QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
-hello world</code></pre></div><p>現在デーモンを起動中なので、ローカルゲートウェイを使ってアクセスすることもできる。
-また、デーモンが起動しているということはネットワークに接続しているということなので、他人のパブリックゲートウェイからもアクセスできる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ curl http://127.0.0.1:8080/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
+added QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o test
+</code></pre><p>アドレスはファイルの中身のハッシュ値できまるので、初心者の&rdquo;hello world&rdquo;ファイルでネットワークが埋め尽くされることはない。
+<code>test</code>というファイル名は保持されないので注意である。</p><h3 id=閲覧>閲覧</h3><p>ファイルの中身は<code>ipfs cat</code>で見ることができる。</p><pre><code class=language-console>$ ipfs cat QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
+hello world
+</code></pre><p>現在デーモンを起動中なので、ローカルゲートウェイを使ってアクセスすることもできる。
+また、デーモンが起動しているということはネットワークに接続しているということなので、他人のパブリックゲートウェイからもアクセスできる。</p><pre><code class=language-console>$ curl http://127.0.0.1:8080/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
 hello world
 $ curl https://ipfs.io/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
-hello world</code></pre></div><h3 id=所持ノードの確認>所持ノードの確認</h3><p><code>ipfs dht findprovs</code>で、リソースを提供できるピアのIDを探すことができる。
-ピアとかノードとかファイルとかリソースとか、用語が安定しない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs dht findprovs QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
+hello world
+</code></pre><h3 id=所持ノードの確認>所持ノードの確認</h3><p><code>ipfs dht findprovs</code>で、リソースを提供できるピアのIDを探すことができる。
+ピアとかノードとかファイルとかリソースとか、用語が安定しない。</p><pre><code class=language-console>$ ipfs dht findprovs QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
 QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg
 QmVGkGSV25o3AMjcjjnPVb1PqJzrA1PvvhMiV57cMEuExb
 QmUCHxxmZM5ozFCUw2zgRbf7HgbK5rq4byMQp89YgFSxhT
@@ -38,22 +41,29 @@ QmZNzyQ5JJUWGVoM2ZRsLbLKhuBuyHxgfBqTMEBwjfeDqg
 QmbHT8qkMAapFUdcXHgMximfGF5P1ZNhJ3Rf6nh5wY7wzm
 Qmea9dCZu6iB1yKb6pDYvBDyKuix1gRNpzUK1W3X2cqufK
 QmWQbadozRKdhtiLjfKSiaVKth2bssMGYWDw7L8XQLtY9d
-QmSoLnSGccFuZQJzRadHn95W2CrSFmZuTdDWP8HXaHca9z</code></pre></div><p>通常は自分と先ほどのパブリックゲートウェイの2件しか出てこないのだが、<code>hello world</code>という一般的なデータのため複数の人が持っていた。
+QmSoLnSGccFuZQJzRadHn95W2CrSFmZuTdDWP8HXaHca9z
+</code></pre><p>通常は自分と先ほどのパブリックゲートウェイの2件しか出てこないのだが、<code>hello world</code>という一般的なデータのため複数の人が持っていた。
 もっとたくさんいるだろうが、デフォルトでは20件見つけたところで止まるようになっている。
-たくさん提供者がいるので、このデータはたとえ自分がネットワークから去ったとしても以下のリンクからいつでもアクセスできる。</p><p><a href=https://ipfs.io/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o>https://ipfs.io/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o</a></p><h3 id=ファイル名込みで追加-そして永続性について>ファイル名込みで追加、そして永続性について</h3><p><code>ipfs add --wrap-with-directory</code>、もしくは<code>ipfs add -w</code>で、ファイルをディレクトリオブジェクトでラップできる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs add -w test
+たくさん提供者がいるので、このデータはたとえ自分がネットワークから去ったとしても以下のリンクからいつでもアクセスできる。</p><p><a href=https://ipfs.io/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o>https://ipfs.io/ipfs/QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o</a></p><h3 id=ファイル名込みで追加-そして永続性について>ファイル名込みで追加、そして永続性について</h3><p><code>ipfs add --wrap-with-directory</code>、もしくは<code>ipfs add -w</code>で、ファイルをディレクトリオブジェクトでラップできる。</p><pre><code class=language-console>$ ipfs add -w test
 added QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o test
-added QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG</code></pre></div><p>詳しいことは<a href=http://postd.cc/an-introduction-to-ipfs/>POSTDに日本語の解説がある</a>のでそちらを見て欲しいが、
+added QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
+</code></pre><p>詳しいことは<a href=http://postd.cc/an-introduction-to-ipfs/>POSTDに日本語の解説がある</a>のでそちらを見て欲しいが、
 IPFSのディレクトリは他のIPFSオブジェクトへの名前付きリンクからできている。
-よってデータ<code>hello world</code>にはやはり名前情報はなく、ハッシュも先ほどと同じ<code>QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o</code>である。</p><p>ディレクトリは<code>ipfs cat</code>できない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs cat QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
-Error: this dag node is a directory</code></pre></div><p>ここでは&rdquo;dag node&rdquo;という名前が使われている。
+よってデータ<code>hello world</code>にはやはり名前情報はなく、ハッシュも先ほどと同じ<code>QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o</code>である。</p><p>ディレクトリは<code>ipfs cat</code>できない。</p><pre><code class=language-console>$ ipfs cat QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
+Error: this dag node is a directory
+</code></pre><p>ここでは&rdquo;dag node&rdquo;という名前が使われている。
 なんだか混乱してくるので名前は気にしないことにする。</p><p>ディレクトリは<code>ipfs ls</code>で見ることができる。
-<code>-v</code>は1行目の<code>Hash</code>、<code>Size</code>、<code>Name</code>というガイドを表示させるオプションである。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs ls QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG -v
+<code>-v</code>は1行目の<code>Hash</code>、<code>Size</code>、<code>Name</code>というガイドを表示させるオプションである。</p><pre><code class=language-console>$ ipfs ls QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG -v
 Hash                                           Size Name
-QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o 20   test</code></pre></div><p>こちらも所有者がいないかさがしてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs dht findprovs QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
-QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg</code></pre></div><p>自分しかいない。
-自分のコンピュータは常時作動しているわけではないし、パブリックゲートウェイもずっとデータをとっておいてはくれないので、基本的にアクセスできないだろう。</p><p><a href=https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG>https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG</a></p><p>しかし自分がネットワークにいる間は他のノードがアクセスできる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ google-chrome https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG</code></pre></div><p><img src=/assets/2017/10/25/screenshot.png alt=スクショ></p><p>もう一度所有者を探す。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ipfs dht findprovs QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
+QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o 20   test
+</code></pre><p>こちらも所有者がいないかさがしてみる。</p><pre><code class=language-console>$ ipfs dht findprovs QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
 QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg
-QmZMxNdpMkewiVZLMRxaNxUeZpDUb34pWjZ1kZvsd16Zic</code></pre></div><p>パブリックゲートウェイのIDが増えている（前回のChrome Extentionを入れているとローカルゲートウェイにリダイレクトされてしまい増えないので注意）。
+</code></pre><p>自分しかいない。
+自分のコンピュータは常時作動しているわけではないし、パブリックゲートウェイもずっとデータをとっておいてはくれないので、基本的にアクセスできないだろう。</p><p><a href=https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG>https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG</a></p><p>しかし自分がネットワークにいる間は他のノードがアクセスできる。</p><pre><code class=language-console>$ google-chrome https://ipfs.io/ipfs/QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
+</code></pre><p><img src=/assets/2017/10/25/screenshot.png alt=スクショ></p><p>もう一度所有者を探す。</p><pre><code class=language-console>$ ipfs dht findprovs QmVyB39dubpAXaD6FKrLR3MrisQvaga1EefJZ5E3TmTcVG
+QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg
+QmZMxNdpMkewiVZLMRxaNxUeZpDUb34pWjZ1kZvsd16Zic
+</code></pre><p>パブリックゲートウェイのIDが増えている（前回のChrome Extentionを入れているとローカルゲートウェイにリダイレクトされてしまい増えないので注意）。
 ノード（今回は<a href=https://ipfs.io>ipfs.io</a>）がリソースにアクセスすると、リソースはそのノードに一時的に保存され、そのノードも提供者になる。
 他にリソースにアクセスしたい人が現れた時には、自分とそのノードで提供者が2人いることになる。
 またその人も提供者になるので、同時期にアクセス数が増えても特定のサーバーの負荷は増えないし、むしろ減っていくというわけだ。

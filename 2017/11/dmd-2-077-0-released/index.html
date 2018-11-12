@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D FoundationはDMD 2.077.0を発表しました。 このDプログラミング言語のリファレンスコンパイラの最新のリリースはdlang.orgのダウンロードページから利用できます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D FoundationはDMD 2.077.0を発表しました。 このDプログラミング言語のリファレンスコンパイラの最新のリリースはdlang.orgのダウンロードページから利用できます。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang DMD 2.077.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/dmd-2-077-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.077.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="D FoundationはDMD 2.077.0を発表しました。 このDプログラミング言語のリファレンスコンパイラの最新のリリースはdlang.orgのダウンロードページから利用できます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/dmd-2-077-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang DMD 2.077.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/11/dmd-2-077-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.077.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="D FoundationはDMD 2.077.0を発表しました。 このDプログラミング言語のリファレンスコンパイラの最新のリリースはdlang.orgのダウンロードページから利用できます。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/11/dmd-2-077-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 DMD 2.077.0 Released【翻訳】</h2><p><time>2017-11-04</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#シンボルの肥大化のカット>シンボルの肥大化のカット</a><ul><li><a href=#命名されない型>命名されない型</a></li><li><a href=#ヴォルデモート型の悪い面>ヴォルデモート型の悪い面</a></li></ul></li><li><a href=#ベクトル化の改善>ベクトル化の改善</a></li><li><a href=#その他いろいろ>その他いろいろ</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、
@@ -19,14 +19,14 @@ DMD 2.077.0 Released【翻訳】</h2><p><time>2017-11-04</time>
 このDプログラミング言語のリファレンスコンパイラの最新のリリースは<a href=https://dlang.org/download.html>dlang.orgのダウンロードページ</a>から利用できます。
 このリリースは、通常の<a href=https://dlang.org/changelog/2.077.0.html>バグとリグレッションの修正</a>の中で、既存のプロジェクトに即座に影響のある特に有益な拡張がもたらされます。</p><h3 id=シンボルの肥大化のカット>シンボルの肥大化のカット</h3><p>Rainer Schützeにより、名前が制御を離れた時、特にヴォルデモート型に関わるIFTI（暗黙の関数テンプレートインスタンス化）の時に、コンパイラはかなり小さくマングルされた名前を提供するようになりました。
 ちょっと説明が必要かもしれません。</p><h4 id=命名されない型>命名されない型</h4><p><a href=https://wiki.dlang.org/Voldemort_types>ヴォルデモート型</a>はおそらくDの中でも面白い機能です。
-このようなものです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto getHeWhoShallNotBeNamed() 
+このようなものです:</p><pre><code class=language-d>auto getHeWhoShallNotBeNamed() 
 {
     struct NoName 
     {
         void castSpell() 
         {
             import std.stdio : writeln;
-            writeln(&#34;クルーシオ!&#34;);
+            writeln(&quot;クルーシオ!&quot;);
         }           
     }
     return NoName();
@@ -36,10 +36,11 @@ void main()
 {
     auto voldemort = getHeWhoShallNotBeNamed();
     voldemort.castSpell();
-}</code></pre></div><p><a href=https://dlang.org/spec/function.html#auto-functions>auto function</a>という返値の型が推論される関数があり、それが関数の中で宣言された型のインスタンスを返しています。
+}
+</code></pre><p><a href=https://dlang.org/spec/function.html#auto-functions>auto function</a>という返値の型が推論される関数があり、それが関数の中で宣言された型のインスタンスを返しています。
 宣言された関数の外で型が名づけられないのにも関わらず、インスタンスのパブリックメンバにアクセスが可能です。
 変数の宣言の型推論と合わせて、返されたインスタンスの保持と再利用が可能です。
-これは、高いレベルのカプセル化として機能します。</p><p>Dにおいて、任意のAPIについて、モジュールの外の世界に関して<strong>モジュールプライベート</strong>は最も低いレベルのカプセル化です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module foobar;
+これは、高いレベルのカプセル化として機能します。</p><p>Dにおいて、任意のAPIについて、モジュールの外の世界に関して<strong>モジュールプライベート</strong>は最も低いレベルのカプセル化です。</p><pre><code class=language-d>module foobar;
 
 private struct Foo
 {
@@ -50,7 +51,8 @@ struct Bar
 {
     private int y;
     int z;
-}</code></pre></div><p>ここで、型<code>Foo</code>はモジュールプライベートです。
+}
+</code></pre><p>ここで、型<code>Foo</code>はモジュールプライベートです。
 Dの新人はしばしばaggregate typeのプライベートメンバもまたモジュールプライベートであるということを知って驚くので（C++の<code>friend</code>と等価です）、<code>Bar</code>は完全性のために表記してあります。
 ここに低いレベルのカプセル化を示すキーワードはありません。</p><p><code>Foo</code>を見えないようにしたくなる時があるかもしれません。
 Fooのインターフェースに破壊的変更を加える人はそのモジュールの一部にもアクセスできますが（これはモジュールプライベートメンバの背後にある根拠です）、モジュール全体が<code>Foo</code>にアクセスしてほしくない時があります。
@@ -59,10 +61,11 @@ Fooのインターフェースに破壊的変更を加える人はそのモジ�
 最終的に、Rainer Schützeが引き受けました。
 彼の努力によりマングルされた名前は全体的に短くなり、これは特にIFTIとヴォルデモート型にいい影響をもたらします（Rainerは<a href=http://rainers.github.io/visuald/visuald/StartPage.html>Visual D</a>という、Dプログラミング言語のVisual Studioのプラグインのメンテナーでもあります）。</p><p>Dの名前修飾スキームは<a href=https://dlang.org/spec/abi.html#name_mangling>ABI documentation</a>で詳細に説明されています。
 新しい拡張の説明は<a href=https://dlang.org/spec/abi.html#back_ref>‘Back references’</a>というタイトルのセクションにのっています。</p><h3 id=ベクトル化の改善>ベクトル化の改善</h3><p>Dは昔から要素ごとの加算、乗算などの配列操作をサポートしています。
-たとえば:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>int[] arr1 = [0, 1, 2];
+たとえば:</p><pre><code class=language-d>int[] arr1 = [0, 1, 2];
 int[] arr2 = [3, 4, 5];
 int[3] arr3 = arr1[] + arr2[];
-assert(arr3 == [3, 5, 7]);</code></pre></div><p>いくつかのケースで、このような操作はベクトル化されます。
+assert(arr3 == [3, 5, 7]);
+</code></pre><p>いくつかのケースで、このような操作はベクトル化されます。
 <strong>いくつかの</strong>ケースであって<strong>すべての</strong>ケースでは無いのは、ベクトル化のためには専用のアセンブリルーチンが使われており、すべてのケースに専用のルーチンが実装されているわけではなかったからです。</p><p>2.077.0において、これはもはや正しくありません。
 ベクトル化はすべての配列操作のためにテンプレート化されました。
 これまでベクトル化されていなかった配列操作を使ったコードベースは、スループットの向上により大幅な速度の改善が期待できるかもしれません(もちろんケースによります)。

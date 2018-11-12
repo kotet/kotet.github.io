@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。 調べ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。 調べ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,12 +6,12 @@
         processEscapes: true
       }
     });
-</script><title>#dlang dubで自力でCの標準ライブラリを呼び出す - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/use-c-stdio-in-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang dubで自力でCの標準ライブラリを呼び出す - Kotet's Personal Blog"><meta name=og:description content="D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。 調べ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/use-c-stdio-in-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang dubで自力でCの標準ライブラリを呼び出す - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/use-c-stdio-in-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang dubで自力でCの標準ライブラリを呼び出す - Kotet's Personal Blog"><meta name=og:description content="D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。 調べ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/use-c-stdio-in-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 dubで自力でCの標準ライブラリを呼び出す</h2><p><time>2017-04-28</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#1-dub-init>1 - <code>dub init</code></a></li><li><a href=#2-関数の宣言>2 - 関数の宣言</a><ul><li><a href=#source-stdio-d-new-file><code>source/stdio.d</code> (New file)</a></li></ul></li><li><a href=#3-使う>3 - 使う</a><ul><li><a href=#source-app-d><code>source/app.d</code></a></li></ul></li><li><a href=#4-dub-build>4 - <code>dub build</code></a></li><li><a href=#5-完成>5 - 完成</a></li><li><a href=#追記>追記</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>D言語はC言語のコードを使えるとは聞いたことはあったが、実際にそれをやったことはなくていまいち理解していなかったのでいろいろ試してみる。
 調べても具体的な手順の全体について日本語の情報が少なかったので、基本的なことから細かく書いていきたい。</p><p>Cのコードを一切書かずに使えることを確認したいので、もともとあるライブラリを使いたい。
-とりあえずサクッと試せるCのライブラリが思いつかなかったので、<code>core.stdc.stdio</code>を使わずにCの<code>puts</code>を呼び出してHelloWorldを書いてみる。</p><h3 id=1-dub-init>1 - <code>dub init</code></h3><p>まずは普通に<code>dub init</code>する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dub init
+とりあえずサクッと試せるCのライブラリが思いつかなかったので、<code>core.stdc.stdio</code>を使わずにCの<code>puts</code>を呼び出してHelloWorldを書いてみる。</p><h3 id=1-dub-init>1 - <code>dub init</code></h3><p>まずは普通に<code>dub init</code>する。</p><pre><code class=language-console>$ dub init
 Package recipe format (sdl/json) [json]: 
 Name [test]: 
 Description [A minimal D application.]: 
@@ -19,28 +19,35 @@ Author name [kotet]:
 License [proprietary]: 
 Copyright string [Copyright © 2017, kotet]: 
 Add dependency (leave empty to skip) []: 
-Successfully created an empty project in &#39;/tmp/test&#39;.
-Package successfully created in .</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ tree
+Successfully created an empty project in '/tmp/test'.
+Package successfully created in .
+</code></pre><pre><code class=language-console>$ tree
 .
 ├── dub.json
 └── source
     └── app.d
 
-1 directory, 2 files</code></pre></div><h3 id=2-関数の宣言>2 - 関数の宣言</h3><p><code>stdio.h</code>は<code>/usr/include/</code>にあるので読んで<code>puts</code>を探してみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ cat /usr/include/stdio.h | grep puts
+1 directory, 2 files
+</code></pre><h3 id=2-関数の宣言>2 - 関数の宣言</h3><p><code>stdio.h</code>は<code>/usr/include/</code>にあるので読んで<code>puts</code>を探してみる。</p><pre><code class=language-console>$ cat /usr/include/stdio.h | grep puts
 extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
 extern int puts (const char *__s);
-/* This function does the same as `fputs&#39; but does not lock the stream.
-extern int fputs_unlocked (const char *__restrict __s,</code></pre></div><p>使いたいのは<code>extern int puts (const char *__s);</code>なので、これだけDで宣言してみる。</p><h4 id=source-stdio-d-new-file><code>source/stdio.d</code> (New file)</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>extern(C) int puts(const char* __s);</code></pre></div><p>一行、これだけでいい。</p><h3 id=3-使う>3 - 使う</h3><h4 id=source-app-d><code>source/app.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import stdio;
+/* This function does the same as `fputs' but does not lock the stream.
+extern int fputs_unlocked (const char *__restrict __s,
+</code></pre><p>使いたいのは<code>extern int puts (const char *__s);</code>なので、これだけDで宣言してみる。</p><h4 id=source-stdio-d-new-file><code>source/stdio.d</code> (New file)</h4><pre><code class=language-d>extern(C) int puts(const char* __s);
+</code></pre><p>一行、これだけでいい。</p><h3 id=3-使う>3 - 使う</h3><h4 id=source-app-d><code>source/app.d</code></h4><pre><code class=language-d>import stdio;
 import std.string : toStringz;
 
 void main()
 {
-	puts(&#34;hello&#34;.toStringz);
-}</code></pre></div><p><code>toStringz</code>はDの文字列をCの0終端文字列に変換するもの。</p><h3 id=4-dub-build>4 - <code>dub build</code></h3><p>Cの標準ライブラリはデフォルトで勝手にリンクされるので、今回は特に何かする必要はない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dub build
-Performing &#34;debug&#34; build using dmd for x86_64.
-test ~master: building configuration &#34;application&#34;...
-Linking...</code></pre></div><h3 id=5-完成>5 - 完成</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ ./test
-hello</code></pre></div><p>簡単だった。
+	puts(&quot;hello&quot;.toStringz);
+}
+</code></pre><p><code>toStringz</code>はDの文字列をCの0終端文字列に変換するもの。</p><h3 id=4-dub-build>4 - <code>dub build</code></h3><p>Cの標準ライブラリはデフォルトで勝手にリンクされるので、今回は特に何かする必要はない。</p><pre><code class=language-console>$ dub build
+Performing &quot;debug&quot; build using dmd for x86_64.
+test ~master: building configuration &quot;application&quot;...
+Linking...
+</code></pre><h3 id=5-完成>5 - 完成</h3><pre><code class=language-console>$ ./test
+hello
+</code></pre><p>簡単だった。
 次は標準以外のライブラリを使ってみたい。</p><h3 id=追記>追記</h3><p><a href=/2017/04/29/use-c-math-in-d.html>次回:sqrtを使う</a></p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 dubで自力でCの標準ライブラリを呼び出す</h2><p><time>2017-04-28</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

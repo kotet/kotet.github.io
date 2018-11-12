@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang 新・CTFEエンジンについて【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 新・CTFEエンジンについて【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang 新・CTFEエンジンについて【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 新・CTFEエンジンについて【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="9ヶ月前、私はNewCTFEと呼ばれる、Dコンパイラフロントエンドのコンパイル時関数実行(CTFE) 機能の再実装のプロジェクトで作業をしていました。 CTFEはDの革新的機能とされています。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/the-new-ctfe-engine/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 新・CTFEエンジンについて【翻訳】</h2><p><time>2017-04-13</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p></aside></header><article><p>この記事は</p><p><a href=https://dlang.org/blog/2017/04/10/the-new-ctfe-engine/>The New CTFE Engine – The D Blog</a></p><p>の翻訳である。
@@ -26,30 +26,31 @@ CTFEはDの革新的機能とされています。</p><p>その名前が示す�
 コンパイラは関数呼び出しをその結果で置き換えます。</p><p>これは言語の切り離せない部分のため、コンパイル時定数の行くところどこでも純粋関数を実行できます。
 シンプルな例を<a href=https://dlang.org/phobos/index.html>標準ライブラリ</a>モジュール、
 <a href=https://dlang.org/phobos/std_uri.html><code>std.uri</code></a>に見ることができ、ここでCTFEはルックアップテーブルを計算するために使われています。
-<a href=https://github.com/dlang/Phobos/blob/master/std/uri.d>このようなものです</a>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>private immutable ubyte[128] uri_flags = // indexed by character
+<a href=https://github.com/dlang/Phobos/blob/master/std/uri.d>このようなものです</a>:</p><pre><code class=language-d>private immutable ubyte[128] uri_flags = // indexed by character
 ({
 
     ubyte[128] uflags;
 
     // Compile time initialize
-    uflags[&#39;#&#39;] |= URI_Hash;
+    uflags['#'] |= URI_Hash;
 
-    foreach (c; &#39;A&#39; .. &#39;Z&#39; + 1)
+    foreach (c; 'A' .. 'Z' + 1)
     {
         uflags[c] |= URI_Alpha;
         uflags[c + 0x20] |= URI_Alpha; // lowercase letters
 
     }
 
-    foreach (c; &#39;0&#39; .. &#39;9&#39; + 1) uflags[c] |= URI_Digit;
+    foreach (c; '0' .. '9' + 1) uflags[c] |= URI_Digit;
 
-    foreach (c; &#34;;/?:@&amp;=+$,&#34;) uflags[c] |= URI_Reserved;
+    foreach (c; &quot;;/?:@&amp;=+$,&quot;) uflags[c] |= URI_Reserved;
 
-    foreach (c; &#34;-_.!~*&#39;()&#34;) uflags[c] |= URI_Mark;
+    foreach (c; &quot;-_.!~*'()&quot;) uflags[c] |= URI_Mark;
 
     return uflags;
 
-})();</code></pre></div><p>テーブルにマジックバリューを入れる代わりに、シンプルで意味のある<a href=https://dlang.org/spec/expression.html#FunctionLiteral>関数リテラル</a>
+})();
+</code></pre><p>テーブルにマジックバリューを入れる代わりに、シンプルで意味のある<a href=https://dlang.org/spec/expression.html#FunctionLiteral>関数リテラル</a>
 が使われています。
 これは不透明な静的配列より理解とデバッグが簡単です。
 <code>({</code>で関数リテラルが始まり、<code>})</code>で閉じられます。

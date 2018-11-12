@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。 簡単にプログラムに落とし込めそうでテンション"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。 簡単にプログラムに落とし込めそうでテンション"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang Dで書くクワイン・マクラスキー法 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/07/quine-mccluskey-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dで書くクワイン・マクラスキー法 - Kotet's Personal Blog"><meta name=og:description content="先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。 簡単にプログラムに落とし込めそうでテンション"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/07/quine-mccluskey-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang Dで書くクワイン・マクラスキー法 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/07/quine-mccluskey-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dで書くクワイン・マクラスキー法 - Kotet's Personal Blog"><meta name=og:description content="先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。 簡単にプログラムに落とし込めそうでテンション"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/07/quine-mccluskey-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 Dで書くクワイン・マクラスキー法</h2><p><time>2018-07-01</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#論理式の簡単化>論理式の簡単化</a></li><li><a href=#クワイン-マクラスキー法>クワイン・マクラスキー法</a><ul><li><a href=#入出力の定義>入出力の定義</a></li><li><a href=#ハミング重み-ハミング距離-項のマージ>ハミング重み、ハミング距離、項のマージ</a></li><li><a href=#主項をみつける>主項をみつける</a></li><li><a href=#最簡形を求める>最簡形を求める</a></li><li><a href=#完成>完成</a></li></ul></li><li><a href=#できたもの>できたもの</a></li><li><a href=#参考文献>参考文献</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>先日大学でクワイン・マクラスキー法(Quine-McCluskey algorithm)を習った。
@@ -25,7 +25,7 @@ f(A,B,C,D) &amp;= B \overline{C} \overline{D} + A \overline{D} + A C\\<br>&amp;=
 そうなると結果的に計算に必要な時間は増えてしまう。</p><h3 id=クワイン-マクラスキー法>クワイン・マクラスキー法</h3><p>そんな簡単化をする方法は色々あるが、その中でコンピュータで自動化しやすいのがクワイン・マクラスキー法である。
 クワイン・マクラスキー法では<a href=https://ja.wikipedia.org/wiki/%E9%81%B8%E8%A8%80%E6%A8%99%E6%BA%96%E5%BD%A2>加法標準形</a>という形の論理式を最簡化する。
 要するに上の式みたいにANDとNOTでできた項をORで繋いだ形のことである。</p><p>クワイン・マクラスキー法は以下のステップに分かれている。</p><ol><li>真理値表などを加法標準形に変換</li><li>主項(素項)を見つける<ol><li>項をハミング重みで分類</li><li>項をまとめる</li><li>くりかえす</li></ol></li><li>主項を組み合わせて最簡形にする</li></ol><p>自分は加法標準形への変換以外の部分を書いた。
-以降コードとともに手順を書いていく。</p><h4 id=入出力の定義>入出力の定義</h4><p>最初に関数の形を決めておく。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>enum Literal
+以降コードとともに手順を書いていく。</p><h4 id=入出力の定義>入出力の定義</h4><p>最初に関数の形を決めておく。</p><pre><code class=language-d>enum Literal
 {
     T, // Term
     N, // ¬Term
@@ -35,12 +35,13 @@ f(A,B,C,D) &amp;= B \overline{C} \overline{D} + A \overline{D} + A C\\<br>&amp;=
 alias Conjunction = Literal[];
 alias DNF = Conjunction[]; // Disjunctive normal form
 
-DNF[] qm(DNF dnfin, size_t[] dontcare)</code></pre></div><p>項はリテラルの配列として表す。
+DNF[] qm(DNF dnfin, size_t[] dontcare)
+</code></pre><p>項はリテラルの配列として表す。
 たとえば\(B \overline{C} \overline{D}\)なら<code>[X, T, N, N]</code>というふうになる。
 配列の長さは変数の数であり、ばらばらの長さの配列が与えられることはないとする。</p><p>加法標準形の式は項の配列として表す。
 つまり\(B \overline{C} \overline{D} + A \overline{D} + A C\)なら<code>[[X, T, N, N], [T, X, X, N], [T, X, T, X]]</code>となる。</p><p>リテラル、項、式をそれぞれ<code>Literal</code>、<code>Conjunction</code>、<code>DNF</code>として定義する。
 クワイン・マクラスキー法の関数<code>qm</code>は、<code>DNF</code>とDon&rsquo;t careの項のインデックスを受取りそのすべての最簡形を<code>DNF[]</code>として返す。</p><p>簡単な動作確認としてユニットテストがついている。
-もうなんかめんどくさいのでこのテストが通ったら完成とする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>unittest
+もうなんかめんどくさいのでこのテストが通ったら完成とする。</p><pre><code class=language-d>unittest
 {
     // https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AF%E3%82%A4%E3%83%B3%E3%83%BB%E3%83%9E%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%AD%E3%83%BC%E6%B3%95
     DNF input = () {
@@ -48,11 +49,11 @@ DNF[] qm(DNF dnfin, size_t[] dontcare)</code></pre></div><p>項はリテラル�
             return [// dfmt off
                 [N, T, N, N],
                 [T, N, N, N],
-                [T, N, N, T],// Don&#39;t care
+                [T, N, N, T],// Don't care
                 [T, N, T, N],
                 [T, T, N, N],
                 [T, N, T, T],
-                [T, T, T, N],// Don&#39;t care
+                [T, T, T, N],// Don't care
                 [T, T, T, T]
             ];
             // dfmt on
@@ -67,9 +68,10 @@ DNF[] qm(DNF dnfin, size_t[] dontcare)</code></pre></div><p>項はリテラル�
             // dfmt on
     }();
     assert(qm(input, [2, 6]) == output);
-}</code></pre></div><h4 id=ハミング重み-ハミング距離-項のマージ>ハミング重み、ハミング距離、項のマージ</h4><p>ここで<code>qm</code>の実装に必要な関数を作っておく。
+}
+</code></pre><h4 id=ハミング重み-ハミング距離-項のマージ>ハミング重み、ハミング距離、項のマージ</h4><p>ここで<code>qm</code>の実装に必要な関数を作っておく。
 まずはハミング重み。
-これは項の中の<code>T</code>の数を数える。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>size_t hammingWeight(Conjunction a)
+これは項の中の<code>T</code>の数を数える。</p><pre><code class=language-d>size_t hammingWeight(Conjunction a)
 {
     import std.algorithm : filter, map, sum;
 
@@ -87,8 +89,9 @@ unittest
         assert(hammingWeight([T, T, T]) == 3);
         assert(hammingWeight([X, N, T]) == 1);
     }
-}</code></pre></div><p>次にハミング距離。
-2つの項の中で異なるリテラルの数を数える。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>size_t hammingDistance(Conjunction a, Conjunction b)
+}
+</code></pre><p>次にハミング距離。
+2つの項の中で異なるリテラルの数を数える。</p><pre><code class=language-d>size_t hammingDistance(Conjunction a, Conjunction b)
 {
     import std.algorithm : filter, map, sum;
     import std.range : zip;
@@ -107,11 +110,12 @@ unittest
         assert(hammingDistance([T, N, T], [N, T, N]) == 3);
         assert(hammingDistance([T, N, X], [T, X, T]) == 2);
     }
-}</code></pre></div><p><code>hammingDistance(a, b) == 1</code>のとき、<code>a</code>、<code>b</code>は</p><p>\(
+}
+</code></pre><p><code>hammingDistance(a, b) == 1</code>のとき、<code>a</code>、<code>b</code>は</p><p>\(
 \begin{align}
 X\cdot P + \overline{X}\cdot P &amp;= (X + \overline{X})\cdot P\\<br>&amp;= I\cdot P = P
 \end{align}
-\)</p><p>を用いてマージできる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>Conjunction merge(Conjunction a, Conjunction b)
+\)</p><p>を用いてマージできる。</p><pre><code class=language-d>Conjunction merge(Conjunction a, Conjunction b)
 {
     assert(hammingDistance(a, b) == 1);
     auto result = new Conjunction(a.length);
@@ -134,13 +138,15 @@ unittest
         assert(merge([T, T, T], [T, T, N]) == [T, T, X]);
         assert(merge([N, X, N], [N, X, T]) == [N, X, X]);
     }
-}</code></pre></div><h4 id=主項をみつける>主項をみつける</h4><p><code>qm</code>に戻って、いよいよアルゴリズムを書いていくが、
+}
+
+</code></pre><h4 id=主項をみつける>主項をみつける</h4><p><code>qm</code>に戻って、いよいよアルゴリズムを書いていくが、
 その前にクワイン・マクラスキー法がなぜクワイン・マクラスキー法というかをここで解説しておく。</p><p>まず最初にクワイン法というものがあった。
 これはさっきの\(X\cdot P + \overline{X}\cdot P = P\)を適用できる項があるかをひたすら全部の組み合わせについて見ていく方法である。
 アルゴリズムとしてはハミング距離が1になっている組を総当りで見つけてマージ、というのを繰り返していくことになると思う。</p><p>ここで、マクラスキー法によって総当りしなくてもハミング重みが1違う組だけを調べればいいということがわかった。
 2つを組み合わせてクワイン・マクラスキー法というわけだ。</p><p>速度を考えずにとりあえず動くものを書くことを目標にしている今回はすべての項のハミング距離を調ベようと考えていたのだが、
 そうしてしまうとマクラスキー要素がなくなってしまうのでちゃんと書く。</p><p>あと、ここでマージ元を覚えておく。
-そのために<code>TaggedConjunction</code>というものを新たに作って、関数内部ではそれを使うようにしている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>DNF[] qm(DNF dnfin, size_t[] dontcare)
+そのために<code>TaggedConjunction</code>というものを新たに作って、関数内部ではそれを使うようにしている。</p><pre><code class=language-d>DNF[] qm(DNF dnfin, size_t[] dontcare)
 {
 
     import std.algorithm : sort, uniq, any, fold, equal, filter, map, sum;
@@ -159,10 +165,11 @@ unittest
     TaggedConjunction[] prime;
 
     foreach (i, c; dnfin)
-        merged ~= TaggedConjunction(false, [i], c);</code></pre></div><p>そして以下がマージ部。
+        merged ~= TaggedConjunction(false, [i], c);
+</code></pre><p>そして以下がマージ部。
 マージされた項を<code>flag</code>で覚えておいて、マージされなかった項は主項として<code>prime</code>に追加しておく。
 <code>foreach</code>が3重になっており、その中の<code>merge</code>でもループがあるので繰り返し1回ごとに4重ループが回る。
-実用するためにはマクラスキー要素で総当りの量を減らせると嬉しいのがわかる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>    do
+実用するためにはマクラスキー要素で総当りの量を減らせると嬉しいのがわかる。</p><pre><code class=language-d>    do
     {
         auto table = new TaggedConjunction[][](size + 1);
         foreach (c; merged)
@@ -188,13 +195,14 @@ unittest
                 if (c.flag == false &amp;&amp; !any!(x =&gt; x == c)(prime))
                     prime ~= c;
     }
-    while (merged != []);</code></pre></div><h4 id=最簡形を求める>最簡形を求める</h4><p>先程求められた主項<code>prime</code>の、入力の式を完全にカバーする組み合わせを見つける。
+    while (merged != []);
+</code></pre><h4 id=最簡形を求める>最簡形を求める</h4><p>先程求められた主項<code>prime</code>の、入力の式を完全にカバーする組み合わせを見つける。
 このためにマージ元を覚えておいてある。
 入力の<strong>Don&rsquo;t care以外の</strong>すべての項がカバーされるように主項を選ぶ。
 「Don&rsquo;t care以外の」というところをここに来るまで見落としていて大変なことになった。</p><p>あらかじめ絶対必要な項を見つけておいて総当りの量を減らしたり、
 ペトリック法というアルゴリズムを使ったりするようだが気にせず総当り。
 ペトリック法は日本語の情報が少ない。
-そのうち調べてみたい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>    size_t min = size_t.max;
+そのうち調べてみたい。</p><pre><code class=language-d>    size_t min = size_t.max;
     DNF[] result;
     bool[] stack = [false];
 
@@ -238,12 +246,14 @@ unittest
             stack.popBack();
             stack ~= true;
         }
-    }</code></pre></div><h4 id=完成>完成</h4><p>そういうわけでクワイン・マクラスキー法が実装できた。
-動かしてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ time dmd -main -unittest qm.d &amp;&amp; ./qm 
+    }
+</code></pre><h4 id=完成>完成</h4><p>そういうわけでクワイン・マクラスキー法が実装できた。
+動かしてみる。</p><pre><code class=language-console>$ time dmd -main -unittest qm.d &amp;&amp; ./qm 
 
 real	0m1.040s
 user	0m0.850s
-sys	0m0.178s</code></pre></div><p>ユニットテストをしているだけなので何も表示されなくてちょっとさみしい。
+sys	0m0.178s
+</code></pre><p>ユニットテストをしているだけなので何も表示されなくてちょっとさみしい。
 コンパイル時間も含めて1秒で計算が終わった。
 こんな雑に書いても人間に比べれば一瞬で終わらせられるのがコンピューターのいいところだと思う。</p><h3 id=できたもの>できたもの</h3><p>全体はgistに上げた。</p><p><a href=https://gist.github.com/kotet/e0ba2b1e74705f5d9a170d2459589797>Quine-McCluskey algorithm</a></p><p>まだどう書けばいいのかはっきり思い浮かばないが、気力があったらHaskellでも書いてみたい。</p><h3 id=参考文献>参考文献</h3><p><a href=http://iss.ndl.go.jp/books/R100000002-I000001611921-00>ブール代数とその応用 (東海大学出版会): 1983</a></p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 Dで書くクワイン・マクラスキー法</h2><p><time>2018-07-01</time>

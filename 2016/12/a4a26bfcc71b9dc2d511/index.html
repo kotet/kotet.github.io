@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="かのマハトマ・ガンジーも もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられなかったでしょう。 と言ったように、生活の中でD言語くんを忘れないようにすることはとても大切です。退屈な待ち時間でもそこにD言語くんがいれば幸せになれるのではないでしょうか。 そこでPythonのprogressを参考にライブラリprogressを作りました。dubに登録してあります。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="かのマハトマ・ガンジーも もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられなかったでしょう。 と言ったように、生活の中でD言語くんを忘れないようにすることはとても大切です。退屈な待ち時間でもそこにD言語くんがいれば幸せになれるのではないでしょうか。 そこでPythonのprogressを参考にライブラリprogressを作りました。dubに登録してあります。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,12 +6,12 @@
         processEscapes: true
       }
     });
-</script><title>#dlang 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った - Kotet's Personal Blog"><meta name=og:description content="かのマハトマ・ガンジーも もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられなかったでしょう。 と言ったように、生活の中でD言語くんを忘れないようにすることはとても大切です。退屈な待ち時間でもそこにD言語くんがいれば幸せになれるのではないでしょうか。 そこでPythonのprogressを参考にライブラリprogressを作りました。dubに登録してあります。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った - Kotet's Personal Blog"><meta name=og:description content="かのマハトマ・ガンジーも もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられなかったでしょう。 と言ったように、生活の中でD言語くんを忘れないようにすることはとても大切です。退屈な待ち時間でもそこにD言語くんがいれば幸せになれるのではないでしょうか。 そこでPythonのprogressを参考にライブラリprogressを作りました。dubに登録してあります。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/a4a26bfcc71b9dc2d511/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った</h2><p><time>2016-12-14</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><a href=#つかいかた>つかいかた</a><ul><li><ul><li><a href=#九九を教えてくれるd言語くん>九九を教えてくれるD言語くん</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>かのマハトマ・ガンジーも
 &gt; <a href="http://meigennote.com/?p=134#i-11">もし、私にD言語くんがなければ、これほど長く苦しい戦いには耐えられなかったでしょう。</a></p><p>と言ったように、生活の中でD言語くんを忘れないようにすることはとても大切です。退屈な待ち時間でもそこにD言語くんがいれば幸せになれるのではないでしょうか。
-そこでPythonの<a href=https://github.com/verigak/progress>progress</a>を参考にライブラリ<a href=https://github.com/kotet/progress>progress</a>を作りました。<a href=http://code.dlang.org/packages/progress>dubに登録してあります</a>。</p><h2 id=つかいかた>つかいかた</h2><h4 id=九九を教えてくれるd言語くん>九九を教えてくれるD言語くん</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import progress.dman;
+そこでPythonの<a href=https://github.com/verigak/progress>progress</a>を参考にライブラリ<a href=https://github.com/kotet/progress>progress</a>を作りました。<a href=http://code.dlang.org/packages/progress>dubに登録してあります</a>。</p><h2 id=つかいかた>つかいかた</h2><h4 id=九九を教えてくれるd言語くん>九九を教えてくれるD言語くん</h4><pre><code class=language-d>import progress.dman;
 import core.thread : Thread,dur;
 import std.string : format;
 
@@ -24,12 +24,13 @@ void main()
         {
             auto left = (i/9)+1;
             auto right = (i%9)+1;
-            return &#34;%s * %s = %s&#34;.format(left,right,left*right);
+            return &quot;%s * %s = %s&quot;.format(left,right,left*right);
         };
         dman.next();
-        Thread.sleep(dur!(&#34;msecs&#34;)(500));
+        Thread.sleep(dur!(&quot;msecs&quot;)(500));
     }
     dman.finish();
-}</code></pre></div><p><img src=/assets/qiita/0/57768/074d96f2-4e9b-f255-47eb-7d2f625b5a43.gif alt=optimized.gif></p><p>これであなたのプログラムにもD言語くん要素を入れることができます!</p><hr><p>それではよいD言語くんライフを!</p><p><img src=/assets/qiita/0/57768/27668060-85d5-2769-7953-d396db3551b7.gif alt=optimized.gif></p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+}
+</code></pre><p><img src=/assets/qiita/0/57768/074d96f2-4e9b-f255-47eb-7d2f625b5a43.gif alt=optimized.gif></p><p>これであなたのプログラムにもD言語くん要素を入れることができます!</p><hr><p>それではよいD言語くんライフを!</p><p><img src=/assets/qiita/0/57768/27668060-85d5-2769-7953-d396db3551b7.gif alt=optimized.gif></p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 待ち時間をD言語くんで彩る - 進捗表示ライブラリを作った</h2><p><time>2016-12-14</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a> <a href=/tags/dlangman>#dlangman</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang DMD 2.076.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/09/dmd-2-076-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.076.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/09/dmd-2-076-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang DMD 2.076.0 Released【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/09/dmd-2-076-0-released/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DMD 2.076.0 Released【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="コアDチームがプログラミング言語Dのリファレンスコンパイラ、DMDのバージョン2.076.0を公開し、 ダウンロードできるようになりました。 このリリースの大きな特徴は2つあり、ジェネレーティブプログラミングとジェネリックプログラミングのためのstatic foreach機能と、 Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有用にする、非常に強化されたC言語統合です。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/09/dmd-2-076-0-released/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 DMD 2.076.0 Released【翻訳】</h2><p><time>2017-09-03</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#static-foreach>static foreach</a></li><li><a href=#cとの統合と相互運用性の改善>Cとの統合と相互運用性の改善</a></li><li><a href=#新しいリリーススケジュール>新しいリリーススケジュール</a></li><li><a href=#今すぐ入手しましょう>今すぐ入手しましょう!</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=https://dlang.org/blog/2017/09/01/dmd-2-076-0-released/>DMD 2.076.0 Released – The D Blog</a></p><p>を自分用に翻訳したものを
@@ -19,17 +19,17 @@ Cプロジェクトを徐々にDに切り替えていくことを簡単かつ有
 これらは異なるコードパスをコンパイル時に選択したり、文字列mixinやテンプレートmixinと組み合わせてコードブロックを生成するために使用されます。
 これらの機能による可能性は発見され続けていますが、コンパイル時ループ構築の欠如は常に不便をもたらしていました。</p><p>こちらのサンプルで、<code>val0</code>から<code>valN</code>と名付けられる定数群は設定ファイルで指定された数値<code>N+1</code>を元に生成されなければなりません。
 実際の設定ファイルではパース用の関数が必要ですが、この例では<code>val.cfg</code>ファイルは<code>10</code>などの単一の数値のみを含み、他に何も書かれていないと仮定します。
-さらに、<code>val.cfg</code>はコマンドライン<code>dmd -J. valgen.d</code>を使ってコンパイルされるソースファイル<code>valgen.d</code>と同じディレクトリにあるものとします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module valgen;
+さらに、<code>val.cfg</code>はコマンドライン<code>dmd -J. valgen.d</code>を使ってコンパイルされるソースファイル<code>valgen.d</code>と同じディレクトリにあるものとします。</p><pre><code class=language-d>module valgen;
 import std.conv : to;
 
-enum valMax = to!uint(import(&#34;val.cfg&#34;));
+enum valMax = to!uint(import(&quot;val.cfg&quot;));
 
 string genVals() 
 {
     string ret;
     foreach(i; 0 .. valMax) 
     {
-        ret ~= &#34;enum val&#34; ~ to!string(i) ~ &#34;=&#34; ~ to!string(i) ~ &#34;;&#34;;
+        ret ~= &quot;enum val&quot; ~ to!string(i) ~ &quot;=&quot; ~ to!string(i) ~ &quot;;&quot;;
     }
     return ret;
 }
@@ -39,7 +39,7 @@ string genWrites()
     string ret;
     foreach(i; 0 .. valMax) 
     {
-        ret ~= &#34;writeln(val&#34; ~ to!string(i) ~ &#34;);&#34;;
+        ret ~= &quot;writeln(val&quot; ~ to!string(i) ~ &quot;);&quot;;
     }
     return ret;
 }
@@ -50,7 +50,8 @@ void main()
 {
     import std.stdio : writeln;
     mixin(genWrites);
-}</code></pre></div><p>記号定数<code>valMax</code>は、コンパイル時にファイルを読み、文字列リテラルとして扱われる
+}
+</code></pre><p>記号定数<code>valMax</code>は、コンパイル時にファイルを読み、文字列リテラルとして扱われる
 <a href=https://dlang.org/spec/expression.html#import_expressions><code>import</code>式</a>によって初期化されます。
 ファイル内の単一の数字のみを扱うので、文字列を直接<code>std.conv.to</code>関数テンプレートに渡して<code>uint</code>に変換することができます。
 <code>valMax</code>が<code>enum</code>のため、<code>to</code>の呼び出しはコンパイル時に発生する必要があります。
@@ -68,14 +69,14 @@ Dのコンパイル時構築を使う誰にとっても反復が必要となる�
 コンパイラに<code>static foreach</code>のサポートを追加する<a href=https://github.com/dlang/dmd/pull/6760>プルリクエスト</a>を実装しました。
 彼は<a href=https://github.com/dlang/DIPs/blob/master/DIPs/DIP1010.md>DIP 1010</a>を実現するためにそれを踏襲し、
 DIP 1010は言語の作者から熱心な賛成を受けました。
-DMD 2.076で、<a href=https://dlang.org/changelog/2.076.0.html#staticforeach>ついにすべての準備が整った</a>というわけです。</p><p>この新機能によって、上記の例は以下のように書き換えられます:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module valgen2;
+DMD 2.076で、<a href=https://dlang.org/changelog/2.076.0.html#staticforeach>ついにすべての準備が整った</a>というわけです。</p><p>この新機能によって、上記の例は以下のように書き換えられます:</p><pre><code class=language-d>module valgen2;
 import std.conv : to;
 
-enum valMax = to!uint(import(&#34;val.cfg&#34;));
+enum valMax = to!uint(import(&quot;val.cfg&quot;));
 
 static foreach(i; 0 .. valMax) 
 {
-    mixin(&#34;enum val&#34; ~ to!string(i) ~ &#34;=&#34; ~ to!string(i) ~ &#34;;&#34;);
+    mixin(&quot;enum val&quot; ~ to!string(i) ~ &quot;=&quot; ~ to!string(i) ~ &quot;;&quot;);
 }
 
 void main() 
@@ -83,9 +84,10 @@ void main()
     import std.stdio : writeln;
     static foreach(i; 0 .. valMax) 
     {
-        mixin(&#34;writeln(val&#34; ~ to!string(i) ~ &#34;);&#34;);
+        mixin(&quot;writeln(val&quot; ~ to!string(i) ~ &quot;);&quot;);
     }
-}</code></pre></div><p>このような単純な例でもわかりやすく可読性の向上があります。
+}
+</code></pre><p>このような単純な例でもわかりやすく可読性の向上があります。
 このコンパイラのリリースをきっかけにコンパイル時に重いDライブラリ(そのほとんどではないでしょうか?)に大きなアップデートがあっても驚かないでください。</p><h3 id=cとの統合と相互運用性の改善>Cとの統合と相互運用性の改善</h3><p>DMDの<code>-betterC</code>コマンドラインスイッチは、かなり前から存在はしていましたが、
 実際には役に立たなかったし、より緊急の事項への対処のため放置されてきました。
 DMD 2.076で、それが動き始めました。</p><p>一つのプログラムのうちでDとCの両方を組み合わせる、特に作業中のプロジェクトにおいてCのコードとDのコードを徐々に置き換えるのを簡単にする、

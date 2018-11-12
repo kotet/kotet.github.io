@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang Dの新しい名前修飾【抄訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dの新しい名前修飾【抄訳】 - Kotet's Personal Blog"><meta name=og:description content="D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang Dの新しい名前修飾【抄訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Dの新しい名前修飾【抄訳】 - Kotet's Personal Blog"><meta name=og:description content="D言語の短期的な設計目標の一つにCとのインターフェース能力があります。 その目標のために、Cの標準ライブラリへのアクセスを可能にし、CやC&#43;&#43;コンパイラが使うのと同じオブジェクトファイルフォーマットとシステムリンカを使うABI互換を提供しています。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/01/ds-newfangled-name-mangling/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 Dの新しい名前修飾【抄訳】</h2><p><time>2018-01-15</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#シンボル名修飾とは何か>シンボル名修飾とは何か？</a></li><li><a href=#テンプレートシンボル>テンプレートシンボル</a></li><li><a href=#シンボル圧縮による解決>シンボル圧縮による解決</a></li><li><a href=#新しい修飾法は健全か>新しい修飾法は健全か？</a></li><li><a href=#影響>影響</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は
@@ -22,17 +22,21 @@ Dの新しい名前修飾【抄訳】</h2><p><time>2018-01-15</time>
 これによって以前にコンパイルされたオブジェクトファイルやライブラリを再利用し、ビルドプロセスの高速化ができます。
 C/C++やFortranのような同じコンパイルモデルを持つ言語でも同じリンカが使われるため、異なる言語のオブジェクトファイルを直接組み合わせられます。</p><p>オブジェクトファイルのなかでは呼び出したりアクセスしたりするために定義された各関数とグローバル変数にシンボル名が割り当てられています。
 リンカはそのシンボル名を利用する事で、シンボルに関する知識を持たずに同名の定義の参照をつなぎ合わせます。
-たとえば、このCの関数宣言のシンボルは、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>extern(C) const(char)* find(int ch, const(char)* str);</code></pre></div><p>Cがシンボル名として普通の名前 <code>find</code> を使うため（プラットフォームによってはシンボルの最初に<code>_</code>が付きます）、関数の引数や返値の型について何もリンカに伝えません。
-後で引数の順番をこのとおり変えたとしても、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>extern(C) const(char)* find(const(char)* str, int ch);</code></pre></div><p>更新と新しい宣言を使うすべてのソースファイルの再コンパイルは行われず、リンカはそのオブジェクトファイルを幸運なことにもくっつけてしまいます。
+たとえば、このCの関数宣言のシンボルは、</p><pre><code class=language-d>extern(C) const(char)* find(int ch, const(char)* str);
+</code></pre><p>Cがシンボル名として普通の名前 <code>find</code> を使うため（プラットフォームによってはシンボルの最初に<code>_</code>が付きます）、関数の引数や返値の型について何もリンカに伝えません。
+後で引数の順番をこのとおり変えたとしても、</p><pre><code class=language-d>extern(C) const(char)* find(const(char)* str, int ch);
+</code></pre><p>更新と新しい宣言を使うすべてのソースファイルの再コンパイルは行われず、リンカはそのオブジェクトファイルを幸運なことにもくっつけてしまいます。
 この場合、関数に渡されたキャラクタが文字列ポインタとして解釈され、逆も同じように解釈されてしまうため、たぶんプログラムはクラッシュします。</p><p>DやC++はこの問題を回避するためシンボル名に情報を追加します。
 つまり、シンボルが定義されたスコープ、関数の引数や返り値の型をシンボル名にエンコードします。
 リンカは相変わらずこの情報を解釈しませんが、オブジェクトファイルのビルドに使われる宣言が一致しない場合、リンクは未定義シンボルエラーで失敗します。
-たとえば以下のDの関数宣言は</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module test;
+たとえば以下のDの関数宣言は</p><pre><code class=language-d>module test;
 
-extern(D) const(char)* find(int ch, const(char)* str);</code></pre></div><p><code>_D4test4findFiPxaZPxa</code>というシンボル名になります。
+extern(D) const(char)* find(int ch, const(char)* str);
+</code></pre><p><code>_D4test4findFiPxaZPxa</code>というシンボル名になります。
 <code>_D</code>はDのソースのシンボルから生成されたシンボルを識別するプレフィックス、<code>4test4find</code>は<code>test</code>モジュールの<code>find</code>が「完全修飾名」にエンコードされたもの、<code>FiPxaZPxa</code>は整数引数（<code>i</code>と呼ばれます）とCスタイルの文字列ポインタ型<code>Pxa</code>を単に繋げた引数の型のエンコーディングです。
 <code>Z</code>で関数の引数リストを終わらせて、返り値の型が後に続き、それはCスタイル文字列ポインタの<code>Pxa</code>です。
-一方、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>extern(D) const(char)* find(const(char)* str, int ch);</code></pre></div><p>は引数の型が逆になっているところが異なる <code>_D4test4findFPxaiZPxa</code>にエンコードされます。
+一方、</p><pre><code class=language-d>extern(D) const(char)* find(const(char)* str, int ch);
+</code></pre><p>は引数の型が逆になっているところが異なる <code>_D4test4findFPxaiZPxa</code>にエンコードされます。
 エンコーディングは型とスコープの表現をノーマライズし、最小限のソースコードよりも短いシンボルを提供します。
 このエンコーディングが「名前修飾」と呼ばれます。</p><p><em>資料: <code>extern(C)</code>や<code>extern(D)</code>は<a href=https://dlang.org/spec/attribute.html#linkage>リンケージ属性</a>です。
 Dにおいて関数が明示的なリンケージ属性なしで宣言される時、<code>extern(D)</code>がデフォルトになります。</em></p><p>Dでは<code>@safe</code>、<code>nothrow</code>、<code>pure</code>、<code>@nogc</code>のような関数の属性のいくつかはシンボル名へと修飾されます。
@@ -40,10 +44,13 @@ Dにおいて関数が明示的なリンケージ属性なしで宣言される�
 たとえば構造体、クラス、その他ユーザ定義型はその名前のみが修飾され、その定義の変更をリンカは検知しません。</p><p>シンボルの修飾名は<code>.mangleof</code>プロパティからコンパイル時に利用することもできます。
 これはコンパイル時にシンボルの型リフレクションをするために活用されていました。
 これは情報により速く、便利にアクセスできる新しい<a href=https://dlang.org/spec/traits.html><code>__traits</code></a>の導入により不要になりました。
-たとえば、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>__traits(getLinkage,symbol);</code></pre></div><p>または</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>__traits(getFunctionAttributes, symbol);</code></pre></div><p>従って、<code>.mangleof</code> の使用はデバッグ用途を除き推奨されません。</p><p>&ldquo;demangler（逆修飾器）&rdquo;で修飾プロセスを逆回しして、エンコードされたすべての情報をユーザが利用できる形にしたとしても、それは必ずしも正しいDのシンタックスになりません。
-上で取り上げた最初の宣言は以下のように逆修飾されます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>const(char)* test.find(int, const(char)*)</code></pre></div><p>モジュール名<code>test</code>が関数名に足されています。</p><h3 id=テンプレートシンボル>テンプレートシンボル</h3><p>上の2つの<code>find</code>の定義はDとC++両方に存在できるもののため、名前修飾以外にもリンク時にエラーを検出する方法がありますが、オーバーロードを表現する必要もあります。
+たとえば、</p><pre><code class=language-d>__traits(getLinkage,symbol);
+</code></pre><p>または</p><pre><code class=language-d>__traits(getFunctionAttributes, symbol);
+</code></pre><p>従って、<code>.mangleof</code> の使用はデバッグ用途を除き推奨されません。</p><p>&ldquo;demangler（逆修飾器）&rdquo;で修飾プロセスを逆回しして、エンコードされたすべての情報をユーザが利用できる形にしたとしても、それは必ずしも正しいDのシンタックスになりません。
+上で取り上げた最初の宣言は以下のように逆修飾されます。</p><pre><code class=language-d>const(char)* test.find(int, const(char)*)
+</code></pre><p>モジュール名<code>test</code>が関数名に足されています。</p><h3 id=テンプレートシンボル>テンプレートシンボル</h3><p>上の2つの<code>find</code>の定義はDとC++両方に存在できるもののため、名前修飾以外にもリンク時にエラーを検出する方法がありますが、オーバーロードを表現する必要もあります。
 そのため少なくとも同じスコープの識別子の異なるオーバーロードを識別するために必要な情報を含む必要があります。</p><p>これは通常引数の型ごとに異なる関数や変数の定義をインスタンス化するテンプレートのことを考えてみても明らかなことです。
-Dでは、テンプレートのインスタンス化の情報はシンボルの修飾名に追加されます。</p><p>式テンプレートは、式の遅延評価を使うメタプログラミングの一般的な例です:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>module expr;
+Dでは、テンプレートのインスタンス化の情報はシンボルの修飾名に追加されます。</p><p>式テンプレートは、式の遅延評価を使うメタプログラミングの一般的な例です:</p><pre><code class=language-d>module expr;
 
 struct Mul(X,Y)
 
@@ -67,18 +74,22 @@ struct Add(X,Y)
 
 auto mul(X,Y)(X x, Y y) { return Mul!(X,Y)(x, y); }
 
-auto add(X,Y)(X x, Y y) { return Add!(X,Y)(x, y); }</code></pre></div><p>関数テンプレートはコンパイラによって<a href=https://dlang.org/spec/template.html#implicit_template_properties>冠名テンプレート</a>に書き下されます:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template mul(X, Y)
+auto add(X,Y)(X x, Y y) { return Add!(X,Y)(x, y); }
+
+</code></pre><p>関数テンプレートはコンパイラによって<a href=https://dlang.org/spec/template.html#implicit_template_properties>冠名テンプレート</a>に書き下されます:</p><pre><code class=language-d>template mul(X, Y)
 
 {
 
     auto mul(X x, Y y) { return Mul!(X,Y)(x, y); }
 
-}</code></pre></div><p>テンプレート名は修飾関数名<code>expr.mul!(X,Y).mul</code>の一部となり、auto返値型は推論され<code>Mul!(X,Y)</code>になります。
+}
+</code></pre><p>テンプレート名は修飾関数名<code>expr.mul!(X,Y).mul</code>の一部となり、auto返値型は推論され<code>Mul!(X,Y)</code>になります。
 これによりシンボルは型<code>X</code>と<code>Y</code>を3回参照します。
-このテンプレートを型<code>double</code>と<code>float</code>でインスタンス化したものの修飾名を逆修飾するとこのようになります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>expr.Mul!(double,float) expr.mul!(double,float).mul(double,float)</code></pre></div><p>バージョン2.077以前のDMDの修飾プロセスは宣言の抽象構文木をたどり、遭遇したすべての型の修飾表現を出力します。
-以下のような積み重ね操作を考えてみましょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>auto square(X)(X x) { return mul(x, x); }
+このテンプレートを型<code>double</code>と<code>float</code>でインスタンス化したものの修飾名を逆修飾するとこのようになります。</p><pre><code class=language-d>expr.Mul!(double,float) expr.mul!(double,float).mul(double,float)
+</code></pre><p>バージョン2.077以前のDMDの修飾プロセスは宣言の抽象構文木をたどり、遭遇したすべての型の修飾表現を出力します。
+以下のような積み重ね操作を考えてみましょう。</p><pre><code class=language-d>auto square(X)(X x) { return mul(x, x); }
 
-auto len = square(&#34;var&#34;);
+auto len = square(&quot;var&quot;);
 
 pragma(msg, len.square.mangleof);
 
@@ -96,7 +107,8 @@ pragma(msg, len.square.square.square.square.mangleof.length);
 
 pragma(msg, len.square.square.square.square.square.mangleof.length);
 
-pragma(msg, len.square.square.square.square.square.square.mangleof.length);</code></pre></div><p>DMD 2.076以前では、これは<code>28u, 78u, 179u, 381u, 785u, 1594u, 3212u</code>という、ソースコード内の式が線形にしか増えていないのにもかかわらず加速的に増える修飾シンボル名の長さを出力します。
+pragma(msg, len.square.square.square.square.square.square.mangleof.length);
+</code></pre><p>DMD 2.076以前では、これは<code>28u, 78u, 179u, 381u, 785u, 1594u, 3212u</code>という、ソースコード内の式が線形にしか増えていないのにもかかわらず加速的に増える修飾シンボル名の長さを出力します。
 これは<code>Mul!(Mul!(string, string), Mul!(string, string))</code>のような型が組み合わさり、それが参照されるたびに完全な表現を繰り返し修飾するために起こる現象です。</p><p>上の<code>square</code>の呼び出しを12個繋げたものを作るとシンボルの長さは207,114まで増加します。
 さらに悪いことに、生成されるCOFF/64-bitのオブジェクトファイルは15MBを超えて大きくなりコンパイル時間は0.1秒から1分ほどに増加します。
 この時間のほとんどがコンパイル時にのみ使われるコードの生成に費やされます。</p><p>テンプレート関数から返される<a href=http://www.digitalmars.com/articles/b79.html>ヴォルデモート型</a>は、<a href="https://issues.dlang.org/show_bug.cgi?id=15831">型名の一部に</a>テンプレート引数を含めた関数シグネチャをもつため似たような状態になる事があります。
@@ -134,7 +146,7 @@ Dの修飾はすべてのプラットフォームで同じであると仮定し�
 現在の逆修飾器は十分な大きさの出力バッファをアロケートするようにはできていません。</li></ul><ul><li>シンボルの再エンコードなしに<code>_D</code>プレフィックスを追加するために絶対位置ではなく相対位置が選ばれました。
 プラットフォームによってはアンダースコアが多かったりしますが、相対位置なら関係ありません。</li></ul><ul><li>修飾構文は型と識別子が同じ場所にあるのを許容するため、逆修飾器はそれが後方参照であっても2つを区別する必要があります。
 そのため参照位置のルックアップが逆修飾の際に必要となります。
-識別子は常に数値から始まり、型は常に文字から始まります。</li></ul><ul><li>Using <code>Q</code> for back references grabs the last free letter used to encode types, but there is at least one type defined in the mangling grammar that is not supposed to appear in a mangling anyway (namely <code>TypeIdent</code>), so it can be resurrected if the necessity appears. <sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></li></ul><p>たとえば、上の式テンプレート型は以下のように修飾されます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>pragma(msg, len.square.mangleof);
+識別子は常に数値から始まり、型は常に文字から始まります。</li></ul><ul><li>Using <code>Q</code> for back references grabs the last free letter used to encode types, but there is at least one type defined in the mangling grammar that is not supposed to appear in a mangling anyway (namely <code>TypeIdent</code>), so it can be resurrected if the necessity appears. <sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></li></ul><p>たとえば、上の式テンプレート型は以下のように修飾されます。</p><pre><code class=language-d>pragma(msg, len.square.mangleof);
 // S4expr__T3MulTSQo__TQlTAyaTQeZQvTQtZQBb
 //                ^^   ^^     ^^ ^^ ^^ ^^^ decode to:
 //                |    |      |  |  |  |
@@ -143,7 +155,8 @@ Dの修飾はすべてのプラットフォームで同じであると仮定し�
 //                |    |      |  +------- 3Mul
 //                |    |      +---------- Aya
 //                |    +----------------- 3Mul
-//                +---------------------- 4expr</code></pre></div><p>長さは後方参照を使わない時の78から39になっています。
+//                +---------------------- 4expr
+</code></pre><p>長さは後方参照を使わない時の78から39になっています。
 結果の長さは23, 39, 57, 76, 95, 114, 133と線形に増えます。
 <code>square</code>の呼び出しの12連鎖は207,114文字から247、つまり800分の1以下にまで小さくなります。</p><p>上で言及していた後方参照を使った修飾の<code>mangleFunc</code>の実装はどうなったのでしょうか。
 完全修飾名は型（たとえば構造体テンプレートの引数として）を含んでいないはずですが、修飾名の識別子は関数型に再び現れることがあります。

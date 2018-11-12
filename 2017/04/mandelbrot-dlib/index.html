@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,11 +6,11 @@
         processEscapes: true
       }
     });
-</script><title>#dlang dlibでマンデルブロ集合を描く - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/mandelbrot-dlib/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang dlibでマンデルブロ集合を描く - Kotet's Personal Blog"><meta name=og:description content="前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"><meta name=og:image content=https://blog.kotet.jp2017/04/22/mandel.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/mandelbrot-dlib/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang dlibでマンデルブロ集合を描く - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/04/mandelbrot-dlib/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang dlibでマンデルブロ集合を描く - Kotet's Personal Blog"><meta name=og:description content="前回に続いて、マンデルブロ集合の画像をD言語で描くことができた。 pngの取り扱いはdlibを使った。"><meta name=og:image content=https://blog.kotet.jp2017/04/22/mandel.png><meta name=twitter:url content=https://blog.kotet.jp/2017/04/mandelbrot-dlib/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 dlibでマンデルブロ集合を描く</h2><p><time>2017-04-22</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><a href=#dlib-dlib>dlib != Dlib</a><ul><li><a href=#実際のコード>実際のコード</a></li><li><a href=#並列化>並列化</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><img src=/assets/2017/04/22/mandel.png alt=描いたマンデルブロ集合></p><p><a href=/2017/04/12/mandelbrot-command-line-interface.html>前回に続いて、</a>マンデルブロ集合の画像をD言語で描くことができた。
-pngの取り扱いはdlibを使った。</p><h2 id=dlib-dlib>dlib != Dlib</h2><p><a href=https://github.com/gecko0307/dlib>gecko0307/dlib: Math, XML, I/O streams, image and audio processing for D</a></p><p>C++のほうに同名のライブラリがあるのだが、それとは特に関係ないらしい。READMEに書かれている正式名っぽい名前の1文字目が小文字なので、それで見分けられるかもしれない。</p><p><blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr><a href=https://twitter.com/kotetttt>@kotetttt</a> C++&#39;s dlib and D&#39;s dlib are two different libraries. They are not related to each other.</p>&mdash; 64 терабайта RAM (@incredibletoy) <a href=https://twitter.com/incredibletoy/status/838935735361286146>2017年3月7日</a></blockquote><script async src=//platform.twitter.com/widgets.js></script></p><h3 id=実際のコード>実際のコード</h3><p><a href=https://github.com/kotet/mandelbrot-dlib>kotet/mandelbrot-dlib: Draw Mandelbrot set using dlib</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>import dlib.image : SuperImage;
+pngの取り扱いはdlibを使った。</p><h2 id=dlib-dlib>dlib != Dlib</h2><p><a href=https://github.com/gecko0307/dlib>gecko0307/dlib: Math, XML, I/O streams, image and audio processing for D</a></p><p>C++のほうに同名のライブラリがあるのだが、それとは特に関係ないらしい。READMEに書かれている正式名っぽい名前の1文字目が小文字なので、それで見分けられるかもしれない。</p><p><blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr><a href=https://twitter.com/kotetttt>@kotetttt</a> C++&#39;s dlib and D&#39;s dlib are two different libraries. They are not related to each other.</p>&mdash; 64 терабайта RAM (@incredibletoy) <a href=https://twitter.com/incredibletoy/status/838935735361286146>2017年3月7日</a></blockquote><script async src=//platform.twitter.com/widgets.js></script></p><h3 id=実際のコード>実際のコード</h3><p><a href=https://github.com/kotet/mandelbrot-dlib>kotet/mandelbrot-dlib: Draw Mandelbrot set using dlib</a></p><pre><code class=language-d>import dlib.image : SuperImage;
 import std.complex : Complex;
 
 void main(string[] args)
@@ -26,25 +26,25 @@ void main(string[] args)
 	uint row = 2048;
 	uint column = 2048;
 	size_t judge_iter = 100;
-	string output_file = &#34;mandel.png&#34;;
+	string output_file = &quot;mandel.png&quot;;
 
 	GetoptResult helpinfo;
 	try
 	{
-		helpinfo = getopt(args, &#34;center-x&#34;, &amp;center_x, &#34;center-y&#34;, &amp;center_y,
-				&#34;height&#34;, &amp;height, &#34;width&#34;, &amp;width, &#34;row&#34;, &amp;row, &#34;column&#34;, &amp;column,
-				&#34;judge-iter&#34;, &amp;judge_iter, &#34;output-file|o&#34;, &amp;output_file);
+		helpinfo = getopt(args, &quot;center-x&quot;, &amp;center_x, &quot;center-y&quot;, &amp;center_y,
+				&quot;height&quot;, &amp;height, &quot;width&quot;, &amp;width, &quot;row&quot;, &amp;row, &quot;column&quot;, &amp;column,
+				&quot;judge-iter&quot;, &amp;judge_iter, &quot;output-file|o&quot;, &amp;output_file);
 	}
 	catch (Exception e)
 	{
 		import std.stdio : writeln;
 
-		writeln(&#34;Error: &#34;, e.msg, &#34;\nexit&#34;);
+		writeln(&quot;Error: &quot;, e.msg, &quot;\nexit&quot;);
 		return;
 	}
 
 	if (helpinfo.helpWanted)
-		defaultGetoptPrinter(&#34;test&#34;, helpinfo.options);
+		defaultGetoptPrinter(&quot;test&quot;, helpinfo.options);
 
 	draw(center_x, center_y, height, width, row, column, judge_iter).savePNG(output_file);
 }
@@ -86,8 +86,9 @@ size_t judge(Complex!real c, size_t judge_iter)
 			return i + 1;
 	}
 	return 0;
-}</code></pre></div><p>これを実行してできたのが上の画像である。</p><h3 id=並列化>並列化</h3><p>さすがにAAの時とは計算量が違い時間がかかるので、なにか高速化できないか試してみる。
-とりあえず雑に<code>parallel</code>をつける。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>SuperImage draw(real center_x, real center_y, real height, real width, uint row,
+}
+</code></pre><p>これを実行してできたのが上の画像である。</p><h3 id=並列化>並列化</h3><p>さすがにAAの時とは計算量が違い時間がかかるので、なにか高速化できないか試してみる。
+とりあえず雑に<code>parallel</code>をつける。</p><pre><code class=language-d>SuperImage draw(real center_x, real center_y, real height, real width, uint row,
 		uint column, size_t judge_iter)
 {
 	import dlib.image : hsv, image;
@@ -106,7 +107,8 @@ size_t judge(Complex!real c, size_t judge_iter)
 		}
 
 	return img;
-}</code></pre></div><p>3回時間を計ってみる。</p><table><thead><tr><th align=center></th><th align=center>before</th><th align=center>after</th></tr></thead><tbody><tr><td align=center>1</td><td align=center>10.067s</td><td align=center>2.314s</td></tr><tr><td align=center>2</td><td align=center>10.066s</td><td align=center>2.372s</td></tr><tr><td align=center>3</td><td align=center>10.118s</td><td align=center>2.326s</td></tr></tbody></table><p>速くなってしまった……
+}
+</code></pre><p>3回時間を計ってみる。</p><table><thead><tr><th align=center></th><th align=center>before</th><th align=center>after</th></tr></thead><tbody><tr><td align=center>1</td><td align=center>10.067s</td><td align=center>2.314s</td></tr><tr><td align=center>2</td><td align=center>10.066s</td><td align=center>2.372s</td></tr><tr><td align=center>3</td><td align=center>10.118s</td><td align=center>2.326s</td></tr></tbody></table><p>速くなってしまった……
 絶対何かしらエラーが出ると思っていたのだが、普通に動いてしかも4、5倍高速化できてしまった。
 どういうことなのかはよくわからないが、並列処理について知識を持たない自分が雑に書いても並列化の恩恵を得られるというのは素晴らしいことだと思う。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 dlibでマンデルブロ集合を描く</h2><p><time>2017-04-22</time>

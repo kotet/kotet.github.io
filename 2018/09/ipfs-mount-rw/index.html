@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="ipfs mount というコマンドがある。 FUSE を使って IPFS を通常のファイルシステムとしてマウントできる。 ただし、以下に書かれているようにこれはあくまで読み込み専用であり、 これを使って IPFS になにか働きかけたりはできない。……と思っていた。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="ipfs mount というコマンドがある。 FUSE を使って IPFS を通常のファイルシステムとしてマウントできる。 ただし、以下に書かれているようにこれはあくまで読み込み専用であり、 これを使って IPFS になにか働きかけたりはできない。……と思っていた。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,94 +6,103 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs体験記 17:普通のファイルシステムのようにIPFSで読み書き - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/ipfs-mount-rw/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 17:普通のファイルシステムのようにIPFSで読み書き - Kotet's Personal Blog"><meta name=og:description content="ipfs mount というコマンドがある。 FUSE を使って IPFS を通常のファイルシステムとしてマウントできる。 ただし、以下に書かれているようにこれはあくまで読み込み専用であり、 これを使って IPFS になにか働きかけたりはできない。……と思っていた。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/ipfs-mount-rw/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs体験記 17:普通のファイルシステムのようにIPFSで読み書き - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/09/ipfs-mount-rw/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs体験記 17:普通のファイルシステムのようにIPFSで読み書き - Kotet's Personal Blog"><meta name=og:description content="ipfs mount というコマンドがある。 FUSE を使って IPFS を通常のファイルシステムとしてマウントできる。 ただし、以下に書かれているようにこれはあくまで読み込み専用であり、 これを使って IPFS になにか働きかけたりはできない。……と思っていた。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/09/ipfs-mount-rw/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a>
 17:普通のファイルシステムのようにIPFSで読み書き</h2><p><time>2018-09-11</time>
 <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a> <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ipns>IPNS</a></li><li><a href=#ipns-local>/ipns/local</a></li><li><a href=#実用っぽいことをしてみる>実用っぽいことをしてみる</a></li><li><a href=#自動化が楽になりそう>自動化が楽になりそう</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><code>ipfs mount</code> というコマンドがある。
 <a href=https://ja.wikipedia.org/wiki/Filesystem_in_Userspace>FUSE</a>
 を使って IPFS を通常のファイルシステムとしてマウントできる。
 ただし、以下に書かれているようにこれはあくまで読み込み専用であり、
-これを使って IPFS になにか働きかけたりはできない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ipfs mount -h
+これを使って IPFS になにか働きかけたりはできない。</p><pre><code class=language-bash>$ ipfs mount -h
 USAGE
-  ipfs mount - Mounts IPFS to the filesystem <span style=color:#f92672>(</span>read-only<span style=color:#f92672>)</span>.
+  ipfs mount - Mounts IPFS to the filesystem (read-only).
 
-  ipfs mount <span style=color:#f92672>[</span>--ipfs-path<span style=color:#f92672>=</span>&lt;ipfs-path&gt; | -f<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>--ipns-path<span style=color:#f92672>=</span>&lt;ipns-path&gt; | -n<span style=color:#f92672>]</span>
+  ipfs mount [--ipfs-path=&lt;ipfs-path&gt; | -f] [--ipns-path=&lt;ipns-path&gt; | -n]
 
-  Mount IPFS at a read-only mountpoint on the OS <span style=color:#f92672>(</span>default: /ipfs and /ipns<span style=color:#f92672>)</span>.
+  Mount IPFS at a read-only mountpoint on the OS (default: /ipfs and /ipns).
   All IPFS objects will be accessible under that directory. Note that the
   root will not be listable, as it is virtual. Access known paths directly.
   
-  You may have to create /ipfs and /ipns before using <span style=color:#e6db74>&#39;ipfs mount&#39;</span>:
+  You may have to create /ipfs and /ipns before using 'ipfs mount':
   
   &gt; sudo mkdir /ipfs /ipns
-  &gt; sudo chown <span style=color:#66d9ef>$(</span>whoami<span style=color:#66d9ef>)</span> /ipfs /ipns
+  &gt; sudo chown $(whoami) /ipfs /ipns
   &gt; ipfs daemon &amp;
   &gt; ipfs mount
 
-Use <span style=color:#e6db74>&#39;ipfs mount --help&#39;</span> <span style=color:#66d9ef>for</span> more information about this command.</code></pre></div><p>……と思っていた。</p><p><a href=https://github.com/ipfs/ipfs/issues/341>Transparent FUSE · Issue #341 · ipfs/ipfs</a></p><blockquote><p>We can <em>almost</em> do parts of this, it&rsquo;s just really buggy. You can mount <code>/ipns</code> and read/write to <code>/ipns/local</code>. This will even update your IPNS address to point to the latest version of the directory.</p><p>However, it&rsquo;s really buggy and slow.</p><hr><p>But yeah, many of us have been wanting to do this for a while.</p></blockquote><p>マジで？</p><h3 id=ipns>IPNS</h3><p>IPFS 上で変化するものを公開する方法のひとつとして、IPNS がある。
+Use 'ipfs mount --help' for more information about this command.
+
+</code></pre><p>……と思っていた。</p><p><a href=https://github.com/ipfs/ipfs/issues/341>Transparent FUSE · Issue #341 · ipfs/ipfs</a></p><blockquote><p>We can <em>almost</em> do parts of this, it&rsquo;s just really buggy. You can mount <code>/ipns</code> and read/write to <code>/ipns/local</code>. This will even update your IPNS address to point to the latest version of the directory.</p><p>However, it&rsquo;s really buggy and slow.</p><hr><p>But yeah, many of us have been wanting to do this for a while.</p></blockquote><p>マジで？</p><h3 id=ipns>IPNS</h3><p>IPFS 上で変化するものを公開する方法のひとつとして、IPNS がある。
 これは ID と IPFS 上のリソースを結びつけるものだ。
 いわば IPFS 上に作ることのできる自分専用のディレクトリである。
-これはたとえば以下のように使う。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ echo hello! &gt; test.txt
+これはたとえば以下のように使う。</p><pre><code class=language-bash>$ echo hello! &gt; test.txt
 $ ipfs add test.txt 
 added QmUCChJVPoiGqHmSCdoDBoTU1BgC3AGBoy4sAk1wYcFhPg test.txt
- <span style=color:#ae81ff>7</span> B / <span style=color:#ae81ff>7</span> B <span style=color:#f92672>[=========================================================================================================================================]</span> <span style=color:#ae81ff>100</span>.00%
+ 7 B / 7 B [=========================================================================================================================================] 100.00%
 $ ipfs name publish /ipfs/QmUCChJVPoiGqHmSCdoDBoTU1BgC3AGBoy4sAk1wYcFhPg
 Published to QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5: /ipfs/QmUCChJVPoiGqHmSCdoDBoTU1BgC3AGBoy4sAk1wYcFhPg
 $ ipfs cat /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-hello!</code></pre></div><p>コンテンツを変更したくなったら、もう一度 <code>ipfs name publish</code> すればよい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ echo <span style=color:#e6db74>&#34;hello world!&#34;</span> &gt; test.txt
+hello!
+</code></pre><p>コンテンツを変更したくなったら、もう一度 <code>ipfs name publish</code> すればよい。</p><pre><code class=language-bash>$ echo &quot;hello world!&quot; &gt; test.txt
 $ ipfs add test.txt 
 added QmeV1kwh3333bsnT6YRfdCRrSgUPngKmAhhTa4RrqYPbKT test.txt
- <span style=color:#ae81ff>13</span> B / <span style=color:#ae81ff>13</span> B <span style=color:#f92672>[=======================================================================================================================================]</span> <span style=color:#ae81ff>100</span>.00%
+ 13 B / 13 B [=======================================================================================================================================] 100.00%
 $ ipfs name publish /ipfs/QmeV1kwh3333bsnT6YRfdCRrSgUPngKmAhhTa4RrqYPbKT
 Published to QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5: /ipfs/QmeV1kwh3333bsnT6YRfdCRrSgUPngKmAhhTa4RrqYPbKT
 $ ipfs cat /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-hello world!</code></pre></div><p>もちろんディレクトリでも大丈夫。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkdir test
+hello world!
+</code></pre><p>もちろんディレクトリでも大丈夫。</p><pre><code class=language-bash>$ mkdir test
 $ echo hey! &gt; test/test.txt
 $ ipfs add -r test/
 added QmNqugRcYjwh9pEQUK7MLuxvLjxDNZL1DH8PJJgWtQXxuF test/test.txt
 added QmRf8ffz9d7nK8BXbGjaAb4i1GoDX8CZyyqXqRjrBefY29 test
- <span style=color:#ae81ff>5</span> B / <span style=color:#ae81ff>65</span> B <span style=color:#f92672>[==========</span>&gt;-----------------------------------------------------------------------------------------------------------------------------<span style=color:#f92672>]</span>   <span style=color:#ae81ff>7</span>.69%
+ 5 B / 65 B [==========&gt;-----------------------------------------------------------------------------------------------------------------------------]   7.69%
 $ ipfs name publish /ipfs/QmRf8ffz9d7nK8BXbGjaAb4i1GoDX8CZyyqXqRjrBefY29
 Published to QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5: /ipfs/QmRf8ffz9d7nK8BXbGjaAb4i1GoDX8CZyyqXqRjrBefY29
 $ ipfs ls /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-QmNqugRcYjwh9pEQUK7MLuxvLjxDNZL1DH8PJJgWtQXxuF <span style=color:#ae81ff>13</span> test.txt </code></pre></div><p>IPFS だけでウェブサイトを配信したいときなんかは必須ではないだろうか。</p><p>これは今回の話とはあまり関係ないが、ここまでの <code>ipfs name publish</code> などが尋常でなく遅い。
+QmNqugRcYjwh9pEQUK7MLuxvLjxDNZL1DH8PJJgWtQXxuF 13 test.txt 
+</code></pre><p>IPFS だけでウェブサイトを配信したいときなんかは必須ではないだろうか。</p><p>これは今回の話とはあまり関係ないが、ここまでの <code>ipfs name publish</code> などが尋常でなく遅い。
 バグだろうか、それとも自分がなにか遅くなるようなことをしているのだろうか……。
-とりあえず、コマンドを実行して返事が帰ってこなくても気長に待つことだ。</p><h3 id=ipns-local>/ipns/local</h3><p>自分の ID が <code>/ipns/local</code> にリンクされているようだ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo mkdir /ipfs /ipns
-$ sudo chown <span style=color:#66d9ef>$(</span>whoami<span style=color:#66d9ef>)</span> /ipfs /ipns
+とりあえず、コマンドを実行して返事が帰ってこなくても気長に待つことだ。</p><h3 id=ipns-local>/ipns/local</h3><p>自分の ID が <code>/ipns/local</code> にリンクされているようだ。</p><pre><code class=language-bash>$ sudo mkdir /ipfs /ipns
+$ sudo chown $(whoami) /ipfs /ipns
 $ ipfs mount
 IPFS mounted at: /ipfs
 IPNS mounted at: /ipns
 $ ls -l /ipns
-total <span style=color:#ae81ff>0</span>
-lr-xr-xr-x <span style=color:#ae81ff>1</span> root  root  <span style=color:#ae81ff>0</span> Sep <span style=color:#ae81ff>11</span> <span style=color:#ae81ff>19</span>:57 local -&gt; QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-dr-xr-xr-x <span style=color:#ae81ff>1</span> kotet users <span style=color:#ae81ff>0</span> Sep <span style=color:#ae81ff>11</span> <span style=color:#ae81ff>19</span>:57 QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
+total 0
+lr-xr-xr-x 1 root  root  0 Sep 11 19:57 local -&gt; QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
+dr-xr-xr-x 1 kotet users 0 Sep 11 19:57 QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
 $ ls /ipns/local
 test.txt
 $ cat /ipns/local/test.txt
-hey!</code></pre></div><p>さらに書き込みもできるようになっている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ echo <span style=color:#e6db74>&#34;hello world!&#34;</span> &gt;&gt; /ipns/local/test.txt
-$ echo <span style=color:#e6db74>&#34;another world!&#34;</span> &gt; /ipns/local/test2.txt</code></pre></div><p>やはりこちらも反映にとても時間がかかる。
+hey!
+</code></pre><p>さらに書き込みもできるようになっている。</p><pre><code class=language-bash>$ echo &quot;hello world!&quot; &gt;&gt; /ipns/local/test.txt
+$ echo &quot;another world!&quot; &gt; /ipns/local/test2.txt
+</code></pre><p>やはりこちらも反映にとても時間がかかる。
 何もしないで待つには長すぎるほどだ。
-お茶でものんで気長に待とう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ipfs ls /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-QmQwQzEedqC7vP6VWQujNKr6at9jSRtAJVraF7p7rdxoBs <span style=color:#ae81ff>128</span> test.txt
-QmTjiABbErriHkDp9QCbrbarHEcgCRqicX62fTqgKdDihJ <span style=color:#ae81ff>73</span>  test2.txt
+お茶でものんで気長に待とう。</p><pre><code class=language-bash>$ ipfs ls /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
+QmQwQzEedqC7vP6VWQujNKr6at9jSRtAJVraF7p7rdxoBs 128 test.txt
+QmTjiABbErriHkDp9QCbrbarHEcgCRqicX62fTqgKdDihJ 73  test2.txt
 $ ipfs cat /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5/test.txt
 hey!
 hello world!
 $ ipfs cat /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5/test2.txt
-another world!</code></pre></div><h3 id=実用っぽいことをしてみる>実用っぽいことをしてみる</h3><p>試しにこのサイトを生成して置いてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ hugo -d /ipns/local
+another world!
+</code></pre><h3 id=実用っぽいことをしてみる>実用っぽいことをしてみる</h3><p>試しにこのサイトを生成して置いてみる。</p><pre><code class=language-bash>$ hugo -d /ipns/local
 
                    | EN   
 +------------------+-----+
-  Pages            | <span style=color:#ae81ff>216</span>  
-  Paginator pages  |   <span style=color:#ae81ff>0</span>  
-  Non-page files   |   <span style=color:#ae81ff>0</span>  
-  Static files     | <span style=color:#ae81ff>105</span>  
-  Processed images |   <span style=color:#ae81ff>0</span>  
-  Aliases          | <span style=color:#ae81ff>148</span>  
-  Sitemaps         |   <span style=color:#ae81ff>1</span>  
-  Cleaned          |   <span style=color:#ae81ff>0</span>  
+  Pages            | 216  
+  Paginator pages  |   0  
+  Non-page files   |   0  
+  Static files     | 105  
+  Processed images |   0  
+  Aliases          | 148  
+  Sitemaps         |   1  
+  Cleaned          |   0  
 
-Total in <span style=color:#ae81ff>79556</span> ms</code></pre></div><p>いつもなら0.5秒あれば終わるところを1分以上かかっている。
+Total in 79556 ms
+</code></pre><p>いつもなら0.5秒あれば終わるところを1分以上かかっている。
 別の場所で生成してからコピーしてみたらそのコピーにも同じだけの時間がかかった。
 書き込み中は CPU 使用率が上がっていたりするので、
 変更があるたびに何かしらの処理をしているのだろう。
@@ -103,21 +112,22 @@ Total in <span style=color:#ae81ff>79556</span> ms</code></pre></div><p>いつ�
 なので、この記事を読んでいる現時点では
 <code>/ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5</code>
 にアクセスすることはおそらくできないだろう。
-そもそも現状このサイトは IPFS で公開してもちゃんと表示できるようにはできていない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ipfs ls /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
-Qmb8rMxBfc3ZcDoYTBy1pPW2pVncEDvRwP2jcAaQn7pWji <span style=color:#ae81ff>229815</span>   <span style=color:#ae81ff>2016</span>/
-QmdJy32q1mwfr2n3NsyaejFUFbDa14vwLQ5zsp1L5EvUzC <span style=color:#ae81ff>1391891</span>  <span style=color:#ae81ff>2017</span>/
-Qma3xvg2ez7cXL71L7yjC4srbuUGGkv9kj6cu2raGmyxAP <span style=color:#ae81ff>601006</span>   <span style=color:#ae81ff>2018</span>/
-QmQyFnH5V3JQYCwYuCa7Ug8AT8aCSMR8KCahG8rsbcHANC <span style=color:#ae81ff>7372</span>     about/
-QmfK2rJYqLPuhFFj9tUacs14uDcesfsmkdNpoJMPW73gw7 <span style=color:#ae81ff>13827370</span> assets/
-QmXneZHFVikyzRNYXTnZ7gxy2K5PUEsphyuWQaR2yBkaLV <span style=color:#ae81ff>2302</span>     favicon.ico
-QmeUsXAK4MD61bKn2CZUmTe1dYx48f7Rwj8QNUL1VFuoEo <span style=color:#ae81ff>26594</span>    img/
-QmZrUnUaxcRFNgR2154A6YdDyxmrkHvMCrKrozXAz4nNCy <span style=color:#ae81ff>95432</span>    index.html
-QmeYr4jfFGVtzogDBacgWCfxsg4T4Xm16XM1tgdgCA2p1d <span style=color:#ae81ff>84278</span>    index.xml
-QmPQQ4Rt8ucv5XUNBoei7JWGGMPo9VS8f5ADbWPbjRFtQz <span style=color:#ae81ff>1466</span>     main.css
-QmZXWCcXJHbxjWAzt7m4SFRXv41oaGnRYxt7CDyTNvvkRG <span style=color:#ae81ff>4384</span>     products/
-QmPFEBFAP2Q7P2cZXAwYjexEXsrUXEMRpkkujHMMFfS8mD <span style=color:#ae81ff>963</span>      single.css
-QmVxw1h7qHT6r5ND5CCHVD489yndbApe99VSyKeUWnRTud <span style=color:#ae81ff>25458</span>    sitemap.xml
-QmX5oxwU4CEkpMWpH4bfWkx8v482PFZAdiouvgrw1KCyhC <span style=color:#ae81ff>381452</span>   tags/</code></pre></div><h3 id=自動化が楽になりそう>自動化が楽になりそう</h3><p>この機能を使わずにウェブサイトのデプロイをする場合、
+そもそも現状このサイトは IPFS で公開してもちゃんと表示できるようにはできていない。</p><pre><code class=language-bash>ipfs ls /ipns/QmYFjBY2jGetJV6zCYgWWt1zcgzFYooAdbNiXU9paM4uz5
+Qmb8rMxBfc3ZcDoYTBy1pPW2pVncEDvRwP2jcAaQn7pWji 229815   2016/
+QmdJy32q1mwfr2n3NsyaejFUFbDa14vwLQ5zsp1L5EvUzC 1391891  2017/
+Qma3xvg2ez7cXL71L7yjC4srbuUGGkv9kj6cu2raGmyxAP 601006   2018/
+QmQyFnH5V3JQYCwYuCa7Ug8AT8aCSMR8KCahG8rsbcHANC 7372     about/
+QmfK2rJYqLPuhFFj9tUacs14uDcesfsmkdNpoJMPW73gw7 13827370 assets/
+QmXneZHFVikyzRNYXTnZ7gxy2K5PUEsphyuWQaR2yBkaLV 2302     favicon.ico
+QmeUsXAK4MD61bKn2CZUmTe1dYx48f7Rwj8QNUL1VFuoEo 26594    img/
+QmZrUnUaxcRFNgR2154A6YdDyxmrkHvMCrKrozXAz4nNCy 95432    index.html
+QmeYr4jfFGVtzogDBacgWCfxsg4T4Xm16XM1tgdgCA2p1d 84278    index.xml
+QmPQQ4Rt8ucv5XUNBoei7JWGGMPo9VS8f5ADbWPbjRFtQz 1466     main.css
+QmZXWCcXJHbxjWAzt7m4SFRXv41oaGnRYxt7CDyTNvvkRG 4384     products/
+QmPFEBFAP2Q7P2cZXAwYjexEXsrUXEMRpkkujHMMFfS8mD 963      single.css
+QmVxw1h7qHT6r5ND5CCHVD489yndbApe99VSyKeUWnRTud 25458    sitemap.xml
+QmX5oxwU4CEkpMWpH4bfWkx8v482PFZAdiouvgrw1KCyhC 381452   tags/
+</code></pre><h3 id=自動化が楽になりそう>自動化が楽になりそう</h3><p>この機能を使わずにウェブサイトのデプロイをする場合、
 専用のスクリプトを組んで複数のコマンドを組み合わせないといけないはずだ。
 対してこちらは <code>/ipns/local</code> に何も考えず放り込めばいいので、
 自動化のハードルが一段下がる。

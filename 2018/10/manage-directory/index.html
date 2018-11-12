@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="大学の演習ではいろいろなことをする。 そのたびに新しいファイルが作られる。 それらすべてをホームディレクトリ直下に置くとカオスなことになる。 自分はあるていどディレクトリを分けて整理しようとしているが、それでもなかなか雑然としていて、 たぶん過去の特定のファイルを探し出すことは難しい。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="大学の演習ではいろいろなことをする。 そのたびに新しいファイルが作られる。 それらすべてをホームディレクトリ直下に置くとカオスなことになる。 自分はあるていどディレクトリを分けて整理しようとしているが、それでもなかなか雑然としていて、 たぶん過去の特定のファイルを探し出すことは難しい。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#tech ディレクトリを日付で管理するためのBash関数を作った - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/10/manage-directory/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#tech ディレクトリを日付で管理するためのBash関数を作った - Kotet's Personal Blog"><meta name=og:description content="大学の演習ではいろいろなことをする。 そのたびに新しいファイルが作られる。 それらすべてをホームディレクトリ直下に置くとカオスなことになる。 自分はあるていどディレクトリを分けて整理しようとしているが、それでもなかなか雑然としていて、 たぶん過去の特定のファイルを探し出すことは難しい。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/10/manage-directory/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#tech ディレクトリを日付で管理するためのBash関数を作った - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/10/manage-directory/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#tech ディレクトリを日付で管理するためのBash関数を作った - Kotet's Personal Blog"><meta name=og:description content="大学の演習ではいろいろなことをする。 そのたびに新しいファイルが作られる。 それらすべてをホームディレクトリ直下に置くとカオスなことになる。 自分はあるていどディレクトリを分けて整理しようとしているが、それでもなかなか雑然としていて、 たぶん過去の特定のファイルを探し出すことは難しい。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/10/manage-directory/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/tech>#tech</a>
 ディレクトリを日付で管理するためのBash関数を作った</h2><p><time>2018-10-04</time>
 <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#mkws>mkws</a></li><li><a href=#インストール方法>インストール方法</a><ul><li><a href=#ワンライナー>ワンライナー</a></li><li><a href=#手動で追記>手動で追記</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>大学の演習ではいろいろなことをする。
@@ -19,24 +19,29 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 は日付で管理されたディレクトリ構造を<code>~/workspace</code>以下に構築するBash関数である。</p><p>引数なしで実行すると <code>~/workspace/&lt;年&gt;/&lt;月&gt;-&lt;日&gt;/space.&lt;ランダムなプレフィックス&gt;</code>
 という規則でディレクトリを作成する。
 プレフィックスのおかげで名前がかぶることを心配しなくて良くなり便利。
-そして、作ったディレクトリに移動する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkws 
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace&#39;</span>
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018&#39;</span>
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04&#39;</span>
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/space.bbjg&#39;</span>
+そして、作ったディレクトリに移動する。</p><pre><code class=language-bash>$ mkws 
+mkdir: created directory '/home/kotet/workspace'
+mkdir: created directory '/home/kotet/workspace/2018'
+mkdir: created directory '/home/kotet/workspace/2018/10-04'
+mkdir: created directory '/home/kotet/workspace/2018/10-04/space.bbjg'
 
-  /home/kotet/workspace/2018/10-04/space.bbjg</code></pre></div><p>引数を与えると
+  /home/kotet/workspace/2018/10-04/space.bbjg
+
+</code></pre><p>引数を与えると
 <code>~/workspace/&lt;年&gt;/&lt;月&gt;-&lt;日&gt;/&lt;引数&gt;.&lt;ランダムなプレフィックス&gt;</code>
-というディレクトリが作られる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ mkws test
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/test.tbxr&#39;</span>
+というディレクトリが作られる。</p><pre><code class=language-bash>$ mkws test
+mkdir: created directory '/home/kotet/workspace/2018/10-04/test.tbxr'
 
   /home/kotet/workspace/2018/10-04/test.tbxr
 
 $ mkws kotet
-mkdir: created directory <span style=color:#e6db74>&#39;/home/kotet/workspace/2018/10-04/kotet.stwe&#39;</span>
+mkdir: created directory '/home/kotet/workspace/2018/10-04/kotet.stwe'
 
-  /home/kotet/workspace/2018/10-04/kotet.stwe</code></pre></div><h3 id=インストール方法>インストール方法</h3><h4 id=ワンライナー>ワンライナー</h4><p>一応コマンド一発でインストールできるようにしておく。
-以下のコマンドをコピペして実行すると<code>mkws</code>コマンドが使えるようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl https://gist.githubusercontent.com/kotet/965657d6966a888ad3bf90de73142820/raw/mkws.sh &gt;&gt; ~/.bashrc <span style=color:#f92672>&amp;&amp;</span> source ~/.bashrc</code></pre></div><h4 id=手動で追記>手動で追記</h4><p>Gistで公開されているものを<code>~/.bashrc</code> に追記すればインストールは完了である。
+  /home/kotet/workspace/2018/10-04/kotet.stwe
+
+</code></pre><h3 id=インストール方法>インストール方法</h3><h4 id=ワンライナー>ワンライナー</h4><p>一応コマンド一発でインストールできるようにしておく。
+以下のコマンドをコピペして実行すると<code>mkws</code>コマンドが使えるようになる。</p><pre><code class=language-bash>curl https://gist.githubusercontent.com/kotet/965657d6966a888ad3bf90de73142820/raw/mkws.sh &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
+</code></pre><h4 id=手動で追記>手動で追記</h4><p>Gistで公開されているものを<code>~/.bashrc</code> に追記すればインストールは完了である。
 この記事の初版を書いたあと、改変がしやすいように多少整理した。
 命名規則が気にいらなかったりする場合は自分で書き換えてほしい。</p><p><a href=https://gist.github.com/kotet/965657d6966a888ad3bf90de73142820>https://gist.github.com/kotet/965657d6966a888ad3bf90de73142820</a></p></article><footer><h2><a href=/tags/tech>#tech</a>
 ディレクトリを日付で管理するためのBash関数を作った</h2><p><time>2018-10-04</time>

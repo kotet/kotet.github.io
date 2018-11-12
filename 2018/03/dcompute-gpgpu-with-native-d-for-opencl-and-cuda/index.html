@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】 - Kotet's Personal Blog"><meta name=og:description content=DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】 - Kotet's Personal Blog"><meta name=og:description content=DComputeはGPUやその他アクセラレータを使う計算集約型コードのためにOpenCLやCUDA用のネイティブカーネルをDで書くことをサポートするフレームワークでありコンパイラ拡張です。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/03/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 DCompute:ネイティブDによるOpenCLやCUDAのGPGPU【翻訳】</h2><p><time>2018-03-07</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#イントロダクション>イントロダクション</a></li><li><a href=#dcomputeの現状>DComputeの現状</a></li><li><a href=#コード例>コード例</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、
@@ -37,7 +37,7 @@ Khronosで開発されたSPIR-Vバックエンドはとても古いLLVM 3.6.1を
 OpenCL C++と違いカーネル関数をテンプレート化したりオーバーロードやデフォルト値をもたせたりできる点に注目するべきでしょう。
 imageとpipeのサポートは進行中です。</p><h3 id=コード例>コード例</h3><p>Dでカーネルを書くには、<code>-mdcompute-targets=&lt;targets&gt;</code>をLDCに渡す必要があります。
 <code>&lt;targets&gt;</code>はコンマで区切られたビルドしたいターゲットのリストで、たとえばOpenCL 1.2とCUDA compute capability 3.5の場合、それぞれ(そう、一度に全部書くことができます!)<code>ocl-120,cuda-350</code>と書きます。
-たとえば64ビットモードのときは<code>kernels_ocl120_64.spv</code>のように、そのデバイスのためのすべてのコードを含む1つのファイルが各ターゲットごとに得られます。</p><p>Dにおける「ベクトルの加算」カーネルは以下のようになります:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@compute(CompileFor.deviceOnly) module example;
+たとえば64ビットモードのときは<code>kernels_ocl120_64.spv</code>のように、そのデバイスのためのすべてのコードを含む1つのファイルが各ターゲットごとに得られます。</p><p>Dにおける「ベクトルの加算」カーネルは以下のようになります:</p><pre><code class=language-d>@compute(CompileFor.deviceOnly) module example;
 import ldc.dcompute;
 import dcompute.std.index;
 
@@ -47,14 +47,16 @@ alias gf = GlobalPointer!float;
 {
 	auto x = GlobalIndex.x;
 	a[x] = b[x]+c[x];
-}</code></pre></div><p><code>@compute</code>属性がついたモジュールは各コマンドラインターゲットに向けてコンパイルされ、<code>@kernel</code>は関数をカーネルにし、<code>GlobalPointer</code>はOpenCLの<code>__global</code>修飾子と等価です。</p><p>カーネルは関数だけに制限されません。
-ラムダやテンプレートも動作します:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@kernel void map(alias F)(KernelArgs!F args)
+}
+</code></pre><p><code>@compute</code>属性がついたモジュールは各コマンドラインターゲットに向けてコンパイルされ、<code>@kernel</code>は関数をカーネルにし、<code>GlobalPointer</code>はOpenCLの<code>__global</code>修飾子と等価です。</p><p>カーネルは関数だけに制限されません。
+ラムダやテンプレートも動作します:</p><pre><code class=language-d>@kernel void map(alias F)(KernelArgs!F args)
 {
     F(args);
 }
 //以下ホストコード内
 AutoBuffer!float x,y,z; // y &amp; z はデータで初期化されています
-q.enqueue!(map!((a,b,c) =&gt; a=b+c))(x.length)(x, y, z);</code></pre></div><p><code>KernelArgs</code>はホストの型からデバイスの型
+q.enqueue!(map!((a,b,c) =&gt; a=b+c))(x.length)(x, y, z);
+</code></pre><p><code>KernelArgs</code>はホストの型からデバイスの型
 (たとえばポインタへのバッファ。またはこの例の場合<a href=https://github.com/libmir/dcompute/blob/master/source/dcompute/std/index.d#L298>AutoIndexed Pointers</a>へのAutoBuffers)
 に変換され、ホストやデバイスの種類の違いからカプセル化されています。</p><p>最後の行はカーネルを起動するのに必要な文<code>q.enqueue!kernel(dimensions)(args)</code>で、CUDAの<code>kernel&lt;&lt;&lt;dimensions,queue&gt;&gt;&gt;(args)</code>と近いものです。
 カーネル起動のためのライブラリは開発中です。</p><p>上記の式をホストのコードに変換するすべてのマジックがコンパイラにあるCUDAと違い、<code>q.enqueue!func(sizes)(args)</code>はDComputeのドライバライブラリの静的イントロスペクションによって処理されます。

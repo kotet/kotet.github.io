@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。めんどくさくなってきたので専用コマンドを作った。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。めんどくさくなってきたので専用コマンドを作った。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,24 +6,26 @@
         processEscapes: true
       }
     });
-</script><title>#qiita サッと一時ブランチを作って作業して捨てる - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#qiita サッと一時ブランチを作って作業して捨てる - Kotet's Personal Blog"><meta name=og:description content=なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。めんどくさくなってきたので専用コマンドを作った。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#qiita サッと一時ブランチを作って作業して捨てる - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#qiita サッと一時ブランチを作って作業して捨てる - Kotet's Personal Blog"><meta name=og:description content=なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。めんどくさくなってきたので専用コマンドを作った。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/12/d84f1638de9d50129faa/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/qiita>#qiita</a>
 サッと一時ブランチを作って作業して捨てる</h2><p><time>2016-12-07</time>
-<a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#bashrc><code>.bashrc</code></a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。</p><ol><li><code>git branch &lt;branch-name&gt; [&lt;start-point&gt;]</code></li><li><code>git checkout &lt;branch-name&gt;</code></li><li>作業</li><li>add &amp; commit &amp; push</li><li><code>git checkout &lt;some-branch&gt;</code></li><li><code>git branch -D &lt;branch-name&gt;</code></li></ol><p>めんどくさくなってきたので専用コマンドを作った。こういうものを書くのは初めてなので<a href=http://qiita.com/kawaz/items/2b6ef25f63a4f5300e84>こちらの記事</a>のものを書き換えて作った。</p><h4 id=bashrc><code>.bashrc</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tmpbranch<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-  <span style=color:#f92672>(</span>
-  d<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp -d <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>TMPDIR<span style=color:#66d9ef>:-</span>/tmp<span style=color:#e6db74>}</span><span style=color:#e6db74>/</span><span style=color:#e6db74>${</span>1<span style=color:#66d9ef>:-</span>$2<span style=color:#e6db74>}</span><span style=color:#e6db74>.XXXXXXXXXX&#34;</span><span style=color:#66d9ef>)</span> <span style=color:#f92672>&amp;&amp;</span> git worktree add $d $1 -b $2 <span style=color:#f92672>&amp;&amp;</span> pushd <span style=color:#e6db74>&#34;</span>$d<span style=color:#e6db74>&#34;</span> <span style=color:#f92672>||</span> exit <span style=color:#ae81ff>1</span>
-  <span style=color:#e6db74>&#34;</span>$SHELL<span style=color:#e6db74>&#34;</span>
-  s<span style=color:#f92672>=</span>$?
-  <span style=color:#66d9ef>if</span> <span style=color:#f92672>[[</span> $s <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>]]</span>; <span style=color:#66d9ef>then</span>
-    rm -rf <span style=color:#e6db74>&#34;</span>$d<span style=color:#e6db74>&#34;</span>
+<a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#bashrc><code>.bashrc</code></a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>なにかちょこっとだけ作業するたびにトピックブランチをつくって終わったら消すということをしている。</p><ol><li><code>git branch &lt;branch-name&gt; [&lt;start-point&gt;]</code></li><li><code>git checkout &lt;branch-name&gt;</code></li><li>作業</li><li>add &amp; commit &amp; push</li><li><code>git checkout &lt;some-branch&gt;</code></li><li><code>git branch -D &lt;branch-name&gt;</code></li></ol><p>めんどくさくなってきたので専用コマンドを作った。こういうものを書くのは初めてなので<a href=http://qiita.com/kawaz/items/2b6ef25f63a4f5300e84>こちらの記事</a>のものを書き換えて作った。</p><h4 id=bashrc><code>.bashrc</code></h4><pre><code class=language-bash>tmpbranch() {
+  (
+  d=$(mktemp -d &quot;${TMPDIR:-/tmp}/${1:-$2}.XXXXXXXXXX&quot;) &amp;&amp; git worktree add $d $1 -b $2 &amp;&amp; pushd &quot;$d&quot; || exit 1
+  &quot;$SHELL&quot;
+  s=$?
+  if [[ $s == 0 ]]; then
+    rm -rf &quot;$d&quot;
     popd
     git worktree prune
     git branch -D $2
-  <span style=color:#66d9ef>else</span>
-    echo <span style=color:#e6db74>&#34;Directory &#39;</span>$d<span style=color:#e6db74>&#39; still exists.&#34;</span> &gt;&amp;<span style=color:#ae81ff>2</span>
-  <span style=color:#66d9ef>fi</span>
+  else
+    echo &quot;Directory '$d' still exists.&quot; &gt;&amp;2
+  fi
   exit $s
-  <span style=color:#f92672>)</span>
-<span style=color:#f92672>}</span></code></pre></div><p>実行するとブランチが作成され、linked working treeが<code>/tmp</code>にできて、そこに移動する。<code>exit</code>するとディレクトリとブランチとworking treeが削除される。これによって作業は以下のようになった。</p><ol><li><code>tmpbranch &lt;branch-name&gt; &lt;start-point&gt;</code></li><li>作業</li><li>add &amp; commit &amp; push</li><li><code>exit</code></li></ol><p>いい感じである。もしかしてこんなもの書かなくても別の便利な方法があったりするんだろうか?</p></article><footer><h2><a href=/tags/qiita>#qiita</a>
+  )
+}
+
+</code></pre><p>実行するとブランチが作成され、linked working treeが<code>/tmp</code>にできて、そこに移動する。<code>exit</code>するとディレクトリとブランチとworking treeが削除される。これによって作業は以下のようになった。</p><ol><li><code>tmpbranch &lt;branch-name&gt; &lt;start-point&gt;</code></li><li>作業</li><li>add &amp; commit &amp; push</li><li><code>exit</code></li></ol><p>いい感じである。もしかしてこんなもの書かなくても別の便利な方法があったりするんだろうか?</p></article><footer><h2><a href=/tags/qiita>#qiita</a>
 サッと一時ブランチを作って作業して捨てる</h2><p><time>2016-12-07</time>
 <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

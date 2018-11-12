@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content='"D言語なら、この程度の処理はマイナス時間で完了する。コンパイル時にメッセージまで出力し、プログラムが開始する前に全てを終わらせられるのだ。"'><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content='"D言語なら、この程度の処理はマイナス時間で完了する。コンパイル時にメッセージまで出力し、プログラムが開始する前に全てを終わらせられるのだ。"'><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang マイナス時間で完了するfizzbuzz - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang マイナス時間で完了するfizzbuzz - Kotet's Personal Blog"><meta name=og:description content='"D言語なら、この程度の処理はマイナス時間で完了する。コンパイル時にメッセージまで出力し、プログラムが開始する前に全てを終わらせられるのだ。"'><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang マイナス時間で完了するfizzbuzz - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang マイナス時間で完了するfizzbuzz - Kotet's Personal Blog"><meta name=og:description content='"D言語なら、この程度の処理はマイナス時間で完了する。コンパイル時にメッセージまで出力し、プログラムが開始する前に全てを終わらせられるのだ。"'><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/compile-time-fizzbuzz/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 マイナス時間で完了するfizzbuzz</h2><p><time>2017-12-05</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p></aside></header><article><blockquote><p><a href=http://b.hatena.ne.jp/entry/348113957/comment/outland_karasu>D言語なら、この程度の処理はマイナス時間で完了する。
@@ -16,7 +16,7 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 ただし3の倍数のときは数の代わりに｢Fizz｣と、5の倍数のときは｢Buzz｣とプリントし、3と5両方の倍数の場合には｢FizzBuzz｣とプリントすること。<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></p></blockquote><p>というわけで<code>static foreach</code>を使ってFizzBuzzを書いた。
 解説するところがほぼ無いほど見た目だけは普通のFizzBuzzになった。</p><p><code>std.conv.to</code>を使っている。
 <code>mixin template</code>のなかで<code>import</code>すると<code>fizzbuzz</code>の外にも適用されてしまうのでは？と思っていたが<a href=https://dpaste.dzfl.pl/37f2916891e3>別にそんなこともない</a>ようだ。
-コンパイルオプション<code>-main</code>によって手書きしなければならない関数はゼロになった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>/// fizzbuzz.d
+コンパイルオプション<code>-main</code>によって手書きしなければならない関数はゼロになった。</p><pre><code class=language-d>/// fizzbuzz.d
 
 mixin template fizzbuzz(long N) if (0 &lt; N)
 {
@@ -25,15 +25,15 @@ mixin template fizzbuzz(long N) if (0 &lt; N)
     {
         static if (i % (3 * 5) == 0)
         {
-            pragma(msg, &#34;FizzBuzz&#34;);
+            pragma(msg, &quot;FizzBuzz&quot;);
         }
         else static if (i % 3 == 0)
         {
-            pragma(msg, &#34;Fizz&#34;);
+            pragma(msg, &quot;Fizz&quot;);
         }
         else static if (i % 5 == 0)
         {
-            pragma(msg, &#34;Buzz&#34;);
+            pragma(msg, &quot;Buzz&quot;);
         }
         else
         {
@@ -43,9 +43,11 @@ mixin template fizzbuzz(long N) if (0 &lt; N)
     }
 }
 
-mixin fizzbuzz!(100);</code></pre></div><p>コンパイルするとFizzBuzzの結果が表示される。
+mixin fizzbuzz!(100);
+
+</code></pre><p>コンパイルするとFizzBuzzの結果が表示される。
 なおコンパイルによる成果物を実行してもなにも表示されない。
-「FizzBuzzを実行する」と心のなかで思ったなら、その時すでにFizzBuzzは終わっているのだ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd fizzbuzz.d -main
+「FizzBuzzを実行する」と心のなかで思ったなら、その時すでにFizzBuzzは終わっているのだ。</p><pre><code class=language-console>$ dmd fizzbuzz.d -main
 1
 2
 Fizz
@@ -145,7 +147,8 @@ Fizz
 97
 98
 Fizz
-Buzz</code></pre></div><div class=footnotes><hr><ol><li id=fn:1><a href=http://www.aoky.net/articles/jeff_atwood/why_cant_programmers_program.htm>どうしてプログラマに・・・プログラムが書けないのか?</a>
+Buzz
+</code></pre><div class=footnotes><hr><ol><li id=fn:1><a href=http://www.aoky.net/articles/jeff_atwood/why_cant_programmers_program.htm>どうしてプログラマに・・・プログラムが書けないのか?</a>
 <a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li></ol></div></article><footer><h2><a href=/tags/dlang>#dlang</a>
 マイナス時間で完了するfizzbuzz</h2><p><time>2017-12-05</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語くん Advent Calendar 2017 11日めの記事。空いていたので登録した。ところでDeepAAというものがある。これはD言語くんと組み合わせねばなるまい。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="D言語くん Advent Calendar 2017 11日めの記事。空いていたので登録した。ところでDeepAAというものがある。これはD言語くんと組み合わせねばなるまい。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,12 +6,12 @@
         processEscapes: true
       }
     });
-</script><title>#dlangman Deep Neural D-man - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/deep-neural-dman/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlangman Deep Neural D-man - Kotet's Personal Blog"><meta name=og:description content="D言語くん Advent Calendar 2017 11日めの記事。空いていたので登録した。ところでDeepAAというものがある。これはD言語くんと組み合わせねばなるまい。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/deep-neural-dman/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlangman Deep Neural D-man - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/12/deep-neural-dman/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlangman Deep Neural D-man - Kotet's Personal Blog"><meta name=og:description content="D言語くん Advent Calendar 2017 11日めの記事。空いていたので登録した。ところでDeepAAというものがある。これはD言語くんと組み合わせねばなるまい。"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/12/deep-neural-dman/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlangman>#dlangman</a>
 Deep Neural D-man</h2><p><time>2017-12-12</time>
 <a href=/tags/dlangman>#dlangman</a> <a href=/tags/python>#python</a> <a href=/tags/deeplearning>#deeplearning</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#準備>準備</a></li><li><a href=#実行>実行</a></li><li><a href=#結果>結果</a></li><li><a href=#感想>感想</a></li></ul></li></ul></li></ul></nav></aside></header><article><p><a href=https://qiita.com/advent-calendar/2017/d-man>D言語くん Advent Calendar 2017</a> 11日めの記事。
 空いていたので登録した。</p><p>ところでDeepAAというものがある。</p><p><a href=https://qiita.com/OsciiArt/items/325714d8ab3f2b482ced>ディープラーニングでアスキーアートを作る - Qiita</a></p><p>これはD言語くんと組み合わせねばなるまい。</p><h3 id=準備>準備</h3><p>まずはPythonとそのパッケージを用意する。
-バージョンに気をつけよう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ python -V
+バージョンに気をつけよう。</p><pre><code class=language-console>$ python -V
 Python 3.6.0
 $ pip freeze
 bleach==1.5.0
@@ -31,22 +31,24 @@ scipy==1.0.0
 six==1.11.0
 tensorflow==1.3.0
 tensorflow-tensorboard==0.1.8
-Werkzeug==0.13</code></pre></div><p><a href=https://github.com/OsciiArt/DeepAA>OsciiArt/DeepAA</a>をクローンしてくる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ git clone https://github.com/OsciiArt/DeepAA.git
-$ cd DeepAA/</code></pre></div><p><code>weight.hdf5</code>を<a href=https://github.com/OsciiArt/DeepAA/blob/master/README.md>README.md</a>のリンクからダウンロードして<code>DeepAA/model</code> 下に配置。
+Werkzeug==0.13
+</code></pre><p><a href=https://github.com/OsciiArt/DeepAA>OsciiArt/DeepAA</a>をクローンしてくる。</p><pre><code class=language-console>$ git clone https://github.com/OsciiArt/DeepAA.git
+$ cd DeepAA/
+</code></pre><p><code>weight.hdf5</code>を<a href=https://github.com/OsciiArt/DeepAA/blob/master/README.md>README.md</a>のリンクからダウンロードして<code>DeepAA/model</code> 下に配置。
 700メガバイトくらいある。</p><p><a href=https://tour.dlang.org/>D言語くんの画像</a>を用意する。
-そして<a href=https://qiita.com/iwiwi/items/fdec3466c4dea5818b3a>あれ</a>や<a href=https://tar-bin.github.io/image-thinning-processer/>これ</a>や加工してできた画像がこちらである。</p><p><img src=/assets/2017/12/14/d-man.png alt=DeepAA/dman/d-man.png></p><p>ちょっと雑すぎる気がするが気にしない。</p><p>画像を<code>dman/d-man.png</code>として配置し、それに合わせて<code>output.py</code>を書き換える。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff> # parameters
- model_path = &#34;model/model.json&#34; # or &#34;model/model_light.json&#34;
- weight_path = &#34;model/weight.hdf5&#34; # or &#34;model/weight_light.json&#34;
-<span style=color:#f92672>-image_path = &#39;sample images/original images/21 original.png&#39; # put the path of the image that you convert.
-</span><span style=color:#f92672></span><span style=color:#a6e22e>+image_path = &#39;dman/d-man.png&#39; # put the path of the image that you convert.
-</span><span style=color:#a6e22e></span> new_width = 0 # adjust the width of the image. the original width is used if new_width = 0.
+そして<a href=https://qiita.com/iwiwi/items/fdec3466c4dea5818b3a>あれ</a>や<a href=https://tar-bin.github.io/image-thinning-processer/>これ</a>や加工してできた画像がこちらである。</p><p><img src=/assets/2017/12/14/d-man.png alt=DeepAA/dman/d-man.png></p><p>ちょっと雑すぎる気がするが気にしない。</p><p>画像を<code>dman/d-man.png</code>として配置し、それに合わせて<code>output.py</code>を書き換える。</p><pre><code class=language-diff> # parameters
+ model_path = &quot;model/model.json&quot; # or &quot;model/model_light.json&quot;
+ weight_path = &quot;model/weight.hdf5&quot; # or &quot;model/weight_light.json&quot;
+-image_path = 'sample images/original images/21 original.png' # put the path of the image that you convert.
++image_path = 'dman/d-man.png' # put the path of the image that you convert.
+ new_width = 0 # adjust the width of the image. the original width is used if new_width = 0.
  input_shape = [64, 64, 1]
-</code></pre></div><h3 id=実行>実行</h3><p>あとは実行するだけである。
-<a href=https://qiita.com/tar-bin/items/7493c7792dda87ff0e84>Web上で実行できる</a>くらいなので時間はかからない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>DeepAA$ python output.py 
+</code></pre><h3 id=実行>実行</h3><p>あとは実行するだけである。
+<a href=https://qiita.com/tar-bin/items/7493c7792dda87ff0e84>Web上で実行できる</a>くらいなので時間はかからない。</p><pre><code class=language-console>DeepAA$ python output.py 
 Using TensorFlow backend.
-2017-12-13 19:53:47.858017: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn&#39;t compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
-2017-12-13 19:53:47.858047: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn&#39;t compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
-2017-12-13 19:53:47.858055: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn&#39;t compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-13 19:53:47.858017: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-13 19:53:47.858047: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-13 19:53:47.858055: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
 model load done
 len(char_list) 899
 class index of 1B space: 1
@@ -68,7 +70,8 @@ converting: 13
 converting: 14
 converting: 15
 converting: 16
-converting: 17</code></pre></div><p>そうして<code>output/</code>にテキストと画像が出力される。</p><h3 id=結果>結果</h3><p>最終結果がこちらである: <a href=/assets/2017/12/14/d-man_w319_slide17.txt>d-man_w319_slide17.txt</a></p><p>しかし閲覧環境が多様の現在、AAを正しく見られる人のほうが少ないだろう。
+converting: 17
+</code></pre><p>そうして<code>output/</code>にテキストと画像が出力される。</p><h3 id=結果>結果</h3><p>最終結果がこちらである: <a href=/assets/2017/12/14/d-man_w319_slide17.txt>d-man_w319_slide17.txt</a></p><p>しかし閲覧環境が多様の現在、AAを正しく見られる人のほうが少ないだろう。
 実際自分の環境では新しくフォントを導入しないと崩れてしまう。
 幸いなことに描画結果も同時に出力されるのでそちらを貼ろうと思う。</p><p><img src=/assets/2017/12/14/d-man_w319_slide17.png alt=d-man_w319_slide17.png></p><h3 id=感想>感想</h3><p>入力の質の割にいい感じの結果になったのではないかと思う。</p><p>最初うまくいったら<a href=https://github.com/kotet/progress>progress</a>に導入しようかと思っていた。
 しかしこれはMS Pゴシックに最適化されたAAのため当然ターミナル上では崩れてしまう。</p><p>AAの定義からいけば別に最終的なフォーマットが画像でも何の問題もないのだが、そうするとわざわざ文字で構成する必要性というのがなくなってくる。

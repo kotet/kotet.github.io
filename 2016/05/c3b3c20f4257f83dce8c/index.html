@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content=行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,10 +6,10 @@
         processEscapes: true
       }
     });
-</script><title>#dlang 行列と高速化の練習をした - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 行列と高速化の練習をした - Kotet's Personal Blog"><meta name=og:description content=行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang 行列と高速化の練習をした - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 行列と高速化の練習をした - Kotet's Personal Blog"><meta name=og:description content=行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2016/05/c3b3c20f4257f83dce8c/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 行列と高速化の練習をした</h2><p><time>2016-05-12</time>
-<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#テンプレート>テンプレート</a></li><li><a href=#1-単純なやり方>1. 単純なやり方</a><ul><li><ul><li><ul><li><a href=#prod-1-d><code>prod_1.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#2-parallelをつける>2. parallelをつける</a><ul><li><ul><li><ul><li><a href=#prod-2-d><code>prod_2.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#3-simd>3. SIMD</a><ul><li><ul><li><ul><li><a href=#prod-3-d><code>prod_3.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#まとめ>まとめ</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。<br>とりあえず行列の積について理解できたのでプログラムにしてみる。ついでに前からやってみたかった並列処理とかを試して速度をはかる。</p><h1 id=テンプレート>テンプレート</h1><p>100次の正方行列を1000回かける。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>//import略
+<a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><a href=#テンプレート>テンプレート</a></li><li><a href=#1-単純なやり方>1. 単純なやり方</a><ul><li><ul><li><ul><li><a href=#prod-1-d><code>prod_1.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#2-parallelをつける>2. parallelをつける</a><ul><li><ul><li><ul><li><a href=#prod-2-d><code>prod_2.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#3-simd>3. SIMD</a><ul><li><ul><li><ul><li><a href=#prod-3-d><code>prod_3.d</code></a></li></ul></li></ul></li></ul></li><li><a href=#まとめ>まとめ</a></li></ul></nav></aside></header><article><p>この記事はQiitaに投稿されたものの転載です。</p><hr><p>行列に興味がある。しかし数Cは廃止され、行列の勉強はしないとのことなので少しづつ自主学習。<br>とりあえず行列の積について理解できたのでプログラムにしてみる。ついでに前からやってみたかった並列処理とかを試して速度をはかる。</p><h1 id=テンプレート>テンプレート</h1><p>100次の正方行列を1000回かける。</p><pre><code class=language-d>//import略
 
 alias int[][] matrix;
 
@@ -63,8 +63,9 @@ void main(){
 	sw.start();
 	foreach(i; 0..n) matrix_product(testdata[i][0],testdata[i][1]);
 	sw.stop();
-	writeln(n,&#34; times done.　time: &#34;, sw.peek().msecs, &#34;[ms]&#34;);
-	}</code></pre></div><h1 id=1-単純なやり方>1. 単純なやり方</h1><h4 id=prod-1-d><code>prod_1.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>matrix matrix_product(matrix A,matrix B)
+	writeln(n,&quot; times done.　time: &quot;, sw.peek().msecs, &quot;[ms]&quot;);
+	}
+</code></pre><h1 id=1-単純なやり方>1. 単純なやり方</h1><h4 id=prod-1-d><code>prod_1.d</code></h4><pre><code class=language-d>matrix matrix_product(matrix A,matrix B)
 in{
 	assert(A[0].length == B.length);
 	}
@@ -80,19 +81,22 @@ body{
 		}
 	}
 	return result;
-	}</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd prod_1
+	}
+</code></pre><pre><code class=language-console>$ dmd prod_1
 $ ./prod_1
 1000 times done. time: 6411[ms]
 $ ./prod_1
 1000 times done. time: 6389[ms]
 $ ./prod_1
-1000 times done. time: 6402[ms]</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd prod_1 -O
+1000 times done. time: 6402[ms]
+</code></pre><pre><code class=language-console>$ dmd prod_1 -O
 $ ./prod_1
 1000 times done. time: 3570[ms]
 $ ./prod_1
 1000 times done. time: 3511[ms]
 $ ./prod_1
-1000 times done. time: 3502[ms]</code></pre></div><p>Optimizeつけるだけで倍くらい速くなる。</p><h1 id=2-parallelをつける>2. parallelをつける</h1><p>行を並列で処理する。こんな書き方でいいのだろうか?</p><h4 id=prod-2-d><code>prod_2.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>matrix matrix_product(matrix A,matrix B)
+1000 times done. time: 3502[ms]
+</code></pre><p>Optimizeつけるだけで倍くらい速くなる。</p><h1 id=2-parallelをつける>2. parallelをつける</h1><p>行を並列で処理する。こんな書き方でいいのだろうか?</p><h4 id=prod-2-d><code>prod_2.d</code></h4><pre><code class=language-d>matrix matrix_product(matrix A,matrix B)
 in{
 	assert(A[0].length == B.length);
 	}
@@ -108,19 +112,22 @@ body{
 		}
 	}
 	return result;
-	}</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>dmd prod_2
+	}
+</code></pre><pre><code class=language-console>dmd prod_2
 $ ./prod_2
 1000 times done. time: 4143[ms]
 $ ./prod_2
 1000 times done. time: 4164[ms]
 $ ./prod_2
-1000 times done. time: 4187[ms]</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd prod_2 -O
+1000 times done. time: 4187[ms]
+</code></pre><pre><code class=language-console>$ dmd prod_2 -O
 $ ./prod_2
 1000 times done. time: 2420[ms]
 $ ./prod_2
 1000 times done. time: 2440[ms]
 $ ./prod_2
-1000 times done. time: 2437[ms]</code></pre></div><p>CPUは4つあるのだが、高速化は半分くらいに。</p><h1 id=3-simd>3. SIMD</h1><h4 id=prod-3-d><code>prod_3.d</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>matrix matrix_product(matrix A,matrix B)
+1000 times done. time: 2437[ms]
+</code></pre><p>CPUは4つあるのだが、高速化は半分くらいに。</p><h1 id=3-simd>3. SIMD</h1><h4 id=prod-3-d><code>prod_3.d</code></h4><pre><code class=language-d>matrix matrix_product(matrix A,matrix B)
 in{
 	assert(A[0].length == B.length);
 	}
@@ -146,7 +153,9 @@ body{
 		result[k] = tmp;
 	}
 	return result;
-	}</code></pre></div><p>しかしこのコード動かない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>$ dmd prod_3
-prod_3.d(28): Error: incompatible types for ((cast(__vector(int[4]))a) * (v)): &#39;__vector(int[4])&#39; and &#39;__vector(int[4])&#39;</code></pre></div><p>そもそもSIMDに触れたのが初めてだし、この使い方が正しいのかもわからない。<br>OpenCLとかも使ってみたかったが今回は何もできていない。そのうち書けるようになればいいな。</p><h1 id=まとめ>まとめ</h1><p>3回の計測の平均をとった。</p><table><thead><tr><th align=right>1. 単純なやり方</th><th align=right>1-A. -Oをつける</th><th align=right>2. parallelをつける</th><th align=right>2-A. -Oをつける</th></tr></thead><tbody><tr><td align=right>6401</td><td align=right>3528</td><td align=right>4165</td><td align=right>2432</td></tr></tbody></table><p>parallelできるところを見つけるよりも最適化オプションをつけるのを忘れないほうが速くなるのは意外だった。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+	}
+</code></pre><p>しかしこのコード動かない。</p><pre><code class=language-console>$ dmd prod_3
+prod_3.d(28): Error: incompatible types for ((cast(__vector(int[4]))a) * (v)): '__vector(int[4])' and '__vector(int[4])'
+</code></pre><p>そもそもSIMDに触れたのが初めてだし、この使い方が正しいのかもわからない。<br>OpenCLとかも使ってみたかったが今回は何もできていない。そのうち書けるようになればいいな。</p><h1 id=まとめ>まとめ</h1><p>3回の計測の平均をとった。</p><table><thead><tr><th align=right>1. 単純なやり方</th><th align=right>1-A. -Oをつける</th><th align=right>2. parallelをつける</th><th align=right>2-A. -Oをつける</th></tr></thead><tbody><tr><td align=right>6401</td><td align=right>3528</td><td align=right>4165</td><td align=right>2432</td></tr></tbody></table><p>parallelできるところを見つけるよりも最適化オプションをつけるのを忘れないほうが速くなるのは意外だった。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 行列と高速化の練習をした</h2><p><time>2016-05-12</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/qiita>#qiita</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>

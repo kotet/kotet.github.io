@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,66 +6,66 @@
         processEscapes: true
       }
     });
-</script><title>#jekyll MathJaxのCDNが警告を発しつつも使えてしまっていた - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/07/fix-mathjax-cdn/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#jekyll MathJaxのCDNが警告を発しつつも使えてしまっていた - Kotet's Personal Blog"><meta name=og:description content="どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。"><meta name=og:image content=https://blog.kotet.jp2017/07/06/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/07/fix-mathjax-cdn/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#jekyll MathJaxのCDNが警告を発しつつも使えてしまっていた - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/07/fix-mathjax-cdn/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#jekyll MathJaxのCDNが警告を発しつつも使えてしまっていた - Kotet's Personal Blog"><meta name=og:description content="どうも数式表示のために読み込ませていたMathJaxのCDNである `cdn.mathjax.org`が今年の4月30日でシャットダウンされていたようだ。 しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。"><meta name=og:image content=https://blog.kotet.jp2017/07/06/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/07/fix-mathjax-cdn/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/jekyll>#jekyll</a>
 MathJaxのCDNが警告を発しつつも使えてしまっていた</h2><p><time>2017-07-06</time>
 <a href=/tags/jekyll>#jekyll</a> <a href=/tags/tech>#tech</a> <a href=/tags/github>#github</a></p><aside><p>Table of Contents</p></aside></header><article><p>生成されているHTMLを確認しようとChrome DevToolsを開いたところ、なにかWarningが出ていた。</p><p><img src=/assets/2017/07/06/warning.png alt=warning></p><p>どうも数式表示のために読み込ませていたMathJaxのCDNである
 <code>cdn.mathjax.org</code>が今年の4月30日でシャットダウンされていたようだ。</p><p><a href=https://www.mathjax.org/cdn-shutting-down/>MathJax CDN shutting down on April 30, 2017. Alternatives available.</a></p><p>しかしどうもMathJaxは変わらず数式をレンダリングし続けてくれているように見える。
 なぜだろう?と思って更に読み込んだところ上のページに追記があった。</p><blockquote><p><strong>Temporary redirect starting May 1, 2017</strong></p><p><strong>[Updated 2017/04/10]</strong></p><p>We will implement a temporary redirect on cdn.mathjax.org to redirect users to cdnjs.</p></blockquote><p>いままでこのサイトで読み込まれていた<a href=https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js>https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js</a>
-を見てみると、なるほど確かにリダイレクト用に新しいCDNに<code>script</code>タグを置き換えるスクリプトになっている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>(<span style=color:#66d9ef>function</span> () {
-  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>newMathJax</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js&#39;</span>;
-  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>oldMathJax</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;cdn.mathjax.org/mathjax/2.7-latest/MathJax.js&#39;</span>;
+を見てみると、なるほど確かにリダイレクト用に新しいCDNに<code>script</code>タグを置き換えるスクリプトになっている。</p><pre><code class=language-javascript>(function () {
+  var newMathJax = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js';
+  var oldMathJax = 'cdn.mathjax.org/mathjax/2.7-latest/MathJax.js';
 
-  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>replaceScript</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>script</span>, <span style=color:#a6e22e>src</span>) {
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Make redirected script
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>newScript</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;script&#39;</span>);
-    <span style=color:#a6e22e>newScript</span>.<span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>newMathJax</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>src</span>.<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>/.*?(\?|$)/</span>, <span style=color:#e6db74>&#39;$1&#39;</span>);
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Move onload and onerror handlers to new script
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>newScript</span>.<span style=color:#a6e22e>onload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>onload</span>; 
-    <span style=color:#a6e22e>newScript</span>.<span style=color:#a6e22e>onerror</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>onerror</span>;
-    <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>onload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>onerror</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Move any content (old-style configuration scripts)
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>firstChild</span>) <span style=color:#a6e22e>newScript</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>firstChild</span>);
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Copy script id
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) <span style=color:#a6e22e>newScript</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>id</span>;
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Replace original script with new one
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>parentNode</span>.<span style=color:#a6e22e>replaceChild</span>(<span style=color:#a6e22e>newScript</span>, <span style=color:#a6e22e>script</span>);
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//  Issue a console warning
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>warn</span>(<span style=color:#e6db74>&#39;WARNING: cdn.mathjax.org has been retired. Check https://www.mathjax.org/cdn-shutting-down/ for migration tips.&#39;</span>)
+  var replaceScript = function (script, src) {
+    //
+    //  Make redirected script
+    //
+    var newScript = document.createElement('script');
+    newScript.src = newMathJax + src.replace(/.*?(\?|$)/, '$1');
+    //
+    //  Move onload and onerror handlers to new script
+    //
+    newScript.onload = script.onload; 
+    newScript.onerror = script.onerror;
+    script.onload = script.onerror = null;
+    //
+    //  Move any content (old-style configuration scripts)
+    //
+    while (script.firstChild) newScript.appendChild(script.firstChild);
+    //
+    //  Copy script id
+    //
+    if (script.id != null) newScript.id = script.id;
+    //
+    //  Replace original script with new one
+    //
+    script.parentNode.replaceChild(newScript, script);
+    //
+    //  Issue a console warning
+    //
+    console.warn('WARNING: cdn.mathjax.org has been retired. Check https://www.mathjax.org/cdn-shutting-down/ for migration tips.')
   }
 
-  <span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>currentScript</span>) {
-    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>script</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>currentScript</span>;
-    <span style=color:#a6e22e>replaceScript</span>(<span style=color:#a6e22e>script</span>, <span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>src</span>);
-  } <span style=color:#66d9ef>else</span> {
-    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// Look for current script by searching for one with the right source
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>n</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>oldMathJax</span>.<span style=color:#a6e22e>length</span>;
-    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>scripts</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementsByTagName</span>(<span style=color:#e6db74>&#39;script&#39;</span>);
-    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>scripts</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-      <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>script</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>scripts</span>[<span style=color:#a6e22e>i</span>];
-      <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>script</span>.<span style=color:#a6e22e>src</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#39;&#39;</span>).<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>/.*?:\/\//</span>,<span style=color:#e6db74>&#39;&#39;</span>);
-      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>src</span>.<span style=color:#a6e22e>substr</span>(<span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>n</span>) <span style=color:#f92672>===</span> <span style=color:#a6e22e>oldMathJax</span>) {
-        <span style=color:#a6e22e>replaceScript</span>(<span style=color:#a6e22e>script</span>, <span style=color:#a6e22e>src</span>);
-        <span style=color:#66d9ef>break</span>;
+  if (document.currentScript) {
+    var script = document.currentScript;
+    replaceScript(script, script.src);
+  } else {
+    //
+    // Look for current script by searching for one with the right source
+    //
+    var n = oldMathJax.length;
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i &lt; scripts.length; i++) {
+      var script = scripts[i];
+      var src = (script.src || '').replace(/.*?:\/\//,'');
+      if (src.substr(0, n) === oldMathJax) {
+        replaceScript(script, src);
+        break;
       }
     }
   }
 })();
-</code></pre></div><p>MathJaxそのものよりもサイズが減って負荷軽減になっている……のだろうか?
+</code></pre><p>MathJaxそのものよりもサイズが減って負荷軽減になっている……のだろうか?
 自分みたいな他のCDNに移行するのを忘れている人にはありがたいが、おかげでDevToolsを開くまで異変に気が付かなかった。
 ちゃんと動かなくなってくれたほうがかえって良かったかもしれない。</p><p>とにかく気づいたのでURLを別のCDNプロバイダのものに変更して対処。</p><p><img src=/assets/2017/07/06/diff.png alt=diff></p><p><a href=https://github.com/kotet/kotet.github.io/commit/200f8505a938263e4b3f38cf47f85c66751f4587>Fix MathJax CDN · kotet/kotet.github.io@200f850</a></p><p>無事にMathJaxの警告はなくなった。</p></article><footer><h2><a href=/tags/jekyll>#jekyll</a>
 MathJaxのCDNが警告を発しつつも使えてしまっていた</h2><p><time>2017-07-06</time>

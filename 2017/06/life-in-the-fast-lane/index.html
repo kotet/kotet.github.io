@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ!"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ!"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,7 +6,7 @@
         processEscapes: true
       }
     });
-</script><title>#dlang 駆け足の人生:GCを減らすための工夫【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/06/life-in-the-fast-lane/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 駆け足の人生:GCを減らすための工夫【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ!"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/06/life-in-the-fast-lane/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang 駆け足の人生:GCを減らすための工夫【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/06/life-in-the-fast-lane/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 駆け足の人生:GCを減らすための工夫【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="この記事は、Life in the Fast Lane – The D Blogを自分用に翻訳したものを 許可を得て 公開するものである。 今回だいぶ翻訳が怪しいので、誤字や誤訳などを見つけたら今すぐ Pull requestだ!"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/06/life-in-the-fast-lane/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 駆け足の人生:GCを減らすための工夫【翻訳】</h2><p><time>2017-06-26</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/dlang_gc_series>#dlang_gc_series</a> <a href=/tags/d_blog>#d_blog</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#gc鎮静剤>GC鎮静剤</a></li><li><a href=#gcの壁>GCの壁</a></li><li><a href=#努力する>努力する</a></li><li><a href=#要点>要点</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>この記事は、</p><p><a href=http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/>Life in the Fast Lane – The D Blog</a><sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup></p><p>を自分用に翻訳したものを
@@ -31,12 +31,14 @@ GCが関わらないようにするのに役立つコマンドラインオプシ
 彼のDプログラムからガベージコレクションを完全に避けたいと思っています。
 彼には即時取れる2つの選択肢があります。</p><h3 id=gc鎮静剤>GC鎮静剤</h3><p>1つの選択肢はプログラムが開始する時に<code>GC.disable</code>を呼ぶことです。
 これはアロケーションを止めませんが、コレクションを停止させます。
-ここでいうコレクションとは、他のスレッドでのアロケーションによるものを含む<strong>すべての</strong>コレクションを意味します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+ここでいうコレクションとは、他のスレッドでのアロケーションによるものを含む<strong>すべての</strong>コレクションを意味します。</p><pre><code class=language-d>void main() {
     import core.memory;
     import std.stdio;
     GC.disable;
-    writeln(&#34;Goodbye, GC!&#34;);
-}</code></pre></div><p>出力:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>Goodbye, GC!</code></pre></div><p>これにはGCヒープを使うすべての言語機能が期待通りに動くという利点があります。
+    writeln(&quot;Goodbye, GC!&quot;);
+}
+</code></pre><p>出力:</p><pre><code class=language-console>Goodbye, GC!
+</code></pre><p>これにはGCヒープを使うすべての言語機能が期待通りに動くという利点があります。
 しかし、クリーンアップなしにアロケーションが続いていくことを考えると、
 ちょっと計算すればこれが問題だということがわかるでしょう。
 アロケーションが手に負えなくなった時、なにかを妥協しなくてはならなくなるでしょう。
@@ -45,21 +47,27 @@ disable 状態でもガベージコレクタが動くことがあります。<su
 しかしこの制約が容認できるなら、物事をコントロールするのに役立ついくつかのステップがあります。
 J.P.は必要に応じて<code>GC.enable</code>または<code>GC.collect</code>を呼ぶことができます。
 これは単純なCやC++のアロケーション戦略よりも優れたコレクションサイクルへのコントロールを提供します。</p><h3 id=gcの壁>GCの壁</h3><p>単にGCが耐え難い時は、J.P.は<code>@nogc</code>属性をつけることができます。
-それを<code>main</code>関数の前につけることでコレクションに苦しむことはなくなります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@nogc
-void main() { ... }</code></pre></div><p>これは究極のGC軽減戦略です。
+それを<code>main</code>関数の前につけることでコレクションに苦しむことはなくなります。</p><pre><code class=language-d>@nogc
+void main() { ... }
+</code></pre><p>これは究極のGC軽減戦略です。
 <code>@nogc</code>は<code>main</code>のコールスタックの先でガベージコレクタが動作しないことの保証を適用します。
 「実装がどこでコレクティングを必要と判断するか」を気にする必要はありません。</p><p>一見して、これは<code>GC.disable</code>よりもよい選択肢に見えます。
-やってみましょう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@nogc
+やってみましょう。</p><pre><code class=language-d>@nogc
 void main() {
     import std.stdio;
-    writeln(&#34;GC be gone!&#34;);
-}</code></pre></div><p>このとき、コンパイラを通すことはできません。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>Error: @nogc function &#39;D main&#39; cannot call non-@nogc function &#39;std.stdio.writeln!string.writeln&#39;</code></pre></div><p><code>@nogc</code>印はそれを強制するコンパイラの能力です。
+    writeln(&quot;GC be gone!&quot;);
+}
+
+</code></pre><p>このとき、コンパイラを通すことはできません。</p><pre><code class=language-console>Error: @nogc function 'D main' cannot call non-@nogc function 'std.stdio.writeln!string.writeln'
+</code></pre><p><code>@nogc</code>印はそれを強制するコンパイラの能力です。
 非常に極端なアプローチです。
 関数が<code>@nogc</code>とつけられたとき、その内部から呼びだされた関数にも<code>@nogc</code>がついていなければなりません。
-当然、<code>writeln</code>はそうではありません。</p><p>それだけではありません:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>@nogc 
+当然、<code>writeln</code>はそうではありません。</p><p>それだけではありません:</p><pre><code class=language-d>@nogc 
 void main() {
     auto ints = new int[](100);
-}</code></pre></div><p>コンパイラはこれも見逃しません。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>Error: cannot use &#39;new&#39; in @nogc function &#39;D main&#39;</code></pre></div><p>GCヒープからアロケートをする言語機能は<code>@nogc</code>とマークした関数には立ち入れません
+}
+</code></pre><p>コンパイラはこれも見逃しません。</p><pre><code class=language-console>Error: cannot use 'new' in @nogc function 'D main'
+</code></pre><p>GCヒープからアロケートをする言語機能は<code>@nogc</code>とマークした関数には立ち入れません
 (これらの機能については、
 <a href=https://dlang.org/blog/2017/03/20/dont-fear-the-reaper/>このシリーズの最初のポスト</a>を参照してください)。
 これはどこまでも遡って続きます。
@@ -70,7 +78,8 @@ void main() {
 とるに足らないものもありますが、いくらかはそうではなく、ほかはほとんど全部動作しません
 (詳細は将来の投稿で掘り下げていきます)。
 明らかでない例は例外を投げることです。
-慣用的方法は:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>throw new Exception(&#34;Blah&#34;);</code></pre></div><p>この行の<code>new</code>のために、<code>@nogc</code>関数内でこれは使えません。
+慣用的方法は:</p><pre><code class=language-d>throw new Exception(&quot;Blah&quot;);
+</code></pre><p>この行の<code>new</code>のために、<code>@nogc</code>関数内でこれは使えません。
 これを回避するには投げる例外を事前アロケートする必要があります。
 これは、通常のヒープから割り当てられた例外メモリの割り当てを解除する必要があり、
 参照カウントやスタック割り当てのアイディアにつながるという問題があります……
@@ -103,14 +112,15 @@ DのGCはプログラマがGCメモリをアロケートした時にのみ実行
 ツールチェインの助けによって理解を深めることができます。</p><p>DRuntimeの<a href=https://dlang.org/spec/garbage.html#gc_config>GCオプション</a>
 <code>--DRT-gcopt=profile:1</code>をコンパイルされたプログラム(コンパイラではありません!)に渡し、
 チューンアップの助けにすることができます。
-これはコレクションの合計数や合計コレクション時間のような役に立つGCプロファイリングデータを報告します。</p><p>デモンストレーションとして、<strong>gcstat.d</strong>は20個の値を整数の動的配列に追加します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void main() {
+これはコレクションの合計数や合計コレクション時間のような役に立つGCプロファイリングデータを報告します。</p><p>デモンストレーションとして、<strong>gcstat.d</strong>は20個の値を整数の動的配列に追加します。</p><pre><code class=language-d>void main() {
     import std.stdio;
     int[] ints;
     foreach(i; 0 .. 20) {
         ints ~= i;
     }
     writeln(ints);
-}</code></pre></div><p>コンパイルしGCプロファイルスイッチ付きで実行します:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>dmd gcstat.d
+}
+</code></pre><p>コンパイルしGCプロファイルスイッチ付きで実行します:</p><pre><code class=language-console>dmd gcstat.d
 gcstat --DRT-gcopt=profile:1
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
         Number of collections:  1
@@ -120,11 +130,12 @@ gcstat --DRT-gcopt=profile:1
         Total page recovery time:  0 milliseconds
         Max Pause Time:  0 milliseconds
         Grand total GC time:  0 milliseconds
-GC summary:    1 MB,    1 GC    0 ms, Pauses    0 ms &lt;    0 ms</code></pre></div><p>これは1つのコレクションを報告し、これはほぼ確実にプログラムの終了時に発生したものです。
+GC summary:    1 MB,    1 GC    0 ms, Pauses    0 ms &lt;    0 ms
+</code></pre><p>これは1つのコレクションを報告し、これはほぼ確実にプログラムの終了時に発生したものです。
 ランタイムがGCを終了させると、現在の実装では、一般的にコレクションをトリガします。
 これは主にコレクトしたオブジェクトでデストラクタを実行するためにおこなわれます。
 DではGCでアロケートされたオブジェクトのデストラクタは必要ありません(将来の投稿のトピックです)。</p><p>DMDは、配列追加演算子のような言語機能に隠れたものも含めた、
-すべてのGCアロケーションを表示するコマンドラインオプション<code>-vgc</code>をサポートしています。</p><p>デモンストレーションとして、<strong>inner.d</strong>をご覧ください:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void printInts(int[] delegate() dg)
+すべてのGCアロケーションを表示するコマンドラインオプション<code>-vgc</code>をサポートしています。</p><p>デモンストレーションとして、<strong>inner.d</strong>をご覧ください:</p><pre><code class=language-d>void printInts(int[] delegate() dg)
 {
     import std.stdio;
     foreach(i; dg()) writeln(i);
@@ -140,18 +151,21 @@ void main() {
     }
 
     printInts(&amp;makeInts);
-}</code></pre></div><p>ここで、<code>makeInts</code>は内部関数です。
+}
+</code></pre><p>ここで、<code>makeInts</code>は内部関数です。
 非静的内部関数へのポインタは関数ポインタではなく、<code>delegate</code>です
 (コンテキストポインタと関数ポインタの組;内部関数が<code>static</code>の時は、
 かわりに<code>function</code>型のポインタが作られます)。
 この特殊なケースで、デリゲートは親スコープの変数を使います。
-こちらが<code>-vgc</code>でコンパイルした時の出力です:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>dmd -vgc inner.d
+こちらが<code>-vgc</code>でコンパイルした時の出力です:</p><pre><code class=language-console>dmd -vgc inner.d
 inner.d(11): vgc: operator ~= may cause GC allocation
-inner.d(7): vgc: using closure causes GC allocation</code></pre></div><p>ここからわかることはデリゲートが<code>ints</code>の状態、クロージャ(それ自身は型ではありません -
+inner.d(7): vgc: using closure causes GC allocation
+</code></pre><p>ここからわかることはデリゲートが<code>ints</code>の状態、クロージャ(それ自身は型ではありません -
 型はまだ<code>delegate</code>です)を運べるようにメモリがアロケートされる必要があるということです。
 <code>ints</code>の宣言を<code>makeInts</code>のスコープの中に移動させてリコンパイルしてください。
 クロージャのアロケーションがなくなるでしょう。
-よりよい選択肢は<code>printInts</code>の宣言をこのように変えることです:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void printInts(scope int[] delegate() dg)</code></pre></div><p><code>scope</code>を関数パラメータに追加するとパラメータ内の参照は逃れることができません。
+よりよい選択肢は<code>printInts</code>の宣言をこのように変えることです:</p><pre><code class=language-d>void printInts(scope int[] delegate() dg)
+</code></pre><p><code>scope</code>を関数パラメータに追加するとパラメータ内の参照は逃れることができません。
 言い換えると、グローバル変数に<code>dg</code>を代入したり、この関数から返すことはできなくなります。
 これによってクロージャを作る必要がなくなり、アロケーションが行われなくなるという利点があります。
 詳細については<a href=https://dlang.org/spec/function.html#closures>関数ポインタ、デリゲート、クロージャ</a>や

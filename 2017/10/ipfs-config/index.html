@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,137 +6,150 @@
         processEscapes: true
       }
     });
-</script><title>#ipfs 分散ファイルシステムIPFS体験記2:設定一覧 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-config/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 分散ファイルシステムIPFS体験記2:設定一覧 - Kotet's Personal Blog"><meta name=og:description content="今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"><meta name=og:image content=https://blog.kotet.jp2017/10/19/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-config/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#ipfs 分散ファイルシステムIPFS体験記2:設定一覧 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/10/ipfs-config/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#ipfs 分散ファイルシステムIPFS体験記2:設定一覧 - Kotet's Personal Blog"><meta name=og:description content="今回はWebUI上で設定を確認する。 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。"><meta name=og:image content=https://blog.kotet.jp2017/10/19/twitter.png><meta name=twitter:url content=https://blog.kotet.jp/2017/10/ipfs-config/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/ipfs>#ipfs</a>
 分散ファイルシステムIPFS体験記2:設定一覧</h2><p><time>2017-10-19</time>
 <a href=/tags/ipfs>#ipfs</a> <a href=/tags/tech>#tech</a> <a href=/tags/log>#log</a> <a href=/tags/ipfs%e4%bd%93%e9%a8%93%e8%a8%98>#ipfs体験記</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#config>Config</a><ul><li><a href=#api><code>API</code></a></li><li><a href=#addresses><code>Addresses</code></a></li><li><a href=#bootstrap><code>Bootstrap</code></a></li><li><a href=#datastore><code>Datastore</code></a></li><li><a href=#discovery><code>Discovery</code></a></li><li><a href=#experimental><code>Experimental</code></a></li><li><a href=#gateway><code>Gateway</code></a></li><li><a href=#identity><code>Identity</code></a></li><li><a href=#ipns><code>Ipns</code></a></li><li><a href=#mounts><code>Mounts</code></a></li><li><a href=#reprovider><code>Reprovider</code></a></li><li><a href=#supernoderouting><code>SupernodeRouting</code></a></li><li><a href=#swarm><code>Swarm</code></a></li><li><a href=#以上>以上</a></li></ul></li></ul></li></ul></li></ul></nav></aside></header><article><p>今回はWebUI上で設定を確認する。
 最初から最後まで全部読んでみたので、質的なものは別として量的に有用な日本語情報源として機能しそうな記事になったと思う。</p><h3 id=config>Config</h3><p>WebUI上ではさまざまな情報を見ることができる。
 どうやらconfigファイルの編集もできるようなので今回はこれを使うが、もちろん好きなエディタで<code>~/.ipfs/config</code>を直接編集してもいいと思う。</p><p><img src=/assets/2017/10/19/webui.png alt=webui></p><p>configはjson形式になっている。
 ひょっとしたらjsonじゃないかもしれない、なんて考えて一応ドキュメントを見て確認してみる手間を省くためにも拡張子が付いているとありがたいのだが……
-上から順番に確認していく。</p><h4 id=api><code>API</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;API&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;HTTPHeaders&#34;</span>: <span style=color:#66d9ef>null</span>
-  }<span style=color:#960050;background-color:#1e0010>,</span></code></pre></div><p>APIサーバのレスポンスヘッダを設定するものらしい。</p><h4 id=addresses><code>Addresses</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Addresses&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;API&#34;</span>: <span style=color:#e6db74>&#34;/ip4/127.0.0.1/tcp/5001&#34;</span>,
-    <span style=color:#f92672>&#34;Announce&#34;</span>: [],
-    <span style=color:#f92672>&#34;Gateway&#34;</span>: <span style=color:#e6db74>&#34;/ip4/127.0.0.1/tcp/8080&#34;</span>,
-    <span style=color:#f92672>&#34;NoAnnounce&#34;</span>: [],
-    <span style=color:#f92672>&#34;Swarm&#34;</span>: [
-      <span style=color:#e6db74>&#34;/ip4/0.0.0.0/tcp/4001&#34;</span>,
-      <span style=color:#e6db74>&#34;/ip6/::/tcp/4001&#34;</span>
+上から順番に確認していく。</p><h4 id=api><code>API</code></h4><pre><code class=language-json>  &quot;API&quot;: {
+    &quot;HTTPHeaders&quot;: null
+  },
+</code></pre><p>APIサーバのレスポンスヘッダを設定するものらしい。</p><h4 id=addresses><code>Addresses</code></h4><pre><code class=language-json>  &quot;Addresses&quot;: {
+    &quot;API&quot;: &quot;/ip4/127.0.0.1/tcp/5001&quot;,
+    &quot;Announce&quot;: [],
+    &quot;Gateway&quot;: &quot;/ip4/127.0.0.1/tcp/8080&quot;,
+    &quot;NoAnnounce&quot;: [],
+    &quot;Swarm&quot;: [
+      &quot;/ip4/0.0.0.0/tcp/4001&quot;,
+      &quot;/ip6/::/tcp/4001&quot;
     ]
-  }</code></pre></div><p>ノードが待ち受けるアドレスを変更できる。</p><ul><li><code>API</code>: ローカルAPIサーバのアドレス。WebUIと共有っぽい。</li><li><code>Gateway</code>: ローカルゲートウェイのアドレス。ipfs内のファイルにブラウザなどからアクセスするときに使える。</li><li><code>Swarm</code>: 他のノードと接続するためのアドレス。ポートを開かずにネットワークに貢献できるのかと心配していたが、
+  }
+</code></pre><p>ノードが待ち受けるアドレスを変更できる。</p><ul><li><code>API</code>: ローカルAPIサーバのアドレス。WebUIと共有っぽい。</li><li><code>Gateway</code>: ローカルゲートウェイのアドレス。ipfs内のファイルにブラウザなどからアクセスするときに使える。</li><li><code>Swarm</code>: 他のノードと接続するためのアドレス。ポートを開かずにネットワークに貢献できるのかと心配していたが、
 <a href=https://ja.wikipedia.org/wiki/Universal_Plug_and_Play>UPnP</a>
-のおかげで<a href=https://discuss.ipfs.io/t/how-should-i-configure-my-firewall/471/3>大丈夫のようだ</a>。</li></ul><p>ほかは<a href=https://github.com/ipfs/go-ipfs/blob/6beab668fddfc53995c17ec20df2264fe7d9bc1b/docs/config.md>ドキュメント</a>に書かれていない。</p><h4 id=bootstrap><code>Bootstrap</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Bootstrap&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> [
-    <span style=color:#e6db74>&#34;/dnsaddr/bootstrap.libp2p.io/ipfs/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN&#34;</span>,
-    <span style=color:#e6db74>&#34;/dnsaddr/bootstrap.libp2p.io/ipfs/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa&#34;</span>,
-    <span style=color:#e6db74>&#34;/dnsaddr/bootstrap.libp2p.io/ipfs/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb&#34;</span>,
-    <span style=color:#e6db74>&#34;/dnsaddr/bootstrap.libp2p.io/ipfs/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip4/104.236.179.241/tcp/4001/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip4/104.236.76.40/tcp/4001/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip4/178.62.158.247/tcp/4001/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip6/2604:a880:1:20::203:d001/tcp/4001/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip6/2400:6180:0:d0::151:6001/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip6/2604:a880:800:10::4a:5001/tcp/4001/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64&#34;</span>,
-    <span style=color:#e6db74>&#34;/ip6/2a03:b0c0:0:1010::23:1001/tcp/4001/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd&#34;</span>
-  ]</code></pre></div><p>起動時にネットワークに加わる入り口として接続するノードのアドレスたち。
-これを自作ネットワークのノードに変えるとプライベートネットワークが作れるはず。</p><h4 id=datastore><code>Datastore</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Datastore&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;BloomFilterSize&#34;</span>: <span style=color:#ae81ff>0</span>,
-    <span style=color:#f92672>&#34;GCPeriod&#34;</span>: <span style=color:#e6db74>&#34;1h&#34;</span>,
-    <span style=color:#f92672>&#34;HashOnRead&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;Spec&#34;</span>: {
-      <span style=color:#f92672>&#34;mounts&#34;</span>: [
+のおかげで<a href=https://discuss.ipfs.io/t/how-should-i-configure-my-firewall/471/3>大丈夫のようだ</a>。</li></ul><p>ほかは<a href=https://github.com/ipfs/go-ipfs/blob/6beab668fddfc53995c17ec20df2264fe7d9bc1b/docs/config.md>ドキュメント</a>に書かれていない。</p><h4 id=bootstrap><code>Bootstrap</code></h4><pre><code class=language-json>  &quot;Bootstrap&quot;: [
+    &quot;/dnsaddr/bootstrap.libp2p.io/ipfs/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN&quot;,
+    &quot;/dnsaddr/bootstrap.libp2p.io/ipfs/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa&quot;,
+    &quot;/dnsaddr/bootstrap.libp2p.io/ipfs/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb&quot;,
+    &quot;/dnsaddr/bootstrap.libp2p.io/ipfs/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt&quot;,
+    &quot;/ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ&quot;,
+    &quot;/ip4/104.236.179.241/tcp/4001/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM&quot;,
+    &quot;/ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu&quot;,
+    &quot;/ip4/104.236.76.40/tcp/4001/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64&quot;,
+    &quot;/ip4/178.62.158.247/tcp/4001/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd&quot;,
+    &quot;/ip6/2604:a880:1:20::203:d001/tcp/4001/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM&quot;,
+    &quot;/ip6/2400:6180:0:d0::151:6001/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu&quot;,
+    &quot;/ip6/2604:a880:800:10::4a:5001/tcp/4001/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64&quot;,
+    &quot;/ip6/2a03:b0c0:0:1010::23:1001/tcp/4001/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd&quot;
+  ]
+</code></pre><p>起動時にネットワークに加わる入り口として接続するノードのアドレスたち。
+これを自作ネットワークのノードに変えるとプライベートネットワークが作れるはず。</p><h4 id=datastore><code>Datastore</code></h4><pre><code class=language-json>  &quot;Datastore&quot;: {
+    &quot;BloomFilterSize&quot;: 0,
+    &quot;GCPeriod&quot;: &quot;1h&quot;,
+    &quot;HashOnRead&quot;: false,
+    &quot;Spec&quot;: {
+      &quot;mounts&quot;: [
         {
-          <span style=color:#f92672>&#34;child&#34;</span>: {
-            <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;blocks&#34;</span>,
-            <span style=color:#f92672>&#34;shardFunc&#34;</span>: <span style=color:#e6db74>&#34;/repo/flatfs/shard/v1/next-to-last/2&#34;</span>,
-            <span style=color:#f92672>&#34;sync&#34;</span>: <span style=color:#66d9ef>true</span>,
-            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;flatfs&#34;</span>
+          &quot;child&quot;: {
+            &quot;path&quot;: &quot;blocks&quot;,
+            &quot;shardFunc&quot;: &quot;/repo/flatfs/shard/v1/next-to-last/2&quot;,
+            &quot;sync&quot;: true,
+            &quot;type&quot;: &quot;flatfs&quot;
           },
-          <span style=color:#f92672>&#34;mountpoint&#34;</span>: <span style=color:#e6db74>&#34;/blocks&#34;</span>,
-          <span style=color:#f92672>&#34;prefix&#34;</span>: <span style=color:#e6db74>&#34;flatfs.datastore&#34;</span>,
-          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;measure&#34;</span>
+          &quot;mountpoint&quot;: &quot;/blocks&quot;,
+          &quot;prefix&quot;: &quot;flatfs.datastore&quot;,
+          &quot;type&quot;: &quot;measure&quot;
         },
         {
-          <span style=color:#f92672>&#34;child&#34;</span>: {
-            <span style=color:#f92672>&#34;compression&#34;</span>: <span style=color:#e6db74>&#34;none&#34;</span>,
-            <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;datastore&#34;</span>,
-            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;levelds&#34;</span>
+          &quot;child&quot;: {
+            &quot;compression&quot;: &quot;none&quot;,
+            &quot;path&quot;: &quot;datastore&quot;,
+            &quot;type&quot;: &quot;levelds&quot;
           },
-          <span style=color:#f92672>&#34;mountpoint&#34;</span>: <span style=color:#e6db74>&#34;/&#34;</span>,
-          <span style=color:#f92672>&#34;prefix&#34;</span>: <span style=color:#e6db74>&#34;leveldb.datastore&#34;</span>,
-          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;measure&#34;</span>
+          &quot;mountpoint&quot;: &quot;/&quot;,
+          &quot;prefix&quot;: &quot;leveldb.datastore&quot;,
+          &quot;type&quot;: &quot;measure&quot;
         }
       ],
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mount&#34;</span>
+      &quot;type&quot;: &quot;mount&quot;
     },
-    <span style=color:#f92672>&#34;StorageGCWatermark&#34;</span>: <span style=color:#ae81ff>90</span>,
-    <span style=color:#f92672>&#34;StorageMax&#34;</span>: <span style=color:#e6db74>&#34;10GB&#34;</span>
-  }</code></pre></div><p>ディスクの利用についての設定。</p><ul><li><code>BloomFilterSize</code>: bloom filterのサイズをバイト数で設定するらしいが、デフォルト値は0、つまりこの機能は無効になっている。</li><li><code>GCPeriod</code>: GCの動作頻度を時間で設定。オートGCが有効の時のみ使われる値……とあるがオートGCは現在デフォルトで無効である。</li><li><code>HashOnRead</code>: データはブロックという単位で分割して扱われるのだが、たぶん<code>true</code>にするとディスクから読み込むときにブロックの検証を毎回行うようになる。</li><li><code>Spec</code>: データ構造を設定できるようだ。なんかいろいろ小難しいことをしたくなったらここを編集するんだろう。</li><li><code>StorageGCWatermark</code>: データストアの使用量が<code>StorageMax</code>の何%になったらGCを起動するか。これもオートGCが有効の時に使う値である。</li><li><code>StorageMax</code>: データストアの最大使用量。これを超えるデータストアへの書き込みは失敗する。
-このコンピュータはディスクが貧弱ですでに空き容量は10ギガバイトもないため、<code>2GB</code>に書き換えておく。</li></ul><h4 id=discovery><code>Discovery</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Discovery&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;MDNS&#34;</span>: {
-      <span style=color:#f92672>&#34;Enabled&#34;</span>: <span style=color:#66d9ef>true</span>,
-      <span style=color:#f92672>&#34;Interval&#34;</span>: <span style=color:#ae81ff>10</span>
+    &quot;StorageGCWatermark&quot;: 90,
+    &quot;StorageMax&quot;: &quot;10GB&quot;
+  }
+</code></pre><p>ディスクの利用についての設定。</p><ul><li><code>BloomFilterSize</code>: bloom filterのサイズをバイト数で設定するらしいが、デフォルト値は0、つまりこの機能は無効になっている。</li><li><code>GCPeriod</code>: GCの動作頻度を時間で設定。オートGCが有効の時のみ使われる値……とあるがオートGCは現在デフォルトで無効である。</li><li><code>HashOnRead</code>: データはブロックという単位で分割して扱われるのだが、たぶん<code>true</code>にするとディスクから読み込むときにブロックの検証を毎回行うようになる。</li><li><code>Spec</code>: データ構造を設定できるようだ。なんかいろいろ小難しいことをしたくなったらここを編集するんだろう。</li><li><code>StorageGCWatermark</code>: データストアの使用量が<code>StorageMax</code>の何%になったらGCを起動するか。これもオートGCが有効の時に使う値である。</li><li><code>StorageMax</code>: データストアの最大使用量。これを超えるデータストアへの書き込みは失敗する。
+このコンピュータはディスクが貧弱ですでに空き容量は10ギガバイトもないため、<code>2GB</code>に書き換えておく。</li></ul><h4 id=discovery><code>Discovery</code></h4><pre><code class=language-json>  &quot;Discovery&quot;: {
+    &quot;MDNS&quot;: {
+      &quot;Enabled&quot;: true,
+      &quot;Interval&quot;: 10
     }
-  }</code></pre></div><p>&ldquo;ipfs node discovery mechanisms&rdquo;の設定……だそうだが、今の自分にはこれを理解する知識がない。</p><h4 id=experimental><code>Experimental</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Experimental&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;FilestoreEnabled&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;Libp2pStreamMounting&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;ShardingEnabled&#34;</span>: <span style=color:#66d9ef>false</span>
-  }</code></pre></div><p>その名の通り実験的機能を有効にできるのだろう。
-多分開発者向け。</p><h4 id=gateway><code>Gateway</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Gateway&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;HTTPHeaders&#34;</span>: {
-      <span style=color:#f92672>&#34;Access-Control-Allow-Headers&#34;</span>: [
-        <span style=color:#e6db74>&#34;X-Requested-With&#34;</span>,
-        <span style=color:#e6db74>&#34;Range&#34;</span>
+  }
+</code></pre><p>&ldquo;ipfs node discovery mechanisms&rdquo;の設定……だそうだが、今の自分にはこれを理解する知識がない。</p><h4 id=experimental><code>Experimental</code></h4><pre><code class=language-json>  &quot;Experimental&quot;: {
+    &quot;FilestoreEnabled&quot;: false,
+    &quot;Libp2pStreamMounting&quot;: false,
+    &quot;ShardingEnabled&quot;: false
+  }
+</code></pre><p>その名の通り実験的機能を有効にできるのだろう。
+多分開発者向け。</p><h4 id=gateway><code>Gateway</code></h4><pre><code class=language-json>  &quot;Gateway&quot;: {
+    &quot;HTTPHeaders&quot;: {
+      &quot;Access-Control-Allow-Headers&quot;: [
+        &quot;X-Requested-With&quot;,
+        &quot;Range&quot;
       ],
-      <span style=color:#f92672>&#34;Access-Control-Allow-Methods&#34;</span>: [
-        <span style=color:#e6db74>&#34;GET&#34;</span>
+      &quot;Access-Control-Allow-Methods&quot;: [
+        &quot;GET&quot;
       ],
-      <span style=color:#f92672>&#34;Access-Control-Allow-Origin&#34;</span>: [
-        <span style=color:#e6db74>&#34;*&#34;</span>
+      &quot;Access-Control-Allow-Origin&quot;: [
+        &quot;*&quot;
       ]
     },
-    <span style=color:#f92672>&#34;PathPrefixes&#34;</span>: [],
-    <span style=color:#f92672>&#34;RootRedirect&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
-    <span style=color:#f92672>&#34;Writable&#34;</span>: <span style=color:#66d9ef>false</span>
-  }</code></pre></div><p>先ほど少し触れたゲートウェイの設定。<br><code>ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme</code>とコマンドを打つ代わりにブラウザで
+    &quot;PathPrefixes&quot;: [],
+    &quot;RootRedirect&quot;: &quot;&quot;,
+    &quot;Writable&quot;: false
+  }
+</code></pre><p>先ほど少し触れたゲートウェイの設定。<br><code>ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme</code>とコマンドを打つ代わりにブラウザで
 <code>http://localhost:8080/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme</code>にアクセスできる。
 gateway.ipfs.ioというパブリックゲートウェイがあるので、今誰かにIPFS上のファイルを見せようと思ったら
 <a href=https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme><code>https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme</code></a>
 とするのが一番手軽ではあるが、このゲートウェイが封鎖してしまうとすべてリンク切れになってしまう。
-どういうURLを貼るのが一番いいのだろうか？</p><ul><li><code>HTTPHeaders</code>: ヘッダを設定できる。</li><li><code>PathPrefixes</code>: ドキュメントが完成していない。でもまあ名前通りなんだろう。</li><li><code>RootRedirect</code>: <code>/</code>をリダイレクトする。</li><li><code>Writeable</code>: ゲートウェイがwritableかそうでないかを設定できるらしいが、自分はその説明から意味を理解するだけの知識を持ち合わせていない。</li></ul><h4 id=identity><code>Identity</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Identity&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;PeerID&#34;</span>: <span style=color:#e6db74>&#34;QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg&#34;</span>
-  }</code></pre></div><ul><li><code>PeerID</code>: <a href=https://ja.wikipedia.org/wiki/%E5%85%AC%E9%96%8B%E9%8D%B5%E5%9F%BA%E7%9B%A4>PKI</a> ID。
-IPFSではこのIDは実行時に鍵ペアから生成されるため、この設定値は人間などが確認するためにあるもので、書き換えても読まれない。</li></ul><h4 id=ipns><code>Ipns</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Ipns&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;RecordLifetime&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
-    <span style=color:#f92672>&#34;RepublishPeriod&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
-    <span style=color:#f92672>&#34;ResolveCacheSize&#34;</span>: <span style=color:#ae81ff>128</span>
-  }</code></pre></div><p>Inter-Planetary Naming Systemだそうだ。
+どういうURLを貼るのが一番いいのだろうか？</p><ul><li><code>HTTPHeaders</code>: ヘッダを設定できる。</li><li><code>PathPrefixes</code>: ドキュメントが完成していない。でもまあ名前通りなんだろう。</li><li><code>RootRedirect</code>: <code>/</code>をリダイレクトする。</li><li><code>Writeable</code>: ゲートウェイがwritableかそうでないかを設定できるらしいが、自分はその説明から意味を理解するだけの知識を持ち合わせていない。</li></ul><h4 id=identity><code>Identity</code></h4><pre><code class=language-json>  &quot;Identity&quot;: {
+    &quot;PeerID&quot;: &quot;QmcEYwrw73GpQrxDBN9Zn4y2K9S6f1epQNGrttXa3ZRPeg&quot;
+  }
+</code></pre><ul><li><code>PeerID</code>: <a href=https://ja.wikipedia.org/wiki/%E5%85%AC%E9%96%8B%E9%8D%B5%E5%9F%BA%E7%9B%A4>PKI</a> ID。
+IPFSではこのIDは実行時に鍵ペアから生成されるため、この設定値は人間などが確認するためにあるもので、書き換えても読まれない。</li></ul><h4 id=ipns><code>Ipns</code></h4><pre><code class=language-json>  &quot;Ipns&quot;: {
+    &quot;RecordLifetime&quot;: &quot;&quot;,
+    &quot;RepublishPeriod&quot;: &quot;&quot;,
+    &quot;ResolveCacheSize&quot;: 128
+  }
+</code></pre><p>Inter-Planetary Naming Systemだそうだ。
 IPFSではファイルのハッシュでデータにアクセス（ちょっとこの部分リズムが良くて声に出して読みたくなる）するため、ウェブサイト等変化するコンテンツを追うことができない。
 IPNSはgitのブランチのように、PKI IDを変化するコンテンツの最新版へのポインタにできる。</p><ul><li><code>RecordLifetime</code>: IPNSレコードの生存時間。デフォルトは24時間になっている。<br>ひょっとしてIPFS上でウェブサイトをホストするには定期的にIPNSレコードを送り続けなければならないのだろうか？
 ファイル自体は残り続けるとはいえ、自分の永遠に残るウェブサイト計画に暗雲が立ち込めてきた……</li><li><code>RepublishPeriod</code>: IPNSレコードをrepublishする頻度を指定する。デフォルトでは12時間。<br>やはりIPNSレコードは定期的に送り続けなければならないらしい。
 まあ考えてみたらサーバ無しでいくらでも利用できたらネットワークの負担がどんどん増えていってしまうので当然のことではある。
-それでも普通にWebサーバを運営するより低負荷なのだろう。</li><li><code>ResolveCacheSize</code>: キャッシュとして持つエントリの個数。</li></ul><h4 id=mounts><code>Mounts</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Mounts&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;FuseAllowOther&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;IPFS&#34;</span>: <span style=color:#e6db74>&#34;/ipfs&#34;</span>,
-    <span style=color:#f92672>&#34;IPNS&#34;</span>: <span style=color:#e6db74>&#34;/ipns&#34;</span>
-  }</code></pre></div><p>FUSE mount pointの設定らしいが、まだよくわかっていない。</p><h4 id=reprovider><code>Reprovider</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Reprovider&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;Interval&#34;</span>: <span style=color:#e6db74>&#34;12h&#34;</span>,
-    <span style=color:#f92672>&#34;Strategy&#34;</span>: <span style=color:#e6db74>&#34;all&#34;</span>
-  }</code></pre></div><p>どんなコンテンツを持っているか他のノードに知らせる機能。</p><ul><li><code>Interval</code>: Reprovidingの間隔。
+それでも普通にWebサーバを運営するより低負荷なのだろう。</li><li><code>ResolveCacheSize</code>: キャッシュとして持つエントリの個数。</li></ul><h4 id=mounts><code>Mounts</code></h4><pre><code class=language-json>  &quot;Mounts&quot;: {
+    &quot;FuseAllowOther&quot;: false,
+    &quot;IPFS&quot;: &quot;/ipfs&quot;,
+    &quot;IPNS&quot;: &quot;/ipns&quot;
+  }
+</code></pre><p>FUSE mount pointの設定らしいが、まだよくわかっていない。</p><h4 id=reprovider><code>Reprovider</code></h4><pre><code class=language-json>  &quot;Reprovider&quot;: {
+    &quot;Interval&quot;: &quot;12h&quot;,
+    &quot;Strategy&quot;: &quot;all&quot;
+  }
+</code></pre><p>どんなコンテンツを持っているか他のノードに知らせる機能。</p><ul><li><code>Interval</code>: Reprovidingの間隔。
 デフォルトでは12時間になっているが、自分のコンピュータは使う時しか動いていないので、IPFSネットワークに貢献するべく<code>0.5h</code>くらいに短くしておくことにした。
-<a href=https://ipfs.io/docs/commands/#ipfs-name-publish><code>ipfs name publish</code></a>コマンドのパラメータと同じならこの表記は有効のはずである。</li><li><code>Strategy</code>: 何を知らせるかの戦略の設定。<code>all</code>、<code>pinned</code>、<code>roots</code>から選べるようだ。</li></ul><h4 id=supernoderouting><code>SupernodeRouting</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;SupernodeRouting&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;Servers&#34;</span>: <span style=color:#66d9ef>null</span>
-  }</code></pre></div><p><del>ドキュメントに載っていない項目。
+<a href=https://ipfs.io/docs/commands/#ipfs-name-publish><code>ipfs name publish</code></a>コマンドのパラメータと同じならこの表記は有効のはずである。</li><li><code>Strategy</code>: 何を知らせるかの戦略の設定。<code>all</code>、<code>pinned</code>、<code>roots</code>から選べるようだ。</li></ul><h4 id=supernoderouting><code>SupernodeRouting</code></h4><pre><code class=language-json>  &quot;SupernodeRouting&quot;: {
+    &quot;Servers&quot;: null
+  }
+</code></pre><p><del>ドキュメントに載っていない項目。
 謎。</del>
-Deprecatedになった機能らしい。</p><h4 id=swarm><code>Swarm</code></h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;Swarm&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
-    <span style=color:#f92672>&#34;AddrFilters&#34;</span>: <span style=color:#66d9ef>null</span>,
-    <span style=color:#f92672>&#34;DisableBandwidthMetrics&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;DisableNatPortMap&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;DisableRelay&#34;</span>: <span style=color:#66d9ef>false</span>,
-    <span style=color:#f92672>&#34;EnableRelayHop&#34;</span>: <span style=color:#66d9ef>false</span>
-  }</code></pre></div><p>P2P関連の設定。
+Deprecatedになった機能らしい。</p><h4 id=swarm><code>Swarm</code></h4><pre><code class=language-json>  &quot;Swarm&quot;: {
+    &quot;AddrFilters&quot;: null,
+    &quot;DisableBandwidthMetrics&quot;: false,
+    &quot;DisableNatPortMap&quot;: false,
+    &quot;DisableRelay&quot;: false,
+    &quot;EnableRelayHop&quot;: false
+  }
+</code></pre><p>P2P関連の設定。
 ちょっとP2Pに関する知識が不足していて正確な理解ができない。</p><h4 id=以上>以上</h4><p>これでConfigのjsonは終わりである。
 ドキュメントには<code>ConnMgr</code>というのがあったが、どうも見当たらない……と思ったらどうやら今の今まで自分の使っているのより先のバージョンのドキュメントを読んでいたようだ。
 v0.4.11のドキュメントは<a href=https://github.com/ipfs/go-ipfs/blob/v0.4.11/docs/config.md>こちら</a>である。

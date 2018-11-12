@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,72 +6,79 @@
         processEscapes: true
       }
     });
-</script><title>#dlang Lazyな新しいimportについての議論 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/02/new-import-idiom/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Lazyな新しいimportについての議論 - Kotet's Personal Blog"><meta name=og:description content="最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/02/new-import-idiom/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang Lazyな新しいimportについての議論 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/02/new-import-idiom/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang Lazyな新しいimportについての議論 - Kotet's Personal Blog"><meta name=og:description content="最近は英語のD言語情報を読めるようになってきて楽しい。 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/02/new-import-idiom/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 Lazyな新しいimportについての議論</h2><p><time>2017-02-15</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><a href=#はじめに>はじめに</a></li><li><a href=#a-new-import-idiom>A New Import Idiom</a><ul><li><a href=#1-オペレータ>1 <code>!</code>オペレータ</a></li><li><a href=#2-改名import>2 改名import</a></li><li><a href=#3-eponymous-templates>3 Eponymous Templates</a></li><li><a href=#4-オペレータ>4 <code>~</code>オペレータ</a></li><li><a href=#5-文字列mixin>5 文字列mixin</a></li></ul></li><li><a href=#話し合い>話し合い</a></li></ul></li></ul></nav></aside></header><article><p>最近は英語のD言語情報を読めるようになってきて楽しい。
 特にGoogle翻訳の改善により、自分の貧弱な英語力でも大半はスラスラとストレスのない速度で読めるようになった。<br>そういうわけで読んだものを自分の中で解釈し、自分の言葉でゆるく日本語にした記事を書いている。
 技術関係だから記事でcontributionを伸ばしても何も後ろめたくないのがいいところだ。</p><p>というわけで今回はこちらを読んだ。一部コードをこちらから引用している。</p><p><a href=https://forum.dlang.org/thread/iprikkrpishsudltbdpy@forum.dlang.org>A New Import Idiom` - D Programming Language Discussion Forum</a></p><p><a href=https://dlang.org/blog/2017/02/13/a-new-import-idiom/>A New Import Idiom – The D Blog</a></p><h2 id=はじめに>はじめに</h2><p>現在importは2つの範囲でできる。
-module-level importとlocal importである。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>// A module-level import
+module-level importとlocal importである。</p><pre><code class=language-d>// A module-level import
 import std.datetime;
   
 void fun(SysTime time)
 {
   import std.stdio; // A local import
   ...
-}</code></pre></div><p>しかしたとえば関数<code>fun</code>の引数<code>time</code>に使われている型<code>SysTime</code>はmodule-level importされていないといけない。
-ちなみにスコープ文を使って下のようなことができるんじゃないかと思ってやってみたがやはりできなかった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>{
+}
+</code></pre><p>しかしたとえば関数<code>fun</code>の引数<code>time</code>に使われている型<code>SysTime</code>はmodule-level importされていないといけない。
+ちなみにスコープ文を使って下のようなことができるんじゃないかと思ってやってみたがやはりできなかった。</p><pre><code class=language-d>{
     import std.datetime;
     void fun(SysTime time)
     {
         import std.stdio;
-        writeln(&#34;hello&#34;);
+        writeln(&quot;hello&quot;);
     }
-}</code></pre></div><pre><code>source/app.d(1,1): Error: declaration expected, not '{'
+}
+</code></pre><pre><code>source/app.d(1,1): Error: declaration expected, not '{'
 source/app.d(8,1): Error: unrecognized declaration
 </code></pre><p>そこで
 <a href=https://github.com/dlang/DIPs/blob/master/DIPs/DIP1005.md#inline-imports>言語へのInline importsの導入が提案された</a>
 。
-今回読んだものはInline importを今までのものから新しい構文を追加せずにできる形を見つけたという話である。</p><h2 id=a-new-import-idiom>A New Import Idiom</h2><p>つまりこういうことである。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template from(string moduleName)
+今回読んだものはInline importを今までのものから新しい構文を追加せずにできる形を見つけたという話である。</p><h2 id=a-new-import-idiom>A New Import Idiom</h2><p>つまりこういうことである。</p><pre><code class=language-d>template from(string moduleName)
 {
-  mixin(&#34;import from = &#34; ~ moduleName ~ &#34;;&#34;);
+  mixin(&quot;import from = &quot; ~ moduleName ~ &quot;;&quot;);
 }
 
-void fun(from!&#34;std.datetime&#34;.SysTime time)
+void fun(from!&quot;std.datetime&quot;.SysTime time)
 {
   import std.stdio;
   ...
-}</code></pre></div><p>要素を一つ一つ解説する。</p><h3 id=1-オペレータ>1 <code>!</code>オペレータ</h3><p><code>!</code>オペレータでテンプレートをインスタンス化するとき、引数がひとつだけならカッコを省略できる。
+}
+</code></pre><p>要素を一つ一つ解説する。</p><h3 id=1-オペレータ>1 <code>!</code>オペレータ</h3><p><code>!</code>オペレータでテンプレートをインスタンス化するとき、引数がひとつだけならカッコを省略できる。
 つまり<code>from!&quot;std.datetime&quot;</code>は<code>from!(&quot;std.datetime&quot;)</code>と同じである。
 読みやすい。</p><h3 id=2-改名import>2 改名import</h3><p><a href=https://dlang.org/spec/module.html#renamed_imports>改名import</a>。
-importするモジュールにローカルな名前を与えて、 その名前で修飾したアクセスを強制することができる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>void printSomething(string s) {
+importするモジュールにローカルな名前を与えて、 その名前で修飾したアクセスを強制することができる。</p><pre><code class=language-d>void printSomething(string s) {
     import io = std.stdio;
     io.writeln(s);         // この形でのみアクセスできる
     writeln(s);            // Error
     std.stdio.writeln(s);  // Error
-}</code></pre></div><h3 id=3-eponymous-templates>3 Eponymous Templates</h3><p><a href=https://dlang.org/spec/template.html#implicit_template_properties>Eponymous Templates</a>
+}
+</code></pre><h3 id=3-eponymous-templates>3 Eponymous Templates</h3><p><a href=https://dlang.org/spec/template.html#implicit_template_properties>Eponymous Templates</a>
 といって、テンプレートの名前と同じ名前のメンバだけがある場合、省略できる。
-これによってたとえばテンプレートが</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template from()
+これによってたとえばテンプレートが</p><pre><code class=language-d>template from()
 {
     import kotet = std.datetime;
-}</code></pre></div><p>となっている場合
+}
+</code></pre><p>となっている場合
 <code>from!().kotet.SysTime</code>
 と書かなければいけないところが、改名importで<code>kotet</code>というところをテンプレート名と同じ<code>from</code>にすることで
 <code>from!().SysTime</code>
-でよくなる。</p><p>ここまでのものを組み合わせるとこのようなコードが書ける。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template dt() {
+でよくなる。</p><p>ここまでのものを組み合わせるとこのようなコードが書ける。</p><pre><code class=language-d>template dt() {
     import dt = std.datetime; 
 }
-void fun(dt!().SysTime time) {}</code></pre></div><p>更にこれを一般化する。</p><h3 id=4-オペレータ>4 <code>~</code>オペレータ</h3><p><code>~</code>オペレータで文字列を結合できる。</p><h3 id=5-文字列mixin>5 文字列mixin</h3><p>文字列mixinでコンパイル時にコードを生成できる。
+void fun(dt!().SysTime time) {}
+</code></pre><p>更にこれを一般化する。</p><h3 id=4-オペレータ>4 <code>~</code>オペレータ</h3><p><code>~</code>オペレータで文字列を結合できる。</p><h3 id=5-文字列mixin>5 文字列mixin</h3><p>文字列mixinでコンパイル時にコードを生成できる。
 この場合は必要なモジュールを<code>from</code>として改名importするコードを作る。
 たとえば<code>moduleName</code>が<code>std.datetime</code>なら
 <code>mixin(&quot;import from = &quot; ~ moduleName ~ &quot;;&quot;);</code>
 で
 <code>import from = std.datetime;</code>
 というコードが生成される。
-つよい。</p><p>すべてを組み合わせると前述の</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>template from(string moduleName)
+つよい。</p><p>すべてを組み合わせると前述の</p><pre><code class=language-d>template from(string moduleName)
 {
-  mixin(&#34;import from = &#34; ~ moduleName ~ &#34;;&#34;);
-}</code></pre></div><p>こちらのコードができる。
+  mixin(&quot;import from = &quot; ~ moduleName ~ &quot;;&quot;);
+}
+</code></pre><p>こちらのコードができる。
 インスタンス化すると、モジュールの中のシンボルが<code>from</code>の修飾付きでテンプレートのインスタンスのスコープ内にロードされる。</p><h2 id=話し合い>話し合い</h2><p>これを使うことでバイナリサイズが元の41%に減少し、コンパイル時間は30%にまで早くなったと
 <a href=https://dlang.org/blog/2017/02/13/a-new-import-idiom/>書かれているが</a>
 、それはどうやら

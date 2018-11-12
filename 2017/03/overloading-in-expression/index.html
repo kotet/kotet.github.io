@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。 やりたいこと1つに対応して1つの記事があ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.3239c07e183c6d9feb4ab84eb731b982aa663db05ea870f3ade38a57cfa6e2be.css><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。 やりたいこと1つに対応して1つの記事があ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a3a5f142e959ac87355788d7b927889cb2cc8ce1e9d56b8fb03506a4406e4414.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -6,26 +6,27 @@
         processEscapes: true
       }
     });
-</script><title>#dlang In式のオーバーロード2種 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/03/overloading-in-expression/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang In式のオーバーロード2種 - Kotet's Personal Blog"><meta name=og:description content="普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。 やりたいこと1つに対応して1つの記事があ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/03/overloading-in-expression/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.50"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+</script><title>#dlang In式のオーバーロード2種 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2017/03/overloading-in-expression/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang In式のオーバーロード2種 - Kotet's Personal Blog"><meta name=og:description content="普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。 やりたいこと1つに対応して1つの記事があ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2017/03/overloading-in-expression/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.51"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S PERSONAL BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
 In式のオーバーロード2種</h2><p><time>2017-03-29</time>
 <a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#方法1-opbinary>方法1 - opBinary</a></li><li><a href=#方法2-opin-非推奨>方法2 - opIn (非推奨)</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>普通にドキュメントを読めば書いてあることなんだけどなぜか調べるのに手間取ったので、専用の記事を書く。
 やりたいこと1つに対応して1つの記事があるというのも人によっては役に立つと思っている。
 タイトルで調べたいことの答えが書いてあるとわかるというのは利点だと思う。</p><p>以下のコードの実行例 :
-<a href=https://dpaste.dzfl.pl/c155ba11e043>DPaste - Paste #23990 - pastebin, online compiler and collaboration tool dedicated to D Programming Language</a></p><h3 id=方法1-opbinary>方法1 - opBinary</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>class test1
+<a href=https://dpaste.dzfl.pl/c155ba11e043>DPaste - Paste #23990 - pastebin, online compiler and collaboration tool dedicated to D Programming Language</a></p><h3 id=方法1-opbinary>方法1 - opBinary</h3><pre><code class=language-d>class test1
 {
 	bool opBinary(string op)(int key)
 	{
-		static if (op == &#34;in&#34;) return true;
+		static if (op == &quot;in&quot;) return true;
 	}
 	
 	bool opBinaryRight(string op)(int key)
 	{
-		static if (op == &#34;in&#34;) return false;
+		static if (op == &quot;in&quot;) return false;
 	}
-}</code></pre></div><p><a href=http://dlang.org/spec/operatoroverloading.html#binary>ドキュメント</a>
+}
+</code></pre><p><a href=http://dlang.org/spec/operatoroverloading.html#binary>ドキュメント</a>
 に書いてある方法。<code>opBinary</code>で<code>test1 in key</code>、<code>opBinaryRight</code>で<code>key in test1</code>をオーバーロードできる。
-この方法は二項演算子全般をオーバーロードでき、与えられた演算子に応じて処理を変えたり文字列Mixinできたりする。</p><h3 id=方法2-opin-非推奨>方法2 - opIn (非推奨)</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-d data-lang=d>class test2
+この方法は二項演算子全般をオーバーロードでき、与えられた演算子に応じて処理を変えたり文字列Mixinできたりする。</p><h3 id=方法2-opin-非推奨>方法2 - opIn (非推奨)</h3><pre><code class=language-d>class test2
 {
 	bool opIn(int key)
 	{
@@ -36,7 +37,8 @@ In式のオーバーロード2種</h2><p><time>2017-03-29</time>
 	{
 		return false;
 	}
-}</code></pre></div><p>In式のオーバーロードがしたいだけならこちらのほうがわかりやすいと思う。ドキュメントにないなと思って調べたら
+}
+</code></pre><p>In式のオーバーロードがしたいだけならこちらのほうがわかりやすいと思う。ドキュメントにないなと思って調べたら
 <a href=http://digitalmars.com/d/1.0/operatoroverloading.html#Binary>どうやらD1の書き方らしい</a>。
 将来サポートされる保証はないとのことなので、執筆時点で動くけれど使わないほうが良いのだろう。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
 In式のオーバーロード2種</h2><p><time>2017-03-29</time>
