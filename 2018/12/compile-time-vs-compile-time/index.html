@@ -490,7 +490,7 @@ not an int
 どうして<strong>2行</strong>の出力が起きるのでしょうか？</p><p>これまでやってきたようにして、何が起きたか見ていきましょう。</p><p>まず、<code>func</code>はテンプレート関数なので、
 それが引数の型を指定した関数呼び出しによりインスタンス化されるまで意味論的に解析されません。
 解析はコンパイラが<code>main</code>関数を処理する途中、<code>func(1)</code>の呼び出しに遭遇したときに行われます。
-そこでIFTI（Implicit Function Template Instantiation、関数テンプレートの黙示的インスタンス化。
+そこでIFTI（Implicit Function Template Instantiation、関数テンプレートの暗黙的インスタンス化。
 テンプレート関数のテンプレート引数を関数に渡された実行時引数の型から推測する処理）によって、
 コンパイラは<code>Args</code>に1要素のシーケンス<code>(int)</code>を代入します。</p><p>以上より関数呼び出しはこのように翻訳されます。</p><pre><code class=language-d>func!(int)(1);
 </code></pre><p>これは<code>func</code>のインスタンス化を引き起こし、コンパイラはテンプレート本文をもとに専用のASTを構築します。
