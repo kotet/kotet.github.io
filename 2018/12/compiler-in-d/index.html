@@ -1,0 +1,113 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="これは、強い人が多すぎてもはやCコンパイラ書いた程度では面白味がない気がしてくる D言語 Advent Calendar 2018 11日目の記事です。 この記事の対象読者は過去の自"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.de28e1c7c877cf440b6a52e3e8b5f74662b06e59118c733f331f2b91331dfc39.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#dlang 君もDでx86_64向けCコンパイラを書こう - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/12/compiler-in-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang 君もDでx86_64向けCコンパイラを書こう - Kotet's Personal Blog"><meta name=og:description content="これは、強い人が多すぎてもはやCコンパイラ書いた程度では面白味がない気がしてくる D言語 Advent Calendar 2018 11日目の記事です。 この記事の対象読者は過去の自"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/12/compiler-in-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.52"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S<br>PERSONAL<br>BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+君もDでx86_64向けCコンパイラを書こう</h2><p><time>2018-12-11</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/advent-calendar>#advent-calendar</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#d9cc-a-small-c-compiler-written-in-d>d9cc : A Small C Compiler Written in D</a></li><li><a href=#なぜcコンパイラを書くのか>なぜCコンパイラを書くのか</a><ul><li><a href=#幅広い知識が自然に身につく>幅広い知識が自然に身につく</a><ul><li><a href=#アセンブリ>アセンブリ</a></li><li><a href=#パーサー>パーサー</a></li><li><a href=#意味解析>意味解析</a></li><li><a href=#各種ツール>各種ツール</a></li></ul></li><li><a href=#色んな応用の世界が広がる>色んな応用の世界が広がる</a></li></ul></li><li><a href=#9ccと-低レイヤを知りたい人のための-cコンパイラ作成入門-の相違点>9ccと「低レイヤを知りたい人のための Cコンパイラ作成入門」の相違点</a></li><li><a href=#なぜd言語なのか>なぜD言語なのか</a><ul><li><a href=#コンパイラが書ける>コンパイラが書ける</a></li><li><a href=#c言語に近い>C言語に近い</a></li><li><a href=#書き慣れている>書き慣れている</a></li></ul></li><li><a href=#cコンパイラを書け>Cコンパイラを書け</a></li><li><a href=#日記-コミットログ>日記（コミットログ）</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>これは、強い人が多すぎてもはやCコンパイラ書いた程度では面白味がない気がしてくる
+<a href=https://qiita.com/advent-calendar/2018/dlang>D言語 Advent Calendar 2018</a>
+11日目の記事です。</p><p>この記事の対象読者は過去の自分、
+つまりコンパイラとかに興味があっていろいろ調べたりはするけどそこで満足してなかなか行動に移せないあなたです。
+この記事を通して、
+自分は読者であるあなたに<strong>D言語で</strong>Cコンパイラを書いてもらえるように全力で説得していきます。</p><p>あなたもD言語を書きましょう。
+Cコンパイラを書きましょう。
+D言語でCコンパイラを書きましょう。</p><p>あなたとD、<a href=https://dlang.org/download.html>今すぐダウンロード</a>。</p><h3 id=d9cc-a-small-c-compiler-written-in-d>d9cc : A Small C Compiler Written in D</h3><p>ここ最近9ccのコミットログをたどってCコンパイラを書いていました。</p><p><a href=https://github.com/kotet/d9cc>kotet/d9cc: A Small C Compiler Written in D</a></p><p>この記事を読んだのが書き始めた理由でした。</p><p><a href=https://www.utam0k.jp/blog/2018/10/12/r9cc/>1人でがんばる自作Cコンパイラ</a></p><p>前々からコンパイラとか書いてみたいし、アセンブリも読めるようになりたいな、
+とは思って定期的に勉強しようとしていましたが、
+どうも途中でくじけてしまって毎回同じところをぐるぐるしていました。
+そこで上の記事を見て、なるほどそういう勉強法がうまくいくんだなあと思い、
+書き始めてみたら結構うまくいきました。</p><p><a href=https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%88%E3%83%BB%E3%82%AF%E3%82%A4%E3%83%BC%E3%83%B3>N-queen</a>
+が動くくらいにはできています。
+あと9ccにはないオリジナル機能として、
+<a href=https://ja.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E6%A7%8B%E6%96%87%E6%9C%A8>抽象構文木</a>
+を
+<a href=https://ja.wikipedia.org/wiki/Graphviz>Graphviz</a>
+のdotファイル形式で出力するオプションがあります。</p><p><img src=/img/blog/2018/12/ast1.svg alt>
+<img src=/img/blog/2018/12/ast2.svg alt></p><p>上：<code>int main(int argc, char **argv) {int a = (1+2+3)*7; return a;}</code>のASTを可視化したもの（<code>-dump-ast1</code>オプションを渡すと生成される）<br>下：上のASTを意味解析したもの（<code>-dump-ast2</code>オプションを渡すと生成される）</p><p>9ccには浮動小数点数も存在しないのでこれもオリジナル機能として実装してみようかと思ったりもしましたが、
+思ってるうちにやる気が減衰してきて実現できていません。</p><h3 id=なぜcコンパイラを書くのか>なぜCコンパイラを書くのか</h3><p>しかしなぜいまさら<a href=https://ja.wikipedia.org/wiki/X64>x86_64</a>向けCコンパイラなどというありふれたものを作るのでしょうか？
+実はある種の分野の勉強をするのにCコンパイラは最適な題材なのです。</p><p>プログラミングの学習を始めたばかりの時、コンパイラは一種魔法のように見えました。
+テキストデータであるプログラムの「構造を解析して」、「意味を与え」、「機械語に翻訳」する？！
+そんなことが本当に可能なのでしょうか？</p><p>かなり前に「コンピュータは論理の世界と現実の世界をどのようにつないでいるのですか？」
+といったような質問をYahoo!知恵袋で見たことがあります。
+その人にとってコンピュータはまさに魔法であり、異世界と通じあい問いと答えを交換するゲートだったのです。
+それと同じことが自分にも、コンパイラにおいて起きていました。</p><p>しかし、Cコンパイラを一度書くとコンパイラは魔法ではなくなります。
+理解できる技術として身につけることができるのです。</p><h4 id=幅広い知識が自然に身につく>幅広い知識が自然に身につく</h4><p>Cコンパイラを書くことで様々な知識を身につけることができて、
+コンピュータの学習曲線の大きなジャンプを乗り越えることができます。
+以下、自分が理解できて特に嬉しかったことを書いていきます。</p><h5 id=アセンブリ>アセンブリ</h5><p>以前コンパイラを書こうと思った時は、
+まず<a href=https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E>アセンブリ</a>
+を読めるようになろうと思ってアセンブリ手書きから学習をはじめました。
+しかしいきなりアセンブリを学ぼうとすると前提知識が大量に必要になり、
+Hello Worldの文面を書き換える程度の改造しかできませんでした。</p><p>まずアセンブリの基本的な考え方を知らないので、
+命令単体のリファレンスを読んでもそれが結局何をしたいのか理解できず、
+したがってコードの意図が全くわからないのです。
+他の言語と同じノリでいきなりHello Worldから始めてしまったのも敗因かもしれません。</p><p>9ccは非常に単純なアセンブリから出発しており、しかも期待される実行結果がテストとして書かれています。
+プログラムに書いてあることがそのコードを生成するのに必要なすべてなので、
+学習範囲をその中に書いてあることだけに絞ることができます。
+また、コンパイラのコードは本質的にアセンブリを書いていく手順を表しているので、
+アセンブリのこの行になぜこの命令があるのか、ということを理解する助けになります。</p><p>コンパイル対象のC言語が難しくなっていくにつれてアセンブリも長く複雑になっていきますが、
+1コミットあたりの変更は少ないのでその場その場で学ばなければいけないことは非常に少なくなります。
+実際1コミットあたりで学んだ命令は平均して1個未満という感じだったと思います。</p><h5 id=パーサー>パーサー</h5><p>1つづつコミットを読んでいくといきなり「
+<a href=https://ja.wikipedia.org/wiki/%E5%86%8D%E5%B8%B0%E4%B8%8B%E9%99%8D%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90>再帰下降構文解析</a>
+器を作る」というコミットが現れます。
+そこそこ行数が多くて苦労しましたが、その時点でのコンパイル対象はカッコもないただの四則演算だったので、
+それを処理するパーサーも十分小さく、無事に理解できました。</p><p>基本がわかればあとは簡単です。
+パーサジェネレータなどという自動化ツールが存在するくらいには同じことの繰り返しなので、
+難しそうな構文もパターンにあてはめればスムースに理解できます。</p><h5 id=意味解析>意味解析</h5><p>パースを行うと構文木ができあがります。
+これを書き換えたりすることでさまざまな処理を行います。
+意味解析、という言葉は具体的に何をすればいいのかわかりにくいです。
+コンパイラについて述べた文章でも意味解析については抽象的な説明が行われることが多く、
+なんだか魔法のような印象を受けます。</p><p>しかし具体的なコードを読めば何をしているか理解できます。
+具体的な内容を理解した上で感想を言うと、
+どうも直接関連しないさまざまな処理をおおざっぱにまとめて「意味解析」
+と呼んでいることで混乱を呼ぶのではないか、という気がします。</p><h5 id=各種ツール>各種ツール</h5><p>開発に関連したツールにも習熟しました。
+gccのオプションも知らないものがたくさんあったし、
+そもそもC言語の仕様をここまで詳細に調べたこともありませんでした。
+gitの使い方もかなり上手になりました。
+何度もコミットを移動するので、効率的な方法を多数身につけました。</p><p>gdbの使い方を理解したのはかなり大きいかもしれません。
+これまではセグフォが起きると原因になりそうなところを総当りでprintfデバッグして、
+結局わからなくて諦めていた記憶があります。</p><h4 id=色んな応用の世界が広がる>色んな応用の世界が広がる</h4><p>一度Cコンパイラの具体的実装を理解すると、それを応用してさまざまなものが作れるとわかります。
+まず他の言語やISAに対するコンパイラを書くことができます。
+今到達している範囲で定数畳み込みはまだ出てきていませんが、
+今までのコードからどんなものを書けばいいか大体推測できます。
+さらに、式変形を自動で行うタイプのプログラムもだいたい作れそうな気がしてきます。
+実際論理式の展開くらいなら１日あればフルスクラッチから書けるようになります。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>移動中にほぼ何も見ずにパーサが書けるようになっている……！ <a href=https://t.co/K1r0lI1WKf>pic.twitter.com/K1r0lI1WKf</a></p>&mdash; Kotet (@kotetttt) <a href="https://twitter.com/kotetttt/status/1064327578469642241?ref_src=twsrc%5Etfw">2018年11月19日</a></blockquote><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>成長を感じる <a href=https://t.co/Unb8xQ0zWi>pic.twitter.com/Unb8xQ0zWi</a></p>&mdash; Kotet (@kotetttt) <a href="https://twitter.com/kotetttt/status/1064525855047602176?ref_src=twsrc%5Etfw">2018年11月19日</a></blockquote><p>あと<a href="https://www.youtube.com/watch?v=0-vWT-t0UHg">malloc動画</a>
+の言ってることが理解できるようになりました。</p><p>Cコンパイラを作ったことによって、その知識を応用できるようになり、
+作れるものの範囲が一気に広がりました。</p><h3 id=9ccと-低レイヤを知りたい人のための-cコンパイラ作成入門-の相違点>9ccと「低レイヤを知りたい人のための Cコンパイラ作成入門」の相違点</h3><p>d9ccを書いている途中で「低レイヤを知りたい人のための Cコンパイラ作成入門」の一部が
+<a href=https://www.sigbus.info/compilerbook/>公開されました</a>が、
+9ccはこの本と作成過程が異なるようです。
+本ではスタックマシンを作っていましたが、9ccでは最初からレジスタマシンを書き始めています。
+スタックにまかせている部分を自分で書くことになるわけですが、そんなに難しいとも思わなかったので、
+人によっては自分のように9ccのコミットログをたどる学習法のほうがしっくりくるかもしれません。</p><h3 id=なぜd言語なのか>なぜD言語なのか</h3><p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>いきなりD言語が飛び出してきてびっくりした<br>低レイヤを知りたい人のための Cコンパイラ作成入門 <a href=https://t.co/NEdfJaCcOp>https://t.co/NEdfJaCcOp</a> <a href=https://t.co/ZKQnIjvAQ1>pic.twitter.com/ZKQnIjvAQ1</a></p>&mdash; Kotet (@kotetttt) <a href="https://twitter.com/kotetttt/status/1058195569632407552?ref_src=twsrc%5Etfw">2018年11月2日</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script></p><p>Cコンパイラを書くメリットは上のとおりですが、ではなぜD言語でなければいけないのでしょうか？
+一般的には他の言語で書いてもいいし、C言語で書けばセルフホストができます。
+しかし自分にはD言語を使う理由があります。</p><h4 id=コンパイラが書ける>コンパイラが書ける</h4><p>Cコンパイラくらい<a href=http://shinh.skr.jp/elvm/8cc.c.eir.bf>brainf*ckですら作れる</a>
+のでこれはそんなに重要ではないですが、
+D言語で書かれたコンパイラがたくさんあります。
+まずD言語のコンパイラDMDそのものがD言語で書かれています。</p><p>9ccを元にD言語でコンパイラを書いた人が自分以外にいたりもします。</p><p><a href=https://github.com/alphaKAI/d9cc>alphaKAI/d9cc: A tiny C compiler in Dlang</a></p><p>これはコミットログを順にたどっている自分とは違い、9ccの最新バージョンを直接Dに移植したもののようです。
+自分のd9ccは9ccのコードの意味を少しづつ理解しながら手探りで書いたのでだいぶコードが混乱していますが、
+こちらのd9ccはビルドツールとしてDUBを使っていたりして、少しすっきりしています。</p><p>ともかく、<del>言語の知名度の割に</del>9ccの移植が複数存在するほどD言語はこの分野に向いているわけです。</p><h4 id=c言語に近い>C言語に近い</h4><p>D言語は「<a href=http://www.kmonos.net/alang/d/>C言語風の構文を持つ静的型付け言語</a>」であり、
+基本的には高機能なCとして書くことができます。
+コピペにならないようにC以外の言語を使いたかったのですが、
+一方でC言語から離れすぎると書き直すのが大変になるので、
+C言語と似ていながらC++のように完全な互換性があるわけでもないD言語は妥当な選択肢のひとつでした。</p><h4 id=書き慣れている>書き慣れている</h4><p>そしてこれが最も大きな理由かもしれません。
+自分はD言語を書き慣れていました。
+先程話したように自分はコンパイラを作ろうとして何度も挫折してきました。
+できればセルフホストとかしてみたいですが、
+まず一度スタンダードなものを完成させられないようでは、応用もできません。</p><p>なので今回こそは成功させようと、「Cコンパイラを作る」以外のあらゆる点で背伸びをせず、
+「まず一度完成させること」を大事にしました。
+言語選択においてもそれを考慮した結果、言語特有の問題で詰んだりしないような、
+書き慣れているD言語が選ばれました。</p><p>D言語は非常に書きやすく、やりたいことを実現するのがとても簡単な言語です。
+あなたも「現実的なプログラマのための、 現実的な言語」でコンパイラを書きましょう。</p><h3 id=cコンパイラを書け>Cコンパイラを書け</h3><p>自分はCコンパイラを書いて得た知識で作ってみたいものがいろいろできたので今後はそれを書きます。
+言語やISAを変えて別のコンパイラを作ってみるのもいいかもしれません。</p><p>Cコンパイラは書くだけで大量の知識が手に入る最強の教材です。
+そしてD言語は書くだけで救われる最強の言語です。
+したがって全人類はD言語でCコンパイラを書くべきです。</p><p>コンパイラの構造などに関してコメントが書かれている9ccに対して、
+d9ccはアセンブリなどの周辺知識に関して多くのコメントを残しており、
+しかも日本語なので（何かのバグでちょっと壊れてるけど）、
+9ccと一緒に読むと9cc単体よりも理解がしやすいと思います。</p><p>以下はd9ccのコミットログを整形したものです。
+途中調べたサイトなどのリンクが残してあるので、
+この記事を読んでコンパイラが作りたくなったら参考にするといいかもしれません。</p><h3 id=日記-コミットログ>日記（コミットログ）</h3></article><footer><h2><a href=/tags/dlang>#dlang</a>
+君もDでx86_64向けCコンパイラを書こう</h2><p><time>2018-12-11</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/advent-calendar>#advent-calendar</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
