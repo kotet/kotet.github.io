@@ -1,0 +1,256 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="これは D言語 Advent Calendar 2018 17日目の記事です。 D言語にはAliasSeqという超絶キモいおもしろいものがあります。 これを使うと引数列をまるで1つのタ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.e5b0f78e7bb8a86ae49faa514451bd64781bcc639fe1e965c058001eecf062ef.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#dlang AliasSeqで引数をこねくりまわす - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/12/wtf-is-aliasseq/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang AliasSeqで引数をこねくりまわす - Kotet's Personal Blog"><meta name=og:description content="これは D言語 Advent Calendar 2018 17日目の記事です。 D言語にはAliasSeqという超絶キモいおもしろいものがあります。 これを使うと引数列をまるで1つのタ"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/12/wtf-is-aliasseq/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.52"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S<br>PERSONAL<br>BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+AliasSeqで引数をこねくりまわす</h2><p><time>2018-12-17</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#aliasseq>AliasSeq</a></li><li><a href=#引数として渡す>引数として渡す</a></li><li><a href=#引数として宣言する>引数として宣言する</a></li><li><a href=#aliasseqof>aliasSeqOf</a></li><li><a href=#使用例1-展開されるループ>使用例1：展開されるループ</a></li><li><a href=#使用例2-stringをcharの引数列に>使用例2：stringをcharの引数列に</a></li><li><a href=#この間すべてコンパイル時の出来事である>この間すべてコンパイル時の出来事である</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>これは <a href=https://qiita.com/advent-calendar/2018/dlang>D言語 Advent Calendar 2018</a> 17日目の記事です。</p><p>D言語には<code>AliasSeq</code>という<del>超絶キモい</del>おもしろいものがあります。
+これを使うと引数列をまるで1つのタプルのように取り扱うことができます。
+あまり何度も使うものではないですが、知っているとちょっと便利だったので、
+ここではそんな<code>AliasSeq</code>について書きます。</p><h3 id=aliasseq>AliasSeq</h3><p><code>AliasSeq</code>について、
+<a href=https://dlang.org/library/std/meta/alias_seq.html>ドキュメント</a>にはこう書かれています。</p><blockquote><p>Creates a sequence of zero or more aliases. This is most commonly used as template parameters or arguments.
+In previous versions of Phobos, this was known as <strong>TypeTuple</strong>.</p><p>ゼロ以上のエイリアスのシーケンスを作ります。これは主にテンプレートパラメータや引数に使われます。
+以前のバージョンのPhobosでは、これは<strong>TypeTuple</strong>として知られていました。</p></blockquote><p><code>AliasSeq</code>はこんな感じのシンプルなテンプレートです。
+可変長テンプレート引数として現れるタプルを外の世界に引きずり出しているんですね。</p><pre><code class=language-d>template AliasSeq(TList...)
+{
+    alias AliasSeq = TList;
+}
+</code></pre><p><a href=https://github.com/dlang/phobos/blob/fc96b0a99d5869ef10f503490c1f41be36d276e5/std/meta.d#L86>phobos/meta.d at fc96b0a99d5869ef10f503490c1f41be36d276e5 · dlang/phobos</a></p><p>これを使うことでタプルの形でエイリアスをたくさん作って、
+コンパイル時にスライスを取ったりインデックスでアクセスしたりできます。</p><pre><code class=language-d>alias Numbers = AliasSeq!(1, 2, 3, 4);
+static assert (Numbers[1] == 2);
+
+alias SubNumbers = Numbers[1 .. $];
+static assert (SubNumbers[0] == 2);
+</code></pre><p>エイリアスなので、変数を入れると普通の代入にはならないので注意。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+void main()
+{
+    long x;
+    alias A = AliasSeq!(&quot;hello&quot;, &quot;world&quot;, x);
+    A[2] = 42;
+	writeln(x); // 42
+}
+</code></pre><p><a href=https://run.dlang.io/is/KtUUcG>run.dlang.io/is/KtUUcG</a></p><h3 id=引数として渡す>引数として渡す</h3><p><code>AliasSeq</code>はふつうの関数に渡すことができます。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+long mul(long a, long b)
+{
+	return a * b;
+}
+
+void main()
+{
+    alias A = AliasSeq!(4, 5);
+	writeln(mul(A)); // 20
+}
+</code></pre><p><a href=https://run.dlang.io/is/j8HXPC>run.dlang.io/is/j8HXPC</a></p><p><a href=/2017/05/vcg-ast/><code>-vcg-ast</code>オプション</a>
+を付けてコンパイルして出力を見てみると、
+上のコードは以下のように展開されています。</p><pre><code class=language-d>import object;
+import std.stdio;
+import std.meta;
+long mul(long a, long b)
+{
+        return a * b;
+}
+void main()
+{
+        alias A = TList;
+        writeln(mul(4L, 5L));
+        return 0;
+}
+// 後略
+</code></pre><p>数値のかわりに型を入れると、型タプルが作れます。
+この場合<code>4</code>と<code>5</code>は実行時に与えられる値でも大丈夫。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+long mul(long a, long b)
+{
+	return a * b;
+}
+
+void main()
+{
+    alias A = AliasSeq!(long, long);
+    A param;
+    param[0] = 4;
+    param[1] = 5;
+	writeln(mul(param)); // 20
+}
+</code></pre><p><a href=https://run.dlang.io/is/pwhmeQ>run.dlang.io/is/pwhmeQ</a></p><p>実行時には普通の変数のようになります。</p><pre><code class=language-d>import object;
+import std.stdio;
+import std.meta;
+long mul(long a, long b)
+{
+        return a * b;
+}
+void main()
+{
+        alias A = (long, long);
+        (long, long) param;
+        __param_field_0 = 4L;
+        __param_field_1 = 5L;
+        writeln(mul(__param_field_0, __param_field_1));
+        return 0;
+}
+// 後略
+</code></pre><p>もちろん可変長引数の関数でもOK。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+void main()
+{
+    alias A = AliasSeq!(&quot;hello&quot;, ' ', &quot;world&quot;);
+	writeln(A); // hello world
+}
+</code></pre><p><a href=https://run.dlang.io/is/f43IWj>run.dlang.io/is/f43IWj</a></p><p>普通の関数の引数列を完全にカプセル化して、
+タプルとして汎用的に扱うことができるようになるわけです。</p><h3 id=引数として宣言する>引数として宣言する</h3><p><code>AliasSeq</code>は引数の型として使うこともできます。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+long mul(AliasSeq!(long, long) args)
+{
+    return args[0] * args[1];
+}
+
+void main()
+{
+    writeln(mul(4, 5)); // 20
+}
+</code></pre><p><a href=https://run.dlang.io/is/WyL3Wf>run.dlang.io/is/WyL3Wf</a></p><p>これもコンパイル時に普通の引数列に展開されます。</p><pre><code class=language-d>import object;
+import std.stdio;
+import std.meta;
+long mul(long _param_0, long _param_1)
+{
+        return _param_0 * _param_1;
+}
+void main()
+{
+        writeln(mul(4L, 5L));
+        return 0;
+}
+</code></pre><h3 id=aliasseqof>aliasSeqOf</h3><p><code>aliasSeqOf</code>は
+<a href=https://qiita.com/umarider/items/e0936c6afdcdf4522cc7#range%E3%81%AE%E4%BB%B2%E9%96%93%E3%81%9F%E3%81%A1>InputRange</a>
+から<code>AliasSeq</code>を生成するテンプレートです。
+たとえばこんなことができます。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+long mul(long a, long b)
+{
+	return a * b;
+}
+
+void main()
+{
+    enum ary = [4, 5];
+    alias A = aliasSeqOf!ary;
+	writeln(mul(A)); // 20
+}
+</code></pre><p><a href=https://run.dlang.io/is/OC9DGT>run.dlang.io/is/OC9DGT</a></p><p>まあこの例だと全く嬉しくないですが……。</p><h3 id=使用例1-展開されるループ>使用例1：展開されるループ</h3><p>ここから具体的な使い方を紹介します。</p><pre><code class=language-d>import std.stdio;
+import std.meta;
+
+void main()
+{
+    alias A = AliasSeq!(1, 2, 3);
+    foreach (x; A)
+    {
+        writeln(x);
+    }
+
+    long[] ary = [1, 2, 3];
+    foreach(x; ary)
+    {
+        writeln(x);
+    }
+}
+</code></pre><p><a href=https://run.dlang.io/is/1cLv29>run.dlang.io/is/1cLv29</a></p><p>上に挙げたコード中の2つの<code>foreach</code>は同じものを出力します。
+つまり、1、2、3と順番に<code>writeln</code>が実行されます。
+しかし内部的な動作は異なってきます。</p><pre><code class=language-d>import object;
+import std.stdio;
+import std.meta;
+void main()
+{
+	alias A = TList;
+	/*unrolled*/ {
+		{
+			enum int x = 1;
+			writeln(1);
+		}
+		{
+			enum int x = 2;
+			writeln(2);
+		}
+		{
+			enum int x = 3;
+			writeln(3);
+		}
+	}
+	long[] ary = [1L, 2L, 3L];
+	{
+		long[] __r43 = ary[];
+		ulong __key44 = 0LU;
+		for (; __key44 &lt; __r43.length; __key44 += 1LU)
+		{
+			long x = __r43[__key44];
+			writeln(x);
+		}
+	}
+	return 0;
+}
+// 後略
+</code></pre><p><code>AliasSeq</code>を渡したほうの<code>foreach</code>は3つの<code>writeln</code>になっているのがわかります。
+<code>AliasSeq</code>に関しては特別な言語組み込み機能があり、<code>foreach</code>をコンパイル時に展開してくれるのです。</p><p>あまり使いどころが思いつきませんが、型などの普通<code>foreach</code>では扱えない要素までイテレートできます。
+闇の魔術に応用できそうな気もする。</p><pre><code class=language-d>alias A = AliasSeq!(byte, int, long);
+foreach (type; A)
+{
+    pragma(msg, type);
+}
+</code></pre><p>現在は<code>static foreach</code>が存在するため、基本はそちらを使ったほうが読みやすいし適切でしょう。
+<code>static foreach</code>で型などは扱えなかったはずなので、そういうときには<code>AliasSeq</code>が役に立つはずです。</p><pre><code class=language-d>enum ary = [1, 2, 3];
+static foreach (x; ary)
+{
+    writeln(x);
+}
+</code></pre><p>上のコードはこんな感じに展開されます。</p><pre><code class=language-d>enum int[] ary = [1, 2, 3];
+writeln(1);
+writeln(2);
+writeln(3);
+</code></pre><h3 id=使用例2-stringをcharの引数列に>使用例2：stringをcharの引数列に</h3><p>こっちは実際に使ったものです。
+<a href=/2018/12/compiler-in-d/>自作Cコンパイラ</a>には以下のようなコードがあります。</p><pre><code class=language-d>if (s[i].among!(aliasSeqOf!&quot;+-*/;=(),{}&lt;&gt;[]&amp;&quot;))
+{
+    /* ... */
+}
+</code></pre><p>順を追って説明していきましょう。
+上のコードをできるだけベーシックなものに書き直すとこんな感じになります。</p><pre><code class=language-d>if (s[i] == '+' || s[i] == '-' || s[i] == '*' || /* 中略 */ || s[i] == '&amp;')
+{
+    /* ... */
+}
+</code></pre><p>比較を何度も書かなくてはいけないので非常に煩わしいですね。
+そこで<code>among</code>という関数を使うと以下のようになります。
+内部的には<code>switch</code>文を使った効率的な関数がコンパイル時に生成されます。
+ここの詳細は<a href=/2017/12/std-algorithm-comparison-among/>過去の記事</a>に書いてあるので、
+気になる人は読んでください。</p><pre><code class=language-d>if (s[i].among!('+', '-', '*', /* 中略 */, '&amp;'))
+{
+    /* ... */
+}
+</code></pre><p>冗長な比較や論理演算がなくなってかなり短く書けるようになりました。
+しかし今度は大量の文字をひとつづつクオートで囲むのがめんどくさくなってきます。
+それにまだちょっと読みにくい。
+こんな感じに書きたくなります。</p><pre><code class=language-d>if (s[i].among!(&quot;+-*/;=(),{}&lt;&gt;[]&amp;&quot;))
+{
+    /* ... */
+}
+</code></pre><p>そんな時<code>AliasSeq</code>が役に立ちます。
+<code>aliasSeqOf</code>で文字列、つまり<code>char</code>の配列を<code>AliasSeq</code>にすると、やりたかったことがだいたい実現できます。
+そうしてできたのが最初のコードです。</p><pre><code class=language-d>if (s[i].among!(aliasSeqOf!&quot;+-*/;=(),{}&lt;&gt;[]&amp;&quot;))
+{
+    /* ... */
+}
+</code></pre><h3 id=この間すべてコンパイル時の出来事である>この間すべてコンパイル時の出来事である</h3><p><code>AliasSeq</code>テンプレートを頭の片隅に入れておくと、ちょっとコードの冗長性を下げたりできます。
+しかもここまでの出来事はすべてコンパイル時に処理されており、実行時に余計なコストはかかりません。</p><p>D言語の標準ライブラリにはこういう便利なものがいっぱいあるので、
+なにかやりたくなったときにはまずドキュメントを探してみるといいでしょう。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+AliasSeqで引数をこねくりまわす</h2><p><time>2018-12-17</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
