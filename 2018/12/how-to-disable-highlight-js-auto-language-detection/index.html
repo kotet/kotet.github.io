@@ -1,0 +1,117 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="Hugoのデフォルトのシンタックスハイライトが微妙なため （何よりこのサイトで最も多く出現するD言語に対応していない！）、 このサイトではhig"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.e5b0f78e7bb8a86ae49faa514451bd64781bcc639fe1e965c058001eecf062ef.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.configure({languages:[]})
+hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#tech highlight.jsの言語自動判定を無効化する - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/12/how-to-disable-highlight-js-auto-language-detection/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#tech highlight.jsの言語自動判定を無効化する - Kotet's Personal Blog"><meta name=og:description content="Hugoのデフォルトのシンタックスハイライトが微妙なため （何よりこのサイトで最も多く出現するD言語に対応していない！）、 このサイトではhig"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/12/how-to-disable-highlight-js-auto-language-detection/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.52"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S<br>PERSONAL<br>BLOG</a></h1></header><main><header><h2><a href=/tags/tech>#tech</a>
+highlight.jsの言語自動判定を無効化する</h2><p><time>2018-12-21</time>
+<a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#自動判定機能>自動判定機能</a></li><li><a href=#languagesオプション>languagesオプション</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>Hugoのデフォルトのシンタックスハイライトが微妙なため
+（何よりこのサイトで最も多く出現するD言語に対応していない！）、
+このサイトでは<a href=https://highlightjs.org/>highlight.js</a>を使っています。
+しかし、コードブロックに言語を何も指定しないとhighlight.jsは勝手に言語を判断してしまいます。</p><h3 id=自動判定機能>自動判定機能</h3><p>たとえばmarkdownでこのようにテキストをコードブロックで囲んでみます。</p><pre><code class=language-markdown>```
+highlight.js
+
+Syntax highlighting for the Web
+
+    185 languages and 89 styles
+    automatic language detection
+    multi-language code highlighting
+    available for node.js
+    works with any markup
+    compatible with any js framework
+```
+</code></pre><p>すると以下のようなHTMLになります。
+言語を指定すると<code>language-markdown</code>などのようなクラスが<code>&lt;code&gt;</code>タグにつくのですが、
+指定しなかった場合はこのようにシンプルな<code>&lt;pre&gt;</code>タグと<code>&lt;code&gt;</code>タグになります。</p><pre><code class=language-html>&lt;pre&gt;&lt;code&gt;highlight.js
+
+Syntax highlighting for the Web
+
+    185 languages and 89 styles
+    automatic language detection
+    multi-language code highlighting
+    available for node.js
+    works with any markup
+    compatible with any js framework
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre><p>ここで<code>&lt;head&gt;</code>タグあたりに以下のようにしてhighlight.jsを導入します。</p><pre><code class=language-html>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css&quot;&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+hljs.initHighlightingOnLoad();
+&lt;/script&gt;
+</code></pre><p>すると以下のようなHTMLに変換されます。
+見ての通り勝手にPython扱いしてくれています。
+どんな言語になるかはテキストの内容によって異なりますが、
+いずれにしてもそんな言語を書いた覚えはないです。</p><pre><code class=language-html>&lt;pre&gt;&lt;code class=&quot;hljs python&quot;&gt;highlight.js
+
+Syntax highlighting &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; the Web
+
+    &lt;span class=&quot;hljs-number&quot;&gt;185&lt;/span&gt; languages &lt;span class=&quot;hljs-keyword&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;89&lt;/span&gt; styles
+    automatic language detection
+    multi-language code highlighting
+    available &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; node.js
+    works &lt;span class=&quot;hljs-keyword&quot;&gt;with&lt;/span&gt; any markup
+    compatible &lt;span class=&quot;hljs-keyword&quot;&gt;with&lt;/span&gt; any js framework
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre><p>上のHTMLをこのページに埋め込んでみたのがこちらです。
+Pythonのキーワードや数値が勝手に強調されています。
+これはまだ邪魔にはなりませんが、
+自動認識した言語でシンタックスエラーになるようなテキストだと真っ赤になって非常に辛い感じになります。
+シンタックスエラーになる時点でおかしいと気づいてくれ……（高望み）</p><pre><code class="hljs python">highlight.js
+
+Syntax highlighting <span class=hljs-keyword>for</span> the Web
+
+    <span class=hljs-number>185</span> languages <span class=hljs-keyword>and</span> <span class=hljs-number>89</span> styles
+    automatic language detection
+    multi-language code highlighting
+    available <span class=hljs-keyword>for</span> node.js
+    works <span class=hljs-keyword>with</span> any markup
+    compatible <span class=hljs-keyword>with</span> any js framework
+</code></pre><p>無効な言語を指定すると勝手に違う言語にすることはありませんが、
+こんどは全く触らなくなってしまうので背景色など最低限の整形もしてくれなくなってしまいます。</p><p>一応これはプレインテキストだ、と明示する方法もあって、<code>plaintext</code>クラスをつければ良いです。
+しかしHugoのマークダウンプロセッサは<code>language-&lt;言語名&gt;</code>という規則でクラス名をつけます。
+そのため、素直に<code>```plaintext</code>などと書いてもクラス名は<code>language-plaintext</code>になり、
+プレインテキストとして処理してはくれません。
+無効な言語として、全く処理してくれなくなります。
+コードブロックに独自のクラスをつける方法は探せば見つかるでしょうが、
+既存のコードで<code>```</code>と囲ってしまっているのを書き換えたくはないし、めんどくさいです。
+それにmarkdown側で解決すべき問題ではない気もします。</p><h3 id=languagesオプション>languagesオプション</h3><p>探したら<code>languages</code>オプションというのがありました。
+これは、highlight.jsが言語の自動認識をする際に候補として使う言語のリストで、
+配列の形で指定します。
+これを空にしてやると、言語の自動認識は行われません。
+しかし<code>hljs</code>クラスは付加されるので、ちゃんと背景等のスタイリングは行われます。
+自分のサイトではハイライトしてほしいコードブロックではすべて言語を明示しているので、
+自動認識は無効化してしまっていいでしょう。</p><p>設定は<code>configure</code>関数に渡す形で行います。</p><pre><code class=language-html>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css&quot;&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+hljs.configure({languages: []})
+hljs.initHighlightingOnLoad();
+&lt;/script&gt;
+</code></pre><p>すると余計なハイライトが行われなくなります。</p><pre><code class=language-html>&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;highlight.js
+
+Syntax highlighting for the Web
+
+    185 languages and 89 styles
+    automatic language detection
+    multi-language code highlighting
+    available for node.js
+    works with any markup
+    compatible with any js framework
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre><pre><code>highlight.js
+
+Syntax highlighting for the Web
+
+    185 languages and 89 styles
+    automatic language detection
+    multi-language code highlighting
+    available for node.js
+    works with any markup
+    compatible with any js framework
+</code></pre></article><footer><h2><a href=/tags/tech>#tech</a>
+highlight.jsの言語自動判定を無効化する</h2><p><time>2018-12-21</time>
+<a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
