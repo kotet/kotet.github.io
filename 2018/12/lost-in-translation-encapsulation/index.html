@@ -1,0 +1,329 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="これは Lost in Translation: Encapsulation – The D Blog を 許可を得て 翻訳した D言語 Advent Calendar 2018 - Qiita 24日目の記事です。 誤訳等あれば気軽に Pull requestを投げてください。 I first learned programming in"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a46209b7292a5337cb1ba441dd38238fbe3cc498d46e0bd08c757deccdc8f28f.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.configure({languages:[]})
+hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#dlang ロスト・イン・トランスレーション：カプセル化【翻訳】 - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2018/12/lost-in-translation-encapsulation/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary><meta name=og:title content="#dlang ロスト・イン・トランスレーション：カプセル化【翻訳】 - Kotet's Personal Blog"><meta name=og:description content="これは Lost in Translation: Encapsulation – The D Blog を 許可を得て 翻訳した D言語 Advent Calendar 2018 - Qiita 24日目の記事です。 誤訳等あれば気軽に Pull requestを投げてください。 I first learned programming in"><meta name=twitter:image content=https://blog.kotet.jp/assets/logo.png><meta name=twitter:url content=https://blog.kotet.jp/2018/12/lost-in-translation-encapsulation/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.52"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S<br>PERSONAL<br>BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+ロスト・イン・トランスレーション：カプセル化【翻訳】</h2><p><time>2018-12-24</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a> <a href=/tags/advent_calendar>#advent_calendar</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#カプセル化>カプセル化</a></li><li><a href=#モジュール>モジュール</a></li><li><a href=#クラスと構造体>クラスと構造体</a></li><li><a href=#要約>要約</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>これは
+<a href=https://dlang.org/blog/2018/11/06/lost-in-translation-encapsulation/>Lost in Translation: Encapsulation – The D Blog</a>
+を
+<a href=http://dlang.org/blog/2017/06/16/life-in-the-fast-lane/#comment-1631>許可を得て</a>
+翻訳した
+<a href=https://qiita.com/advent-calendar/2018/dlang>D言語 Advent Calendar 2018 - Qiita</a>
+24日目の記事です。</p><p>誤訳等あれば気軽に
+<a href=https://github.com/kotet/blog.kotet.jp>Pull requestを投げてください</a>。</p><hr><blockquote><p>私はプログラミングをBASICで学びました。
+そこで成長し、そしてFortranに移りました。
+興味深いことに、私の初期のFortranコードはBASICのような見た目でした。
+私がCを書き始めたときのコードはFortranのような見た目でした。
+私がC++を書き始めたときのコードはCのような見た目でした。
+– <a href=http://walterbright.com/>Walter Bright、Dの創始者</a></p></blockquote><p>ある言語でプログラミングをすることはその言語で<strong>考えること</strong>とは異なります。
+あるプログラミング言語での経験による自然な副作用として、
+我々は他の言語の機能やイディオムを色眼鏡を通して見ることになります。
+同じファミリーに属する言語からは同じような印象を受けますが、
+そこにはコンパイルエラーやバグ、機会損失につながることのないほど僅かながら確実に違いがあります。
+優れたドキュメント、書籍、その他さまざまなものが利用できるにもかかわらず、
+多くの誤解は試行錯誤によって解決されてしまいます。</p><p>DプログラマはC系の言語をはじめさまざまな言語からやってきています。
+それらとの違いと、それをどう使いこなすかを理解することで、
+D言語においてコードベースの管理や、APIの設計と実装について多くの可能性が開かれます。
+この記事は、似たような言語の経験がもとで見過ごされ誤解されるDの機能について詳説する最初の記事です。</p><p>最初に見ていくのはオブジェクト指向プログラミング（OOP）をサポートする言語においては一般的な機能です。
+ここには経験豊富なプログラマーが既に完全に理解しているところと、知らなくて驚くところがあります。</p><h3 id=カプセル化>カプセル化</h3><p>読者の多くはカプセル化の概念についてよく知っているでしょうが、ちゃんと読んでほしいところです。
+この記事では、カプセル化についてインターフェースの実装からの分離の形で考えます。
+これはオブジェクト指向プログラミングと強く結びついたものだ、
+というふうに考えがちな人もいるでしょうが、実際はそれよりも幅の広いものです。
+こちらのCのコードについて考えてみます。</p><pre><code class=language-c>#include &lt;stdio.h&gt;
+
+static size_t s_count;
+
+void print_message(const char* msg) {
+
+    puts(msg);
+
+    s_count++;
+
+}
+
+size_t num_prints() { return s_count; }
+</code></pre><p>Cにおいて、関数と<code>static</code>のついたグローバル変数はそれが宣言された<strong>翻訳単位</strong>
+（例：<code>#include</code>で多数のヘッダーと関連しているソースファイル）からプライベートになります。
+クライアントの使うパブリックなAPIが置かれるヘッダーファイルに書かれることの多い非静的の宣言は、
+パブリックにアクセス可能です。
+静的な関数と変数はパブリックAPIから実装の詳細を隠すために使われます。</p><p>Cにおけるカプセル化はミニマルなアプローチです。
+C++も同じ機能をサポートしていますが、
+それは宣言に加えて型定義もカプセル化できる匿名名前空間でもあります。
+JavaやC#、その他OOPをサポートする言語のように、
+C++にも<code>class</code>や<code>struct</code>のメンバの宣言に適用できる<strong>アクセス修飾子</strong>
+（access specifier、protection attribute、visibility attributeとも呼ばれます）があります。</p><p>C++ には、OOP言語では一般的な以下の3つのアクセス修飾子があります。</p><ul><li><code>public</code> – 世界全体からアクセス可能</li><li><code>private</code> – クラスの中でのみアクセス可能</li><li><code>protected</code> – クラスとそれを継承したクラスの中からのみアクセス可能</li></ul><p>Javaを経験したプログラマーは手を挙げてこう言うかもしれません。
+「あー、ちょっといいですか。これは<code>protected</code>の完璧な定義ではありません。」
+Javaではこのようになっているからです。</p><ul><li><code>protected</code> – クラス、継承したクラス、同じパッケージ内のクラスの中からのみアクセス可能</li></ul><p>Javaにおいて各クラスはパッケージに属しているため、
+ここにはパッケージが関わっているとしたほうが自然です。
+したがってこのようになります。</p><ul><li>*package-private*（キーワードではありません） – クラス、継承したクラス、同じパッケージ内のクラスの中からのみアクセス可能</li></ul><p>これはJavaにおいてアクセス修飾子を指定しなかった場合のデフォルトのアクセスレベルです。
+Javaにおいてパッケージをクラスを超えたカプセル化の道具にする<code>protected</code>と組合わさります。</p><p>同じように、C#にはアセンブリ、<a href=https://msdn.microsoft.com/en-us/library/ms973231.aspx>MSDNによると</a>「型の集合であり、論理機能単位をつくるリソース」があります。
+C#では、<code>protected</code>の意味はC++のそれと同じですが、
+この言語ではそれに加えてアセンブリに関する、
+Javaの<code>protected</code>やpackage-privateと似ている2つの形態があります。</p><ul><li><code>internal</code> – クラスと同じアセンブリ内のクラス内でのみアクセス可能</li><li><code>protected internal</code> – クラス、継承したクラス、同じアセンブリ内のクラス内からのみアクセス可能</li></ul><p>他のプログラミング言語のカプセル化について調べることでその類似点と相違点を見つけることができます。
+一般的なカプセル化のイディオムは言語特有の機能として存在します。
+基本となる概念は同じですが、そのスコープと実装はさまざまです。
+なのでDに独自のカプセル化アプローチ、言語特有のやり方があったとしても驚くことではありません。</p><h3 id=モジュール>モジュール</h3><p>Dのカプセル化のアプローチの基礎となるのは<a href=https://dlang.org/spec/module.html>モジュールです</a>。
+上記のCコードのDバージョンを考えてみましょう。</p><pre><code class=language-d>module mymod;
+
+private size_t _count;
+
+void printMessage(string msg) {
+
+    import std.stdio : writeln;
+
+    writeln(msg);
+
+    _count++;
+
+}
+
+size_t numPrints() { return _count; }
+</code></pre><p>Dにおいて、アクセス修飾子は<code>class</code>や<code>struct</code>のメンバのみならず、
+モジュールスコープの宣言にも適用できます。
+<code>_count</code>は<code>private</code>、つまりこのモジュールの外からは見えません。
+<code>printMessage</code>と<code>numPrints</code>にはアクセス修飾子がついていません。
+これらはデフォルトで<code>public</code>であり、モジュールの外から見えて、アクセス可能です。
+両関数はキーワード<code>public</code>で修飾することもできます。</p><p>モジュールスコープでのimportはデフォルトで<code>private</code>であり、
+インポートされたモジュールのシンボルはインポートしたモジュールの外からは見えません。
+またこの例で使われているようなローカルインポートは絶対に親スコープから見ることができません。</p><p>これ以外の構文もサポートされており、モジュールのレイアウトにフレキシビリティを提供しています。
+たとえば、C++スタイル構文もあります。</p><pre><code class=language-d>module mymod;
+
+// これより下にあるすべては他の保護属性が現れるか
+
+// ファイルの終わりまでprivateになります
+
+private:
+
+    size_t _count;
+
+// publicに戻します
+
+public:
+
+    void printMessage(string msg) {
+
+     import std.stdio : writeln;
+
+     writeln(msg);
+
+     _count++;
+
+    }
+
+    size_t numPrints() { return _count; }
+</code></pre><p>このようにもできます。</p><pre><code class=language-d>module mymod;
+
+private {
+
+    // このブレースのなかで宣言されるものはすべてprivateになります
+
+    size_t _count;
+
+}
+
+// この関数はデフォルトのpublicのままです
+
+void printMessage(string msg) {
+
+    import std.stdio : writeln;
+
+    writeln(msg);
+
+    _count++;
+
+}
+
+size_t numPrints() { return _count; }
+</code></pre><p>モジュールはパッケージに属することができます。
+パッケージは関連するモジュールをまとめる手段です。
+各モジュールに対応するソースファイルは実際にディスク上の同じディパッケージとモジュールについては将来の記事で詳しく取り扱います。レクトリにある必要があります。
+ソースファイルのなかで、ディレクトリはモジュール宣言の一部になります。</p><pre><code class=language-d>// mypack/amodule.d
+
+mypack.amodule;
+
+// mypack/subpack/anothermodule.d
+
+mypack.subpack.anothermodule;
+</code></pre><p>ディレクトリと対応しないパッケージ名をつけたり、
+ファイルと対応しないモジュール名をつけることも可能ですが、それはバッドプラクティスです。
+パッケージとモジュールについては将来の記事で詳しく取り扱います。</p><p>モジュール宣言にパッケージが含まれていないため、<code>mymod</code>はパッケージに属しません。
+<code>printMessage</code>のなかで、関数<code>writeln</code>は<code>stdio</code>モジュールからインポートされていますが、
+<code>stdio</code>モジュールは<code>std</code>パッケージに属しています。
+Dにおいてパッケージは特殊な機能を持っているわけではなく主に名前空間として機能しますが、
+but they are a common part of the codescape.
+（訳注：ここよく意味がわからなかった。codescapeはなにかのスペルミス？）</p><p>モジュールスコープ宣言には<code>public</code>と<code>private</code>に加えて、<code>package</code>アクセス修飾子も適用できます。
+同じパッケージの中でのみ見えるようになります。</p><p>以下の例について考えてみます。
+3つのファイルの中に3つのモジュールがあり（ファイルあたり1モジュールだけが存在できます）、
+それぞれ同じrootパッケージに属しています。</p><pre><code class=language-d>// src/rootpack/subpack1/mod2.d
+
+module rootpack.subpack1.mod2;
+
+import std.stdio;
+
+package void sayHello() {
+
+    writeln(&quot;Hello!&quot;);
+
+}
+
+// src/rootpack/subpack1/mod1.d
+
+module rootpack.subpack1.mod1;
+
+import rootpack.subpack1.mod2;
+
+class Speaker {
+
+    this() { sayHello(); }
+
+}
+
+// src/rootpack/app.d
+
+module rootpack.app;
+
+import rootpack.subpack1.mod1;
+
+void main() {
+
+    auto speaker = new Speaker;
+
+}
+</code></pre><p>これを以下のコマンドでコンパイルします。</p><pre><code class=language-console>cd src
+
+dmd -i rootpack/app.d
+</code></pre><p><code>-i</code>スイッチはインポートしたモジュールを自動的にコンパイルしてリンクするようコンパイラに指示します
+（標準ライブラリの名前空間<code>core</code>と<code>std</code>を除く）。
+これがない場合、各モジュールはコマンドラインで渡されなければならず、
+渡されなかった場合それはコンパイルされないしリンクもされません。</p><p>クラス<code>Speaker</code>は同じパッケージのモジュールに属しているため<code>sayHello</code>へのアクセス権を持ちます。
+リファクタリングの結果<code>sayHello</code>が<code>rootpack</code>パッケージ全体からアクセスできると便利だ、
+と考えた場合を想像してみましょう。
+Dはそのための手段としてパッケージの完全修飾名（Fully-qualified name、FQN）
+を使いパラメタライズされた<code>package</code>属性を提供します。
+これを使うと<code>sayHello</code>の宣言をこのように変更できます。</p><pre><code class=language-d>package(rootpack) void sayHello() {
+
+    writeln(&quot;Hello!&quot;);
+
+}
+</code></pre><p>これで<code>rootpack</code>に属するモジュールと
+<strong><code>rootpack</code>以下のパッケージに属するすべてのモジュール</strong>は<code>sayHello</code>へのアクセス権を持ちます。
+後者を見落とさないでください。
+<code>package</code>属性のパラメータはパッケージとそのすべての子孫がこのシンボルにアクセスできると言っています。
+あまりに幅広すぎると思うかもしれませんが、そうではありません。</p><p>ひとつには、親パッケージの先祖だけがパラメータに使えるということです。
+<code>rootpack.subpack.subsub.mymod</code>というモジュールをもとに考えてみます。
+この名前は<code>mymod.d</code>内の<code>package</code>属性において合法なすべてのパラメータを含んでいます。
+つまり、<code>rootpack</code>、<code>subpack</code>、<code>subsub</code>です。
+<code>mymod</code>内で宣言されたシンボルについて以下の属性が付けられます。</p><ul><li><code>package</code> – <code>subsub</code>パッケージのような、<code>mymod</code>の親パッケージ内のモジュールからのみ可視。</li><li><code>package(subsub)</code> – <code>subsub</code>パッケージと<code>subsub</code>のすべての子孫パッケージ内のモジュールから可視。</li><li><code>package(subpack)</code> – <code>subpack</code>パッケージと<code>subpack</code>のすべての子孫パッケージ内のモジュールから可視。</li><li><code>package(rootpack)</code> – <code>rootpack</code>パッケージと<code>rootpack</code>のすべての子孫パッケージ内のモジュールから可視。</li></ul><p>この機能によりパッケージはカプセル化のツールになり、外の世界からシンボルを隠し、
+しかしパッケージヒエラルキーの特定のサブツリーからのみ可視かつアクセス可能にできるようになります。
+実際には、アクセス権をサブツリー全体にひろげるのが望ましいというケースは多くありません。</p><p>たとえば<code>graphics</code>パッケージと、
+DirextX、Metal、OpenGL、Vulkanなどのための実装を含むサブパッケージのように、
+パブリックなインターフェースを公開し、
+なおかつ1つ以上のサブパッケージ内にある実装を隠したいというシチュエーションでは、
+パラメタライズされたパッケージ保護は一般的に見られます。
+Dのアクセス修飾子は3段階のカプセル化を可能にします。</p><ul><li>全体は<code>graphics</code>パッケージ</li><li>各サブパッケージは実装を含む</li><li>各パッケージは独立したモジュールになっている</li></ul><p>私は4段階目として<code>class</code>や<code>struct</code>を入れていません。
+次のセクションで理由を説明します。</p><h3 id=クラスと構造体>クラスと構造体</h3><p>この記事で書きたかったところにやってきました。
+どれほどの人が
+<a href=https://forum.dlang.org/>Dフォーラムに来て</a>
+パッケージ保護について驚きを表明したかもはや覚えていませんが、
+クラスと構造体の中のアクセス修飾子の振る舞いは、主に他の言語での経験から生じる期待のために、
+唐突に飛び出してきたように感じるものです。</p><p>クラスと構造体はモジュールのそれと同じアクセス修飾子を使います。
+<code>public</code>、<code>package</code>、<code>package(some.pack)</code>、<code>private</code>です。
+構造体が継承をサポートしていないため（モジュールもオブジェクトではないため）、
+<code>protected</code>属性はクラスでのみ使えます。
+<code>public</code>、<code>package</code>、<code>package(some.pack)</code>はモジュールレベルのそれと同様に振る舞います。
+驚く人がいるのは<code>private</code>を同じように使ったときです。</p><pre><code class=language-d>import std.stdio;
+
+class C {
+
+    private int x;
+
+}
+
+void main() {
+
+    C c = new C();
+
+    c.x = 10;
+
+    writeln(c.x);
+
+}
+</code></pre><p><em><a href=https://run.dlang.io/is/L7geN6>この例をオンラインで実行</a></em></p><p>Dについて調べる人によってこのようなコード片が、
+「なぜこれがコンパイルされるのですか？」
+（ときに「バグを見つけたかもしれません！」）という質問とともに度々投稿されます。
+これは経験が予想を誤らせる例です。
+<code>private</code>の意味はみんな知っているので、
+多くの人が言語仕様のドキュメントを読んで悩むようなものではないはずです。
+しかし、<a href=https://dlang.org/spec/attribute.html#visibility_attributes>ドキュメントを読んだ人はこのような記述を見つけます</a>。</p><blockquote><p>privateのついたシンボルは同じモジュール内からのみアクセスできます。</p></blockquote><p>Dにおける<code>private</code>は常に<strong>モジュールのprivate</strong>を意味しています。
+モジュールはカプセル化の最低段階です。
+これがカプセル化を破っていると言われる理由を理解することもできますが、
+これはカプセル化を<strong>強化する</strong>ためのものです。
+これはC++の<code>friend</code>機能からインスパイアされたものです。</p><p>C++コンパイラを長年実装、メンテナンスしてきたことにより、
+Walterは<code>friend</code>のような機能の必要性を理解しましたが、
+これが目的を達成する最善の方法ではないとも思いました。</p><blockquote><p>どこか別のファイルで走る&rdquo;friend&rdquo;を宣言できるようにすることはカプセル化と逆行しています。</p></blockquote><p>他の方法としてモジュールあたり1つのクラスというJava風のアプローチがありますが、
+彼はこれを厳しすぎると思いました。</p><blockquote><p>概念をカプセル化する相互に強く接続されたクラスが必要とされていて、それはモジュールに入るべきです。</p></blockquote><p>Dにとってモジュールは単なる1つのソースファイルではなく、カプセル化の1ユニットです。
+関数、クラス、構造体がその中に含まれ、
+そのすべてがモジュールスコープとクラススコープで宣言された同じデータを操作できます。
+しかしやはり、パブリックなインターフェースはモジュール内のプライベートな実装から保護されています。
+同様に、<code>protected</code>なクラスメンバは継承先クラスからアクセス可能なだけでなく、
+モジュール内からもアクセス可能です。</p><p>そうはいっても、モジュール内からのプライベートなメンバのアクセスを禁止する利点も存在します。
+大きなモジュールは、特にそれをチームでメンテしている場合、メンテする負担が大きくなってきます。
+どのクラスの<code>private</code>メンバもモジュール内からアクセスされるということは、
+変化を起こしうる場所が増えるということであり、そのためメンテナンスの負担を増やします。
+この言語は<a href=https://dlang.org/spec/module.html#package-module>特殊な<strong>パッケージモジュール</strong></a>
+の形で負担を軽減する手段を提供しています。</p><p>時に、ユーザーに複数のモジュールを別々にインポートする手間をかけさせたくない、
+という状況があります。
+大きなモジュールを小さく分割した時などはその一例です。
+以下のようなファイルツリーについて考えてみます。</p><pre><code>-- mypack
+
+---- mod1.d
+
+---- mod2.d
+</code></pre><p><code>mypack</code>と呼ばれるパッケージに2つのモジュールがあります。
+<code>mod1.d</code>が非常に大きく成長してしまいメンテナンスできるか心配になってきたとします。
+プライベートなメンバが、クラスの宣言の外、何百行、
+何千行とあるなかから操作されていないことを確実にしておきたいです。
+モジュールをもっと小さくしたいですが、
+それと同時にユーザーコードを破壊するようなこともしたくありません。
+現在、ユーザーはモジュールのシンボルを<code>import mypack.mod1</code>とインポートできるようになっています。
+これが動作し続けるようにしたいのです。
+以下が現在の状況です。</p><pre><code>-- mypack
+
+---- mod1
+
+------ package.d
+
+------ split1.d
+
+------ split2.d
+
+---- mod2.d
+</code></pre><p><code>mod1.d</code>を新しい2つのモジュールに分割し、<code>mod1</code>という名前のパッケージに配置しました。
+ここで以下のような<code>package.d</code>という特殊なファイルも作っています。</p><pre><code class=language-d>module mypack.mod1;
+
+public import mypack.mod1.split1,
+
+   mypack.mod1.split2;
+</code></pre><p>コンパイラが<code>package.d</code>を見つけると、それは特別に扱われます。
+ユーザーはモジュールが新しいパッケージ内の2つのモジュールに分割されたことを気にすること無く
+<code>import mypack.mod1</code>を使い続けられます。
+カギとなるのは<code>package.d</code>の上の部分のモジュール宣言です。
+この宣言は、このパッケージをモジュール<code>mod1</code>として扱うようコンパイラに指示します。
+そしてモジュール内のすべてのパッケージは自動的にインポートされず、
+かわりに<code>package.d</code>内のパブリックなインポートとしてリストする必要があります。
+これによりパッケージの実装がより自由になります。
+<code>package.d</code>がありながら、ユーザーにはモジュールの明示的なインポートを要求したいときもあるでしょう。</p><p>ユーザーは<code>mod1</code>を単一のモジュールとして扱い続けることもできるし、
+そのようにインポートし続けることもできます。
+同時に、内部のカプセル化はより強力に行われるようになりました。
+<code>split1</code>と<code>split2</code>は分離したモジュールのため、他方のプライベートな部分に触ることはできません。
+両モジュールで共有されてほしいAPIの各部分は<code>package</code>で修飾できます。
+内部的な変化にかかわらず、パブリックなインターフェースは変化せず、カプセル化は保たれています。</p><h3 id=要約>要約</h3><p>以下がDで宣言できるアクセス修飾子の完全なリストです。</p><ul><li><code>public</code> – どこからでもアクセス可能。</li><li><code>package</code> – 同じパッケージのモジュールからアクセス可能。</li><li><code>package(some.pack)</code> – パッケージ<code>some.pack</code>とその子孫パッケージ内のモジュールからアクセス可能。</li><li><code>private</code> – モジュール内でのみアクセス可能。</li><li><code>protected</code> （クラスでのみ有効） – モジュールと継承先クラスからアクセス可能。</li></ul><p>この記事があなたに「母国語」ではなくDで考える視点を、Dのカプセル化について与えられたなら幸いです。</p><p><em>この記事のレビューとフィードバックの提供をしてくれた Ali Çehreli、 Joakim Noah、 Nicholas Wilson に感謝します。</em></p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+ロスト・イン・トランスレーション：カプセル化【翻訳】</h2><p><time>2018-12-24</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a> <a href=/tags/translation>#translation</a> <a href=/tags/d_blog>#d_blog</a> <a href=/tags/advent_calendar>#advent_calendar</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
