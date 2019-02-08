@@ -18,7 +18,7 @@ gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=
 しかし実は元のtinyraytracerには<code>geometry.h</code>というヘッダファイルがあり、
 そこで<code>vec3f</code>等のデータ構造が80行以上かけて実装されているのでこちらも厳密には256行ではありません。
 なのでセーフです。
-セーフです。</p><p>この記事ではtinyraytracerのコードと
+セーフです。</p><p>この記事はtinyraytracerのコードと
 <a href=https://github.com/ssloy/tinyraytracer/wiki>Wiki</a>
 をパッと読んだだけではわからなかったところを補足する計算ノートです。</p><h3 id=球との衝突判定>球との衝突判定</h3><pre><code class=language-cpp>bool ray_intersect(const Vec3f &amp;orig, const Vec3f &amp;dir, float &amp;t0) const {
         Vec3f L = center - orig;
