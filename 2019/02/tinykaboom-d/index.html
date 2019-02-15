@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=description content="レイマーチングという3Dレンダリング手法があります。 Wikipediaの記事もないくらい知名度の低い手法ですが、 簡単に説明すると描画したいオ"><link rel=stylesheet href=https://blog.kotet.jp/sass/single.min.a46209b7292a5337cb1ba441dd38238fbe3cc498d46e0bd08c757deccdc8f28f.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/d.min.js></script><script>hljs.configure({languages:[]})
+hljs.initHighlightingOnLoad();</script><script defer src="//cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type=text/javascript></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$']],
+        processEscapes: true
+      }
+    });
+</script><title>#dlang ライブラリ不使用、数百行でレイマーチングを行い爆発した - Kotet&#39;s Personal Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://blog.kotet.jp/2019/02/tinykaboom-d/><link rel=icon href=/favicon.ico><meta name=twitter:card content=summary_large_image><meta name=og:title content="#dlang ライブラリ不使用、数百行でレイマーチングを行い爆発した - Kotet's Personal Blog"><meta name=og:description content="レイマーチングという3Dレンダリング手法があります。 Wikipediaの記事もないくらい知名度の低い手法ですが、 簡単に説明すると描画したいオ"><meta name=og:image content=https://blog.kotet.jp/img/blog/2019/02/raymarching.jpg><meta name=twitter:url content=https://blog.kotet.jp/2019/02/tinykaboom-d/><meta name=twitter:site content=@kotetttt><meta name=twitter:creator content=@kotetttt><meta name=generator content="Hugo 0.54.0"><script defer src="//www.googletagmanager.com/gtag/js?id=UA-88180620-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-88180620-1');</script><script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8443812672116269",enable_page_level_ads:true});</script></head><body><header class=site><nav><ul><li><a href=/about>ABOUT</a></li><li><a href=/products>PRODUCTS</a></li><li><a href=/tags>TAGS</a></li><li><a href=/index.xml>FEED</a></li></ul></nav><h1><a href=/>KOTET'S<br>PERSONAL<br>BLOG</a></h1></header><main><header><h2><a href=/tags/dlang>#dlang</a>
+ライブラリ不使用、数百行でレイマーチングを行い爆発した</h2><p><time>2019-02-15</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p><aside><p>Table of Contents</p><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#tinykaboom>tinykaboom</a></li><li><a href=#tinykaboom-d>tinykaboom-d</a></li></ul></li></ul></li></ul></nav></aside></header><article><p>レイマーチングという3Dレンダリング手法があります。
+Wikipediaの記事もないくらい知名度の低い手法ですが、
+簡単に説明すると描画したいオブジェクトの距離関数をもとにレイの衝突判定をするものです。
+距離関数を書くことさえできればレイトレーシングと比べてはるかに複雑なものが描けるという特徴があります。
+<a href=https://cgworld.jp/feature/201602-kado01-cgw211.html>フラクタル図形</a>とか、
+<a href=https://www.famitsu.com/news/201808/23162812.html>雲とか</a>が描きやすいらしいですね。</p><h3 id=tinykaboom>tinykaboom</h3><p>そんなレイマーチングの仕組みのわかる学習用リポジトリがあります。</p><p><a href=https://github.com/ssloy/tinykaboom>ssloy/tinykaboom: A brief computer graphics / rendering course</a></p><p>これは200行足らずのコードでレイマーチングを行い、爆発のようなものを描画します。
+前回のレイトレーサーを前提に説明しているので、学習はその順番で行うといいでしょう。</p><h3 id=tinykaboom-d>tinykaboom-d</h3><p>そういうわけでDで書きました。
+実行すると100枚のppm画像が出力されます。</p><p><img src=/img/blog/2019/02/raymarching.jpg alt></p><p>動画にするとこんな感じになります。</p><p><blockquote class=twitter-tweet data-lang=en><p lang=ja dir=ltr>よしできた <a href=https://t.co/2h4D3G66f2>pic.twitter.com/2h4D3G66f2</a></p>&mdash; Kotet (@kotetttt) <a href="https://twitter.com/kotetttt/status/1095975324574134272?ref_src=twsrc%5Etfw">February 14, 2019</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script></p><p>作った感想ですが、レイトレーシングと違い物理法則に基づいたなにがしとかではないので新世界の神感はないです。
+マジックナンバーもいっぱいです。
+しかし上のリンクのようにアニメーションやゲームでは大いに役立ちます。</p><p>未だに少し処理を追えてなかったりコードの意図がわからないところもあるので今回はただの日記です。</p></article><footer><h2><a href=/tags/dlang>#dlang</a>
+ライブラリ不使用、数百行でレイマーチングを行い爆発した</h2><p><time>2019-02-15</time>
+<a href=/tags/dlang>#dlang</a> <a href=/tags/tech>#tech</a></p></footer><div class=ad-wrapper><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8443812672116269 data-ad-slot=2914874272 data-ad-format=horizontal data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></main><footer class=site></footer></body></html>
