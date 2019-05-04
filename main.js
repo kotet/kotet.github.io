@@ -55,8 +55,8 @@ window.addEventListener("load", function () {
     ctx = canvas.getContext("2d");
     ctx.globalCompositeOperation = "destination-atop";
     brush = new Image();
-    brush.src = BRUSHPATH + "?" + new Date().getTime();
     brush.onload = (() => { setTimeout(draw, 100); setInterval(resize, 1000); })();
+    brush.src = BRUSHPATH + "?" + new Date().getTime();
 });
 
 function bezier(a, b, c, d, t) {
