@@ -13,51 +13,12 @@
     <meta name="twitter:url" content="https://kotet.jp/" />
     <meta name="twitter:site" content="@kotetttt" />
     <meta name="twitter:creator" content="@kotetttt" />
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, helvetica neue, segoe ui, noto sans japanese, ヒラギノ角ゴ pron w3, Meiryo, sans-serif;
-            margin: 0;
-            font-size: 16px;
-            min-height: 100vh;
-            color: black;
-            background: #f5f5f5;
-            display: flex;
-            align-items: center;
-        }
-
-        a {
-            /* color: white; */
-        }
-
-        .card {
-            position: fixed;
-            height: 60vh;
-            max-height: 20em;
-            width: 100%;
-            max-width: 30em;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-
-        svg {
-            height: 100%;
-            margin-right: 1em;
-            margin-left: 1em;
-        }
-
-        main {
-            margin-right: 1em;
-        }
-
-        ul {
-            line-height: 2;
-        }
-    </style>
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js" async></script>
 </head>
 
 <body>
+    <canvas id="back-canvas"></canvas>
     <div class="card">
         <svg xmlns="http://www.w3.org/2000/svg" style="fill:#000" viewBox="0 0 120 210">
             <g style="fill:none;stroke:#000;stroke-width:5">
@@ -66,44 +27,40 @@
                 <path
                     d="m 60,20 c -10,49 -1,59 -1,59 8,12 34,44 0,51 -46,9 -43,43 -43,43 0,0 1,32 56,27 55,-5 43,-42 43,-42 0,0 -10,-36 -56,-28" />
             </g>
-            <ellipse cx="40" cy="160" rx="6" ry="9" />
-            <ellipse cx="80" cy="160" rx="6" ry="9" />
-            <g style="fill:#fff">
-                <ellipse cx="43" cy="156" rx="2" ry="4" />
-                <ellipse cx="83" cy="156" rx="2" ry="4" />
-            </g>
+            <path d="M34,160a6,9 0 1,0 12,0a6,9 0 1,0 -12,0 z M41,157a2,4 0 1,1 4,0a2,4 0 1,1 -4,0 z" />
+            <path d="M74,160a6,9 0 1,0 12,0a6,9 0 1,0 -12,0 M81,157a2,4 0 1,1 4,0a2,4 0 1,1 -4,0" />
         </svg>
         <main>
             <h1>Kotet.jp</h1>
             <ul>
                 <li>
                     <a href="https://blog.kotet.jp/">
-                        <span>Blog</span><span class="suffix">.kotet.jp</span>
+                        Blog
                     </a>
                 </li>
                 <li>
                     <a href="https://podcast.kotet.jp/">
-                        <span>Podcast</span><span class="suffix">.kotet.jp</span>
+                        Podcast
                     </a>
                 </li>
                 <li>
                     <a href="https://clock.kotet.jp/">
-                        <span>Clock</span><span class="suffix">.kotet.jp</span>
+                        Clock
                     </a>
                 </li>
                 <li>
                     <a href="https://kotet.jp/warshall-floyd-visualizer">
-                        Warshall-floyd visualizer</span>
+                        Warshall-floyd visualizer
                     </a>
                 </li>
                 <li>
                     <a href="https://github.com/kotet/">
-                        <span>GitHub</span><span class="suffix">.com/kotet</span>
+                        GitHub
                     </a>
                 </li>
                 <li>
                     <a href="https://twitter.com/kotetttt/">
-                        <span>Twitter</span><span class="suffix">.com/kotetttt</span>
+                        Twitter
                     </a>
                 </li>
             </ul>
