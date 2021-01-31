@@ -1,121 +1,31 @@
-/* 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, helvetica neue, segoe ui, noto sans japanese, ヒラギノ角ゴ pron w3, Meiryo, sans-serif;
-    background-color: #eee;
-}
-
-h1 {
-    text-align: center;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-svg {
-    max-width: 100vw;
-    height: 35vh;
-    width: 35vh;
-    margin: 2em auto;
-    border-radius: 100%;
-    background: antiquewhite;
-}
-
-ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
-}
-
-@media (max-width: 1000px) {
-    ul {
-        flex-direction: column;
-    }
-}
-
-li {
-    display: block;
-    flex-basis: calc(100% / 7);
-}
-
-li h2 {
-    font-size: 1em;
-    height: 3em;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-li h2 a {
-    color: #00c;
-}
-
-hr {
-    height:0px;
-    border-radius: 2px;
-    border: 1px solid hsl(0, 0%, 60%);
-    width: 90%;
-    max-width: 300px;
-} */
-
-body {
-    font-family: serif;
-    font-weight: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.card {
-    width: 100%;
-    height: 100%;
-    max-width: 600px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 1em;
-}
-
-svg {
-    display: block;
-    min-width: 40%;
-    max-width: 100vw;
-    height: max-content;
-    margin: auto;
-    margin-left: 0;
-    padding: 1em 0;
-}
-
-main {
-    min-width: 50%;
+html {
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 2;
     padding: 1em;
 }
 
-h1 {
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section {
     margin: 0;
+    margin-bottom: 3em;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 1em;
-    line-height: 2em;
+    padding-left: 1em;
+    position: relative;
 }
 
-li h2 {
-    text-align: start;
-    font-size: 1em;
-    display: inline;
+li {
+    list-style-type: none!important;
 }
 
-a {
-    color: #333;
+li:before {
+    content: "- ";
+    position: absolute;
+    left: 0;
 }
