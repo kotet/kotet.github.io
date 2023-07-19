@@ -4,44 +4,100 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kotet.jp</title>
+    <title>KotetJP</title>
+    <meta name="description" content="Kotetのサイト">
+    <meta name="author" content="Kotet">
+    <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta name="twitter:card" content="summary" />
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kotet.jp">
     <meta name="og:title" content="Kotet.jp" />
     <meta name="og:description" content="Kotetのサイト" />
+    <meta property="og:locale" content="ja_JP">
+    <meta name="og:image" content="https://kotet.jp/logo.png">
     <meta name="twitter:image" content="https://kotet.jp/logo.png" />
     <meta name="twitter:url" content="https://kotet.jp/" />
     <meta name="twitter:site" content="@kotetttt" />
     <meta name="twitter:creator" content="@kotetttt" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=BIZ+UDPMincho&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="main.css" />
-    <script src="main.js"></script>
 </head>
 
 <body>
     <main>
-        <h1>KOTET.JP</h1>
+        <h1><img style="height: 2em; vertical-align: middle;" src="./logo.png" />KOTET.JP</h1>
+        <section>
+            <h2>Kotet /
+                <ruby>
+                    坂一哲
+                    <rp>(</rp>
+                    <rt>BAN Kazutoshi</rt>
+                    <rp>)</rp>
+                </ruby>
+            </h2>
+            <p>
+                Aichi Prefectural University, Graduate School of Information Science and Technology
+            </p>
+            <p>
+                RoboDragons: Robocup Small Size League
+            </p>
+            <p>
+                Aichi, Japan (UTC +09:00)
+            </p>
+        </section>
         <section>
             <h2>Social Media</h2>
             <ul>
-                <li>Twitter: <a href="https://twitter.com/kotetttt/">@kotetttt</a></li>
-                <li>AtCoder: <a href="https://atcoder.jp/users/kotet">@kotet</a></li>
-                <li>GitHub: <a href="https://github.com/kotet/">@kotet</a></li>
-                <li>Mastodon: <a rel="me" href="https://mastodon.kotet.jp/@kotet">@kotet@mastodon.kotet.jp</a></li>
+                <li>Mastodon: <a target="_blank" rel="noopener noreferrer me"
+                        href="https://mastodon.kotet.jp/@kotet">@kotet@mastodon.kotet.jp</a></li>
+                <li>GitHub: <a target="_blank" rel="noopener noreferrer" href="https://github.com/kotet/">@kotet</a>
+                </li>
+                <li>Twitter: <a target="_blank" rel="noopener noreferrer"
+                        href="https://twitter.com/kotetttt/">@kotetttt</a></li>
+                <li>AtCoder: <a target="_blank" rel="noopener noreferrer"
+                        href="https://atcoder.jp/users/kotet">@kotet</a></li>
             </ul>
         </section>
         <section>
-            <h2>My Stuff</h2>
-            <ul>
-                <li>Blog: <a href="https://blog.kotet.jp/">blog.kotet.jp</a></li>
-                <li>Clock: <a href="https://clock.kotet.jp/">clock.kotet.jp</a></li>
-                <li>Custom Style Bookmark Generator: <a
-                        href="https://kotet.jp/custom-style-bookmarklet-generator/">kotet.jp/custom-style-bookmarklet-generator</a>
-                </li>
-                <li>Warshall Floyd Visualizer: <a
-                        href="http://kotet.jp/warshall-floyd-visualizer/">kotet.jp/warshall-floyd-visualizer</a></li>
-            </ul>
+            <h2>Creation</h2>
+            <section class="creation-card">
+                <h3>Blog</h3>
+                <p>
+                    興味分野の知識をまとめたり、翻訳したりしている
+                </p>
+                <p>
+                    <a target="_blank" rel="noopener noreferrer" href="https://blog.kotet.jp/">blog.kotet.jp</a>
+                </p>
+            </section>
+            <section class="creation-card">
+                <h3>Integer Inspector</h3>
+                <p>
+                    整数値をビット列として見るためのツール。ぼくのかんがえたさいきょうの整数ビューア
+                </p>
+                <p>
+                    <a target="_blank" rel="noopener noreferrer"
+                        href="https://kotet.jp/integer-inspector/">kotet.jp/integer-inspector</a>
+                </p>
+            </section>
+            <section class="creation-card">
+                <h3>秋月電子更新通知Bot(非公式)</h3>
+                <p>秋月電子の新商品を勝手につぶやく非公式bot</p>
+                <p><a target="_blank" rel="noopener noreferrer"
+                        href="https://mastodon.kotet.jp/@akizuki">@akizuki@mastodon.kotet.jp</a></p>
+            </section>
+            <section class="creation-card">
+                <h3>Clock</h3>
+                <p>でかい時計</p>
+                <p>
+                    <a target="_blank" rel="noopener noreferrer" href="https://clock.kotet.jp/">clock.kotet.jp</a>
+                </p>
+            </section>
         </section>
     </main>
 </body>
